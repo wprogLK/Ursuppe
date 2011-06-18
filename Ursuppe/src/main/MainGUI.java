@@ -1,0 +1,68 @@
+package main;
+
+import interfaces.IGame;
+import interfaces.IModule;
+import interfaces.IPlayer;
+
+import enums.EPhases;
+import gameObjectsGUI.GameGUI;
+
+import module.*;
+
+import annotations.OnlyForTesting;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+/**
+ * runs the whole Ursuppe game
+ * 
+ * @author Lukas Keller
+ * @version 1.0.0
+ *
+ */
+public class MainGUI {
+	
+	
+	private static IGame game;
+	private static IModule module =new ModuleGUI();
+	
+	
+	/**
+	 * runs the game with the support of Google Guice.
+	 * <p>
+	 * creates and starts the game ({@link GameGUI}) in GUI mode 
+	 * </p>
+	 * 
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) 
+	{
+		game=module.createGame();
+		
+//		 Injector injector_test = Guice.createInjector(new ModuleGUI());
+//		 game =injector_test.getInstance(GameGUI.class);
+		
+		 game.setStartPhase(EPhases.phaseA);
+		
+		 game.createNew();
+		 
+		 game.createANewPlayer();
+		 
+		 game.play();
+		 
+		 
+		 IPlayer playerOne=game.getPlayer(0);
+		 
+		 System.out.println("Player One: \n \t - Name: " + playerOne.getName() +" \n \t - Age: " + playerOne.getAge());
+		
+			 
+	}
+
+	
+	@OnlyForTesting
+	public IGame getGame()
+	{
+		return game;
+	}
+}
