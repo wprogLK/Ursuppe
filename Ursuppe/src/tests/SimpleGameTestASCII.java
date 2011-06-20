@@ -82,7 +82,7 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 		this.playerOne=  game.createANewPlayer();
 		this.playerTwo=  game.createANewPlayer();
 		
-		System.out.println("With two player");
+		System.out.println("With two players");
 		game.showPlayers();
 		
 		return game;

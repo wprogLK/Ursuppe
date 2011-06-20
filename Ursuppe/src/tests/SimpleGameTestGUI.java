@@ -51,9 +51,6 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 		
 		game=module.createGame();
 		
-//		Injector injector_test = Guice.createInjector(new ModuleGUI());
-//		game =injector_test.getInstance(GameGUI.class);
-		
 		game.setStartPhase(EPhases.phaseA);
 		
 		return game;
@@ -79,6 +76,10 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 	{
 		game.createNew();
 		this.playerOne=  game.createANewPlayer();
+		
+		System.out.println("With one player");
+		game.showPlayers();
+		
 		return game;
 	}
 	
@@ -88,6 +89,10 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 		game.createNew();
 		this.playerOne=  game.createANewPlayer();
 		this.playerTwo=  game.createANewPlayer();
+		
+		System.out.println("With two players");
+		game.showPlayers();
+		
 		return game;
 	}
 	
@@ -122,18 +127,18 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 	@Given("setNamePlayerOne")
 	public IGame namePlayerOneShouldBeLukas(IGame game)
 	{
-		System.out.println("NAME PLAYER ONE: " + this.playerOne.getName());
 		assertTrue(this.playerOne.getName().equals("Lukas"));
 		return game;
 	}
 	
 	@Given("namePlayerOneShouldBeLukas")
-	public IGame namePlayerTwoShouldBeNull(IGame game)
+	public IGame namePlayerTwoShouldBeSubjectName(IGame game)
 	{
-		assertTrue(this.playerTwo.getName()==null);
+		assertTrue(this.playerTwo.getName().equals("[SubjectName]"));
 
 		return game;
 	}
+	
 	
 	
 }

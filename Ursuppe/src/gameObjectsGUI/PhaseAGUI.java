@@ -222,7 +222,6 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 	public void setMainPanel(JPanel mainPanel)
 	{
 		this.mainPanel=mainPanel;
-		System.out.println("SET MAIN PANEL IN A: " +this.mainPanel);
 	}
 
 	@Override

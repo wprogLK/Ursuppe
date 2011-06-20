@@ -122,7 +122,6 @@ public class PhaseExitGUI extends PhaseALogic implements ActionListener{
 	public void setMainPanel(JPanel mainPanel)
 	{
 		this.mainPanel=mainPanel;
-		System.out.println("SET MAIN PANEL IN EXIT: " +this.mainPanel);
 	}
 
 	@Override
