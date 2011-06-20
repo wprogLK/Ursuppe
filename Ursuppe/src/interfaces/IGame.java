@@ -2,6 +2,7 @@ package interfaces;
 
 import javax.swing.JPanel;
 
+import enums.EColor;
 import enums.EPhases;
 
 import annotations.OnlyForTesting;
@@ -105,11 +106,16 @@ public interface IGame
 	public IPlayer getPlayer(int index);
 	
 	/**
-	 * create a new default player
+	 * Creates a new default player with the color {@code default} and name {@code [SubjectName]}
 	 * @return the new default player
 	 */
 	public  IPlayer createANewPlayer();
 	
+	/**
+	 * Creates a new player
+	 * @return the new player
+	 */
+	public IPlayer createANewPlayer(String name, int age, EColor color);
 	///////////
 	//SETTERS//
 	///////////
@@ -130,6 +136,11 @@ public interface IGame
 	 */
 	public EPhases getStartPhase();
 	
+	/**
+	 * gets the number of real players.
+	 * @return
+	 */
+	public int getNumbersOfPlayers();
 	////////////////////
 	//ONLY FOR TESTING//
 	////////////////////
@@ -140,4 +151,8 @@ public interface IGame
 	 */
 	@OnlyForTesting
 	public GameLogic  getGameLogic();
+	
+	
+	@OnlyForTesting
+	public void showPlayers();
 }

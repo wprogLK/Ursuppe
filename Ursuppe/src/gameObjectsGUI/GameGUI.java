@@ -16,18 +16,24 @@ public class GameGUI extends GameTemplate
 	
 	public GameGUI()
 	{
-		//this.injector= Guice.createInjector(new ModuleGUI());
-		
 		this.module=new ModuleGUI();
-		
-		
-		this.mainWindow=new JFrame("TestDemo: The logic of the ursuppe");
 	
+		this.setupPlayers();
+		
+		this.setupWindow();
+		
+		//mainWindow.pack();
+	}
+	
+	private void setupWindow()
+	{
+		this.mainWindow=new JFrame("TestDemo: The logic of the ursuppe");
+		
 		this.mainPanel=new JPanel();
 		
 		mainWindow.setContentPane(mainPanel);
+		
 		mainWindow.setSize(1000, 1000);
-		//mainWindow.pack();
 	}
 	
 	@Override

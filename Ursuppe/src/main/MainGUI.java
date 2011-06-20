@@ -40,9 +40,6 @@ public class MainGUI {
 	{
 		game=module.createGame();
 		
-//		 Injector injector_test = Guice.createInjector(new ModuleGUI());
-//		 game =injector_test.getInstance(GameGUI.class);
-		
 		 game.setStartPhase(EPhases.phaseA);
 		
 		 game.createNew();

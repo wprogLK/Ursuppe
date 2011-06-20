@@ -1,5 +1,6 @@
  package interfaces;
 
+import enums.EColor;
 import gameObjectsASCII.*;
 import interfaces.IGame;
 import interfaces.IPhase;
@@ -28,6 +29,19 @@ public  interface IModule
 	
 	public  IGame createGame();
 	
-	public  IPlayer createPlayer();
+	/**
+	 * Creates a new default player with the color {@code default} and name {@code [SubjectName]}
+	 * @return
+	 */
+	public  IPlayer createAPlayer();
+	
+	/**
+	 * Creates a new concrete player
+	 * @param name
+	 * @param age
+	 * @param color
+	 * @return
+	 */
+	public IPlayer createAPlayer(String name, int age, EColor color);
 	
 }

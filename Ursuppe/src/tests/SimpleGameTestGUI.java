@@ -68,9 +68,6 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 		
 		game=module.createGame();
 		
-//		Injector injector_test = Guice.createInjector(new ModuleGUI());
-//		game =injector_test.getInstance(GameGUI.class);
-		
 		game.setStartPhase(EPhases.phaseA);
 		
 		return game;
@@ -125,6 +122,7 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 	@Given("setNamePlayerOne")
 	public IGame namePlayerOneShouldBeLukas(IGame game)
 	{
+		System.out.println("NAME PLAYER ONE: " + this.playerOne.getName());
 		assertTrue(this.playerOne.getName().equals("Lukas"));
 		return game;
 	}

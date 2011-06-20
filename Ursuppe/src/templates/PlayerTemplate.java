@@ -1,11 +1,42 @@
 package templates;
 
+import enums.EColor;
 import interfaces.IPlayer;
 
 public abstract class PlayerTemplate implements IPlayer 
 {
 	protected String name;
 	protected int age;
+	protected EColor color;
+	
+	/**
+	 * is the default constructor
+	 * 
+	 * </br> name will be {@code [SubjectName]}
+	 * </br> age will be {@code 0}
+	 * </br> color will be {@link EColor#Default}
+	 */
+	public PlayerTemplate()
+	{
+		this.setName("[SubjectName]");
+		this.setAge(0);
+		this.setColor(EColor.Default);
+	}
+	
+	/**
+	 * is the concrete constructor
+	 * @param name
+	 * @param age
+	 * @param color
+	 */
+	public PlayerTemplate(String name, int age, EColor color)
+	{
+		this.setName(name);
+		this.setAge(age);
+		this.setColor(color);
+	}
+	
+	
 	
 	///////////
 	//SETTERS//
@@ -21,6 +52,11 @@ public abstract class PlayerTemplate implements IPlayer
 	{
 		this.age=age;
 	}
+	
+	public void setColor(EColor color)
+	{
+		this.color=color;
+	}
 
 	///////////
 	//GETTERS//
@@ -35,5 +71,10 @@ public abstract class PlayerTemplate implements IPlayer
 	public int getAge() 
 	{
 		return this.age;
+	}
+	
+	public EColor getColor()
+	{
+		return this.color;
 	}
 }

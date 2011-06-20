@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import com.google.inject.Injector;
 
+import enums.EColor;
 import enums.EPhases;
 
 import main.GameLogic;
@@ -39,6 +40,7 @@ public abstract class GameTemplate extends Thread implements IGame{
 	protected boolean isOver=false;
 	private EPhases startPhase;
 	
+	
 	/**
 	 * sets the {@code mainPanel} which contains all components.
 	 * 
@@ -57,15 +59,33 @@ public abstract class GameTemplate extends Thread implements IGame{
 	//////////
 	//CREATE//
 	//////////
+	protected final void setupPlayers()
+	{
+		IPlayer playerTail=this.createANewPlayer();
+		IPlayer playerHead=this.createANewPlayer();
+		
+		
+		playerHead.setName("Head");
+		playerTail.setName("Tail");
+		
+	}
+	
+	
 	@Override
 	public final IPlayer createANewPlayer()
 	{
-		System.out.println("------------MODULE IN GAME TEMPLATE: " + this.module + " ------------------");
-		
-		IPlayer newPlayer = this.module.createPlayer();
-		
-		 //IPlayer newPlayer =this.injector.getInstance(IPlayer.class);
+		 IPlayer newPlayer = this.module.createAPlayer();
 		 
+		 this.addPlayer(newPlayer);
+		 
+		 return newPlayer;
+	}
+	
+	@Override
+	public final IPlayer createANewPlayer(String name, int age, EColor color)
+	{
+		 IPlayer newPlayer = this.module.createAPlayer(name, age, color);
+		
 		 this.addPlayer(newPlayer);
 		 
 		 return newPlayer;
@@ -118,8 +138,19 @@ public abstract class GameTemplate extends Thread implements IGame{
 	public final void addPlayer(IPlayer player)
 	{
 		assert(!this.players.contains(player));
-		this.players.add(player);
+		
+		if(this.players.size()-1<0)
+		{
+			this.players.add(player);
+		}
+		else
+		{
+			this.players.add(this.players.size()-1, player);
+		}
 	}
+	
+	
+	
 	
 	@Override
 	public final void removePlayer(IPlayer player)
@@ -135,6 +166,17 @@ public abstract class GameTemplate extends Thread implements IGame{
 	///////////
 	//GETTERS//
 	///////////
+	
+	@Override
+	public int getNumbersOfPlayers()
+	{
+		int nrOfPlayers=this.players.size()-2;
+		
+		assert nrOfPlayers>=0;
+		
+		return nrOfPlayers;
+	}
+	
 	
 	@Override
 	public JPanel getMainPanel() 
@@ -182,6 +224,20 @@ public abstract class GameTemplate extends Thread implements IGame{
 	public final GameLogic  getGameLogic()
 	{
 		return this.gameLogic;
+	}
+	
+	@Override
+	@OnlyForTesting
+	public void showPlayers()
+	{
+		System.out.println("-------PLAYERS BEGIN:-----");
+		
+		for(int i=0; i<this.players.size();i++)
+		{
+			System.out.println("Player " + this.players.get(i).getName());
+		}
+		
+		System.out.println("-------PLAYERS END:-----");
 	}
 
 }

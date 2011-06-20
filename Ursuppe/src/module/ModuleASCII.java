@@ -1,5 +1,6 @@
  package module;
 
+import enums.EColor;
 import gameObjectsASCII.*;
 import interfaces.IGame;
 import interfaces.IModule;
@@ -31,14 +32,22 @@ public class ModuleASCII implements IModule
 	
 	
 	
-	
+	@Override
 	public IGame createGame()
 	{
 		return new GameASCII();
 	}
 	
-	public IPlayer createPlayer()
+	@Override
+	public IPlayer createAPlayer()
 	{
 		return new PlayerASCII();
 	}
+	
+	@Override
+	public IPlayer createAPlayer(String name, int age, EColor color)
+	{
+		return new PlayerASCII(name,age,color);
+	}
+	
 }

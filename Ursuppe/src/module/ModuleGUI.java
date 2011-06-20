@@ -1,6 +1,8 @@
 package module;
 
+import enums.EColor;
 import gameObjectsASCII.PhaseAASCII;
+import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.*;
 import interfaces.IGame;
 import interfaces.IModule;
@@ -21,28 +23,35 @@ import com.google.inject.AbstractModule;
  */
 public class ModuleGUI implements IModule
 {
+	@Override
 	public IPhase createPhaseA() 
 	{
 		return new PhaseAGUI();
 	}
+	@Override
 	public IPhase createPhaseExit()
 	{
 		return new PhaseExitGUI();
 	}
 	
-	
-	
-	
-	
-	
+	@Override
 	public IGame createGame()
 	{
 		return new GameGUI();
 	}
 
-	public IPlayer createPlayer() 
+	@Override
+	public IPlayer createAPlayer() 
 	{
 		return new PlayerGUI();
 	}
-
+	
+	@Override
+	public IPlayer createAPlayer(String name, int age, EColor color)
+	{
+		return new PlayerGUI(name,age,color);
+	}
+	
+	
+	
 }

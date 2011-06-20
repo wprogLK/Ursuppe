@@ -14,8 +14,9 @@ public class GameASCII extends GameTemplate{
 
 	public GameASCII()
 	{
-		//this.injector=Guice.createInjector(new ModuleASCII());
 		this.module=new ModuleASCII();
+		
+		this.setupPlayers();
 	}
 	
 	@Override

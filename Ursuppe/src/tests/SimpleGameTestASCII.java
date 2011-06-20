@@ -6,13 +6,9 @@ package tests;
 import static org.junit.Assert.*;
 
 import enums.EPhases;
-import gameObjectsASCII.GameASCII;
 import interfaces.IGame;
 import interfaces.IPhase;
 import interfaces.IPlayer;
-
-import module.ModuleASCII;
-
 
 import org.junit.Test;
 import ch.unibe.jexample.JExample;
@@ -22,11 +18,6 @@ import ch.unibe.jexample.Given;
 import org.junit.runner.RunWith;
 
 import templates.ASCIITestTemplate;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
-
 
 
 @RunWith(JExample.class)
@@ -43,7 +34,7 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 	 * 
 	 */
 	@Test
-	public IGame simpleGame1() 
+	public IGame simpleGameWithOnePlayer() 
 	{
 		this.setPriority(10);
 		
@@ -51,41 +42,56 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 		
 		game=module.createGame();
 		
-//		Injector injector_test = Guice.createInjector(new ModuleASCII());
-//		game =injector_test.getInstance(GameASCII.class);
+		game.setStartPhase(EPhases.phaseA);
+		
+		return game;
+	}
+	
+	@Test
+	public IGame simpleGameWithTwoPlayers() 
+	{
+		this.setPriority(10);
+		
+		IGame game;
+		
+		game=module.createGame();
 		
 		game.setStartPhase(EPhases.phaseA);
 		
 		return game;
-		 
-		//IPlayer playerOne=game.getPlayer(0);
 	}
-	
-	
 	
 
 	
-	@Given("simpleGame1")
+	@Given("simpleGameWithOnePlayer")
 	public IGame createANewGameWithOnePlayer(IGame game)
 	{
 		game.createNew();
 		this.playerOne=  game.createANewPlayer();
+		
+		System.out.println("With one player");
+		game.showPlayers();
+		
 		return game;
 	}
 	
-	@Given("simpleGame1")
+	@Given("simpleGameWithTwoPlayers")
 	public IGame createANewGameWithTwoPlayer(IGame game)
 	{
 		game.createNew();
 		this.playerOne=  game.createANewPlayer();
 		this.playerTwo=  game.createANewPlayer();
+		
+		System.out.println("With two player");
+		game.showPlayers();
+		
 		return game;
 	}
 	
 	@Given("createANewGameWithOnePlayer")
 	public IGame playGameWithOnePlayer(IGame game)
 	{
-		//game.play();
+		game.play();
 		return game;
 	}
 	
@@ -115,9 +121,9 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 	}
 	
 	@Given("namePlayerOneShouldBeLukas")
-	public IGame namePlayerTwoShouldBeNull(IGame game)
+	public IGame namePlayerTwoShouldBeSubjectName(IGame game)
 	{
-		assertTrue(this.playerTwo.getName()==null);
+		assertTrue(this.playerTwo.getName().equals("[SubjectName]"));
 
 		return game;
 	}

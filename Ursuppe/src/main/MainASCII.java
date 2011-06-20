@@ -27,7 +27,7 @@ public class MainASCII {
 	
 	
 	/**
-	 * runs the game with the support of Google Guice.
+	 * runs the game
 	 * <p>
 	 * creates and starts the game ({@link GameASCII}) in ASCII mode 
 	 * </p>

@@ -89,7 +89,7 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 		
 		if (!inputString.equals(""))
 		{
-			this.game.getPlayer(0).setName(this.doCastToString(inputA)); 
+			this.game.getPlayer(1).setName(this.doCastToString(inputA)); 
 			return true;
 		}
 		else
@@ -146,7 +146,7 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			this.game.getPlayer(0).setAge(this.doCastToInteger(inputB)); 
+			this.game.getPlayer(1).setAge(this.doCastToInteger(inputB)); 
 			return true;
 		}
 	}
