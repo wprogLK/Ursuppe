@@ -41,6 +41,8 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 	{
 		this.currentPhase=EPhases.phaseA;
 	}
+	
+	
 		
 	///////////////
 	//RUN ACTIONS//

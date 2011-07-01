@@ -17,6 +17,7 @@ import main.GameLogic;
 
 import interfaces.IGame;
 import interfaces.IModule;
+import interfaces.IPhase;
 import interfaces.IPlayer;
 import gameObjectsGUI.*;
 import gameObjectsASCII.*;
@@ -26,7 +27,6 @@ import gameObjectsASCII.*;
  * @author Lukas Keller
  * @version 1.0.0
  *
- * @see IGame
  * @see GameASCII
  * @see GameGUI
  */
@@ -202,6 +202,19 @@ public abstract class GameTemplate extends Thread implements IGame{
 	{
 		return this.startPhase;
 	}
+	
+	@Override
+	public final IPhase getCurrentPhase()
+	{
+		return this.gameLogic.getCurrentPhase();
+	}
+	
+	@Override
+	public EPhases getCurrentEPhase()
+	{
+		return this.gameLogic.getCurrentEPhase();
+	}
+	
 	///////////
 	//SETTERS//
 	///////////

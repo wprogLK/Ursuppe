@@ -13,11 +13,13 @@ public class PhaseExitASCII extends PhaseExitLogic
 		////////////
 		//...LOGIC//
 		////////////
+		@Override
 		public void doPreAction()
 		{
 			System.out.println("You want to leave the game?");
 		}
 
+		@Override
 		public void doAfterAction()
 		{
 			System.out.println("Ok... See  you soon... Bye...");
@@ -31,12 +33,13 @@ public class PhaseExitASCII extends PhaseExitLogic
 	//ACTION A//
 	////////////
 	
-	
+	@Override
 	public void doPreActionA()
 	{
 		System.out.println("Are you sure to leave the game?");
 	}
 	
+	@Override
 	public void actionAInput()
 	{
 		String name=UserInput.readInput("y/n");

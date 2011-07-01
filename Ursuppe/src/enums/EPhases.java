@@ -18,10 +18,23 @@ public enum EPhases
 			//**BASICS**//
 			//////////////
 			phaseExit,
+			phaseWelcome,
+			
+			phaseSave,
+			phaseLoad,
+			
+			phaseBreak,
+			phaseStatisic,
+			
+			phaseAbout,
+			phaseManual,
+			
+			phaseCheat,
 		
 			//////////////
 			//**SETUPS**//
 			//////////////
+			phaseSetupNewGame,
 			phaseSetupNames,
 			phaseSetupOrderToPlay,
 			phaseSetupFirstAmeba,
@@ -49,22 +62,20 @@ public enum EPhases
 	///////////
 	//METHODS//
 	///////////
-		
+		/**
+		 * setup the data (last and next ePhase) of current ePhase to {@code defaultPhase} if it is {@code null}
+		 */
 		public void setPhasesInformationToIPhase()
 		{
 			if (this.lastPhase==null)
 			{
-				//System.out.println("NULL last!");
 				this.lastPhase=this.defaultPhase;
 			}
 			
 			if (this.nextPhase==null)
 			{
-				//System.out.println("NULL next!");
 				this.nextPhase=this.defaultPhase;
 			}
-			
-		//	System.out.println("SET INFO TO IPHASE: \n lastPhase: " + this.lastPhase + "\n nextPhase: " + this.nextPhase);
 			
 			this.phase.setLastPhase(this.lastPhase);
 			this.phase.setNextPhase(this.nextPhase);
@@ -73,21 +84,32 @@ public enum EPhases
 		///////////
 		//SETTERS//
 		///////////
+		
+		/**
+		 * set the real {@link IPhase} to the current ePhase
+		 * @param the real Phase of type {@code IPhase}
+		 */
 		public void setPhase(IPhase phase)
 		{
-			//System.out.println("SET PHASE " + phase + " LAST PHASE WAS: " + this.lastPhase + " NEXT PHASE WILL BE: " + this.nextPhase);
 			this.phase=phase;
 			
 			this.setPhasesInformationToIPhase();
 			
 		}
 		
+		/**
+		 * set the next {@code ePhase}
+		 * @param nextPhase
+		 */
 		public void setNextPhase(EPhases nextPhase)
 		{
 			this.nextPhase=nextPhase;
 		}
 		
-
+		/**
+		 * set the last {@code ePhase}
+		 * @param lastPhase
+		 */
 		public void setLastPhase(EPhases lastPhase)
 		{
 			this.lastPhase=lastPhase;
@@ -97,16 +119,28 @@ public enum EPhases
 		//GETTERS//
 		///////////		
 		
+		/**
+		 * gets the real IPhase
+		 * @return IPhase
+		 */
 		public IPhase getPhase()
 		{
 			return this.phase;
 		}
 	
+		/**
+		 * gets the next ePhase of the current phase
+		 * @return EPhase
+		 */
 		public EPhases getNextPhase()
 		{
 			return this.nextPhase;
 		}
 		
+		/**
+		 * gets the last ePhase of the current phase
+		 * @return EPhase
+		 */
 		public EPhases getLastPhase()
 		{
 			return this.lastPhase;

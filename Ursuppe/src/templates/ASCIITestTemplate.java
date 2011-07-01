@@ -23,20 +23,6 @@ public class ASCIITestTemplate extends Thread
 	protected final IModule module=new ModuleASCII();
 	
 	
-		@Test
-		public void templateTest() 
-		{
-			this.setPriority(10);
-			
-			IGame game;
-			
-			game =module.createGame();
-//			
-//			Injector injector_test = Guice.createInjector(new ModuleGUI());
-//			game =injector_test.getInstance(GameGUI.class);
-			
-			//return game;
-		}
 		
 		
 		

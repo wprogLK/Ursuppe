@@ -45,6 +45,9 @@ public interface IGame
 	 */
 	public void update();
 	
+	/**
+	 * starts the thread
+	 */
 	public void play();
 	
 	/**
@@ -155,4 +158,16 @@ public interface IGame
 	
 	@OnlyForTesting
 	public void showPlayers();
+	
+	/**
+	 * gets the current ePhase 
+	 * @return the current IPhase
+	 */
+	public IPhase getCurrentPhase(); 
+	
+	/**
+	 * gets the current ePhase 
+	 * @return the current IPhase
+	 */
+	public EPhases getCurrentEPhase();
 }

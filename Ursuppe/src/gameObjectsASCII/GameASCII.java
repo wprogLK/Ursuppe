@@ -12,6 +12,13 @@ import templates.GameTemplate;
  */
 public class GameASCII extends GameTemplate{
 
+	/**
+	 * setup for an ASCII game.
+	 * 
+	 * </br> sets the module for ASCII and calls the setupPlayers (in the GameTemplate class) for the head and tail player
+	 * 
+	 * @see GameTemplate
+	 */
 	public GameASCII()
 	{
 		this.module=new ModuleASCII();

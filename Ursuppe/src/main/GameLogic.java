@@ -8,14 +8,9 @@ import javax.swing.JPanel;
 
 import annotations.OnlyForTesting;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 import enums.EPhases;
 
 import module.*;
-import gameObjectsASCII.*;
-import gameObjectsGUI.*;
 import interfaces.*;
 
 /**
@@ -30,6 +25,7 @@ public class GameLogic extends Thread implements Serializable
 	private IGame game;
 	private IModule module;
 	
+	private boolean changed=false;
 	private IPhase phaseA;
 	private IPhase phaseExit;
 	
@@ -38,7 +34,6 @@ public class GameLogic extends Thread implements Serializable
 	
 	private EPhases currentEPhase;
 
-	private Injector injector;
 	//////////
 	//CREATE//
 	//////////
@@ -46,7 +41,6 @@ public class GameLogic extends Thread implements Serializable
 	{
 		this.game=game;
 		this.setPriority(7);
-		
 	}
 
 	
@@ -59,13 +53,6 @@ public class GameLogic extends Thread implements Serializable
 		this.module=new ModuleASCII();
 		
 		this.createPhases();
-		
-		//this.phaseA=.createPhaseA();
-		//(this.phaseExit=ModuleASCII.createPhaseExit();
-//		this.injector = Guice.createInjector(new ModuleASCII());
-//		
-//		this.phaseA =injector.getInstance(PhaseAASCII.class);
-//		this.phaseExit =injector.getInstance(PhaseExitASCII.class);
 		 
 		this.startAllPhases();
 	}
@@ -75,18 +62,11 @@ public class GameLogic extends Thread implements Serializable
 	 */
 	public final void createGUI()
 	{
-		
 		this.module=new ModuleGUI();
 		
 		this.createPhases();
 		
-//		 this.injector = Guice.createInjector(new ModuleGUI());
-//		 
-//		 this.phaseA =injector.getInstance(PhaseAGUI.class);
-//		 this.phaseExit =injector.getInstance(PhaseExitGUI.class);
-		
-		 this.startAllPhases();
-		 
+		this.startAllPhases();
 	}
 	
 	private void createPhases()
@@ -130,6 +110,27 @@ public class GameLogic extends Thread implements Serializable
 		this.phaseExit.setGame(this.game);
 	}
 	
+	
+	///////////
+	//GETTERS//
+	///////////
+	
+	public IPhase getCurrentPhase() 
+	{
+//		System.out.println("CURRENT P is " + this.currentPhase);
+//		System.out.println("CURRENT eP is " + this.currentEPhase);
+//		System.out.println("CHANGED = " + this.changed);
+		
+		this.changed=false;
+		
+		return this.currentPhase;
+	}
+	
+	public EPhases getCurrentEPhase()
+	{
+		return this.currentEPhase;
+	}
+	
 	///////////
 	//THREAD//
 	//////////
@@ -140,7 +141,9 @@ public class GameLogic extends Thread implements Serializable
 	 */
 	public final void run()
 	{
-		assert(this.setStartPhase());
+		boolean validStart=this.setStartPhase();
+		
+		assert(validStart);
 		
 		assert(!this.currentEPhase.equals(EPhases.defaultPhase));
 		
@@ -194,9 +197,11 @@ public class GameLogic extends Thread implements Serializable
 		
 		//System.out.println("currentPhase= " +this.currentEPhase + "  changedPhase = " + changedPhase);
 		
+		System.out.println("::::::::::::::::::::::::CHECK PHASE CHANGE::::::::::::::::::");
+		
 		if (!this.currentEPhase.equals(changedPhase))
 		{
-		//	System.out.println("CHANGE!");
+			System.out.println(".............................CHANGE!......................................");
 			
 			changedPhase.setLastPhase(this.currentEPhase);
 			
@@ -206,6 +211,8 @@ public class GameLogic extends Thread implements Serializable
 		}
 		else
 		{
+			System.out.println(".............................NOT CHANGE!......................................");
+			System.out.println("The changed phase was: " + changedPhase);
 			return false;
 		}
 		
@@ -217,7 +224,9 @@ public class GameLogic extends Thread implements Serializable
 	private void activatePhase()
 	{
 
-		System.out.println("CURRENT PHASE " + this.currentEPhase);
+		System.out.println("ACTIVATE PHASE: " + this.currentEPhase);
+		
+		this.changed=true;
 		
 		switch(this.currentEPhase)
 		{
@@ -304,4 +313,8 @@ public class GameLogic extends Thread implements Serializable
 	{
 		return this.phaseA;
 	}
+
+
+
+	
 }

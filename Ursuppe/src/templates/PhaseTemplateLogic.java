@@ -3,7 +3,6 @@ package templates;
 import javax.swing.JPanel;
 
 import enums.EPhases;
-import exceptions.DoNothingException;
 
 import annotations.OnlyForTesting;
 
@@ -100,7 +99,10 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 	/////////////
 	//BASICS...//
 	/////////////
-	
+		public final String toString()
+		{
+			return 	this.getCurrentPhase().toString();
+		}
 	
 		public void update()
 		{
@@ -114,13 +116,11 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 		 * implemented in a concrete phase in its method
 		 * can be override by a concrete phase 
 		 * </p>
+		 * @return 
 		 * 
 		 * @see PhaseALogic
 		 */
-		public void setActionsToRun()
-		{
-			
-		}
+		public abstract void setActionsToRun();
 	
 		@Override
 		public final void setGame(IGame game)
@@ -141,10 +141,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 		 * 
 		 * @see PhaseALogic
 		 */
-		protected void setCurrentPhase()
-		{
-
-		}
+		protected abstract void setCurrentPhase();
 		
 		/**
 		 * sets the lastPhase in the concrete phaseLogic
@@ -220,6 +217,10 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 		 */
 		public void runLogic()
 		{
+			
+			//#BugHunting
+			System.out.println("IN PHASE TEMPLATE LOGIC: - PHASE OF GAME: " + this.game.getCurrentPhase() + "\n - ePHASE OF GAME: " + this.game.getCurrentEPhase());
+			
 			this.isRunning=true;
 			
 			this.setActionsToRun();
@@ -232,7 +233,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 				if(this.doRunActionA)
 				{
 					this.runActionA();
-					this.reset();
+					this.resetInput();
 				}
 			}
 			
@@ -244,7 +245,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 				if(this.doRunActionB)
 				{
 					this.runActionB();
-					this.reset();
+					this.resetInput();
 				}
 			}
 		
@@ -255,7 +256,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 				if(this.doRunActionC)
 				{
 					this.runActionC();
-					this.reset();
+					this.resetInput();
 				}
 			}
 
@@ -289,10 +290,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 		 * @see PhaseAASCII
 		 * @see PhaseAGUI
 		 */
-		public void doPreAction()
-		{
-			
-		}
+		public abstract void doPreAction();
 		
 		/**
 		 * does some things after the real logic of the phase terminate
@@ -312,14 +310,14 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 		
 		
 		/**
-		 * resets the variables {@code isInputNew} and {@code isInputValid}.
+		 * resets the input: the variables {@code isInputNew} and {@code isInputValid}.
 		 * 
 		 * <p>
 		 * have to called between each instruction of a concrete phase logic
 		 * </p>
 		 * 
 		 */
-		public final void reset()
+		public final void resetInput()
 		{
 			this.isInputNew=false;
 			this.isInputValid=false;
@@ -618,7 +616,9 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 			* 
 			* @see PhaseAASCII
 		 	* @see PhaseAGUI
+		 	* @see IPhase
 		 	*/
+			@Override
 			public final void setAllInput(String message)
 			{
 				System.out.println("IN PHASE TEMPLATE LOGIC: MESSAGE IS " +message);
@@ -836,9 +836,12 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 			/**
 			 * stops the game
 			 */
-			private final void doExit()
+			protected final void doExit()
 			{
+				System.out.println("EEEEEEEEEEEEEXXXXXXXXXXXXXXXXXXIIIIIIIIIIIIIIITTTTTTTTTTTT");
 				this.currentPhase=EPhases.phaseExit;
+				
+
 				//System.exit(0);
 				//TODO (CHANGED HERE...)
 			}
@@ -1175,7 +1178,10 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 	////////////////////
 	//ONLY FOR TESTING//
 	////////////////////
-		
+
+		/*
+		 * The faking methods shouldn't be abstract, otherwise they have to be in classes where they don't need to be.
+		 */
 		////////////////
 		//FAKING INPUTS//
 		/////////////////
@@ -1190,8 +1196,29 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 		//FAKING BUTTONS//
 		//////////////////
 		
+		//*PHASE A*//
 		@OnlyForTesting
-		public  void fakeClickOK()
+		public void fakeClickOK()
+		{
+			
+		}
+		
+		
+		@OnlyForTesting
+		public  void fakeClickExit()
+		{
+			
+		}
+		
+		//*PHASE EXIT*//
+		@OnlyForTesting
+		public void fakeClickNo()
+		{
+			
+		}
+		
+		@OnlyForTesting
+		public void fakeClickYes()
 		{
 			
 		}

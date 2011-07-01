@@ -22,11 +22,7 @@ import templates.ASCIITestTemplate;
 
 @RunWith(JExample.class)
 public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
-{
-	//private IGame game;
-	
-	
-	
+{	
 	private IPlayer playerOne;
 	private IPlayer playerTwo;
 	
@@ -105,7 +101,10 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 	@Given("playGameWithTwoPlayer")
 	public IGame setNamePlayerOne(IGame game)
 	{
-		IPhase phaseA= game.getGameLogic().getPhaseA();
+		this.waitingGeneral(); 		//Important!
+		
+		IPhase phaseA=game.getCurrentPhase();
+		
 		phaseA.waitForANewInput();
 		assertTrue(phaseA.setInputA("Lukas"));
 		System.out.println("Lukas");				//Not necessary, but it looks like a real userInput

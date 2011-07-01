@@ -23,6 +23,9 @@ import module.*;
  */
 public  interface IModule
 {
+//TODO AB HIER
+	ab hier refactoring!
+	
 	public IPhase createPhaseA();
 	public IPhase createPhaseExit();
 	

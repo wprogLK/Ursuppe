@@ -22,20 +22,7 @@ public class GUITestTemplate extends Thread
 	protected final IModule module=new ModuleGUI();
 	
 	
-		@Test
-		public void templateTest() 
-		{
-			this.setPriority(10);
-			
-			IGame game;
-			
-			game =module.createGame();
-//			
-//			Injector injector_test = Guice.createInjector(new ModuleGUI());
-//			game =injector_test.getInstance(GameGUI.class);
-			
-			//return game;
-		}
+		
 		
 		
 		

@@ -8,6 +8,8 @@ public class PlayerASCII extends PlayerTemplate
 	
 	/**
 	 * creates a default player
+	 * 
+	 * <br/> for head and tail player
 	 * @see PlayerTemplate
 	 */
 	public PlayerASCII()

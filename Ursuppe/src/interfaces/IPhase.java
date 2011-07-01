@@ -56,7 +56,8 @@ public interface IPhase
 	
 	public void resume();
 	public void suspend();
-		//NEW OWN METHODS
+	
+		//NEW OWN METHODS FOR THREADS
 		/**
 		 * to activate/run/reRun/restart the phase call this method!
 		 */
@@ -96,7 +97,8 @@ public interface IPhase
 		@OnlyForTesting
 		public boolean setInputC(Object inputC);
 		
-		
+		@OnlyForTesting
+		public void setAllInput(String message);
 		
 	///////
 	//GUI//
@@ -113,7 +115,19 @@ public interface IPhase
 		//FAKING BUTTONS//
 		//////////////////
 		
+		//*PHASE A*//
+		
 		@OnlyForTesting
 		public  void fakeClickOK();
+		
+		@OnlyForTesting
+		public void fakeClickExit();
 	
+		//*PHASE EXIT*//
+		
+		@OnlyForTesting
+		public void fakeClickNo();
+		
+		@OnlyForTesting
+		public void fakeClickYes();
 }

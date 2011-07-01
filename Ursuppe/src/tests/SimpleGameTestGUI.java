@@ -113,7 +113,10 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 	@Given("playGameWithTwoPlayer")
 	public IGame setNamePlayerOne(IGame game)
 	{
-		IPhase phaseA= game.getGameLogic().getPhaseA();
+		this.waitingGeneral(); 		//Important!
+		
+		IPhase phaseA=game.getCurrentPhase();
+		
 		phaseA.waitForANewInput();
 		
 		phaseA.fakeInputA("Lukas");

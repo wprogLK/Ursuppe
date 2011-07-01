@@ -53,7 +53,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 	public  boolean setInputA(Object inputA)
 	{
 		this.isInputNew=true;
-		
+		System.out.println("setInputA Do........");
 		boolean valid=this.checkInputActionA(inputA);
 		this.isInputValid=valid;
 		return valid;
@@ -76,6 +76,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 		
 		if(this.inputEqualsYes(inputString))
 		{
+			System.out.println("Bye");
 			System.exit(0);
 			return true;
 		}
@@ -96,6 +97,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 		}
 		else
 		{
+			System.out.println("The input wasn't yes/no. It was " + inputString);
 			return false;
 		}
 	}

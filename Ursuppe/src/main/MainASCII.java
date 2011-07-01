@@ -36,9 +36,6 @@ public class MainASCII {
 	 */
 	public static void main(String[] args) 
 	{
-		 //Injector injector_test = Guice.createInjector(new ModuleASCII());
-		 //game =injector_test.getInstance(GameASCII.class);
-	
 		 game=module.createGame();
 		
 		 game.setStartPhase(EPhases.phaseA);

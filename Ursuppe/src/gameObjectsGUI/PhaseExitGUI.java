@@ -7,14 +7,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import logics.PhaseALogic;
+import annotations.OnlyForTesting;
 
-public class PhaseExitGUI extends PhaseALogic implements ActionListener{
+import logics.PhaseExitLogic;
+
+public class PhaseExitGUI extends PhaseExitLogic implements ActionListener{
 	/////////////////
 	//INPUT MANAGER//
 	/////////////////
-	private boolean validInputName=false;	//ACTION A
-	private boolean validInputAge=false;	//ACTION B
+	
+	//nothing
 	
 	///////////////
 	//COMPONENTS//
@@ -24,7 +26,7 @@ public class PhaseExitGUI extends PhaseALogic implements ActionListener{
 		private JPanel mainPanel;
 	
 		//LABELS:
-		private JLabel labelMessage=new JLabel("Do you really want leave the game?");
+		private JLabel labelMessage=new JLabel("Do you really want to leave the game?");
 		
 		//TEXTFIELDS:
 		
@@ -38,6 +40,10 @@ public class PhaseExitGUI extends PhaseALogic implements ActionListener{
 		////////////
 		//...LOGIC//
 		////////////
+		@Override
+		/**
+		 * Setup of the layout of the mainPanel and setup of the components
+		 */
 		public void doPreAction()
 		{
 			this.mainPanel.removeAll();
@@ -47,11 +53,6 @@ public class PhaseExitGUI extends PhaseALogic implements ActionListener{
 			this.addComponentsToMainPanel();
 		}
 		
-		public void doAfterAction()
-		{
-			System.out.println("This was the techDemo run in GUI. Goodbye...");
-			//System.exit(0);
-		}
 		
 		///////
 		//GUI//
@@ -133,8 +134,6 @@ public class PhaseExitGUI extends PhaseALogic implements ActionListener{
 			
 			this.setAllInput("no");
 			
-			this.waitForAValidInput();	//IMPORTANT!!
-			
 			this.buttonNo.setEnabled(true);
 			
 		}
@@ -143,8 +142,6 @@ public class PhaseExitGUI extends PhaseALogic implements ActionListener{
 			this.buttonYes.setEnabled(false);
 			
 			this.setAllInput("yes");
-			
-			this.waitForAValidInput();	//IMPORTANT!!
 			
 			this.buttonYes.setEnabled(true);
 		}
@@ -163,6 +160,16 @@ public class PhaseExitGUI extends PhaseALogic implements ActionListener{
 		//////////////////
 		//FAKING BUTTONS//
 		//////////////////
+		
+		@Override
+		public void fakeClickNo()
+		{
+			this.buttonNo.doClick();
+		}
 
-
+		@Override
+		public void fakeClickYes()
+		{
+			this.buttonYes.doClick();
+		}
 }

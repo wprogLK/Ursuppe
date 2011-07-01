@@ -42,6 +42,10 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 		////////////
 		//...LOGIC//
 		////////////
+		@Override
+		/**
+		 * Setup of the layout of the mainPanel and setup of the components
+		 */
 		public void doPreAction()
 		{
 			this.mainPanel.setLayout(new GridLayout(4,3));
@@ -57,7 +61,7 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 		public void doAfterAction()
 		{
 			System.out.println("This was the techDemo run in GUI. Goodbye...");
-			//System.exit(0);
+			this.doExit();	//TODO: Later it's going to be another phase!
 		}
 		
 		///////
@@ -87,6 +91,8 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 			/////////////////////
 			//SET EDITABLE TRUE//
 			/////////////////////
+		
+			
 			private void nameSetTrueEditable()
 			{
 				this.textFieldName.setBackground(Color.WHITE);
@@ -265,9 +271,16 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 		//////////////////
 		//FAKING BUTTONS//
 		//////////////////
+		@Override
 		public void fakeClickOK()
 		{
 			this.buttonOK.doClick();
+		}
+		
+		@Override
+		public  void fakeClickExit()
+		{
+			this.buttonExit.doClick();
 		}
 	
 

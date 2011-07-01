@@ -3,6 +3,8 @@ package gameObjectsGUI;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import enums.EPhases;
+
 import main.GameLogic;
 import module.ModuleASCII;
 import module.ModuleGUI;
@@ -14,6 +16,13 @@ public class GameGUI extends GameTemplate
 	private JPanel mainPanel;
 	private JFrame mainWindow;
 	
+	/**
+	 * setup for an ASCII game.
+	 * 
+	 * </br> sets the module for ASCII, calls the setupPlayers (in the GameTemplate class) for the head and tail player, and calls the setup for the window
+	 * 
+	 * @see GameTemplate
+	 */
 	public GameGUI()
 	{
 		this.module=new ModuleGUI();
@@ -21,10 +30,11 @@ public class GameGUI extends GameTemplate
 		this.setupPlayers();
 		
 		this.setupWindow();
-		
-		//mainWindow.pack();
 	}
 	
+	/**
+	 * creates the main window of the hole game
+	 */
 	private void setupWindow()
 	{
 		this.mainWindow=new JFrame("TestDemo: The logic of the ursuppe");
@@ -48,6 +58,9 @@ public class GameGUI extends GameTemplate
 	
 	
 	@Override
+	/**
+	 * setup if the mainWindow is visible or not
+	 */
 	public void playExtras()
 	{
 		mainWindow.setVisible(true);
@@ -59,9 +72,12 @@ public class GameGUI extends GameTemplate
 	}
 
 	@Override
+	/**
+	 * IMPORTANT: UPDATE THE PANEL WITH ITS CURRENT COMPONENTS!
+	 */
 	public void update()
 	{
-		this.mainPanel.updateUI();			//IMPORTANT: UPDATE THE PANEL WITH ITS CURRENT COMPONENTS!
+		this.mainPanel.updateUI();
 	}
 	
 }
