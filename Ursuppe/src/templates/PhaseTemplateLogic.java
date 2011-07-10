@@ -271,10 +271,8 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 			this.isRunning=false;
 			
 			//this.waitForRestart();
-			//System.out.println("do suspend A PHASE...");
-			//System.out.println("is interrupted? " +this.isInterrupted());
+			
 			this.suspend();
-			//System.out.println("RESTART A PHASE...");
 			
 			this.runPhase();	//"Restart phase and run it again";
 		}
@@ -305,7 +303,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 		 */
 		public void doAfterAction()
 		{
-
+			
 		}
 		
 		
@@ -368,30 +366,6 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 			}
 		}
 		
-//		/**
-//		 * is while loop(Condition is isRunning==false) and sleeps 1000 milliseconds
-//		 * 
-//		 * <p>
-//		 * used for in each while loop which is waiting for a "restart"
-//		 * </p>
-//		 * 
-//		 */
-//		public final void waitForRestart()
-//		{
-//			while(!this.isRunning)
-//			{
-//				try 
-//				{
-//					Thread.sleep(1000);
-//				} 
-//				catch (InterruptedException e) 
-//				{
-//					e.printStackTrace();
-//				}
-//			}
-//			
-//		}
-		
 		//////////////////////
 		//...CHECKING INPUTS//
 		//////////////////////
@@ -446,10 +420,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 
 				if(validBasicInput)
 				{
-					//this.interrupt(); //TODO HERE
-					//this.isRunning=false;
 					this.doNothing=true;
-					//throw new DoNothingException();
 				}
 				
 				return validBasicInput;
@@ -838,12 +809,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 			 */
 			protected final void doExit()
 			{
-				System.out.println("EEEEEEEEEEEEEXXXXXXXXXXXXXXXXXXIIIIIIIIIIIIIIITTTTTTTTTTTT");
 				this.currentPhase=EPhases.phaseExit;
-				
-
-				//System.exit(0);
-				//TODO (CHANGED HERE...)
 			}
 			
 			///////////////
@@ -877,7 +843,7 @@ public abstract class PhaseTemplateLogic extends Thread implements IPhase
 			{
 				
 			}
-			
+
 			/**
 			 * <ul>
 			 * 	<li> if ASCII: {@link #setInputA(Object)} (waiting for new input)</li>

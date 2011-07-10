@@ -52,6 +52,4 @@ public class ModuleGUI implements IModule
 		return new PlayerGUI(name,age,color);
 	}
 	
-	
-	
 }

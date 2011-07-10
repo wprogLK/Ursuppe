@@ -29,9 +29,6 @@ public class ModuleASCII implements IModule
 		return new PhaseExitASCII();
 	}
 	
-	
-	
-	
 	@Override
 	public IGame createGame()
 	{

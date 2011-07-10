@@ -41,14 +41,7 @@ public class MainASCII {
 		 game.setStartPhase(EPhases.phaseA);
 		 
 		 game.createNew();
-//		 try 
-//		 {
-//			game.join();
-//		 } 
-//		 catch (InterruptedException e) 
-//		 {
-//			e.printStackTrace();
-//		 }
+		 
 		 game.createANewPlayer();
 		 SaveAndLoad.saveObject(game, "currentGame.urs");
 		 game.play();

@@ -53,7 +53,6 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 	public  boolean setInputA(Object inputA)
 	{
 		this.isInputNew=true;
-		System.out.println("setInputA Do........");
 		boolean valid=this.checkInputActionA(inputA);
 		this.isInputValid=valid;
 		return valid;
@@ -150,7 +149,6 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			//this.age=this.doCastToInteger(inputB);
 			this.game.getPlayer(0).setAge(this.doCastToInteger(inputB)); 
 			return true;
 		}

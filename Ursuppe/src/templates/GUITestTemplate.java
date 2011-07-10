@@ -21,35 +21,29 @@ public class GUITestTemplate extends Thread
 {
 	protected final IModule module=new ModuleGUI();
 	
-	
-		
-		
-		
-		
-
-		protected void waitingBetweenTwoInputs()
+	protected void waitingBetweenTwoInputs()
+	{
+		try 
 		{
-			try 
-			{
-				Thread.sleep(1000);
-			} 
-			catch (InterruptedException e) 
-			{
-				e.printStackTrace();
-			}
-		}
-		
-		protected void waitingGeneral()
+			Thread.sleep(1000);
+		} 
+		catch (InterruptedException e) 
 		{
-			try 
-			{
-				Thread.sleep(500);
-			} 
-			catch (InterruptedException e) 
-			{
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		}
+	}
+		
+	protected void waitingGeneral()
+	{
+		try 
+		{
+			Thread.sleep(500);
+		} 
+		catch (InterruptedException e) 
+		{
+			e.printStackTrace();
+		}
+	}
 		
 		
 		

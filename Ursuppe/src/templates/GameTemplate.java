@@ -54,8 +54,6 @@ public abstract class GameTemplate extends Thread implements IGame{
 		this.gameLogic.setMainPanelToAllPhases(mainPanel);
 	}
 	
-	
-	
 	//////////
 	//CREATE//
 	//////////
@@ -63,7 +61,6 @@ public abstract class GameTemplate extends Thread implements IGame{
 	{
 		IPlayer playerTail=this.createANewPlayer();
 		IPlayer playerHead=this.createANewPlayer();
-		
 		
 		playerHead.setName("Head");
 		playerTail.setName("Tail");
@@ -100,7 +97,6 @@ public abstract class GameTemplate extends Thread implements IGame{
 	
 	}
 	
-	
 	@Override
 	public final void play()
 	{
@@ -120,7 +116,6 @@ public abstract class GameTemplate extends Thread implements IGame{
 			e.printStackTrace();
 		}
 	}
-	
 	
 	/**
 	 * can do some extra things which are implemented in a concrete game in its method (see {@link GameASCII#playExtras()  or {@link GameGUI#playExtras()})
@@ -149,9 +144,6 @@ public abstract class GameTemplate extends Thread implements IGame{
 		}
 	}
 	
-	
-	
-	
 	@Override
 	public final void removePlayer(IPlayer player)
 	{
@@ -160,8 +152,6 @@ public abstract class GameTemplate extends Thread implements IGame{
 		
 		this.players.remove(player);
 	}
-	
-
 	
 	///////////
 	//GETTERS//
@@ -229,6 +219,7 @@ public abstract class GameTemplate extends Thread implements IGame{
 	{
 		this.startPhase=startPhase;
 	}
+	
 	////////////////////
 	//ONLY FOR TESTING//
 	////////////////////
@@ -243,14 +234,14 @@ public abstract class GameTemplate extends Thread implements IGame{
 	@OnlyForTesting
 	public void showPlayers()
 	{
-		System.out.println("-------PLAYERS BEGIN:-----");
+		System.out.println("-------PLAYERS HEAD:-----");
 		
 		for(int i=0; i<this.players.size();i++)
 		{
 			System.out.println("Player " + this.players.get(i).getName());
 		}
 		
-		System.out.println("-------PLAYERS END:-----");
+		System.out.println("-------PLAYERS TAIL:-----");
 	}
 
 }

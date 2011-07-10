@@ -117,6 +117,7 @@ public class GameLogic extends Thread implements Serializable
 	
 	public IPhase getCurrentPhase() 
 	{
+//For debugging:
 //		System.out.println("CURRENT P is " + this.currentPhase);
 //		System.out.println("CURRENT eP is " + this.currentEPhase);
 //		System.out.println("CHANGED = " + this.changed);
@@ -165,7 +166,6 @@ public class GameLogic extends Thread implements Serializable
 	private boolean setStartPhase()
 	{
 		this.currentEPhase=this.game.getStartPhase();
-		System.out.println("CURRENT PHASE IN setStartPhase is: " + this.currentEPhase);
 		
 		boolean valid=true;
 		switch(this.currentEPhase)
@@ -176,7 +176,6 @@ public class GameLogic extends Thread implements Serializable
 			}
 			case phaseExit:
 			{
-				//this.currentPhase.setPhase(this.phaseExit);
 				break;
 			}
 			default:
@@ -194,10 +193,6 @@ public class GameLogic extends Thread implements Serializable
 		
 		IPhase phaseToCheck=this.currentEPhase.getPhase();
 		EPhases changedPhase=phaseToCheck.getCurrentPhase();
-		
-		//System.out.println("currentPhase= " +this.currentEPhase + "  changedPhase = " + changedPhase);
-		
-		System.out.println("::::::::::::::::::::::::CHECK PHASE CHANGE::::::::::::::::::");
 		
 		if (!this.currentEPhase.equals(changedPhase))
 		{
@@ -224,8 +219,6 @@ public class GameLogic extends Thread implements Serializable
 	private void activatePhase()
 	{
 
-		System.out.println("ACTIVATE PHASE: " + this.currentEPhase);
-		
 		this.changed=true;
 		
 		switch(this.currentEPhase)
@@ -236,7 +229,6 @@ public class GameLogic extends Thread implements Serializable
 				this.currentEPhase.setPhase(this.phaseA);
 				
 				this.phaseA.doStart();
-				//this.phaseA.start();
 				this.joinCurrentPhase(this.phaseA);
 				break;
 			}
@@ -245,12 +237,8 @@ public class GameLogic extends Thread implements Serializable
 				this.currentPhase=this.phaseExit;
 				this.currentEPhase.setPhase(this.phaseExit);
 				
-			///	System.out.println("exit PHASE starts now...");
-
 				this.phaseExit.doStart();
-				//this.phaseExit.start();
 				this.joinCurrentPhase(this.phaseExit);
-			//	System.out.println("exit PHASE end now...");
 				break;
 			}
 			default:
@@ -268,24 +256,13 @@ public class GameLogic extends Thread implements Serializable
 	{
 		while(phase.getIsRunning())
 		{
-			
-			//System.out.println("PHASE [ " + phase + " ] running: "+ phase.getIsRunning());
 			this.doSleep();
 		}
-		
-//		try 
-//		{
-//			phase.join();
-//		} 
-//		catch (InterruptedException e) 
-//		{
-//			e.printStackTrace();
-//		}
 	}
 	
 	
 	/**
-	 * sleeps 50 milliseconds
+	 * sleeps 1 milliseconds
 	 * 
 	 * <p>
 	 * used for in each while loop for check other things and listen to other objects

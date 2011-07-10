@@ -51,8 +51,6 @@ public class MainGUI {
 		 IPlayer playerOne=game.getPlayer(0);
 		 
 		 System.out.println("Player One: \n \t - Name: " + playerOne.getName() +" \n \t - Age: " + playerOne.getAge());
-		
-		 System.out.println("-----------C phase is= " +game.getCurrentPhase());
 	}
 
 	

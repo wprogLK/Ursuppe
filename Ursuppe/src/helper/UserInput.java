@@ -17,10 +17,11 @@ public abstract class UserInput
 	 * reads the input
 	 * @return String, the input of the user
 	 */
-	public static String readInput()
+	public static String readInput(String message)
 	{
 		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 		String line = null;
+		System.out.println(message);
 		try 
 		{
 			line = console.readLine();
