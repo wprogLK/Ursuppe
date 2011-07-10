@@ -14,7 +14,6 @@ public class mainGerman {
 		setupLocal(args);
 		
 		
-        System.out.println(rb.getString("info") + "(" + locale.getDisplayLanguage() + "," + locale.getDisplayCountry() + ").\n");
         System.out.println(rb.getString("welcome"));
         System.out.println(rb.getString("name"));
         System.out.println(rb.getString("bye"));
@@ -39,7 +38,6 @@ public class mainGerman {
 		
 		locale = new Locale(language, country);
 		rb = ResourceBundle.getBundle("MessagesBundle", locale);
-		System.out.println(rb.getString("info") + "(" + locale.getDisplayLanguage() + "," + locale.getDisplayCountry() + ").\n");
 	}	
 
 }
