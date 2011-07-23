@@ -21,7 +21,7 @@
 			19.06.2011		20.06.2011			Implemented 8 colors and updated players	also done: updated ASCII and GUI test. now everything is already green
 			20.06.2011		22.06.2011			Improved the test. 							New methods: game.getCurrentPhase(), game.getCurrentEPhase().																	IMPORTANT: Look for waiting-methods.
 			23.06.2011							little task and bug hunting					refactoring (including made methods in templates abstract if possible; delete old, useless code and comments)					TestCoverage at 66.0%; Where the hell is the error for bug #2?! Same test in with GUI is green. Run the main in ASCII Mode is ok (look @ #BugHunting-Tag in PhaseTemlateLogic.java. 
-		
+			
 		/////////////////////
 		//**CURRENT TASKS**//
 		/////////////////////
@@ -31,7 +31,7 @@
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			02.06.2011							Start with the real Game					use the tecDemo as basic
 			21.06.2011							Start design in a first version of the KI	In the sun of Fuerteventura	I had an idea
-						
+			23.06.2011							implement internationalization, create all phases and start with ASCII		
 		//////////////////
 		//**TASKS TODO**//
 		//////////////////

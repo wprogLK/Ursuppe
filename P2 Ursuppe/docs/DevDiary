@@ -1,0 +1,131 @@
+*Done:
+	- Amebas shoudn't move over an invalid or compass square: DONE! (04.04.11)
+	
+	5.04.11:
+	- write test scenarios for testing correct movement of amebas!!! (There is a bug, fix it!) DONE(?)!
+	- players should set on their own their amebas by clicking the left mouse panel on a soupSquare (see rules of the game!): DONE!
+	- Amebas eat and shit food correct
+	- write some nice test
+	- damagePoints implemented in Amebas (without show on the GUI)
+	
+	7.04.11:
+	- write a test: set ameba, move ameba, check color and position of ameba, roll die, set new ameba of another color, move ameba, check color and position(there is a strange bug!)
+	- fixed the bug
+	
+	8-10.04.11:
+	- done a lot of things
+	- amebas have no new pictures with damagePoints and nr
+	- began to implement the phase logic (now it gets complicate ;-) )
+	
+	12.04.11:
+	- fixed bug of the die (now if you roll a 5 it will show 5 and not 3 (wrong file) and if you roll a 4 it will show 4
+	- Phase preparePhase, p0 solved (more or less)
+	- Phase p1 began
+	
+	13/14.04.11:
+	- write a completly new game class (no longer phases in the game class)
+	- created a "demo" how the new phase gui will work (see project TestGuiLogik)
+	- created and implemented phaseLogic class
+	- created and implemented phase setPlayerNames and phase0
+	- phase 0 isn't working correct at the moment (actionListener problem with the buttons (only rollDie button is ok)
+	
+	15.04.11
+	- implement, that every phase automatic resize the window.
+	- implement the gui of phase 0 (part 1 & part 2)
+
+	16.04.11
+	- implemented part1 of phase 0
+	- actualPlayer and nextPlayer in the game class changed (independent of the number of players
+	
+	17.04.11
+	- do phase 0
+	
+	18.04.11:
+	- write test for phase0
+	- phase 0 is ok now. (no more bugs! -> bug free (I hope))
+	- phase phaseSetFirstAmeba: began (but there is a big bug! (not show all the components!!!!)
+	- board great amebas and give them to the player
+	- player manages which amebas are on the board or off the board
+	
+	19.04.11-01.05.11:
+	- it was just crazy...
+	- big problem with null-Layouts (phaseSetFirstAmebas not show with phaseLogic!)
+	- need a big break and more time...
+	- motivation = 0 ;-)
+	
+	02.05.11:
+	- solved the problem with the null-Layouts :-) YEEEEEEEEEEEES!!!
+	
+	02.05.11-10.05.11:
+	- done a lot of things (implemented phase, write a scripted game, fixed bugs,...)
+	
+*Still do to:
+	
+	- automatic windows size between the PlayersNamePanel and the gamePanel!
+	- nice graphic animation of every graphical thing (create the pics and implement the methods)
+	
+	NEW (04.04.11)
+	
+	- implement the compass correct (see rules of the game!)
+	- count the foods of each color and show the number (otherwise not enough space)
+	- give the amebas a number between 1 and 4
+	- implement the correct scoreLadder (it's impossible that more than one player are on the same ladderSquare!) (see rules of the game!)
+	- implement BioPoints for each player and show it on the GUI
+	- implement damagePoints for amebas and show it on the GUI
+	- prepare the 6 phase of one round  and show it on the GUI
+	- implement gene Cards and show it on the GUI
+	- implement that every player can control their ameba on their own (drift or wriggle(=zappeln) an ameba)
+		- if a player rolls a 6, he/she can choose in with direction his/her ameba should dirft. Implement that.
+	- implement the ozone layer and show it on the GUI;
+	
+	- ... have fun!
+	 
+	
+	NEW (06.04.11)
+	 
+	- reset the game doesn't reset the game correct (old set amebas will show if amebas moves)
+	
+	NEW (08.04.11)
+	 
+	- write a test that check if amebas get correct damagepoints
+	
+	NEW (11.04.11)
+	- at the end : 	* clean the whole code and "group" similar methods together
+					* write maybe Java Doc!
+					* comment the code
+	- write more tests
+	- maybe its good if I implement the ASCII-Board again too?
+	- MAYBE: player is also an enum!!??
+	- LadderSquare: change the methods addPlayer() and removePlayer(), work new without ArrayList<player>!!! only with one player!!
+	 
+	 NEW (15.04.11)
+	-TODO: phase0: use for every part separates Buttons and Co! DONE!
+	
+	NEW (18.04.11)
+	- each soupSquare knows the board and the activeAmeba
+	- new Amebas will be set on a soupSquare per click on the soupSquare (similar to a button, maybe the SoupSquare will extends JButton? or something like this)
+	 
+	 NEW (10.05.11)
+	 - TODO: check if in the death phase all amebas get checked!
+	 - TODO: player in phase 6 with score 4 is on ladderSquare 5 not 4 -> fix this!
+	 - => ITERATION 2 FINISH!!!
+	 
+	 - TODO: MenuBar with items: start new Game, about-Dialog for DomDom ;-)
+	 - TODO: implement phase3 and 4 correctly with GUI
+	 - TODO: implement 4 genes!!
+	 - TODO: FIX other bugs and hunt bugs.
+	 - TODO: write another skriptedGame which plays a hole game not only one round! (Check if player win!)
+	 - TODO: paint new graphics!!!
+	 - TODO: Have fun and implement a start menu
+	 - TODO: Have more fun and implement a network ;-)
+*Bug list:
+	- class game:
+		- mouse events released two times instead of once! 											
+		- only roll the die in p0 2 times instead of 3 times										//NO LONGER NEEDED
+		- don't show the Game after change from p0 to p1 (you have to minimize the window first) //NO LONGER NEEDED
+		- in p1 there aren't radio buttons! WHY?????		//NO LONGER NEEDED
+		- in phase0 these a bug between part1 and part2: sometimes red player isn't in the list to set position //SOLVED (18.04.11)
+		
+	- class phaseSetFirstPlayer:
+		- in phaseSetFirstPlayer bug: only phaseTitle is visible! WHAT THE HELL?! (can't find the stupid bug!)
+	  

@@ -38,12 +38,12 @@ public class MainASCII {
 	{
 		 game=module.createGame();
 		
-		 game.setStartPhase(EPhases.phaseA);
+		 game.setStartPhase(EPhases.phaseSplashScreen);
 		 
 		 game.createNew();
 		 
 		 game.createANewPlayer();
-		 SaveAndLoad.saveObject(game, "currentGame.urs");
+		 //SaveAndLoad.saveObject(game, "data/savegames/currentGame.urs");
 		 game.play();
 		 
 		 try 

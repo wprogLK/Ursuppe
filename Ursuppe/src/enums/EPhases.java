@@ -17,8 +17,10 @@ public enum EPhases
 			//////////////
 			//**BASICS**//
 			//////////////
+			phaseSplashScreen,
+		
 			phaseExit,
-			phaseWelcome,
+			phaseMainMenu,
 			
 			phaseSave,
 			phaseLoad,
@@ -27,17 +29,18 @@ public enum EPhases
 			phaseStatisic,
 			
 			phaseAbout,
-			phaseManual,
+			phaseHelp,
+			phaseOptions,
+			phaseAchievements,
 			
-			phaseCheat,
+			phaseCheats,
 		
 			//////////////
 			//**SETUPS**//
 			//////////////
-			phaseSetupNewGame,
-			phaseSetupNames,
-			phaseSetupOrderToPlay,
-			phaseSetupFirstAmeba,
+			phaseNewGame,
+			phasePreapation1,
+			phasePreapation2,
 			
 			////////////
 			//**PLAY**//
@@ -49,8 +52,9 @@ public enum EPhases
 			phase5Death,
 			phase6Score,
 			
-			phaseWin;
+			phaseGameEnd;
 		
+			
 	//////////
 	//PARAMS//
 	//////////

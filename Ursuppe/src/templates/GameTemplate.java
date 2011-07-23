@@ -15,6 +15,7 @@ import enums.EPhases;
 
 import main.GameLogic;
 
+import helper.LanguageSetup;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
@@ -30,7 +31,7 @@ import gameObjectsASCII.*;
  * @see GameASCII
  * @see GameGUI
  */
-public abstract class GameTemplate extends Thread implements IGame{
+public abstract class GameTemplate extends LanguageSetup implements IGame{
 
 	protected GameLogic gameLogic;
 	protected IModule module;

@@ -27,7 +27,31 @@ public class GameLogic extends Thread implements Serializable
 	
 	private boolean changed=false;
 	private IPhase phaseA;
+	
+	
+	private IPhase phaseSplashScreen;
+	private IPhase phaseMainMenu;
+	private IPhase phaseNewGame;
+	private IPhase phaseLoadGame;
+	private IPhase phaseOptions;
+	private IPhase phaseHelp;
+	private IPhase phaseCheats;
+	private IPhase phaseAchievements;
+	private IPhase phaseAbout;
 	private IPhase phaseExit;
+	private IPhase phaseStatistics;
+	private IPhase phaseSaveGame;
+	private IPhase phaseBreakMenu;
+	
+	private IPhase phase1;
+	private IPhase phase2;
+	private IPhase phase3;
+	private IPhase phase4;
+	private IPhase phase5;
+	private IPhase phase6;
+	
+	private IPhase phaseGameEnd;
+	
 	
 	
 	private IPhase currentPhase;
@@ -73,6 +97,9 @@ public class GameLogic extends Thread implements Serializable
 	{
 		this.phaseA=this.module.createPhaseA();
 		this.phaseExit=this.module.createPhaseExit();
+		
+		//TODO: TOMORROW
+		HERE
 	}
 	
 	private final void startAllPhases()
@@ -82,6 +109,67 @@ public class GameLogic extends Thread implements Serializable
 		
 		this.phaseExit.start();
 		this.phaseExit.suspend();
+		
+	
+		this.phaseSplashScreen.start();
+		this.phaseSplashScreen.suspend();
+		
+		this.phaseMainMenu.start();
+		this.phaseMainMenu.suspend();
+		
+		this.phaseNewGame.start();
+		this.phaseNewGame.suspend();
+		
+		this.phaseSaveGame.start();
+		this.phaseSaveGame.suspend();
+		
+		this.phaseLoadGame.start();
+		this.phaseLoadGame.suspend();
+		
+		this.phaseOptions.start();
+		this.phaseOptions.suspend();
+		
+		this.phaseHelp.start();
+		this.phaseHelp.suspend();
+		
+		this.phaseCheats.start();
+		this.phaseCheats.suspend();
+		
+		this.phaseAchievements.start();
+		this.phaseAchievements.suspend();
+		
+		this.phaseExit.start();
+		this.phaseExit.suspend();
+		
+		this.phaseAbout.start();
+		this.phaseAbout.suspend();
+		
+		this.phaseBreakMenu.start();
+		this.phaseBreakMenu.suspend();
+		
+		this.phaseStatistics.start();
+		this.phaseStatistics.suspend();
+		
+		
+		
+		this.phase1.start();
+		this.phase1.suspend();
+		
+		this.phase2.start();
+		this.phase2.suspend();
+		
+		this.phase3.start();
+		this.phase3.suspend();
+		
+		this.phase4.start();
+		this.phase4.suspend();
+		
+		this.phase5.start();
+		this.phase5.suspend();
+		
+		this.phase6.start();
+		this.phase6.suspend();
+		
 	}
 	
 	

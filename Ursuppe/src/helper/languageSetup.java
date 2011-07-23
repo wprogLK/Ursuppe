@@ -10,7 +10,7 @@ import java.util.*;
  * 
  * @author Lukas
  */
-public class languageSetup extends Thread
+public class LanguageSetup extends Thread
 {
 	private String language;
 	private String country;
@@ -20,7 +20,7 @@ public class languageSetup extends Thread
 	/**
 	 * Default constructor
 	 */
-	public languageSetup()
+	public LanguageSetup()
 	{
 		this.setup();
 	}
@@ -28,7 +28,7 @@ public class languageSetup extends Thread
 	/**
 	 * specific constructor
 	 */
-	public languageSetup(String[] args)
+	public LanguageSetup(String[] args)
 	{
 		this.setup(args);
 	}
@@ -37,12 +37,9 @@ public class languageSetup extends Thread
 	{
 		this.defaultLanguageSetup();
 		this.createBundle();
+		
 	}
 	
-	/**
-	 * specific constructor
-	 * @param args
-	 */
 	public void setup(String[] args)
 	{
 		if(args.length !=2)
@@ -70,7 +67,7 @@ public class languageSetup extends Thread
 	private void createBundle()
 	{
 		locale=new Locale(this.language,this.country);
-		this.rb=ResourceBundle.getBundle("languageBundle", this.locale);
+		this.rb=ResourceBundle.getBundle("MessagesBundle", this.locale);
 	}
 	
 	
