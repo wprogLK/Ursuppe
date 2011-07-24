@@ -25,8 +25,31 @@ public  interface IModule
 {
 	
 	public IPhase createPhaseA();
-	public IPhase createPhaseExit();
 	
+	public IPhase createPhaseSplashScreen();
+	public IPhase createPhaseMainMenu();
+	public IPhase createPhaseNewGame();
+	public IPhase createPhaseLoadGame();
+	public IPhase createPhaseSaveGame();
+	public IPhase createPhaseOptions();
+	public IPhase createPhaseHelp();
+	public IPhase createPhaseCheats();
+	public IPhase createPhaseAchievements();
+	public IPhase createPhaseExit();
+	public IPhase createPhaseAbout();
+	public IPhase createPhaseStatistics();
+	
+	public IPhase createPhaseBreakMenu();
+	
+	public IPhase createPhasePreparation1();
+	public IPhase createPhasePreparation2();
+	public IPhase createPhase1();
+	public IPhase createPhase2();
+	public IPhase createPhase3();
+	public IPhase createPhase4();
+	public IPhase createPhase5();
+	public IPhase createPhase6();
+	public IPhase createPhaseGameEnd();
 	
 	public  IGame createGame();
 	

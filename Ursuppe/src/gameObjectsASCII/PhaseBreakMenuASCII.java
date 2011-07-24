@@ -2,9 +2,9 @@ package gameObjectsASCII;
 
 import helper.UserInput;
 import logics.PhaseALogic;
-import logics.PhaseSplashScreenLogic;
+import logics.PhaseBreakMenuLogic;
 
-public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
+public class PhaseBreakMenuASCII extends PhaseBreakMenuLogic
 {
 
 	
@@ -18,7 +18,7 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println("SPASH SCREEN...");
+			System.out.println("Welcome to the techDemo of the logic of the Ursuppe! \n \n You can allways enter 'exit' to stop the programm");
 		}
 		
 		@Override

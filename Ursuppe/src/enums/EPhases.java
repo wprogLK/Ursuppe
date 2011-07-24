@@ -22,11 +22,11 @@ public enum EPhases
 			phaseExit,
 			phaseMainMenu,
 			
-			phaseSave,
-			phaseLoad,
+			phaseSaveGame,
+			phaseLoadGame,
 			
-			phaseBreak,
-			phaseStatisic,
+			phaseBreakMenu,
+			phaseStatistics,
 			
 			phaseAbout,
 			phaseHelp,
@@ -39,18 +39,18 @@ public enum EPhases
 			//**SETUPS**//
 			//////////////
 			phaseNewGame,
-			phasePreapation1,
-			phasePreapation2,
+			phasePreparation1,
+			phasePreparation2,
 			
 			////////////
 			//**PLAY**//
 			////////////
-			phase1MoveAndEat,
-			phase2EnviromentAndGeneDefects,
-			phase3BuyGenes,
-			phase4CellDivision,
-			phase5Death,
-			phase6Score,
+			phase1,
+			phase2,
+			phase3,
+			phase4,
+			phase5,
+			phase6,
 			
 			phaseGameEnd;
 		

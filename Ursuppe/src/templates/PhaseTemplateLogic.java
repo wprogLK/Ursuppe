@@ -130,7 +130,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	
 		public void update()
 		{
-			this.game.update();
+			System.out.println("GAME: " + this.game);
+			this.game.update(); 
 		}
 		
 		/**
