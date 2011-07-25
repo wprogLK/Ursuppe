@@ -18,16 +18,15 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println("SPASH SCREEN...");
+			System.out.print(this.rb.getString("splashScreenASCIIWelcome"));
+			System.out.println(this.rb.getString("phaseSplashScreenTitle"));
+			System.out.print(this.rb.getString("phaseSplashScreenAuthor"));
+			System.out.println(" " + this.rb.getString("phaseSplashScreenCopyright"));
+			System.out.println(this.rb.getString("phaseSplashScreenBasedOn"));
+
+			System.out.println("");
 		}
 		
-		@Override
-		public void doAfterAction()
-		{
-			System.out.println("This was the techDemo run in ASCII. Goodbye...");
-			this.doExit();
-		}
-
 	///////////
 	//ACTIONS//
 	///////////
@@ -40,45 +39,14 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println("What is your name?");
+
 	}
 	
 	@Override
 	public void actionAInput()
 	{
-		String name=UserInput.readInput("Please, enter your name: ");
-		this.setInputA(name);
+		String instruction=UserInput.readInput(this.rb.getString("splashScreenASCIIStartInstruction"));
+		this.setInputA(instruction);
 	}
-	
-	@Override
-	public void doAfterActionA()
-	{
-		System.out.println("Thank you for your name");
-	}
-	
-	////////////
-	//ACTION B//
-	////////////
-	
-	@Override
-	public void doPreActionB()
-	{
-		System.out.println("How old are you?");
-	}
-	
-	@Override
-	public void actionBInput()
-	{
-		String age=UserInput.readInput("Please, enter your age: ");
-		this.setInputB(age);
-	}
-	
-	@Override
-	public void doAfterActionB()
-	{
-		System.out.println("Thank you for your age");
-	}
-
-	
 	
 }

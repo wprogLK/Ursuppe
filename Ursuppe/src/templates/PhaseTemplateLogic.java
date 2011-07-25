@@ -130,7 +130,6 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	
 		public void update()
 		{
-			System.out.println("GAME: " + this.game);
 			this.game.update(); 
 		}
 		
@@ -244,7 +243,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		{
 			
 			//#BugHunting
-			System.out.println("IN PHASE TEMPLATE LOGIC: - PHASE OF GAME: " + this.game.getCurrentPhase() + "\n - ePHASE OF GAME: " + this.game.getCurrentEPhase());
+			//System.out.println("IN PHASE TEMPLATE LOGIC: - PHASE OF GAME: " + this.game.getCurrentPhase() + "\n - ePHASE OF GAME: " + this.game.getCurrentEPhase());
 			
 			this.isRunning=true;
 			

@@ -320,22 +320,22 @@ public class GameLogic extends Thread implements Serializable
 		this.currentEPhase=this.game.getStartPhase();
 		
 		boolean valid=true;
-		switch(this.currentEPhase)
-		{
-			case phaseA:
-			{
-				break;
-			}
-			case phaseExit:
-			{
-				break;
-			}
-			default:
-			{
-				System.out.println("ERROR:Unkown case in setStartPhase: CURRENT PHASE IS " + this.currentEPhase);
-				//valid=false;
-			}
-		}
+//		switch(this.currentEPhase)
+//		{
+//			case phaseA:
+//			{
+//				break;
+//			}
+//			case phaseExit:
+//			{
+//				break;
+//			}
+//			default:
+//			{
+//				System.out.println("ERROR:Unkown case in setStartPhase: CURRENT PHASE IS " + this.currentEPhase);
+//				valid=false;
+//			}
+//		}
 		return valid;
 	}
 	
@@ -348,7 +348,7 @@ public class GameLogic extends Thread implements Serializable
 		
 		if (!this.currentEPhase.equals(changedPhase))
 		{
-			System.out.println(".............................CHANGE!......................................");
+			//System.out.println(".............................CHANGE!......................................");
 			
 			changedPhase.setLastPhase(this.currentEPhase);
 			
@@ -358,8 +358,8 @@ public class GameLogic extends Thread implements Serializable
 		}
 		else
 		{
-			System.out.println(".............................NOT CHANGE!......................................");
-			System.out.println("The changed phase was: " + changedPhase);
+			//System.out.println(".............................NOT CHANGE!......................................");
+			//System.out.println("The changed phase was: " + changedPhase);
 			return false;
 		}
 		

@@ -20,9 +20,6 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	//////////
 	//INPUTS//
 	//////////
-	
-	private String name; 	//ACTION A
-	private int age;		//ACTION B
 
 		////////////
 		//...LOGIC//
@@ -39,7 +36,7 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	@Override
 	protected void setCurrentPhase()
 	{
-		this.currentPhase=EPhases.phaseA;
+		this.currentPhase=EPhases.phaseMainMenu;
 	}
 	
 	
@@ -57,20 +54,14 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	@Override
 	public  boolean setInputA(Object inputA)
 	{
-		boolean validBasic = false;
-		this.isInputNew=true;
+		//This time don't check the basic instructions because they're not needed here
 		
-		validBasic=this.checkBasicInputs(inputA);
-		if(validBasic)
-		{
-			return true;
-		}
-		else
-		{
-			boolean valid=this.checkInputActionA(inputA);
-			this.isInputValid=valid;
-			return valid;
-		}
+		this.isInputNew=true;
+	
+		boolean valid=this.checkInputActionA(inputA);
+		this.isInputValid=valid;
+		return valid;
+		
 	}
 	
 	
@@ -88,71 +79,61 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 			inputString=this.doCastToString(inputA);
 		}
 		
+		return this.checkSelectedEntry(inputString);
 		
-		if (!inputString.equals(""))
-		{
-			this.game.getPlayer(1).setName(this.doCastToString(inputA)); 
-			return true;
-		}
-		else
-		{
-			return false;
-		}
 	}
 	
 
 
-	////////////
-	//ACTION B//
-	////////////
-	@Override
-	public  boolean setInputB(Object inputB)
+	private boolean checkSelectedEntry(String input)
 	{
-		String inputString="";
-		boolean validBasic = false;
-		this.isInputNew=true;
+		boolean valid=true;
 		
-		if(!this.tryCastToString(inputB))
+		if(input.equals("1"))			//New Game
 		{
-			return false;
+			this.currentPhase=EPhases.phaseNewGame;
+		}
+		else if(input.equals("2"))		//Load Game	
+		{
+			this.currentPhase=EPhases.phaseLoadGame;
+		}
+		else if(input.equals("3"))		//Options
+		{
+			this.currentPhase=EPhases.phaseOptions;
+		}
+		else if(input.equals("4"))		//Help
+		{
+			this.currentPhase=EPhases.phaseHelp;
+		}
+		else if(input.equals("5"))		//Cheats
+		{
+			this.currentPhase=EPhases.phaseCheats;
+		}
+		else if(input.equals("6"))		//Achievements
+		{
+			this.currentPhase=EPhases.phaseAchievements;
+		}
+		else if(input.equals("7"))		//Statistics
+		{
+			this.currentPhase=EPhases.phaseStatistics;
+		}
+		else if(input.equals("8"))		//About
+		{
+			this.currentPhase=EPhases.phaseAbout;
+		}
+		else if(input.equals("9"))		//Exit
+		{
+			this.currentPhase=EPhases.phaseExit;
 		}
 		else
 		{
-			inputString=this.doCastToString(inputB);
+			valid=false;
+			System.out.println("Input was: " + input);
 		}
 		
-	
-		validBasic=this.checkBasicInputs(inputString);
-		
-		if(validBasic)
-		{
-			this.isInputValid=true;
-			return true;
-		}
-		else
-		{
-			boolean valid=this.checkInputActionB(inputString);
-			this.isInputValid=valid;
-			return valid;
-		}
+		return valid;
 		
 	}
-	
-	
-	@Override
-	public final boolean checkInputActionB(Object inputB)
-	{
-		if(!this.tryCastToInteger(inputB))
-		{
-			return false;
-		}
-		else
-		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputB)); 
-			return true;
-		}
-	}
-	
 	
 
 	///////////
