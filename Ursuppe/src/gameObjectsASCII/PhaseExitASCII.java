@@ -16,6 +16,7 @@ public class PhaseExitASCII extends PhaseExitLogic
 		@Override
 		public void doPreAction()
 		{
+			System.out.println(this.rb.getString("phaseExitTitle"));
 			System.out.println("You want to leave the game?");
 		}
 

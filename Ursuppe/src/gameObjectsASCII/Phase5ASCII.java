@@ -18,7 +18,7 @@ public class Phase5ASCII extends Phase5Logic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println("Welcome to the techDemo of the logic of the Ursuppe! \n \n You can allways enter 'exit' to stop the programm");
+			System.out.println(this.rb.getString("phase5Title"));
 		}
 		
 		@Override

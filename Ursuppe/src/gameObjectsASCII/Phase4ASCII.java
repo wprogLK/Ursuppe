@@ -18,8 +18,8 @@ public class Phase4ASCII extends Phase4Logic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println("Welcome to the techDemo of the logic of the Ursuppe! \n \n You can allways enter 'exit' to stop the programm");
-		}
+			System.out.println(this.rb.getString("phase4Title"));		
+			}
 		
 		@Override
 		public void doAfterAction()

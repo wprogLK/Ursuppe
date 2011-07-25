@@ -18,14 +18,12 @@ public class Phase1ASCII extends Phase1Logic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println("Welcome to the techDemo of the logic of the Ursuppe! \n \n You can allways enter 'exit' to stop the programm");
+			System.out.println(this.rb.getString("phase1Title"));
 		}
 		
 		@Override
 		public void doAfterAction()
 		{
-			System.out.println("This was the techDemo run in ASCII. Goodbye...");
-			this.doExit();
 		}
 
 	///////////
