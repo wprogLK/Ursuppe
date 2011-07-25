@@ -2,11 +2,11 @@ package gameObjectsASCII;
 
 import helper.UserInput;
 import logics.PhaseALogic;
-import logics.PhaseBreakMenuLogic;
+import logics.PhaseMainMenuLogic;
 
-public class PhaseBreakMenuASCII extends PhaseBreakMenuLogic
+public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 {
-
+	String strMenu="";
 	
 	/////////////
 	//BASICS...//
@@ -21,12 +21,6 @@ public class PhaseBreakMenuASCII extends PhaseBreakMenuLogic
 			System.out.println(this.rb.getString("phaseBreakMenuTitle"));	
 		}
 		
-		@Override
-		public void doAfterAction()
-		{
-			System.out.println("This was the techDemo run in ASCII. Goodbye...");
-			this.doExit();
-		}
 
 	///////////
 	//ACTIONS//
@@ -40,43 +34,53 @@ public class PhaseBreakMenuASCII extends PhaseBreakMenuLogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println("What is your name?");
+		System.out.println();
 	}
 	
 	@Override
 	public void actionAInput()
 	{
-		String name=UserInput.readInput("Please, enter your name: ");
+		String strMenu=this.buildMenu();
+		
+		String name=UserInput.readInput(this.rb.getString("mainMenuInstruction") + "\n" + strMenu);
 		this.setInputA(name);
 	}
 	
+	
+
+
 	@Override
 	public void doAfterActionA()
 	{
 		System.out.println("Thank you for your name");
 	}
 	
-	////////////
-	//ACTION B//
-	////////////
-	
-	@Override
-	public void doPreActionB()
+	///////////
+	//PRIVATE//
+	///////////
+	/**
+	 * Builds the hole menu in ASCII 
+	 * @return
+	 */
+	private String buildMenu() 
 	{
-		System.out.println("How old are you?");
+		this.addEntry(1,this.rb.getString("phaseMainMenuNewGame"));
+		this.addEntry(2,this.rb.getString("phaseMainMenuLoadGame"));
+		this.addEntry(3,this.rb.getString("phaseMainMenuOptions"));
+		this.addEntry(4,this.rb.getString("phaseMainMenuHelp"));
+		this.addEntry(5,this.rb.getString("phaseMainMenuCheats"));
+		this.addEntry(6,this.rb.getString("phaseMainMenuAchievements"));
+		this.addEntry(7,this.rb.getString("phaseMainMenuStatistics"));
+		this.addEntry(8,this.rb.getString("phaseMainMenuAbout"));
+		this.addEntry(9,this.rb.getString("phaseMainMenuExit"));
+		return this.strMenu;
 	}
-	
-	@Override
-	public void actionBInput()
+
+
+	private void addEntry(int entryNr, String title) 
 	{
-		String age=UserInput.readInput("Please, enter your age: ");
-		this.setInputB(age);
-	}
-	
-	@Override
-	public void doAfterActionB()
-	{
-		System.out.println("Thank you for your age");
+		this.strMenu=this.strMenu+"\t - ( " +entryNr +" )" + "\t " + title + "\n";
+		
 	}
 
 	
