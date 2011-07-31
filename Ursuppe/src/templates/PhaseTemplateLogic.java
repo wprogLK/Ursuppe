@@ -703,8 +703,9 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			else
 			{
 				boolean validBasicInput=true;
-				
-				if (input.equals("Exit") || input.equals("exit"))
+				String strInput=this.doCastToString(input);
+				if (strInput.toLowerCase().equals(this.rb.getString("instructionExit")))
+				//if (input.equals("Exit") || input.equals("exit"))
 				{
 					this.doExit();
 				}

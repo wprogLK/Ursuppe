@@ -10,8 +10,6 @@ import module.*;
 
 import annotations.OnlyForTesting;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 /**
  * runs the whole Ursuppe game
  * 
