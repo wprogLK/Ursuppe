@@ -24,8 +24,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		@Override
 		public void doAfterAction()
 		{
-			System.out.println("This was the techDemo run in ASCII. Goodbye...");
-			this.doExit();
+
 		}
 
 	///////////
@@ -40,20 +39,20 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println("What is your name?");
+		System.out.println(this.rb.getString("phaseNewGameAddAPlayerOrPlay"));
 	}
 	
 	@Override
 	public void actionAInput()
 	{
-		String name=UserInput.readInput("Please, enter your name: ");
-		this.setInputA(name);
+		String input=UserInput.readInput(this.rb.getString("newGameAddOrPlay"));
+		this.setInputA(input);
 	}
 	
 	@Override
 	public void doAfterActionA()
 	{
-		System.out.println("Thank you for your name");
+		
 	}
 	
 	////////////
@@ -63,22 +62,106 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionB()
 	{
-		System.out.println("How old are you?");
+		System.out.println(this.rb.getString("phaseNewGameLoadOrCreatePlayer"));
 	}
 	
 	@Override
 	public void actionBInput()
 	{
-		String age=UserInput.readInput("Please, enter your age: ");
-		this.setInputB(age);
+		String input=UserInput.readInput(this.rb.getString("newGameLoadOrCreatePlayer"));
+		this.setInputB(input);
 	}
 	
 	@Override
 	public void doAfterActionB()
 	{
-		System.out.println("Thank you for your age");
 	}
 
+	////////////
+	//ACTION C//
+	////////////
 	
+	@Override
+	public void doPreActionC()
+	{
+		System.out.println(this.rb.getString("phaseNewGameLoadAPlayer"));
+	}
 	
+	@Override
+	public void actionCInput()
+	{
+		String input=UserInput.readInput(this.rb.getString("newGameLoadInstruction"));
+		this.setInputB(input);
+	}
+	
+	@Override
+	public void doAfterActionC()
+	{
+	}
+	
+	////////////
+	//ACTION D//
+	////////////
+	
+	@Override
+	public void doPreActionD()
+	{
+		System.out.println(this.rb.getString("phaseNewGameCreatePlayer"));
+	}
+	
+	@Override
+	public void actionDInput()
+	{
+		String input=UserInput.readInput(this.rb.getString("newGameNameInstruction"));
+		this.setInputB(input);
+	}
+	
+	@Override
+	public void doAfterActionD()
+	{
+	}
+	
+	////////////
+	//ACTION E/
+	////////////
+	
+	@Override
+	public void doPreActionE()
+	{
+	}
+	
+	@Override
+	public void actionEInput()
+	{
+		String input=UserInput.readInput(this.rb.getString("newGameAgeInstructuion"));
+		this.setInputB(input);
+	}
+	
+	@Override
+	public void doAfterActionE()
+	{
+		
+	}
+	
+	////////////
+	//ACTION F/
+	////////////
+	
+	@Override
+	public void doPreActionF()
+	{
+	}
+	
+	@Override
+	public void actionFInput()
+	{
+		String input=UserInput.readInput(this.rb.getString("newGameAgeInstructuion"));
+		this.setInputB(input);
+	}
+	
+	@Override
+	public void doAfterActionF()
+	{
+		
+	}
 }

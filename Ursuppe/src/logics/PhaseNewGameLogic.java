@@ -93,19 +93,17 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 			inputString=this.doCastToString(inputA);
 		}
 		
+		boolean valid=this.tryUnderstandInputA(inputString);
 		
-		if (!inputString.equals(""))
-		{
-			this.game.getPlayer(1).setName(this.doCastToString(inputA)); 
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return valid;
 	}
 	
-	
+	/**
+	 * try to understand/interpret the input and do the right thing
+	 * 
+	 * @param inputA
+	 * @return - true if correct <br/> - false if incorrect
+	 */
 	private boolean tryUnderstandInputA(String inputA)
 	{
 		if (inputA.equals(this.rb.getString("instructionPhaseNewGameAddPlayer")))	//add new player
@@ -167,17 +165,46 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionB(Object inputB)
 	{
-		if(!this.tryCastToInteger(inputB))
+		String inputString="";
+		
+		if(!this.tryCastToString(inputB))
 		{
 			return false;
 		}
 		else
 		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputB)); 
-			return true;
+			inputString=this.doCastToString(inputB);
 		}
+		
+		boolean valid=this.tryUnderstandInputB(inputString);
+		
+		return valid;
 	}
 	
+	/**
+	 * try to understand/interpret the input and do the right thing
+	 * 
+	 * @param inputA
+	 * @return - true if correct <br/> - false if incorrect
+	 */
+	private boolean tryUnderstandInputB(String inputB)
+	{
+		if (inputB.equals(this.rb.getString("instructionPhaseNewGameLoadPlayer")))	//load player
+		{
+			this.activateActionC();
+			return true;
+		}
+		else if (inputB.equals(this.rb.getString("instructionPhaseNewGameCreatePlayer")))	//create new player
+		{
+			activateActionD();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
 	
 	////////////
 	//ACTION C//
@@ -208,7 +235,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			boolean valid=this.checkInputActionC(inputString);
+			boolean valid=this.checkInputActionC(inputC);
 			this.isInputValid=valid;
 			return valid;
 		}
@@ -225,9 +252,45 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputC)); 
-			return true;
+			int intInput=this.doCastToInteger(inputC);
+			boolean valid=this.tryUnderstandInputC(intInput);
+			
+			return valid;
 		}
+	}
+	
+	
+	/**
+	 * try to understand/interpret the input and do the right thing
+	 * 
+	 * @param inputC
+	 * @return - true if correct <br/> - false if incorrect
+	 */
+	private boolean tryUnderstandInputC(int inputC)
+	{
+//		if (inputB.equals(this.rb.getString("instructionPhaseNewGameLoadPlayer")))	//load player
+//		{
+//			this.activateActionC();
+//			return true;
+//		}
+//		else if (inputB.equals(this.rb.getString("instructionPhaseNewGameCreatePlayer")))	//create new player
+//		{
+//			activateActionD();
+//			return true;
+//		}
+//		else
+//		{
+//			return false;
+//		}
+		
+		/*
+		 * TODO:
+		 * (0) means back
+		 * every other number stands for a player (human or AI)
+		 */
+		
+		return true;
+		
 	}
 	
 	////////////
