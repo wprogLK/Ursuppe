@@ -1,5 +1,6 @@
 package gameObjectsASCII;
 
+import helper.ReadAndWriteFiles;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseNewGameLogic;
@@ -84,6 +85,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionC()
 	{
+		
 		System.out.println(this.rb.getString("phaseNewGameLoadAPlayer"));
 	}
 	

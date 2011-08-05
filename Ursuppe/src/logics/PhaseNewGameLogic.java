@@ -2,6 +2,7 @@ package logics;
 
 import enums.EPhases;
 import templates.PhaseTemplateLogic;
+import helper.ReadAndWriteFiles;
 import interfaces.IPhase;
 import interfaces.IPlayer;
 
@@ -212,6 +213,9 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public  boolean setInputC(Object inputC)
 	{
+		ReadAndWriteFiles.readSavePlayers();
+		//TODO: prepare ArrayList to show
+		
 		String inputString="";
 		boolean validBasic = false;
 		this.isInputNew=true;
