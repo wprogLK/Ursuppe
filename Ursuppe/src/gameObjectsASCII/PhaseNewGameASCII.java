@@ -1,5 +1,9 @@
 package gameObjectsASCII;
 
+import java.util.ArrayList;
+
+import enums.EToken;
+
 import helper.ReadAndWriteFiles;
 import helper.UserInput;
 import logics.PhaseALogic;
@@ -86,14 +90,32 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	public void doPreActionC()
 	{
 		
+		
 		System.out.println(this.rb.getString("phaseNewGameLoadAPlayer"));
 	}
 	
 	@Override
 	public void actionCInput()
 	{
-		String input=UserInput.readInput(this.rb.getString("newGameLoadInstruction"));
-		this.setInputB(input);
+		//SORT OF HUMAN AND AI PLAYERS AND PREPARE THEM AS TWO STRINGS
+		ArrayList<String> input=ReadAndWriteFiles.readSavePlayers();
+		
+	
+		System.out.println("RAW LIST: " + input);
+		
+		int humanCounts=this.countNumbersOfSameToken(input, EToken.HU);
+		int AICounts=this.countNumbersOfSameToken(input, EToken.AI);
+		
+		
+		
+		String strHuman=this.rb.getString("phaseNewGameHumanPlayers") + ": \n" +this.prepareHumanPlayerFiles(input,1);
+		String strAI=this.rb.getString("phaseNewGameAIPlayers") + ": \n" + this.prepareArtificalIntelligencePlayerFiles(input,humanCounts+1);
+		String strSpecial=this.rb.getString("phaseNewGameSpecialPlayers") + ": \n( 0 ) \t " + this.rb.getString("instructionBack") + "\n";
+		
+		String message=strSpecial+strHuman+strAI;
+		
+		String inputN=UserInput.readInput(this.rb.getString("newGameLoadInstruction") + "\n" + message);
+		this.setInputB(inputN);
 	}
 	
 	@Override
