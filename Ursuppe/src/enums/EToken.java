@@ -14,7 +14,19 @@ public enum EToken
 	//ENUMS//
 	/////////
 	
-	HU,
-	AI;
-		
+	HU('H'),
+	AI('A');
+	
+	private char token;
+	
+	
+	EToken(char token)
+	{
+		this.token=token;
+	}
+	
+	public char getToken()
+	{
+		return this.token;
+	}
 }

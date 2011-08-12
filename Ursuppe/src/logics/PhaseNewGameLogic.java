@@ -5,6 +5,7 @@ import enums.EPhases;
 import enums.EToken;
 import templates.PhaseTemplateLogic;
 import helper.ReadAndWriteFiles;
+import helper.SaveAndLoad;
 import interfaces.IPhase;
 import interfaces.IPlayer;
 
@@ -24,7 +25,8 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//////////
 	//INPUTS//
 	//////////
-	
+	protected ArrayList<String> arrayHumanPlayers;
+	protected ArrayList<String> arrayAIPlayers;
 										//ACTION A: Do you want to add a player or go back or play?
 										//ACTION B: Load an exist player or create a new one?
 										//ACTION C: Load (AI and human)
@@ -50,8 +52,12 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		this.currentPhase=EPhases.phaseNewGame;
 	}
 	
-	
+	public PhaseNewGameLogic()
+	{
+		this.prepareActionC();
 		
+	}
+	
 	///////////////
 	//RUN ACTIONS//
 	///////////////
@@ -212,6 +218,8 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	////////////
 	//ACTION C//
 	////////////
+	
+	
 	@Override
 	public  boolean setInputC(Object inputC)
 	{
@@ -248,17 +256,28 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	}
 	
 	
+	private void prepareActionC() 
+	{
+		this.arrayHumanPlayers=ReadAndWriteFiles.readSaveHumanPlayers();
+		this.arrayAIPlayers=ReadAndWriteFiles.readSaveAIPlayers();
+	}
+
 	@Override
 	public final boolean checkInputActionC(Object inputC)
 	{
-		if(!this.tryCastToInteger(inputC))
+		String input=this.doCastToString(inputC);
+		
+		char token=input.charAt(0);
+		String number=input.subSequence(1, input.length()).toString();
+		
+		if(!this.tryCastToInteger(number))
 		{
 			return false;
 		}
 		else
 		{
-			int intInput=this.doCastToInteger(inputC);
-			boolean valid=this.tryUnderstandInputC(intInput);
+			int intInput=this.doCastToInteger(number);
+			boolean valid=this.tryUnderstandInputC(token,intInput);
 			
 			return valid;
 		}
@@ -271,122 +290,129 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	 * @param inputC
 	 * @return - true if correct <br/> - false if incorrect
 	 */
-	private boolean tryUnderstandInputC(int inputC)
+	private boolean tryUnderstandInputC(char token, int number)
 	{
-//		if (inputB.equals(this.rb.getString("instructionPhaseNewGameLoadPlayer")))	//load player
-//		{
-//			this.activateActionC();
-//			return true;
-//		}
-//		else if (inputB.equals(this.rb.getString("instructionPhaseNewGameCreatePlayer")))	//create new player
-//		{
-//			activateActionD();
-//			return true;
-//		}
-//		else
-//		{
-//			return false;
-//		}
-		
-		/*
-		 * TODO:
-		 * (0) means back
-		 * every other number stands for a player (human or AI)
-		 */
+		boolean valid=true;
 	
-		return true;
+		ArrayList<String> tmpArray=new ArrayList<String>();
+		String fileToken="";
 		
-	}
-	
-	protected int countNumbersOfSameToken(ArrayList<String> input  , EToken token)
-	{
-		int counter=0;
-		
-		for(String str:input)
+		switch (token)
 		{
-			String prefix=str.subSequence(0, 2).toString();
-			
-			if(prefix.equals(token.toString()))
+			case 'h' | 'H':
 			{
-				counter++;
+				tmpArray=this.arrayHumanPlayers;
+				fileToken="HU";
+			}
+			case 'A' | 'a':
+			{
+				tmpArray=this.arrayAIPlayers;
+				fileToken="AI";
+			}
+			default:
+			{
+				//TODO
+				valid=false;
 			}
 		}
 		
-		return counter;
+		String filename=fileToken+tmpArray.get(number);
+		
+		IPlayer player=SaveAndLoad.loadPlayer(filename);
+		
+		return valid;
 	}
 	
-	/**
-	 * sorts out all strings which starts with the token and give it back
-	 * @param savePlayersInput
-	 * @param token
-	 * @return ArrayList<String>
-	 */
-	protected ArrayList<String> sortSavePlayerFiles(ArrayList<String> savePlayersInput, EToken token)
-	{
-		ArrayList<String> savePlayersOutput=new ArrayList<String>();
-		
-		for(String str:savePlayersInput)
-		{
-			String prefix=str.subSequence(0, 2).toString();
-			
-			System.out.println("PREFIX IN SORT ALGO: " + prefix);
-			
-			if(prefix.equals(token.toString()))
-			{
-				savePlayersOutput.add(str);
-			}
-		}
-		
-		System.out.println("OUTPUT AFTER STORT IS: " + savePlayersOutput);
-		
-		return savePlayersOutput;
-	}
+//	protected int countNumbersOfSameToken(ArrayList<String> input  , EToken token)
+//	{
+//		int counter=0;
+//		
+//		for(String str:input)
+//		{
+//			String prefix=str.subSequence(0, 2).toString();
+//			
+//			if(prefix.equals(token.toString()))
+//			{
+//				counter++;
+//			}
+//		}
+//		
+//		return counter;
+//	}
+//	
+//	/**
+//	 * sorts out all strings which starts with the token and give it back
+//	 * @param savePlayersInput
+//	 * @param token
+//	 * @return ArrayList<String>
+//	 */
+//	protected ArrayList<String> sortSavePlayerFiles(ArrayList<String> savePlayersInput, EToken token)
+//	{
+//		ArrayList<String> savePlayersOutput=new ArrayList<String>();
+//		
+//		for(String str:savePlayersInput)
+//		{
+//			String prefix=str.subSequence(0, 2).toString();
+//			
+//			
+//			if(prefix.equals(token.toString()))
+//			{
+//				savePlayersOutput.add(str);
+//			}
+//		}
+//		
+//		
+//		return savePlayersOutput;
+//	}
+//	
+//	protected String prepareHumanPlayerFiles(ArrayList<String> input,int startToCount)
+//	{
+//		String output="";
+//		
+//		input=this.sortSavePlayerFiles(input, EToken.HU);
+//		
+//		output=this.createStringForPlayers(input,EToken.HU,startToCount);
+//		
+//		return output;
+//	}
+//	
+//	protected String prepareArtificalIntelligencePlayerFiles(ArrayList<String> input, int startToCount)
+//	{
+//		String output="";
+//		
+//		input=this.sortSavePlayerFiles(input, EToken.AI);
+//		
+//		output=this.createStringForPlayers(input,EToken.AI,startToCount);
+//		
+//		return output;
+//	}
+//	
+//	/**
+//	 * creates a numbered (start with number {@code startToCount} and formated string with all players with the token
+//	 * @param input
+//	 * @param token
+//	 * @return numbered and formated string with all players with the token
+//	 */
+//	protected String createStringForPlayers(ArrayList<String> input,EToken token, int startToCount)
+//	{
+//		String output="";
+//		//System.out.println("ARRAY ( " + token + " ) BEFORE: " + input );
+//		for(String str:input)
+//		{
+//			String strName=str.subSequence(2, str.length()).toString();
+//		
+//			output=output+ "( " + startToCount + " ) \t " +strName + "\n";
+//			
+//			startToCount++;
+//		}
+//		//System.out.println("ARRAY ( " + token + " ) AFTER: " + input );
+//		
+//		
+//		return output;
+//	}
 	
-	protected String prepareHumanPlayerFiles(ArrayList<String> input,int startToCount)
-	{
-		String output="";
-		
-		input=this.sortSavePlayerFiles(input, EToken.HU);
-		
-		output=this.createStringForPlayers(input,EToken.HU,startToCount);
-		
-		return output;
-	}
 	
-	protected String prepareArtificalIntelligencePlayerFiles(ArrayList<String> input, int startToCount)
-	{
-		String output="";
-		
-		input=this.sortSavePlayerFiles(input, EToken.AI);
-		
-		output=this.createStringForPlayers(input,EToken.AI,startToCount);
-		
-		return output;
-	}
 	
-	/**
-	 * creates a numbered (start with number {@code startToCount} and formated string with all players with the token
-	 * @param input
-	 * @param token
-	 * @return numbered and formated string with all players with the token
-	 */
-	protected String createStringForPlayers(ArrayList<String> input,EToken token, int startToCount)
-	{
-		String output="";
-		//System.out.println("ARRAY ( " + token + " ) BEFORE: " + input );
-		for(String str:input)
-		{
-			String strName=str.subSequence(2, str.length()).toString();
-		
-			output=output+ "( " + startToCount + " ) \t " +strName + "\n";
-			
-			startToCount++;
-		}
-		//System.out.println("ARRAY ( " + token + " ) AFTER: " + input );
-		
-		
-		return output;
-	}
 	////////////
 	//ACTION D//
 	////////////
@@ -409,7 +435,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 		validBasic=this.checkBasicInputs(inputString);
 		
-		if(validBasic)
+		if(validBasic)		
 		{
 			this.isInputValid=true;
 			return true;

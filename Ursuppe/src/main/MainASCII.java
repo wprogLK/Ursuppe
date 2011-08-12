@@ -3,7 +3,9 @@ package main;
 import helper.SaveAndLoad;
 import interfaces.IGame;
 import interfaces.IModule;
+import interfaces.IPlayer;
 import enums.EPhases;
+import enums.EToken;
 import gameObjectsASCII.GameASCII;
 
 import module.*;
@@ -40,7 +42,8 @@ public class MainASCII {
 		 
 		 game.createNew();
 		 
-		 game.createANewPlayer();
+		 IPlayer player=game.createANewPlayer();
+		 SaveAndLoad.savePlayer(player, "testPlayer",EToken.HU);
 		 //SaveAndLoad.saveObject(game, "data/savegames/currentGame.urs");
 		 game.play();
 		 

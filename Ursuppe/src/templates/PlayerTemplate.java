@@ -1,9 +1,11 @@
 package templates;
 
+import java.io.Serializable;
+
 import enums.EColor;
 import interfaces.IPlayer;
 
-public abstract class PlayerTemplate implements IPlayer 
+public abstract class PlayerTemplate implements IPlayer, Serializable
 {
 	protected String name;
 	protected int age;

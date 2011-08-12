@@ -98,24 +98,39 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	public void actionCInput()
 	{
 		//SORT OF HUMAN AND AI PLAYERS AND PREPARE THEM AS TWO STRINGS
-		ArrayList<String> input=ReadAndWriteFiles.readSavePlayers();
-		
 	
-		System.out.println("RAW LIST: " + input);
+		String message=this.prepareStringForLoadPlayers(this.arrayHumanPlayers, this.arrayAIPlayers);
 		
-		int humanCounts=this.countNumbersOfSameToken(input, EToken.HU);
-		int AICounts=this.countNumbersOfSameToken(input, EToken.AI);
-		
-		
-		
-		String strHuman=this.rb.getString("phaseNewGameHumanPlayers") + ": \n" +this.prepareHumanPlayerFiles(input,1);
-		String strAI=this.rb.getString("phaseNewGameAIPlayers") + ": \n" + this.prepareArtificalIntelligencePlayerFiles(input,humanCounts+1);
-		String strSpecial=this.rb.getString("phaseNewGameSpecialPlayers") + ": \n( 0 ) \t " + this.rb.getString("instructionBack") + "\n";
-		
-		String message=strSpecial+strHuman+strAI;
 		
 		String inputN=UserInput.readInput(this.rb.getString("newGameLoadInstruction") + "\n" + message);
 		this.setInputB(inputN);
+	}
+	
+	private String prepareStringForLoadPlayers(ArrayList<String> arrHumanPlayers, ArrayList<String> arrAIPlayers)
+	{
+		int nrHumanPlayers=0;
+		int nrAIPlayers=0;
+	
+		String output="";
+		String strHumanPlayers="Human players: \n";
+		String strAIPlayers="Artifical intelligence players: \n";
+		
+		for(String strHuman:arrHumanPlayers)
+		{
+			strHumanPlayers=strHumanPlayers+ " ( H" + nrHumanPlayers + " ) " + "\t" + strHuman + "\n";
+			nrHumanPlayers++;
+		}
+		
+		for(String strAI:arrAIPlayers)
+		{
+			strAIPlayers=strAIPlayers+ " ( A" + nrAIPlayers + " ) " + "\t" + strAI + "\n";
+			nrHumanPlayers++;
+		}
+		
+		
+		output=strHumanPlayers+strAIPlayers;
+		
+		return output;
 	}
 	
 	@Override

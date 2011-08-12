@@ -1,10 +1,14 @@
 package helper;
 
+import interfaces.IPlayer;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
+import enums.EToken;
 
 /*
  * TODO: instead of save & load any object use an empty interface called IUrsuppeObject and save & load this!
@@ -18,6 +22,23 @@ import java.io.ObjectOutputStream;
  * @version 1.0.0.1
  */
 public abstract class SaveAndLoad {
+	
+	public static IPlayer loadPlayer(String filename)
+	{
+		filename=Setting.pathSavePlayers+"/"+filename;
+		
+		return (IPlayer) loadObject(filename);
+	}
+	
+	public static void savePlayer(IPlayer player, String filename, EToken token)
+	{
+		ReadAndWriteFiles.addDataHumanPlayer(filename);
+		filename=Setting.pathSavePlayers+"/"+token.getToken()+filename;
+		
+		saveObject(player,filename);
+	}
+	
+	
 	
 	public static void saveObject(Object obj, String filename)
 	{
