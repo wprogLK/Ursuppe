@@ -130,30 +130,30 @@ public abstract class ReadAndWriteFiles
 	{
 		String data="";
 		
-		for (String item:input)
-		{
-			data+=item+"\n";
-		}
-		
 		System.out.println("WRITE FILE fileName" + fileName + " \n Data: " + data);
 		
-		File file  = new File(Setting.pathSavePlayers+"/overviewHumanPlayers.urs");//fileName+".urs");
+		File file  = new File(Setting.pathSavePlayers+"/overviewHumanPlayers.urs");
 		
 		BufferedWriter writer;
 		try 
 		{
 			writer = new BufferedWriter(new FileWriter(file));
 			
-			writer.write(data);			//TODO: write every line separately
+			for (String strLine:input)
+			{
+				writer.write(strLine);
+				writer.newLine();
+			}
+			
+			
 			writer.close();
 		} 
 		catch (IOException e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
-		
-		
 				
 	}
 

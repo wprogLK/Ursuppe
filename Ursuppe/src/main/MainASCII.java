@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Date;
+
 import helper.SaveAndLoad;
 import interfaces.IGame;
 import interfaces.IModule;
@@ -41,7 +43,9 @@ public class MainASCII {
 		 game.setStartPhase(EPhases.phaseSplashScreen);
 		 
 		 game.createNew();
+		 Date now = new Date();
 		 
+		
 		 IPlayer player=game.createANewPlayer();
 		 SaveAndLoad.savePlayer(player, "testPlayer",EToken.HU);
 		 //SaveAndLoad.saveObject(game, "data/savegames/currentGame.urs");

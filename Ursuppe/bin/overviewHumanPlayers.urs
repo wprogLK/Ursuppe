@@ -1,9 +1,8 @@
 ##############################INFO###############################
-#This file is an overview about all human saved players 	#
+#This file is an overview about all Human saved players 	#
 #Every line one player						#
 #For comments use #						#
 #################################################################
-
-
-Lukas
-Hans
+testPlayer
+testPlayer
+testPlayer
