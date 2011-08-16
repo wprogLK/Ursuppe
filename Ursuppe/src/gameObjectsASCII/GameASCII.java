@@ -1,5 +1,7 @@
 package gameObjectsASCII;
 
+import java.io.PrintStream;
+
 import main.GameLogic;
 import module.ModuleASCII;
 import templates.GameTemplate;
@@ -19,10 +21,11 @@ public class GameASCII extends GameTemplate{
 	 * 
 	 * @see GameTemplate
 	 */
-	public GameASCII()
+	public GameASCII(PrintStream out, PrintStream error)
 	{
-		this.module=new ModuleASCII();
+		super(out, error);
 		
+		this.module=new ModuleASCII(out,error);
 		this.setupPlayers();
 	}
 	

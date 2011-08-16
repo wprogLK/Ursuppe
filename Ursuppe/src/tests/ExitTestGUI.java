@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import enums.EPhases;
 import gameObjectsASCII.GameASCII;
 import gameObjectsGUI.GameGUI;
+import helper.Setting;
 import interfaces.IGame;
 import interfaces.IPhase;
 import interfaces.IPlayer;

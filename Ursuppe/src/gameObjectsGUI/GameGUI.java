@@ -1,5 +1,7 @@
 package gameObjectsGUI;
 
+import java.io.PrintStream;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -23,9 +25,10 @@ public class GameGUI extends GameTemplate
 	 * 
 	 * @see GameTemplate
 	 */
-	public GameGUI()
+	public GameGUI(PrintStream outStream, PrintStream errorStream)
 	{
-		this.module=new ModuleGUI();
+		super(outStream, errorStream);
+		this.module=new ModuleGUI(outStream,outStream);
 	
 		this.setupPlayers();
 		

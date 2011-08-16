@@ -6,6 +6,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import enums.EPhases;
+import helper.Setting;
 import interfaces.IGame;
 import interfaces.IPhase;
 import interfaces.IPlayer;

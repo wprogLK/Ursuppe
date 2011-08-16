@@ -2,19 +2,25 @@
 package templates;
 
 
+import java.io.PrintStream;
+
+import helper.Setting;
 import interfaces.IModule;
 
 import module.ModuleASCII;
-import module.ModuleGUI;
 
 
 
 
 public class ASCIITestTemplate extends Thread
 {
-	protected final IModule module=new ModuleASCII();
 	
-
+	
+	protected final PrintStream outStream= Setting.testOut;
+	protected final PrintStream errStream= Setting.testErr;
+	
+	protected final IModule module=new ModuleASCII(this.outStream,this.errStream);
+	
 	protected void waitingBetweenTwoInputs()
 	{
 		try 

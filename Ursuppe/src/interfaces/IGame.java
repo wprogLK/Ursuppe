@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.io.PrintStream;
+
 import javax.swing.JPanel;
 
 import enums.EColor;
@@ -170,4 +172,8 @@ public interface IGame
 	 * @return the current IPhase
 	 */
 	public EPhases getCurrentEPhase();
+
+	public PrintStream getErrorStream();
+
+	public PrintStream getOutStream();
 }

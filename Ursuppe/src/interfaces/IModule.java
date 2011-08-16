@@ -1,5 +1,7 @@
  package interfaces;
 
+import java.io.PrintStream;
+
 import enums.EColor;
 import gameObjectsASCII.*;
 import interfaces.IGame;

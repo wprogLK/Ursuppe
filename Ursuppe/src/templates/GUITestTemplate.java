@@ -1,10 +1,14 @@
 
 package templates;
 
+import java.io.PrintStream;
+
 import gameObjectsGUI.GameGUI;
+import helper.Setting;
 import interfaces.IGame;
 import interfaces.IModule;
 
+import module.ModuleASCII;
 import module.ModuleGUI;
 
 import org.junit.Test;
@@ -19,7 +23,10 @@ import com.google.inject.Injector;
 
 public class GUITestTemplate extends Thread
 {
-	protected final IModule module=new ModuleGUI();
+	protected final PrintStream outStream= Setting.testOut;
+	protected final PrintStream errStream= Setting.testErr;
+	
+	protected final IModule module=new ModuleGUI(this.outStream,this.errStream);
 	
 	protected void waitingBetweenTwoInputs()
 	{

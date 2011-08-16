@@ -1,5 +1,7 @@
 package module;
 
+import java.io.PrintStream;
+
 import enums.EColor;
 import gameObjectsASCII.PhaseAASCII;
 import gameObjectsASCII.PlayerASCII;
@@ -23,6 +25,17 @@ import com.google.inject.AbstractModule;
  */
 public class ModuleGUI implements IModule
 {
+	private PrintStream outStream;
+	private PrintStream errorStream;
+	
+	
+	public ModuleGUI(PrintStream out, PrintStream err)
+	{
+		this.outStream=out;
+		this.errorStream=err;
+	}
+	
+	
 	@Override
 	public IPhase createPhaseA() 
 	{
@@ -37,7 +50,7 @@ public class ModuleGUI implements IModule
 	@Override
 	public IGame createGame()
 	{
-		return new GameGUI();
+		return new GameGUI(this.outStream, this.errorStream);
 	}
 
 	@Override

@@ -76,7 +76,7 @@ public class GameLogic extends Thread implements Serializable
 	 */
 	public final void createASCII()
 	{
-		this.module=new ModuleASCII();
+		this.module=new ModuleASCII(this.game.getOutStream(),this.game.getErrorStream());
 		
 		this.createPhases();
 		 
@@ -88,7 +88,7 @@ public class GameLogic extends Thread implements Serializable
 	 */
 	public final void createGUI()
 	{
-		this.module=new ModuleGUI();
+		this.module=new ModuleGUI(this.game.getOutStream(),this.game.getErrorStream());
 		
 		this.createPhases();
 		

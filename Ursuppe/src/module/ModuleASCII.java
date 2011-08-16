@@ -1,5 +1,7 @@
  package module;
 
+import java.io.PrintStream;
+
 import enums.EColor;
 import gameObjectsASCII.*;
 import interfaces.IGame;
@@ -20,6 +22,17 @@ import interfaces.IPlayer;
  */
 public class ModuleASCII implements IModule
 {
+	private PrintStream outStream;
+	private PrintStream errorStream;
+	
+	
+	public ModuleASCII(PrintStream out, PrintStream err)
+	{
+		this.outStream=out;
+		this.errorStream=err;
+	}
+	
+	
 	public IPhase createPhaseA()
 	{
 		return new PhaseAASCII();
@@ -122,7 +135,7 @@ public class ModuleASCII implements IModule
 	@Override
 	public IGame createGame()
 	{
-		return new GameASCII();
+		return new GameASCII(this.outStream,this.errorStream);
 	}
 	
 	@Override

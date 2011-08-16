@@ -1,8 +1,10 @@
 package main;
 
+import java.io.PrintStream;
 import java.util.Date;
 
 import helper.SaveAndLoad;
+import helper.Setting;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPlayer;
@@ -25,7 +27,11 @@ public class MainASCII {
 	
 	
 	private static IGame game;
-	private static IModule module=new ModuleASCII();
+	
+	private static PrintStream outStream=Setting.asciiOut;
+	private static PrintStream errorStream=Setting.asciiOut;
+	
+	private static IModule module=new ModuleASCII(outStream, errorStream);
 	
 	
 	/**
@@ -39,7 +45,7 @@ public class MainASCII {
 	public static void main(String[] args) 
 	{
 		 game=module.createGame();
-		
+		 
 		 game.setStartPhase(EPhases.phaseSplashScreen);
 		 
 		 game.createNew();

@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import enums.EPhases;
 import gameObjectsASCII.GameASCII;
 import gameObjectsGUI.GameGUI;
+import helper.Setting;
 import interfaces.IGame;
 import interfaces.IPhase;
 import interfaces.IPlayer;
@@ -96,8 +97,8 @@ public class ExitTestASCII_NEW extends ASCIITestTemplate{
 		
 		this.waitingGeneral();
 		
-		System.out.println("CURRENT ePhase: " + game.getCurrentEPhase());
-		System.out.println("CURRENT Phase: " + game.getCurrentPhase());
+		this.outStream.println("CURRENT ePhase: " + game.getCurrentEPhase());
+		this.outStream.println("CURRENT Phase: " + game.getCurrentPhase());
 //		
 //		IPhase phaseA=game.getCurrentPhase();
 //		

@@ -2,6 +2,7 @@ package templates;
 
 import annotations.*;
 
+import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -41,6 +42,14 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	protected boolean isOver=false;
 	private EPhases startPhase;
 	
+	protected PrintStream outStream;
+	protected PrintStream errorStream;
+	
+	public GameTemplate(PrintStream out, PrintStream error)
+	{
+		this.outStream=out;
+		this.errorStream=error;
+	}
 	
 	/**
 	 * sets the {@code mainPanel} which contains all components.
@@ -157,6 +166,16 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	///////////
 	//GETTERS//
 	///////////
+	
+	public PrintStream getErrorStream()
+	{
+		return this.errorStream;
+	}
+	
+	public PrintStream getOutStream()
+	{
+		return this.outStream;
+	}
 	
 	@Override
 	public int getNumbersOfPlayers()

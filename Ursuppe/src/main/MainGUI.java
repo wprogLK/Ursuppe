@@ -1,5 +1,6 @@
 package main;
 
+import helper.Setting;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPlayer;
@@ -24,7 +25,7 @@ public class MainGUI {
 	
 	
 	private static IGame game;
-	private static IModule module =new ModuleGUI();
+	private static IModule module =new ModuleGUI(Setting.asciiOut, Setting.asciiErr);
 	
 	
 	/**
