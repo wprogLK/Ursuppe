@@ -18,7 +18,7 @@ public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println(this.rb.getString("phaseBreakMenuTitle"));	
+			this.outStream.println(this.rb.getString("phaseBreakMenuTitle"));	
 		}
 		
 
@@ -34,7 +34,7 @@ public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println();
+		this.outStream.println();
 	}
 	
 	@Override
@@ -52,7 +52,7 @@ public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 	@Override
 	public void doAfterActionA()
 	{
-		System.out.println("Thank you for your name");
+		this.outStream.println("Thank you for your name");
 	}
 	
 	///////////

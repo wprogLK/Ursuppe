@@ -2,7 +2,9 @@ package main;
 
 
 
+import java.io.PrintStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -59,6 +61,11 @@ public class GameLogic extends Thread implements Serializable
 	private IPhase currentPhase;
 	
 	private EPhases currentEPhase;
+	
+	private ArrayList<IPhase> phasesList=new ArrayList<IPhase>();
+	
+	private PrintStream outStream;
+	private PrintStream errStream;
 
 	//////////
 	//CREATE//
@@ -66,6 +73,10 @@ public class GameLogic extends Thread implements Serializable
 	public GameLogic(IGame game)
 	{
 		this.game=game;
+		
+		this.outStream=this.game.getOutStream();
+		this.errStream=this.game.getErrorStream();
+		
 		this.setPriority(7);
 	}
 
@@ -76,9 +87,12 @@ public class GameLogic extends Thread implements Serializable
 	 */
 	public final void createASCII()
 	{
-		this.module=new ModuleASCII(this.game.getOutStream(),this.game.getErrorStream());
+		this.module=new ModuleASCII(this.outStream,this.errStream);
 		
 		this.createPhases();
+		this.preparePhasesList();
+		this.setStreams();
+
 		 
 		this.startAllPhases();
 	}
@@ -88,11 +102,53 @@ public class GameLogic extends Thread implements Serializable
 	 */
 	public final void createGUI()
 	{
-		this.module=new ModuleGUI(this.game.getOutStream(),this.game.getErrorStream());
+		this.module=new ModuleGUI(this.outStream,this.errStream);
 		
 		this.createPhases();
+		this.preparePhasesList();
+		this.setStreams();
 		
 		this.startAllPhases();
+	}
+	
+	private void preparePhasesList() 
+	{
+		this.phasesList.add(this.phaseA);
+		this.phasesList.add(this.phaseExit);
+		
+		this.phasesList.add(this.phaseSplashScreen);
+		this.phasesList.add(this.phaseMainMenu);
+		this.phasesList.add(this.phaseNewGame);
+		this.phasesList.add(this.phaseLoadGame);
+		this.phasesList.add(this.phaseOptions);
+		this.phasesList.add(this.phaseHelp);
+		this.phasesList.add(this.phaseCheats);
+		this.phasesList.add(this.phaseAchievements);
+		this.phasesList.add(this.phaseAbout);
+		
+		this.phasesList.add(this.phaseBreakMenu);
+		this.phasesList.add(this.phaseStatistics);
+		this.phasesList.add(this.phaseSaveGame);
+		
+		this.phasesList.add(this.phasePreparation1);
+		this.phasesList.add(this.phasePreparation2);
+		this.phasesList.add(this.phase1);
+		this.phasesList.add(this.phase2);
+		this.phasesList.add(this.phase3);
+		this.phasesList.add(this.phase4);
+		this.phasesList.add(this.phase5);
+		this.phasesList.add(this.phase6);
+	}
+
+
+
+	private void setStreams()
+	{
+		for (IPhase phase:this.phasesList)
+		{
+			phase.setOutStream(this.outStream);
+			phase.setErrorStream(this.errStream);
+		}
 	}
 	
 	private void createPhases()
@@ -270,9 +326,9 @@ public class GameLogic extends Thread implements Serializable
 	public IPhase getCurrentPhase() 
 	{
 //For debugging:
-//		System.out.println("CURRENT P is " + this.currentPhase);
-//		System.out.println("CURRENT eP is " + this.currentEPhase);
-//		System.out.println("CHANGED = " + this.changed);
+//		this.outStream.println("CURRENT P is " + this.currentPhase);
+//		this.outStream.println("CURRENT eP is " + this.currentEPhase);
+//		this.outStream.println("CHANGED = " + this.changed);
 		
 		this.changed=false;
 		
@@ -309,7 +365,7 @@ public class GameLogic extends Thread implements Serializable
 			
 		}
 	
-		System.out.println("END GAME LOGIC ...");
+		this.outStream.println("END GAME LOGIC ...");
 	}
 	
 	/////////////
@@ -332,7 +388,7 @@ public class GameLogic extends Thread implements Serializable
 //			}
 //			default:
 //			{
-//				System.out.println("ERROR:Unkown case in setStartPhase: CURRENT PHASE IS " + this.currentEPhase);
+//				this.outStream.println("ERROR:Unkown case in setStartPhase: CURRENT PHASE IS " + this.currentEPhase);
 //				valid=false;
 //			}
 //		}
@@ -348,7 +404,7 @@ public class GameLogic extends Thread implements Serializable
 		
 		if (!this.currentEPhase.equals(changedPhase))
 		{
-			//System.out.println(".............................CHANGE!......................................");
+			//this.outStream.println(".............................CHANGE!......................................");
 			
 			changedPhase.setLastPhase(this.currentEPhase);
 			
@@ -358,8 +414,8 @@ public class GameLogic extends Thread implements Serializable
 		}
 		else
 		{
-			//System.out.println(".............................NOT CHANGE!......................................");
-			//System.out.println("The changed phase was: " + changedPhase);
+			//this.outStream.println(".............................NOT CHANGE!......................................");
+			//this.outStream.println("The changed phase was: " + changedPhase);
 			return false;
 		}
 		
@@ -575,7 +631,7 @@ public class GameLogic extends Thread implements Serializable
 			}
 			default:
 			{
-				System.out.println("ERROR:Unkown case in activePhase: CURRENT PHASE IS " + this.currentEPhase);
+				this.outStream.println("ERROR:Unkown case in activePhase: CURRENT PHASE IS " + this.currentEPhase);
 			}
 		}
 	}

@@ -40,7 +40,7 @@ public class ExitTestASCII extends ASCIITestTemplate//Thread{
 		
 		game=module.createGame();
 		
-		System.out.println("before setStartPhase");
+		this.outStream.println("before setStartPhase");
 		
 		game.setStartPhase(EPhases.phaseA);
 
@@ -86,16 +86,16 @@ public class ExitTestASCII extends ASCIITestTemplate//Thread{
 		
 		//phaseA.setInputA("exit");
 		phaseA.setAllInput("Exit");
-		System.out.println("Exit");				//Not necessary, but it looks like a real userInput
+		this.outStream.println("Exit");				//Not necessary, but it looks like a real userInput
 
 		this.waitingGeneral(); 		//Important!
-		System.out.println("NEW PHASE: " +game.getCurrentPhase());
+		this.outStream.println("NEW PHASE: " +game.getCurrentPhase());
 		
-		System.out.println("NEW INDIRECT ePHASE: " +game.getCurrentPhase().getCurrentPhase());
+		this.outStream.println("NEW INDIRECT ePHASE: " +game.getCurrentPhase().getCurrentPhase());
 		
-		System.out.println("NEW ePHASE: " +game.getCurrentEPhase()); 	//#BUG!
+		this.outStream.println("NEW ePHASE: " +game.getCurrentEPhase()); 	//#BUG!
 		
-		System.out.println("isRunning: " + game.getCurrentPhase().getIsRunning());
+		this.outStream.println("isRunning: " + game.getCurrentPhase().getIsRunning());
 		
 		//assertTrue(game.getCurrentEPhase()==EPhases.phaseExit);		//#BUG! Why it isn't working?!
 		assertTrue(game.getCurrentPhase().toString().equals("phaseExit"));	

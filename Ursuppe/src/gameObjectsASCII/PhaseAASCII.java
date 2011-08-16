@@ -17,13 +17,13 @@ public class PhaseAASCII extends PhaseALogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println("Welcome to the techDemo of the logic of the Ursuppe! \n \n You can allways enter 'exit' to stop the programm");
+			this.outStream.println("Welcome to the techDemo of the logic of the Ursuppe! \n \n You can allways enter 'exit' to stop the programm");
 		}
 		
 		@Override
 		public void doAfterAction()
 		{
-			System.out.println("This was the techDemo run in ASCII. Goodbye...");
+			this.outStream.println("This was the techDemo run in ASCII. Goodbye...");
 			this.doExit();
 		}
 
@@ -39,7 +39,7 @@ public class PhaseAASCII extends PhaseALogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println("What is your name?");
+		this.outStream.println("What is your name?");
 	}
 	
 	@Override
@@ -52,7 +52,7 @@ public class PhaseAASCII extends PhaseALogic
 	@Override
 	public void doAfterActionA()
 	{
-		System.out.println("Thank you for your name");
+		this.outStream.println("Thank you for your name");
 	}
 	
 	////////////
@@ -62,7 +62,7 @@ public class PhaseAASCII extends PhaseALogic
 	@Override
 	public void doPreActionB()
 	{
-		System.out.println("How old are you?");
+		this.outStream.println("How old are you?");
 	}
 	
 	@Override
@@ -75,7 +75,7 @@ public class PhaseAASCII extends PhaseALogic
 	@Override
 	public void doAfterActionB()
 	{
-		System.out.println("Thank you for your age");
+		this.outStream.println("Thank you for your age");
 	}
 
 	

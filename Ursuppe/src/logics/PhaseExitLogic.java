@@ -75,7 +75,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 		
 		if(this.inputEqualsYes(inputString))
 		{
-			System.out.println("Bye");
+			this.outStream.println("Bye");
 			System.exit(0);
 			return true;
 		}
@@ -96,7 +96,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			System.out.println("The input wasn't yes/no. It was " + inputString);
+			this.outStream.println("The input wasn't yes/no. It was " + inputString);
 			return false;
 		}
 	}

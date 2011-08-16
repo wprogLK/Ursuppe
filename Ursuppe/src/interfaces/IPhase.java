@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.io.PrintStream;
+
 import javax.swing.JPanel;
 
 import enums.EPhases;
@@ -43,6 +45,10 @@ public interface IPhase
 	
 	public void setLastPhase(EPhases lastPhase);
 	public void setNextPhase(EPhases nextPhase);
+	
+	public void setOutStream(PrintStream out);
+	public void setErrorStream(PrintStream err);
+	
 	//////////
 	//THREAD//
 	//////////

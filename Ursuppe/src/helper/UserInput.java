@@ -3,7 +3,9 @@ package helper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 /**
  *wait and read the input of the useres
  * 
@@ -13,14 +15,35 @@ import java.io.InputStreamReader;
  */
 public abstract class UserInput 
 {
+	private static PrintStream outStream;
+	private static PrintStream errStream;
+	private static InputStream inStream;
+	
+	public static void setOutStream(PrintStream out)
+	{
+		outStream=out;
+	}
+	
+	public static void setErrorStream(PrintStream error)
+	{
+		errStream=error;
+	}
+	
+	public static void setErrorStream(InputStream in)
+	{
+		inStream=in;
+	
+	}
+	
 	/**
 	 * reads the input
 	 * @return String, the input of the user
 	 */
 	public static String readInput(String message)
 	{
-		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader console = new BufferedReader(new InputStreamReader(System.in));	//TODO use inStream instead of System.in
 		String line = null;
+		//outStream.println(message);	//TODO
 		System.out.println(message);
 		try 
 		{

@@ -23,7 +23,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println(this.rb.getString("phaseNewGameTitle"));
+			this.outStream.println(this.rb.getString("phaseNewGameTitle"));
 		}
 		
 		@Override
@@ -44,7 +44,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println(this.rb.getString("phaseNewGameAddAPlayerOrPlay"));
+		this.outStream.println(this.rb.getString("phaseNewGameAddAPlayerOrPlay"));
 	}
 	
 	@Override
@@ -67,7 +67,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionB()
 	{
-		System.out.println(this.rb.getString("phaseNewGameLoadOrCreatePlayer"));
+		this.outStream.println(this.rb.getString("phaseNewGameLoadOrCreatePlayer"));
 	}
 	
 	@Override
@@ -91,7 +91,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	{
 		
 		
-		System.out.println(this.rb.getString("phaseNewGameLoadAPlayer"));
+		this.outStream.println(this.rb.getString("phaseNewGameLoadAPlayer"));
 	}
 	
 	@Override
@@ -145,7 +145,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionD()
 	{
-		System.out.println(this.rb.getString("phaseNewGameCreatePlayer"));
+		this.outStream.println(this.rb.getString("phaseNewGameCreatePlayer"));
 	}
 	
 	@Override

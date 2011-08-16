@@ -1,7 +1,5 @@
 package enums;
 
-import interfaces.IPhase;
-
 /**
  * Token for human or AI players
  * @author Lukas Keller

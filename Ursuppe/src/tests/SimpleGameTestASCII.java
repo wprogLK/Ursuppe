@@ -66,7 +66,7 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 		game.createNew();
 		this.playerOne=  game.createANewPlayer();
 		
-		System.out.println("With one player");
+		this.outStream.println("With one player");
 		game.showPlayers();
 		
 		return game;
@@ -79,7 +79,7 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 		this.playerOne=  game.createANewPlayer();
 		this.playerTwo=  game.createANewPlayer();
 		
-		System.out.println("With two players");
+		this.outStream.println("With two players");
 		game.showPlayers();
 		
 		return game;
@@ -108,7 +108,7 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 		
 		phaseA.waitForANewInput();
 		assertTrue(phaseA.setInputA("Lukas"));
-		System.out.println("Lukas");				//Not necessary, but it looks like a real userInput
+		this.outStream.println("Lukas");				//Not necessary, but it looks like a real userInput
 		
 		return game;
 	}

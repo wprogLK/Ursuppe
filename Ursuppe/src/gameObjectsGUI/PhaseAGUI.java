@@ -60,7 +60,7 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 		
 		public void doAfterAction()
 		{
-			System.out.println("This was the techDemo run in GUI. Goodbye...");
+			this.outStream.println("This was the techDemo run in GUI. Goodbye...");
 			this.doExit();	//TODO: Later it's going to be another phase!
 		}
 		

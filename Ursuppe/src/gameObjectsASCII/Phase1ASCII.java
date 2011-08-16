@@ -18,7 +18,7 @@ public class Phase1ASCII extends Phase1Logic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println(this.rb.getString("phase1Title"));
+			this.outStream.println(this.rb.getString("phase1Title"));
 		}
 		
 		@Override
@@ -38,7 +38,7 @@ public class Phase1ASCII extends Phase1Logic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println("What is your name?");
+		this.outStream.println("What is your name?");
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class Phase1ASCII extends Phase1Logic
 	@Override
 	public void doAfterActionA()
 	{
-		System.out.println("Thank you for your name");
+		this.outStream.println("Thank you for your name");
 	}
 	
 	////////////
@@ -61,7 +61,7 @@ public class Phase1ASCII extends Phase1Logic
 	@Override
 	public void doPreActionB()
 	{
-		System.out.println("How old are you?");
+		this.outStream.println("How old are you?");
 	}
 	
 	@Override
@@ -74,7 +74,7 @@ public class Phase1ASCII extends Phase1Logic
 	@Override
 	public void doAfterActionB()
 	{
-		System.out.println("Thank you for your age");
+		this.outStream.println("Thank you for your age");
 	}
 
 	

@@ -1,5 +1,7 @@
 package templates;
 
+import java.io.PrintStream;
+
 import javax.swing.JPanel;
 
 import enums.EPhases;
@@ -37,6 +39,9 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	protected EPhases currentPhase;
 	protected EPhases lastPhase;
 	protected EPhases nextPhase;
+	
+	protected PrintStream outStream;
+	protected PrintStream errorStream;
 	
 	///////////////////
 	//DO RUN ACTIONS?//
@@ -83,6 +88,15 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		this.setPriority(3);
 		
 		this.setCurrentPhase();
+	}
+	
+	public void setOutStream(PrintStream out)
+	{
+		this.outStream=out;
+	}
+	public void setErrorStream(PrintStream err)
+	{
+		this.errorStream=err;
 	}
 	
 	//////////
@@ -243,7 +257,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		{
 			
 			//#BugHunting
-			//System.out.println("IN PHASE TEMPLATE LOGIC: - PHASE OF GAME: " + this.game.getCurrentPhase() + "\n - ePHASE OF GAME: " + this.game.getCurrentEPhase());
+			//this.outStream.println("IN PHASE TEMPLATE LOGIC: - PHASE OF GAME: " + this.game.getCurrentPhase() + "\n - ePHASE OF GAME: " + this.game.getCurrentEPhase());
 			
 			this.isRunning=true;
 			
@@ -889,7 +903,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			@Override
 			public final void setAllInput(String message)
 			{
-				System.out.println("IN PHASE TEMPLATE LOGIC: MESSAGE IS " +message);
+				this.outStream.println("IN PHASE TEMPLATE LOGIC: MESSAGE IS " +message);
 				this.setInputA(message);
 				this.setInputB(message);
 				this.setInputC(message);

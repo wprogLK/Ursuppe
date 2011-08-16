@@ -16,14 +16,14 @@ public class PhaseExitASCII extends PhaseExitLogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println(this.rb.getString("phaseExitTitle"));
-			System.out.println("You want to leave the game?");
+			this.outStream.println(this.rb.getString("phaseExitTitle"));
+			this.outStream.println("You want to leave the game?");
 		}
 
 		@Override
 		public void doAfterAction()
 		{
-			System.out.println("Ok... See  you soon... Bye...");
+			this.outStream.println("Ok... See  you soon... Bye...");
 		}
 	///////////
 	//ACTIONS//
@@ -37,7 +37,7 @@ public class PhaseExitASCII extends PhaseExitLogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println("Are you sure to leave the game?");
+		this.outStream.println("Are you sure to leave the game?");
 	}
 	
 	@Override

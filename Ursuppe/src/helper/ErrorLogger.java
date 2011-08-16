@@ -12,5 +12,8 @@ public abstract class ErrorLogger
 	private String filename="errorLogs.txt";
 	private String path=Setting.pathErrorLogs;
 	
-	//TODO
+	public static void logError()
+	{
+		
+	}
 }

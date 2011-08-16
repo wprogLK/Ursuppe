@@ -128,7 +128,7 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 		else
 		{
 			valid=false;
-			System.out.println("Input was: " + input);
+			this.outStream.println("Input was: " + input);	//TODO delete this
 		}
 		
 		return valid;

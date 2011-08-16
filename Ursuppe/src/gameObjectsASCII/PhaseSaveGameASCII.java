@@ -18,13 +18,13 @@ public class PhaseSaveGameASCII extends PhaseSaveGameLogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.println(this.rb.getString("phaseSaveGameTitle"));
+			this.outStream.println(this.rb.getString("phaseSaveGameTitle"));
 		}
 		
 		@Override
 		public void doAfterAction()
 		{
-			System.out.println("This was the techDemo run in ASCII. Goodbye...");
+			this.outStream.println("This was the techDemo run in ASCII. Goodbye...");
 			this.doExit();
 		}
 
@@ -40,7 +40,7 @@ public class PhaseSaveGameASCII extends PhaseSaveGameLogic
 	@Override
 	public void doPreActionA()
 	{
-		System.out.println("What is your name?");
+		this.outStream.println("What is your name?");
 	}
 	
 	@Override
@@ -53,7 +53,7 @@ public class PhaseSaveGameASCII extends PhaseSaveGameLogic
 	@Override
 	public void doAfterActionA()
 	{
-		System.out.println("Thank you for your name");
+		this.outStream.println("Thank you for your name");
 	}
 	
 	////////////
@@ -63,7 +63,7 @@ public class PhaseSaveGameASCII extends PhaseSaveGameLogic
 	@Override
 	public void doPreActionB()
 	{
-		System.out.println("How old are you?");
+		this.outStream.println("How old are you?");
 	}
 	
 	@Override
@@ -76,7 +76,7 @@ public class PhaseSaveGameASCII extends PhaseSaveGameLogic
 	@Override
 	public void doAfterActionB()
 	{
-		System.out.println("Thank you for your age");
+		this.outStream.println("Thank you for your age");
 	}
 
 	

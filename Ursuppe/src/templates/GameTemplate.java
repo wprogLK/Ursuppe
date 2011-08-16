@@ -254,14 +254,14 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	@OnlyForTesting
 	public void showPlayers()
 	{
-		System.out.println("-------PLAYERS HEAD:-----");
+		this.outStream.println("-------PLAYERS HEAD:-----");
 		
 		for(int i=0; i<this.players.size();i++)
 		{
-			System.out.println("Player " + this.players.get(i).getName());
+			this.outStream.println("Player " + this.players.get(i).getName());
 		}
 		
-		System.out.println("-------PLAYERS TAIL:-----");
+		this.outStream.println("-------PLAYERS TAIL:-----");
 	}
 
 }

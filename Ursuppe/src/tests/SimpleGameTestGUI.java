@@ -78,7 +78,7 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 		game.createNew();
 		this.playerOne=  game.createANewPlayer();
 		
-		System.out.println("With one player");
+		this.outStream.println("With one player");
 		game.showPlayers();
 		
 		return game;
@@ -91,7 +91,7 @@ public class SimpleGameTestGUI extends GUITestTemplate{
 		this.playerOne=  game.createANewPlayer();
 		this.playerTwo=  game.createANewPlayer();
 		
-		System.out.println("With two players");
+		this.outStream.println("With two players");
 		game.showPlayers();
 		
 		return game;

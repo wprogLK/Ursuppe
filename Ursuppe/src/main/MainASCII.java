@@ -1,5 +1,7 @@
 package main;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Date;
 
@@ -44,6 +46,9 @@ public class MainASCII {
 	 */
 	public static void main(String[] args) 
 	{
+		 String str ="gibt es eine Möglichkeit aus einem String einen InputStream zu erzeugen.";
+	       InputStream bais = new ByteArrayInputStream(str.getBytes());
+		System.out.print("InputStream is " + bais.toString());
 		 game=module.createGame();
 		 
 		 game.setStartPhase(EPhases.phaseSplashScreen);
@@ -65,7 +70,7 @@ public class MainASCII {
 		 {
 			e.printStackTrace();
 		 }
-		 System.out.println("MAIN END...");
+		 System.out.println("MAIN END...");	//TODO delete 
 		 
 		
 	}

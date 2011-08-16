@@ -18,13 +18,13 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 		@Override
 		public void doPreAction()
 		{
-			System.out.print(this.rb.getString("splashScreenASCIIWelcome"));
-			System.out.println(this.rb.getString("phaseSplashScreenTitle"));
-			System.out.print(this.rb.getString("phaseSplashScreenAuthor"));
-			System.out.println(" " + this.rb.getString("phaseSplashScreenCopyright"));
-			System.out.println(this.rb.getString("phaseSplashScreenBasedOn"));
+			this.outStream.print(this.rb.getString("splashScreenASCIIWelcome"));
+			this.outStream.println(this.rb.getString("phaseSplashScreenTitle"));
+			this.outStream.print(this.rb.getString("phaseSplashScreenAuthor"));
+			this.outStream.println(" " + this.rb.getString("phaseSplashScreenCopyright"));
+			this.outStream.println(this.rb.getString("phaseSplashScreenBasedOn"));
 
-			System.out.println("");
+			this.outStream.println("");
 		}
 		
 	///////////

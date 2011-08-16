@@ -396,7 +396,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 //	protected String createStringForPlayers(ArrayList<String> input,EToken token, int startToCount)
 //	{
 //		String output="";
-//		//System.out.println("ARRAY ( " + token + " ) BEFORE: " + input );
+//		//this.outStream.println("ARRAY ( " + token + " ) BEFORE: " + input );
 //		for(String str:input)
 //		{
 //			String strName=str.subSequence(2, str.length()).toString();
@@ -405,7 +405,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 //			
 //			startToCount++;
 //		}
-//		//System.out.println("ARRAY ( " + token + " ) AFTER: " + input );
+//		//this.outStream.println("ARRAY ( " + token + " ) AFTER: " + input );
 //		
 //		
 //		return output;

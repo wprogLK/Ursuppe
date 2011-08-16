@@ -58,7 +58,7 @@ public class ExitTestGUI extends GUITestTemplate{
 		game.createNew();
 		//this.playerOne=  game.createANewPlayer();
 		
-		System.out.println("With one player");
+		this.outStream.println("With one player");
 		game.showPlayers();
 		
 		return game;
@@ -93,8 +93,8 @@ public class ExitTestGUI extends GUITestTemplate{
 		
 		this.waitingGeneral();
 		
-		System.out.println("CURRENT ePhase: " + game.getCurrentEPhase());
-		System.out.println("CURRENT Phase: " + game.getCurrentPhase());
+		this.outStream.println("CURRENT ePhase: " + game.getCurrentEPhase());
+		this.outStream.println("CURRENT Phase: " + game.getCurrentPhase());
 		
 		assertTrue(game.getCurrentEPhase()==EPhases.phaseExit);
 
