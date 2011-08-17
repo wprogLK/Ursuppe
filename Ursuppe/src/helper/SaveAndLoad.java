@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
 
 import enums.EToken;
 
@@ -23,6 +24,19 @@ import enums.EToken;
  */
 public abstract class SaveAndLoad {
 	
+	private static PrintStream outStream;
+	private static PrintStream errStream;
+	
+	public static void setOutStream(PrintStream out)
+	{
+		outStream=out;
+	}
+	
+	public static void setErrorStream(PrintStream error)
+	{
+		errStream=error;
+	}
+	
 	public static IPlayer loadPlayer(String filename)
 	{
 		filename=Setting.pathSavePlayers+"/"+filename;
@@ -30,11 +44,12 @@ public abstract class SaveAndLoad {
 		return (IPlayer) loadObject(filename);
 	}
 	
-	public static void savePlayer(IPlayer player, String filename, EToken token)
+	public static void saveHumanPlayer(IPlayer player, String filename, EToken token)
 	{
-		ReadAndWriteFiles.addDataHumanPlayer(filename);
-		filename=Setting.pathSavePlayers+"/"+token.getToken()+filename;
+		//TODO: throw an exception or ask the user if a file already exist
 		
+		ReadAndWriteFiles.addDataHumanPlayer(filename);
+		filename=Setting.pathSavePlayers+"/"+token.getToken()+filename+".urs";
 		saveObject(player,filename);
 	}
 	

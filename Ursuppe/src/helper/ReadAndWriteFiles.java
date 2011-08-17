@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,7 +18,18 @@ import java.util.Scanner;
  */
 public abstract class ReadAndWriteFiles 
 {
+	private static PrintStream outStream;
+	private static PrintStream errStream;
 	
+	public static void setOutStream(PrintStream out)
+	{
+		outStream=out;
+	}
+	
+	public static void setErrorStream(PrintStream error)
+	{
+		errStream=error;
+	}
 	
 	
 	/**
@@ -26,12 +38,12 @@ public abstract class ReadAndWriteFiles
 	 */
 	public static ArrayList<String> readSaveHumanPlayers()
 	{
-		return readFile(Setting.pathSavePlayers+"/overviewHumanPlayers.urs");
+		return readFile(Setting.pathSavePlayers+"overviewHumanPlayers.urs");
 	}
 	
 	public static ArrayList<String> readSaveHumanPlayersWithComments()
 	{
-		return readFileWithComments(Setting.pathSavePlayers+"/overviewHumanPlayers.urs");
+		return readFileWithComments(Setting.pathSavePlayers+"overviewHumanPlayers.urs");
 	}
 
 	/**
@@ -40,14 +52,30 @@ public abstract class ReadAndWriteFiles
 	 */
 	public static ArrayList<String> readSaveAIPlayers()
 	{
-		return readFile(Setting.pathSavePlayers+"/overviewArtificalIntelligencePlayers.urs");
+		return readFile(Setting.pathSavePlayers+"overviewArtificalIntelligencePlayers.urs");
 	}
 	
 	public static ArrayList<String> readSaveGames()
 	{
-		return readFile(Setting.pathSaveGames+"/overviewSaveGames.urs");
+		return readFile(Setting.pathSaveGames+"overviewSaveGames.urs");
 	}
 	
+//	public static void createNewFileWithData(String fileNameWithPath, ArrayList<String> data)
+//	{
+//		
+//			try 
+//			{
+//				FileWriter writer = new FileWriter(fileNameWithPath);
+//			} 
+//			catch (IOException e) 
+//			{
+//				e.printStackTrace();
+//			}
+//			
+//			
+//			  
+//
+//	}
 	
 	private static  ArrayList readFile(String fileName)
 	{
@@ -89,13 +117,13 @@ public abstract class ReadAndWriteFiles
 		
 	}
 	
-	private static  ArrayList readFileWithComments(String fileName)
+	private static  ArrayList readFileWithComments(String fileNameWithPath)
 	{
 		try
 		{
 			ArrayList<String> arLiTMP=new ArrayList<String>();
 			
-			File file  = new File(fileName);  // File to read from.
+			File file  = new File(fileNameWithPath);  // File to read from.
 			
 			Scanner fileReader = new Scanner(file);
 			
@@ -126,13 +154,11 @@ public abstract class ReadAndWriteFiles
 		
 	}
 
-	private static  void writeFile(ArrayList<String> input, String fileName)
+	public static  void writeFile(ArrayList<String> input, String fileNameWithPath)
 	{
 		String data="";
 		
-		System.out.println("WRITE FILE fileName" + fileName + " \n Data: " + data);
-		
-		File file  = new File(Setting.pathSavePlayers+"/overviewHumanPlayers.urs");
+		File file =new File(fileNameWithPath);
 		
 		BufferedWriter writer;
 		try 
@@ -156,15 +182,33 @@ public abstract class ReadAndWriteFiles
 		}
 				
 	}
+	
 
 	public static void addDataHumanPlayer(String filename) 
 	{
-		
 		ArrayList<String> data=readSaveHumanPlayersWithComments();
 	
 		data.add(filename);
-		System.out.println("ADD DATA" + data);
-		writeFile(data, filename);		//TODO: Check
+		
+		writeFile(data, Setting.pathSavePlayers+"overviewHumanPlayers.urs");
+	}
+
+	public static String readOneLineOfTestFile(String testFileNameWithPath) 
+	{
+		ArrayList<String> data=readFile(testFileNameWithPath);
+		
+		deleteFirstLineOfAFile(testFileNameWithPath);
+		
+		return data.get(0);
+	}
+	
+	public static void deleteFirstLineOfAFile(String fileNameWithPath)
+	{
+		ArrayList<String> data=readFile(fileNameWithPath);
+		
+		data.remove(0);
+		
+		writeFile(data,fileNameWithPath);
 	}
 	
 

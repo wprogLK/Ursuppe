@@ -65,7 +65,7 @@ public class SimpleGameTestASCII extends ASCIITestTemplate//Thread{
 	{
 		game.createNew();
 		this.playerOne=  game.createANewPlayer();
-		
+		System.out.println("current EPhase= "+ game.getCurrentEPhase());
 		this.outStream.println("With one player");
 		game.showPlayers();
 		

@@ -228,7 +228,21 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	///////////
 	//SETTERS//
 	///////////
-
+	public final void turnOnTestMode()
+	{
+		this.gameLogic.turnOnTestMode();
+	}
+	
+	public final void turnOnCurrentPhaseWaiting()
+	{
+		this.gameLogic.getCurrentPhase().turnOnWaiting();
+	}
+	
+	public final void turnOffCurrentPhaseWaiting()
+	{
+		this.gameLogic.getCurrentPhase().turnOffWaiting();
+	}
+	
 	@Override
 	public final void setGameOver()
 	{

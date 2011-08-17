@@ -49,6 +49,9 @@ public interface IPhase
 	public void setOutStream(PrintStream out);
 	public void setErrorStream(PrintStream err);
 	
+	public void turnOnWaiting();	//At the moment only used for testing
+	public void turnOffWaiting();	//At the moment only used for testing
+	
 	//////////
 	//THREAD//
 	//////////
@@ -89,7 +92,9 @@ public interface IPhase
 	///////////
 	//GENERAL//
 	///////////
-	
+		
+		
+		public void turnOnTestMode();
 		//////////////
 		//SET INPUTS//
 		//////////////
@@ -136,4 +141,8 @@ public interface IPhase
 		
 		@OnlyForTesting
 		public void fakeClickYes();
+
+		
+
+		
 }

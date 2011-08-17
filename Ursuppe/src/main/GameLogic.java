@@ -13,6 +13,9 @@ import annotations.OnlyForTesting;
 import enums.EPhases;
 
 import module.*;
+import helper.ReadAndWriteFiles;
+import helper.SaveAndLoad;
+import helper.UserInput;
 import interfaces.*;
 
 /**
@@ -149,6 +152,16 @@ public class GameLogic extends Thread implements Serializable
 			phase.setOutStream(this.outStream);
 			phase.setErrorStream(this.errStream);
 		}
+		
+		//For helper classes:
+		ReadAndWriteFiles.setOutStream(this.outStream);
+		ReadAndWriteFiles.setErrorStream(this.errStream);
+		
+		SaveAndLoad.setOutStream(this.outStream);
+		SaveAndLoad.setErrorStream(this.errStream);
+		
+		UserInput.setOutStream(this.outStream);
+		UserInput.setErrorStream(this.errStream);
 	}
 	
 	private void createPhases()
@@ -677,6 +690,27 @@ public class GameLogic extends Thread implements Serializable
 	public IPhase  getPhaseA()
 	{
 		return this.phaseA;
+	}
+
+
+
+	private void turnAllPhasesWaiting() 
+	{
+		for (IPhase phase:this.phasesList)
+		{
+			phase.turnOnWaiting();
+		}
+		
+	}
+	
+	public void turnOnTestMode()
+	{
+		this.turnAllPhasesWaiting();
+		
+		for (IPhase phase:this.phasesList)
+		{
+			phase.turnOnTestMode();
+		}
 	}
 
 

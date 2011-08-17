@@ -3,8 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="data/languages"/>
 	<classpathentry kind="src" path="data/savegames"/>
-	<classpathentry excluding="src/|data/languages/|data/savegames/|data/saveplayers/" kind="src" path=""/>
+	<classpathentry excluding="src/|data/languages/|data/savegames/|data/saveplayers/|data/testing/" kind="src" path=""/>
 	<classpathentry kind="src" path="data/saveplayers"/>
+	<classpathentry kind="src" path="data/testing"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="lib/aopalliance.jar"/>
 	<classpathentry kind="lib" path="lib/guice-3.0.jar"/>

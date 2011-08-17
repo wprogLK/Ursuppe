@@ -131,6 +131,8 @@ public interface IGame
 	 */
 	public void setStartPhase(EPhases startPhase);
 	
+	public  void turnOnCurrentPhaseWaiting();
+	public  void turnOffCurrentPhaseWaiting();
 	///////////
 	//GETTERS//
 	///////////
@@ -176,4 +178,6 @@ public interface IGame
 	public PrintStream getErrorStream();
 
 	public PrintStream getOutStream();
+
+	public void turnOnTestMode();
 }

@@ -3,23 +3,11 @@
 #Every line one player						#
 #For comments use #						#
 #################################################################
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
-testPlayer
+test3Player
+test3Player
+test3Player
+test3Player
+test3Player
+test3Player
+test3Player
+test3Player

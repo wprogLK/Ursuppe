@@ -46,20 +46,17 @@ public class MainASCII {
 	 */
 	public static void main(String[] args) 
 	{
-		 String str ="gibt es eine Möglichkeit aus einem String einen InputStream zu erzeugen.";
-	       InputStream bais = new ByteArrayInputStream(str.getBytes());
-		System.out.print("InputStream is " + bais.toString());
 		 game=module.createGame();
 		 
 		 game.setStartPhase(EPhases.phaseSplashScreen);
 		 
 		 game.createNew();
-		 Date now = new Date();
+		 Date now = new Date();	//TODO delete
 		 
 		
-		 IPlayer player=game.createANewPlayer();
-		 SaveAndLoad.savePlayer(player, "testPlayer",EToken.HU);
-		 //SaveAndLoad.saveObject(game, "data/savegames/currentGame.urs");
+		 IPlayer player=game.createANewPlayer();						//TODO delete
+		 SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
+		
 		 game.play();
 		 
 		 try 

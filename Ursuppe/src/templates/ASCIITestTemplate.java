@@ -5,6 +5,7 @@ package templates;
 import java.io.PrintStream;
 
 import helper.Setting;
+import helper.UserInput;
 import interfaces.IModule;
 
 import module.ModuleASCII;
@@ -20,6 +21,13 @@ public class ASCIITestTemplate extends Thread
 	protected final PrintStream errStream= Setting.testErr;
 	
 	protected final IModule module=new ModuleASCII(this.outStream,this.errStream);
+	
+	
+	public ASCIITestTemplate()
+	{
+		super();
+		UserInput.turnOnTestingMode();
+	}
 	
 	protected void waitingBetweenTwoInputs()
 	{

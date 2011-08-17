@@ -11,6 +11,7 @@ import annotations.OnlyForTesting;
 import gameObjectsASCII.PhaseAASCII;
 import gameObjectsGUI.PhaseAGUI;
 import helper.LanguageSetup;
+import helper.UserInput;
 import interfaces.IGame;
 import interfaces.IPhase;
 
@@ -42,6 +43,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	
 	protected PrintStream outStream;
 	protected PrintStream errorStream;
+	
+	protected Boolean isInTestMode=false;
 	
 	///////////////////
 	//DO RUN ACTIONS?//
@@ -75,6 +78,12 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	private boolean doRunActionZ=false;
 	
 	//////////
+	//THREAD//
+	//////////
+	
+	private boolean waiting=false;
+	
+	//////////
 	//BASICS//
 	//////////
 	
@@ -88,6 +97,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		this.setPriority(3);
 		
 		this.setCurrentPhase();
+		
+		if(this.isInTestMode)
+		{
+			this.waiting=true;
+		}
 	}
 	
 	public void setOutStream(PrintStream out)
@@ -242,7 +256,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		////////////
 		//...LOGIC//
 		////////////
-	
+		
 		/**
 		 * calls {@link #setActionsToRun()} and then runs the whole logic of the real phase 
 		 * 
@@ -264,7 +278,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			this.setActionsToRun();
 			
 			//...ACTION A
-			
+			this.doWaiting();
+		
 			if (!this.doNothing)
 			{
 				this.doPreAction();
@@ -278,6 +293,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION B
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -290,6 +306,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 			//...ACTION C
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -302,6 +319,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 
 			//...ACTION D
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -314,6 +332,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION E
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -326,6 +345,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION F
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -338,6 +358,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION G
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -350,6 +371,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION H
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -362,6 +384,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION I
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -374,6 +397,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION J
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -386,6 +410,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION K
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -398,6 +423,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 			//...ACTION L
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -410,6 +436,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION M
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -422,6 +449,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION N
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -434,6 +462,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION O
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -446,6 +475,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION P
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -458,6 +488,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION Q
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -470,6 +501,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION R
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -482,6 +514,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION S
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -494,6 +527,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION T
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -506,6 +540,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION U
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -518,6 +553,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION V
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -530,6 +566,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION W
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -542,6 +579,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION X
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -554,6 +592,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION Y
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -566,6 +605,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION Z
 			//this.waitForAValidInput();
+			this.doWaiting();
 			
 			if (!this.doNothing)
 			{
@@ -4768,11 +4808,51 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			this.doRunActionZ=false;
 		}
 		
+		///////////////////
+		//////SETTERS//////
+		///////////////////
 		
+		public final void turnOnWaiting()
+		{
+			this.waiting=true;
+		}
 		
+		public final void turnOffWaiting()
+		{
+			this.waiting=false;
+		}
+		
+		public final void turnOnTestMode()
+		{
+			this.turnOnWaiting();
+			this.isInTestMode=true;
+		}
 		///////////////////
 		//PRIVATE METHODS//
 		///////////////////
+		
+		protected final void checkIfRunInTestMode()		//TODO delete
+		{
+			if(this.isInTestMode)
+			{
+				this.turnOnWaiting();
+				this.doWaiting();
+			}
+			else
+			{
+				this.turnOffWaiting();
+			}
+		}
+		
+		protected final void doWaiting()
+		{
+			while(this.waiting)
+			{
+				//do nothing
+				this.waitForAValidInput();
+			}
+		}
+		
 		/**
 		 * checks if an inputString is equals "Yes" or "yes" or "y" or "Y" and return if it is equal.
 		 * @return 
