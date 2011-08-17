@@ -210,6 +210,24 @@ public abstract class ReadAndWriteFiles
 		
 		writeFile(data,fileNameWithPath);
 	}
+
+	public static void addDataErrorLog(ArrayList<String> newData) 
+	{
+		ArrayList<String> data=readErrorLogWithComments();
+		
+		for(String str:newData)
+		{
+			data.add(str);
+		}
+		
+		writeFile(data, Setting.pathErrorLogs + Setting.fileNameErrorLogs);
+		
+	}
+
+	private static ArrayList<String> readErrorLogWithComments() 
+	{
+		return readFileWithComments(Setting.pathErrorLogs + Setting.fileNameErrorLogs);
+	}
 	
 
 }

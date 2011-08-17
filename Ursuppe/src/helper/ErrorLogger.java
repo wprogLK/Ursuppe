@@ -6,6 +6,7 @@ package helper;
 import java.io.File;
 import java.io.PrintStream;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -33,74 +34,128 @@ public abstract class ErrorLogger
 	
 	public static void logAError(Exception e)
 	{
-		String data=createData(e);
+		ArrayList<String> data=createData(e);
 		
 		File file = new File(path+"errorLog.txt");
+		
+		if (file.exists())
+		{
+			ReadAndWriteFiles.addDataErrorLog(data);
+		}
+		else
+		{
+			ReadAndWriteFiles.writeFile(data, Setting.pathErrorLogs + Setting.fileNameErrorLogs);
+		}
 	}
 
-	private static String createData(Exception e) 
+	private static ArrayList<String> createData(Exception e) 
 	{
+		ArrayList<String> arrAll=new ArrayList<String>();
+		
 		//Date:
-		String strData= createData();
+		String arrData= createData();
+		arrAll.add("DATE: ");
+		arrAll.add(arrData);
+		
+			
 		
 		//Exception:
-		String strException=createException(e);
-		
+		ArrayList<String> arrException=createException(e);
+		for(String str:arrException)
+		{
+			arrAll.add(str);
+		}
 		
 		
 		//SystemProperties:
-		String strSystemProperties=createSystemProperties();
+		ArrayList<String> arrSystemProp=createSystemProperties();
+		for(String str:arrSystemProp)
+		{
+			arrAll.add(str);
+		}
+		
 		
 		//GameProperties:
 		//TODO
-		return null;		//TODO
+		return arrAll;
 	}
 
-	private static String createSystemProperties() 
+	private static ArrayList<String> createSystemProperties() 
 	{
 		Properties systemProp = System.getProperties();
+		ArrayList<String> list=new ArrayList<String>();
 		
-		String awtToolKit= systemProp.getProperty("awt.toolkit");
+		list.add("SYSTEM PROPERTIES: \n");
 		
-		String javaClassPath= systemProp.getProperty("java.class.path");
-		String javaClassVersion= systemProp.getProperty("java.class.version");
+		list.add("Awt tool kit: "+ systemProp.getProperty("awt.toolkit")); 
 		
-		String javaRuntimeName= systemProp.getProperty("java.runtime.name");
-		String javaRuntimeVersion= systemProp.getProperty("java.runtime.version");
+		list.add("\n");
 		
-		String javaSpecificationName= systemProp.getProperty("java.specification.name");
-		String javaSpecificationVendor= systemProp.getProperty("java.specification.vendor");
-		String javaSpecificationVersion= systemProp.getProperty("java.specification.version");
+		list.add("Java class path: " + systemProp.getProperty("java.class.path")); 
+		list.add("Java class version: " + systemProp.getProperty("java.class.version")); 
+
+		list.add("\n");
 		
-		String javaVendor= systemProp.getProperty("java.vendor");
-		String javaVersion= systemProp.getProperty("java.version");
+		list.add("Java runtime name: " + systemProp.getProperty("java.runtime.name")); 
+		list.add("Java runtime version: " + systemProp.getProperty("java.runtime.version")); 
+
+		list.add("\n");
 		
-		String javaVMSpecificationVersion= systemProp.getProperty("java.vm.specification.version");
-		String javaVMVersion= systemProp.getProperty("java.vm.version");
+		list.add("Java specification name: " + systemProp.getProperty("java.specification.name")); 
+		list.add("Java specification vendor: " + systemProp.getProperty("java.specification.vendor")); 
+		list.add("Java specification version: " + systemProp.getProperty("java.specification.version")); 
+
+		list.add("\n");
 		
-		String osArch= systemProp.getProperty("os.Arch");
-		String osName= systemProp.getProperty("os.name");
+		list.add("Java vendor: " + systemProp.getProperty("java.vendor")); 
+		list.add("Java version: " + systemProp.getProperty("java.version")); 
+
+		list.add("\n");
 		
-		String sunArchDataModel= systemProp.getProperty("sun.arch.data.model");
-		String sunOsPatchLevel= systemProp.getProperty("sun.os.patch.level");
+		list.add("Java VM specification version: " + systemProp.getProperty("java.vm.specification.version")); 
+		list.add("Java VM version: " + systemProp.getProperty("java.vm.version")); 
+
+		list.add("\n");
 		
-		String userCountry= systemProp.getProperty("uer.country");
-		String userDir= systemProp.getProperty("user.dir");
-		String userHome= systemProp.getProperty("user.home");
-		String userLanguage= systemProp.getProperty("user.language");
+		list.add("OS arch: " + systemProp.getProperty("os.arch")); 
+		list.add("OS name: " + systemProp.getProperty("os.name")); 
+
+		list.add("\n");
 		
-		return null; //TODO
+		list.add("Sun arch data model: " + systemProp.getProperty("sun.arch.data.model")); 
+		list.add("Sun os patch level: " + systemProp.getProperty("sun.os.patch.level")); 
+
+		list.add("\n");
+		
+		list.add("User country: " + systemProp.getProperty("user.country")); 
+		list.add("User dir: " + systemProp.getProperty("user.dir")); 
+		list.add("User home: " + systemProp.getProperty("user.home")); 
+		list.add("User language: "+ systemProp.getProperty("user.language"));		
+		
+		
+		
+		return list;
 	}
 
-	private static String createException(Exception e) 
+	private static ArrayList<String> createException(Exception e) 
 	{
-		String exceptionMessage=e.getMessage();
-		String exceptionLocalizedMessage=e.getLocalizedMessage();
-		String exceptionCause=e.getCause().toString();				//TODO: what is that?
+		ArrayList<String> list=new ArrayList<String>();
+		list.add("EXCEPTION: \n");
 		
-		String strStack=createStack(e);
+		String exceptionMessage="Message: " + e.getMessage();
+		list.add(exceptionMessage);
+		String exceptionLocalizedMessage="Localized message: " + e.getLocalizedMessage();
+		list.add(exceptionLocalizedMessage);
+//		String exceptionCause="Cause: " + e.getCause().toString();				//TODO: what is that?
+//		list.add(exceptionCause);
+		ArrayList<String> arrStack= createStack(e);
+		for(String str:arrStack)
+		{
+			list.add(str);
+		}
 		
-		return null;	//TODO
+		
+		return list;
 	}
 
 	private static String createData() 
@@ -108,18 +163,19 @@ public abstract class ErrorLogger
 		Date d = new Date(); 
 		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT ); 
 		
-		return df.format(d);
-		
+		return df.format(d) +"\n";
 	}
 
-	private static String createStack(Exception e) 
+	private static ArrayList<String> createStack(Exception e) 
 	{
-		String str="";
+		ArrayList<String> arrStack=new ArrayList<String>();
+		arrStack.add("Stack: \n\t");
+		
 		
 		for(StackTraceElement item:e.getStackTrace())
 		{
-			str+=item.toString()+"\n";
+			arrStack.add(item.toString() + "\n\t");
 		}
-		return str;
+		return arrStack;
 	}
 }
