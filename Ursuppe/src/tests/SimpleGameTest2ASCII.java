@@ -74,7 +74,7 @@ public class SimpleGameTest2ASCII extends ASCIITestTemplate//Thread{
 		
 		this.fileNameWithPathSimpleGameTest=Setting.pathTestFiles+fileName;
 		UserInput.setTestingFileName(this.fileNameWithPathSimpleGameTest);
-		//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%% FILE WITH PATH= " + fileNameWithPathSimpleGameTest); //TODO delete
+
 		ReadAndWriteFiles.writeFile(instructions, this.fileNameWithPathSimpleGameTest);
 		
 	}
@@ -95,22 +95,17 @@ public class SimpleGameTest2ASCII extends ASCIITestTemplate//Thread{
 	@Given("simpleGameTest")
 	public IGame phaseShouldBePhaseSplashScreen(IGame game)
 	{
-		System.out.println("current EPhase A = "+ game.getCurrentEPhase());
-		System.out.println("current IPhase A = "+ game.getCurrentPhase());
-		//assertTrue(game.getCurrentEPhase()==EPhases.phaseSplashScreen);		//TODO AB HIER
+		assertTrue(game.getCurrentEPhase()==EPhases.phaseSplashScreen);		//TODO AB HIER
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingGeneral();
 		
-		System.out.println("current EPhase B = "+ game.getCurrentEPhase());
-		System.out.println("current IPhase B = "+ game.getCurrentPhase());
+		assertTrue(game.getCurrentEPhase()==EPhases.phaseMainMenu);
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingGeneral();
-		game.turnOffCurrentPhaseWaiting();
 		
-		System.out.println("current EPhase C = "+ game.getCurrentEPhase());
-		System.out.println("current IPhase C = "+ game.getCurrentPhase());
+		assertTrue(game.getCurrentEPhase()==EPhases.phaseNewGame);	
 		
 		return game;
 	}

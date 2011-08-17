@@ -3,8 +3,10 @@ package main;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.text.DateFormat;
 import java.util.Date;
 
+import helper.ErrorLogger;
 import helper.SaveAndLoad;
 import helper.Setting;
 import interfaces.IGame;
@@ -46,12 +48,15 @@ public class MainASCII {
 	 */
 	public static void main(String[] args) 
 	{
+		
 		 game=module.createGame();
 		 
 		 game.setStartPhase(EPhases.phaseSplashScreen);
 		 
 		 game.createNew();
-		 Date now = new Date();	//TODO delete
+		 
+		
+
 		 
 		
 		 IPlayer player=game.createANewPlayer();						//TODO delete
