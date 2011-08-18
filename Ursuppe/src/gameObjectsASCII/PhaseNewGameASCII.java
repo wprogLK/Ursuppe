@@ -89,8 +89,6 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionC()
 	{
-		
-		
 		this.outStream.println(this.rb.getString("phaseNewGameLoadAPlayer"));
 	}
 	
@@ -102,8 +100,8 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		String message=this.prepareStringForLoadPlayers(this.arrayHumanPlayers, this.arrayAIPlayers);
 		
 		
-		String inputN=UserInput.readInput(this.rb.getString("newGameLoadInstruction") + "\n" + message);
-		this.setInputB(inputN);
+		String input=UserInput.readInput(this.rb.getString("newGameLoadInstruction") + "\n" + message);
+		this.setInputC(input);
 	}
 	
 	private String prepareStringForLoadPlayers(ArrayList<String> arrHumanPlayers, ArrayList<String> arrAIPlayers)

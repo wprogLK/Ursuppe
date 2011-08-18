@@ -2154,7 +2154,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action A
 		 */
-		private final void runActionA()
+		protected final void runActionA()
 		{
 			this.doPreActionA();
 			
@@ -2173,7 +2173,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action B
 		 */
-		private final void runActionB()
+		protected final void runActionB()
 		{
 			this.doPreActionB();
 			
@@ -2193,7 +2193,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action C
 		 */
-		private final void runActionC()
+		protected final void runActionC()
 		{
 			this.doPreActionC();
 			
@@ -2212,7 +2212,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action D
 		 */
-		private final void runActionD()
+		protected final void runActionD()
 		{
 			this.doPreActionD();
 			
@@ -2231,7 +2231,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action E
 		 */
-		private final void runActionE()
+		protected final void runActionE()
 		{
 			this.doPreActionE();
 			
@@ -2250,7 +2250,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action F
 		 */
-		private final void runActionF()
+		protected final void runActionF()
 		{
 			this.doPreActionF();
 			
@@ -2269,7 +2269,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action G
 		 */
-		private final void runActionG()
+		protected final void runActionG()
 		{
 			this.doPreActionG();
 			
@@ -2288,7 +2288,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action H
 		 */
-		private final void runActionH()
+		protected final void runActionH()
 		{
 			this.doPreActionH();
 			
@@ -2307,7 +2307,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action I
 		 */
-		private final void runActionI()
+		protected final void runActionI()
 		{
 			this.doPreActionI();
 			
@@ -2326,7 +2326,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action J
 		 */
-		private final void runActionJ()
+		protected final void runActionJ()
 		{
 			this.doPreActionJ();
 			
@@ -2345,7 +2345,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action K
 		 */
-		private final void runActionK()
+		protected final void runActionK()
 		{
 			this.doPreActionK();
 			
@@ -2364,7 +2364,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action L
 		 */
-		private final void runActionL()
+		protected final void runActionL()
 		{
 			this.doPreActionL();
 			
@@ -2383,7 +2383,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action M
 		 */
-		private final void runActionM()
+		protected final void runActionM()
 		{
 			this.doPreActionM();
 			
@@ -2402,7 +2402,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action N
 		 */
-		private final void runActionN()
+		protected final void runActionN()
 		{
 			this.doPreActionN();
 			
@@ -2421,7 +2421,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action O
 		 */
-		private final void runActionO()
+		protected final void runActionO()
 		{
 			this.doPreActionO();
 			
@@ -2440,7 +2440,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action P
 		 */
-		private final void runActionP()
+		protected final void runActionP()
 		{
 			this.doPreActionP();
 			
@@ -2459,7 +2459,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action Q
 		 */
-		private final void runActionQ()
+		protected final void runActionQ()
 		{
 			this.doPreActionQ();
 			
@@ -2478,7 +2478,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action R
 		 */
-		private final void runActionR()
+		protected final void runActionR()
 		{
 			this.doPreActionR();
 			
@@ -2497,7 +2497,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action S
 		 */
-		private final void runActionS()
+		protected final void runActionS()
 		{
 			this.doPreActionS();
 			
@@ -2516,7 +2516,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action T
 		 */
-		private final void runActionT()
+		protected final void runActionT()
 		{
 			this.doPreActionT();
 			
@@ -2535,7 +2535,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action U
 		 */
-		private final void runActionU()
+		protected final void runActionU()
 		{
 			this.doPreActionU();
 			
@@ -2554,7 +2554,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action V
 		 */
-		private final void runActionV()
+		protected final void runActionV()
 		{
 			this.doPreActionA();
 			
@@ -2573,7 +2573,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action W
 		 */
-		private final void runActionW()
+		protected final void runActionW()
 		{
 			this.doPreActionW();
 			
@@ -2592,7 +2592,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action X
 		 */
-		private final void runActionX()
+		protected final void runActionX()
 		{
 			this.doPreActionX();
 			
@@ -2611,7 +2611,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action Y
 		 */
-		private final void runActionY()
+		protected final void runActionY()
 		{
 			this.doPreActionY();
 			
@@ -2630,7 +2630,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action Z
 		 */
-		private final void runActionZ()
+		protected final void runActionZ()
 		{
 			this.doPreActionZ();
 			

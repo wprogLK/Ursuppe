@@ -223,7 +223,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public  boolean setInputC(Object inputC)
 	{
-		
+		System.out.println("SET INPUT C");
 		
 		String inputString="";
 		boolean validBasic = false;
@@ -258,6 +258,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	private void prepareActionC() 
 	{
+		System.out.println("PREPARE ACTION C");
 		this.arrayHumanPlayers=ReadAndWriteFiles.readSaveHumanPlayers();
 		this.arrayAIPlayers=ReadAndWriteFiles.readSaveAIPlayers();
 	}
@@ -265,6 +266,8 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionC(Object inputC)
 	{
+		System.out.println("CHECK INPUT ACTION C");
+		
 		String input=this.doCastToString(inputC);
 		
 		char token=input.charAt(0);
@@ -297,28 +300,34 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		ArrayList<String> tmpArray=new ArrayList<String>();
 		String fileToken="";
 		
-		switch (token)
+		System.out.println("TOKEN = " + token);
+		
+		if(token=='h' | token=='H')
 		{
-			case 'h' | 'H':
-			{
-				tmpArray=this.arrayHumanPlayers;
-				fileToken="HU";
-			}
-			case 'A' | 'a':
-			{
-				tmpArray=this.arrayAIPlayers;
-				fileToken="AI";
-			}
-			default:
-			{
-				//TODO
-				valid=false;
-			}
+			tmpArray=this.arrayHumanPlayers;
+			fileToken="H";
 		}
+		else if(token=='A' | token=='a')
+		{
+			tmpArray=this.arrayAIPlayers;
+				
+			fileToken="A";
+		}
+		else
+		{
+			//TODO
+			System.out.println("DEFAULT: ERROR");
+			return false;
+		}
+		
 		
 		String filename=fileToken+tmpArray.get(number);
 		
-		IPlayer player=SaveAndLoad.loadPlayer(filename);
+		IPlayer player=SaveAndLoad.loadPlayer(filename+".urs");
+	
+		this.game.addPlayer(player);
+		
+		//TODO delete the added player of the ArrayList!
 		
 		return valid;
 	}
