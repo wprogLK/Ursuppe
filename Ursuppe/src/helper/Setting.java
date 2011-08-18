@@ -18,7 +18,7 @@ public abstract class Setting
 	public static PrintStream guiOut=System.out;
 	public static PrintStream guiErr=System.err;
 	
-	public static PrintStream testOut=new PrintStream(new NullOutputStream());//System.out;
+	public static PrintStream testOut=System.out;//new PrintStream(new NullOutputStream());//System.out;
 	public static PrintStream testErr=new PrintStream(new NullOutputStream());//System.err;
 	
 	

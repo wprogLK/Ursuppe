@@ -4,6 +4,7 @@ import java.io.PrintStream;
 
 import enums.EColor;
 import gameObjectsASCII.*;
+import helper.UserInput;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
@@ -30,6 +31,8 @@ public class ModuleASCII implements IModule
 	{
 		this.outStream=out;
 		this.errorStream=err;
+		
+		UserInput.turnOnASCIIMode();
 	}
 	
 	

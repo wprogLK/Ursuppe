@@ -6,6 +6,7 @@ import enums.EColor;
 import gameObjectsASCII.PhaseAASCII;
 import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.*;
+import helper.UserInput;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
@@ -33,6 +34,8 @@ public class ModuleGUI implements IModule
 	{
 		this.outStream=out;
 		this.errorStream=err;
+		
+		UserInput.turnOnGUIMode();
 	}
 	
 	
@@ -63,6 +66,153 @@ public class ModuleGUI implements IModule
 	public IPlayer createAPlayer(String name, int age, EColor color)
 	{
 		return new PlayerGUI(name,age,color);
+	}
+
+
+	@Override
+	public IPhase createPhaseSplashScreen() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseMainMenu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseNewGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseLoadGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseSaveGame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseOptions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseHelp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseCheats() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseAchievements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseAbout() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseStatistics() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseBreakMenu() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhasePreparation1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhasePreparation2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhase1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhase2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhase3() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhase4() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhase5() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhase6() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IPhase createPhaseGameEnd() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

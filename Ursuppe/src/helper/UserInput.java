@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+
+import enums.EMode;
 /**
  *wait and read the input of the useres
  * 
@@ -19,19 +21,19 @@ public abstract class UserInput extends Thread
 	private static PrintStream outStream;
 	private static PrintStream errStream;
 	
-	private static Boolean testingModeOn=false;
+	private static EMode runningMode;
 	private static String testFileName;
 	
-	private static Boolean stop=true;
-	
-	public static void turnStopOn()
+	private static boolean newInput=false;
+	private static String input;
+	/**
+	 * set the new input
+	 * used for gui
+	 */
+	public static void setNewInput(String in)
 	{
-		stop=true;
-	}
-	
-	public static void turnStopOff()
-	{
-		stop=false;
+		input=in;
+		newInput=true;
 	}
 	
 	public static void setOutStream(PrintStream out)
@@ -44,14 +46,19 @@ public abstract class UserInput extends Thread
 		errStream=error;
 	}
 	
-	public static void turnOnTestingMode()
+	public static void turnOnTestMode()
 	{
-		testingModeOn=true;
+		runningMode=EMode.testMode;
 	}
 	
-	public static void turnOffTestingMode()
+	public static void turnOnGUIMode()
 	{
-		testingModeOn=false;
+		runningMode=EMode.guiMode;
+	}
+	
+	public static void turnOnASCIIMode()
+	{
+		runningMode=EMode.asciiMode;
 	}
 	
 	public static void setTestingFileName(String fileName)
@@ -65,37 +72,52 @@ public abstract class UserInput extends Thread
 	 */
 	public static String readInput(String message)
 	{
-		if (!testingModeOn)	//normal mode
+		switch(runningMode)
 		{
-			return realUserInput(message);
-		}
-		else 				//testing mode
-		{
-			return fakeUserInput(message);
+			case asciiMode:
+			{
+				return realUserInput(message);
+			}
+			case testMode:
+			{
+				return fakeUserInput(message);
+			}
+			case guiMode:
+			{
+//				System.out.println("GUI USER INPUT");
+//				return guiUserInput(message);
+				return null;	//TODO
+			}
+			default:
+			{
+				return null;
+				//TODO: throw an exception
+			}
 		}
 	}
-
-	private static String fakeUserInput(String message) 
-	{	
-		/*
-		 * TODO:
-		 * (1) implement a start and stop mechanism
-		 * (2) stop when file is empty
-		 * 
-		 * 
-		 */
-//		while(stop)
+//	
+//	/*
+//	 * maybe not relly used 
+//	 */
+//	private static String guiUserInput(String message) 
+//	{
+//		while(!newInput)
 //		{
 //			doSleep();
 //		}
-		
+//		
+//		newInput=false;		//reset the input
+//		
+//		return input;
+//	}
+
+	private static String fakeUserInput(String message) 
+	{	
 		return ReadAndWriteFiles.readOneLineOfTestFile(testFileName);
 	}
 
 	private static String realUserInput(String message) 
 	{
-		//System.out.println("::::::::TESTING MODE OFF:::::::::");  //TODO delete
-		
 		BufferedReader console = new BufferedReader(new InputStreamReader(System.in)); //TODO Maybe use another InputStream than System.in (make it more flexible)
 		String line = null;
 		

@@ -5,6 +5,7 @@ import java.io.PrintStream;
 
 import gameObjectsGUI.GameGUI;
 import helper.Setting;
+import helper.UserInput;
 import interfaces.IGame;
 import interfaces.IModule;
 
@@ -27,6 +28,13 @@ public class GUITestTemplate extends Thread
 	protected final PrintStream errStream= Setting.testErr;
 	
 	protected final IModule module=new ModuleGUI(this.outStream,this.errStream);
+	
+	public GUITestTemplate()
+	{
+		super();
+		UserInput.turnOnTestMode();
+	}
+	
 	
 	protected void waitingBetweenTwoInputs()
 	{

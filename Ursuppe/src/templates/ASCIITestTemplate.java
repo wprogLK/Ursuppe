@@ -26,7 +26,7 @@ public class ASCIITestTemplate extends Thread
 	public ASCIITestTemplate()
 	{
 		super();
-		UserInput.turnOnTestingMode();
+		UserInput.turnOnTestMode();
 	}
 	
 	protected void waitingBetweenTwoInputs()

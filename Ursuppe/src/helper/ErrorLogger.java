@@ -37,15 +37,8 @@ public abstract class ErrorLogger
 		ArrayList<String> data=createData(e);
 		
 		File file = new File(path+"errorLog.txt");
-		
-		if (file.exists())
-		{
-			ReadAndWriteFiles.addDataErrorLog(data);
-		}
-		else
-		{
-			ReadAndWriteFiles.writeFile(data, Setting.pathErrorLogs + Setting.fileNameErrorLogs);
-		}
+
+		ReadAndWriteFiles.addDataErrorLog(data);
 	}
 
 	private static ArrayList<String> createData(Exception e) 

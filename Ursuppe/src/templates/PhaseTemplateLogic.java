@@ -774,6 +774,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 					this.doNothing=true;
 				}
 				
+				
+				
 				return validBasicInput;
 			
 			}

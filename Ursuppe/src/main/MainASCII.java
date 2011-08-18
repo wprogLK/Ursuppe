@@ -33,7 +33,7 @@ public class MainASCII {
 	private static IGame game;
 	
 	private static PrintStream outStream=Setting.asciiOut;
-	private static PrintStream errorStream=Setting.asciiOut;
+	private static PrintStream errorStream=Setting.asciiErr;
 	
 	private static IModule module=new ModuleASCII(outStream, errorStream);
 	
@@ -59,8 +59,8 @@ public class MainASCII {
 
 		 
 		
-		 IPlayer player=game.createANewPlayer();						//TODO delete
-		 SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
+		// IPlayer player=game.createANewPlayer();						//TODO delete
+		// SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
 		
 		 game.play();
 		 
