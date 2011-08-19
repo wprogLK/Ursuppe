@@ -28,7 +28,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		//...LOGIC//
 		////////////
 		@Override
-		public final void setActionsToRun()
+		public final void changeActionToRun()
 		{
 			this.activateActionA();
 		}

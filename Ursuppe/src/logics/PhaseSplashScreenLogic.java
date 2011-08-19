@@ -25,7 +25,7 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 		//...LOGIC//
 		////////////
 		@Override
-		public final void setActionsToRun()
+		public final void changeActionToRun()
 		{
 			this.activateActionA();
 		}

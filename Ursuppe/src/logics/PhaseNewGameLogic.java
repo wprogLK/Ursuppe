@@ -38,7 +38,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		//...LOGIC//
 		////////////
 		@Override
-		public final void setActionsToRun()
+		public final void changeActionToRun()
 		{
 			this.activateActionA();
 		}
@@ -328,98 +328,11 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		this.game.addPlayer(player);
 		
 		//TODO delete the added player of the ArrayList!
-		
+		//this.restartOn=true;
 		return valid;
 	}
 	
-//	protected int countNumbersOfSameToken(ArrayList<String> input  , EToken token)
-//	{
-//		int counter=0;
-//		
-//		for(String str:input)
-//		{
-//			String prefix=str.subSequence(0, 2).toString();
-//			
-//			if(prefix.equals(token.toString()))
-//			{
-//				counter++;
-//			}
-//		}
-//		
-//		return counter;
-//	}
-//	
-//	/**
-//	 * sorts out all strings which starts with the token and give it back
-//	 * @param savePlayersInput
-//	 * @param token
-//	 * @return ArrayList<String>
-//	 */
-//	protected ArrayList<String> sortSavePlayerFiles(ArrayList<String> savePlayersInput, EToken token)
-//	{
-//		ArrayList<String> savePlayersOutput=new ArrayList<String>();
-//		
-//		for(String str:savePlayersInput)
-//		{
-//			String prefix=str.subSequence(0, 2).toString();
-//			
-//			
-//			if(prefix.equals(token.toString()))
-//			{
-//				savePlayersOutput.add(str);
-//			}
-//		}
-//		
-//		
-//		return savePlayersOutput;
-//	}
-//	
-//	protected String prepareHumanPlayerFiles(ArrayList<String> input,int startToCount)
-//	{
-//		String output="";
-//		
-//		input=this.sortSavePlayerFiles(input, EToken.HU);
-//		
-//		output=this.createStringForPlayers(input,EToken.HU,startToCount);
-//		
-//		return output;
-//	}
-//	
-//	protected String prepareArtificalIntelligencePlayerFiles(ArrayList<String> input, int startToCount)
-//	{
-//		String output="";
-//		
-//		input=this.sortSavePlayerFiles(input, EToken.AI);
-//		
-//		output=this.createStringForPlayers(input,EToken.AI,startToCount);
-//		
-//		return output;
-//	}
-//	
-//	/**
-//	 * creates a numbered (start with number {@code startToCount} and formated string with all players with the token
-//	 * @param input
-//	 * @param token
-//	 * @return numbered and formated string with all players with the token
-//	 */
-//	protected String createStringForPlayers(ArrayList<String> input,EToken token, int startToCount)
-//	{
-//		String output="";
-//		//this.outStream.println("ARRAY ( " + token + " ) BEFORE: " + input );
-//		for(String str:input)
-//		{
-//			String strName=str.subSequence(2, str.length()).toString();
-//		
-//			output=output+ "( " + startToCount + " ) \t " +strName + "\n";
-//			
-//			startToCount++;
-//		}
-//		//this.outStream.println("ARRAY ( " + token + " ) AFTER: " + input );
-//		
-//		
-//		return output;
-//	}
-	
+
 	
 	
 	////////////

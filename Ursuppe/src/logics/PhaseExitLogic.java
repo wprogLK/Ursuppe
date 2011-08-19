@@ -25,7 +25,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 		//...LOGIC//
 		////////////
 		@Override
-		public void setActionsToRun()
+		public void changeActionToRun()
 		{
 			this.activateActionA();
 		}

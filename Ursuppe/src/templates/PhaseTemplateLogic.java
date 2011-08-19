@@ -46,6 +46,9 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	
 	protected Boolean isInTestMode=false;
 	
+	private Boolean isSetActionsOn=true;
+	
+	protected Boolean restartOn=false;
 	///////////////////
 	//DO RUN ACTIONS?//
 	///////////////////
@@ -87,6 +90,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	//BASICS//
 	//////////
 	
+	
 	/**
 	 * Constructor:
 	 * <br />
@@ -102,6 +106,16 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		{
 			this.waiting=true;
 		}
+	}
+	
+	public void turnOnSetActionsToRun()
+	{
+		this.isSetActionsOn=true;
+	}
+	
+	public void turnOffSetActionsToRun()
+	{
+		this.isSetActionsOn=false;
 	}
 	
 	public void setOutStream(PrintStream out)
@@ -161,8 +175,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			this.game.update(); 
 		}
 		
-		/**
-		 * activates/deactivates actions which should run in the concrete phaseLogic
+		/**			 
+		 * activates/deactivates actions which should run in the concrete phaseLogic and resets all of them before running any of them
 		 * 
 		 * <p>
 		 * implemented in a concrete phase in its method
@@ -172,8 +186,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 * 
 		 * @see PhaseALogic
 		 */
-		public abstract void setActionsToRun();
+		public final void setActionsToRun()
+		{
+			if(this.isSetActionsOn)
+			{
+				this.changeActionToRun();
+			}
+		}
 	
+		public abstract void changeActionToRun();
+		
+
 		@Override
 		public final void setGame(IGame game)
 		{
@@ -620,13 +643,27 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.isRunning=false;
 			
-			//this.waitForRestart();
-			
-			this.suspend();
+			this.waitForRestart();
+		
+		
 			
 			this.runPhase();	//"Restart phase and run it again";
 		}
 		
+		private void waitForRestart() 
+		{
+			if(!this.restartOn)
+			{	
+				System.out.println("END");
+				this.suspend();
+			}
+			else
+			{
+				System.out.println("Restart");
+			}
+			
+		}
+
 		/**
 		 * does some things before start the real logic of the phase
 		 * 
@@ -4850,9 +4887,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		{
 			while(this.waiting)
 			{
+				this.doNothing=true;
 				//do nothing
 				this.waitForAValidInput();
 			}
+			this.doNothing=false;
 		}
 		
 		/**
