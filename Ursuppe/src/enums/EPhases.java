@@ -1,7 +1,12 @@
 package enums;
 
 import interfaces.IPhase;
-
+/**
+ * is for see the different phases
+ * @author Lukas Keller
+ * @version 1.0.0
+ *
+ */
 public enum EPhases 
 {	
 	

@@ -6,8 +6,6 @@ import main.GameLogic;
 import module.ModuleASCII;
 import templates.GameTemplate;
 /**
- * {
- * 
  * @author Lukas Keller
  * @version 1.0.0
  *

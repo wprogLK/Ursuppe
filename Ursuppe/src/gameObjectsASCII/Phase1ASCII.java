@@ -1,9 +1,11 @@
 package gameObjectsASCII;
 
-import helper.UserInput;
 import logics.Phase1Logic;
-import logics.PhaseALogic;
 
+/**
+ * @author Lukas
+ *
+ */
 public class Phase1ASCII extends Phase1Logic
 {
 
@@ -24,6 +26,7 @@ public class Phase1ASCII extends Phase1Logic
 		@Override
 		public void doAfterAction()
 		{
+			
 		}
 
 	///////////
@@ -38,20 +41,19 @@ public class Phase1ASCII extends Phase1Logic
 	@Override
 	public void doPreActionA()
 	{
-		this.outStream.println("What is your name?");
+
 	}
 	
 	@Override
 	public void actionAInput()
 	{
-		String name=UserInput.readInput("Please, enter your name: ");
-		this.setInputA(name);
+
 	}
 	
 	@Override
 	public void doAfterActionA()
 	{
-		this.outStream.println("Thank you for your name");
+
 	}
 	
 	////////////
@@ -61,20 +63,19 @@ public class Phase1ASCII extends Phase1Logic
 	@Override
 	public void doPreActionB()
 	{
-		this.outStream.println("How old are you?");
+
 	}
 	
 	@Override
 	public void actionBInput()
 	{
-		String age=UserInput.readInput("Please, enter your age: ");
-		this.setInputB(age);
+
 	}
 	
 	@Override
 	public void doAfterActionB()
 	{
-		this.outStream.println("Thank you for your age");
+
 	}
 
 	

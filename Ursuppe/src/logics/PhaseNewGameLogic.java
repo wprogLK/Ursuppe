@@ -223,8 +223,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public  boolean setInputC(Object inputC)
 	{
-		System.out.println("SET INPUT C");
-		
 		String inputString="";
 		boolean validBasic = false;
 		this.isInputNew=true;
@@ -258,7 +256,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	private void prepareActionC() 
 	{
-		System.out.println("PREPARE ACTION C");
 		this.arrayHumanPlayers=ReadAndWriteFiles.readSaveHumanPlayers();
 		this.arrayAIPlayers=ReadAndWriteFiles.readSaveAIPlayers();
 	}
@@ -266,7 +263,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionC(Object inputC)
 	{
-		System.out.println("CHECK INPUT ACTION C");
 		
 		String input=this.doCastToString(inputC);
 		
@@ -325,10 +321,18 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		
 		IPlayer player=SaveAndLoad.loadPlayer(filename+".urs");
 	
+		
+		
 		this.game.addPlayer(player);
 		
-		//TODO delete the added player of the ArrayList!
-		//this.restartOn=true;
+		//Delete the player out of the arrayList:
+		tmpArray.remove(number);
+		
+		if(valid)
+		{
+			this.turnOnRestart();
+		}
+		
 		return valid;
 	}
 	

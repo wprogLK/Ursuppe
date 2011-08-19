@@ -48,7 +48,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	
 	private Boolean isSetActionsOn=true;
 	
-	protected Boolean restartOn=false;
+	private Boolean restartOn=false;
 	///////////////////
 	//DO RUN ACTIONS?//
 	///////////////////
@@ -297,6 +297,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			//this.outStream.println("IN PHASE TEMPLATE LOGIC: - PHASE OF GAME: " + this.game.getCurrentPhase() + "\n - ePHASE OF GAME: " + this.game.getCurrentEPhase());
 			
 			this.isRunning=true;
+			
+			this.turnOffRestart();
 			
 			this.setActionsToRun();
 			
@@ -4850,6 +4852,16 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		///////////////////
 		//////SETTERS//////
 		///////////////////
+		
+		public final void turnOnRestart()
+		{
+			this.restartOn=true;
+		}
+		
+		public final void turnOffRestart()
+		{
+			this.restartOn=false;
+		}
 		
 		public final void turnOnWaiting()
 		{
