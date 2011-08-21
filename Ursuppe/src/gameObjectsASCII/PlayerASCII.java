@@ -1,5 +1,7 @@
 package gameObjectsASCII;
 
+import java.util.Date;
+
 import enums.EColor;
 import templates.PlayerTemplate;
 
@@ -23,9 +25,9 @@ public class PlayerASCII extends PlayerTemplate
 	 * @param age
 	 * @param color
 	 */
-	public PlayerASCII(String name, int age, EColor color)
+	public PlayerASCII(String name, Date birthday, int age, EColor color)
 	{
-		super(name,age,color);
+		super(name,birthday, age,color);
 	}
 
 	@Override

@@ -1,6 +1,11 @@
 package logics;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import enums.EColor;
 import enums.EPhases;
 import enums.EToken;
 import templates.PhaseTemplateLogic;
@@ -22,6 +27,13 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//BASICS//
 	//////////
 
+	static final long ONE_HOUR = 60 * 60 * 1000L;
+	
+	protected String nameOfNewPlayer;
+	protected int ageOfNewPlayer;
+	protected Date birthdayDateOfNewPlayer;
+	protected EColor colorOfNewPlayer;
+	
 	//////////
 	//INPUTS//
 	//////////
@@ -205,7 +217,10 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else if (inputB.equals(this.rb.getString("instructionPhaseNewGameCreatePlayer")))	//create new player
 		{
-			activateActionD();
+			this.activateActionD();
+			this.activateActionE();
+			this.activateActionF();
+			
 			return true;
 		}
 		else
@@ -311,13 +326,13 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			//TODO
-			System.out.println("DEFAULT: ERROR");
+			//TODO: throw an exception
 			return false;
 		}
 		
-		
+		//TODO: check if out of bounds exception
 		String filename=fileToken+tmpArray.get(number);
+		
 		
 		IPlayer player=SaveAndLoad.loadPlayer(filename+".urs");
 	
@@ -326,6 +341,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		this.game.addPlayer(player);
 		
 		//Delete the player out of the arrayList:
+		//TODO: check if out of bounds exception
 		tmpArray.remove(number);
 		
 		if(valid)
@@ -379,15 +395,19 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionD(Object inputD)
 	{
-		if(!this.tryCastToInteger(inputD))
+		boolean valid=true;
+		String name=this.doCastToString(inputD);
+		
+		if(name.equals(""))
 		{
-			return false;
+			valid=false;
 		}
 		else
 		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputD)); 
-			return true;
+			this.nameOfNewPlayer=name;
 		}
+		
+		return valid;
 	}
 	
 	
@@ -431,16 +451,39 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionE(Object inputE)
 	{
-		if(!this.tryCastToInteger(inputE))
+		String strInput=this.doCastToString(inputE);
+		
+		boolean valid=true;
+		
+		//check if length is right
+		if(strInput.length()!=10)
 		{
-			return false;
+			valid=false;
 		}
 		else
 		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputE)); 
-			return true;
-		}
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
+			dateFormat.setLenient(false);
+			
+			try 
+			{
+				this.birthdayDateOfNewPlayer= dateFormat.parse(strInput);
+			} 
+			catch (ParseException e) 
+			{
+				// TODO
+				e.printStackTrace();
+				valid=false;
+			}
+			
+			this.ageOfNewPlayer=this.calculateAge(this.birthdayDateOfNewPlayer); //TODO implement this method
+		}	
+			
+		
+		return valid;
+
 	}
+	
 	
 	////////////
 	//ACTION F//
@@ -471,7 +514,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			boolean valid=this.checkInputActionE(inputString);
+			boolean valid=this.checkInputActionF(inputString);
 			this.isInputValid=valid;
 			return valid;
 		}
@@ -482,13 +525,18 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionF(Object inputF)
 	{
-		if(!this.tryCastToInteger(inputF))
+		if(!this.tryCastToEColor(inputF))
 		{
 			return false;
 		}
 		else
 		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputF)); 
+			this.colorOfNewPlayer=this.doCastToEColor(inputF);
+			
+			this.turnOnRestart();
+			
+			this.createNewPlayer();
+			
 			return true;
 		}
 	}
@@ -508,5 +556,21 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//GETTERS//
 	///////////
 	
+	///////////////////
+	//PRIVATE METHODS//
+	///////////////////
 	
+	private void createNewPlayer() 
+	{
+		IPlayer player=this.game.createANewPlayer(this.nameOfNewPlayer, this.birthdayDateOfNewPlayer,this.ageOfNewPlayer, this.colorOfNewPlayer);
+		SaveAndLoad.saveHumanPlayer(player, nameOfNewPlayer, EToken.HU);
+		
+	}
+
+	private int calculateAge(Date birthday) 
+	{
+		//TODO
+		return 0;
+	}
+
 }

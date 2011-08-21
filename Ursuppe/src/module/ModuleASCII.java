@@ -1,6 +1,7 @@
  package module;
 
 import java.io.PrintStream;
+import java.util.Date;
 
 import enums.EColor;
 import gameObjectsASCII.*;
@@ -148,9 +149,9 @@ public class ModuleASCII implements IModule
 	}
 	
 	@Override
-	public IPlayer createAPlayer(String name, int age, EColor color)
+	public IPlayer createAPlayer(String name, Date birthday, int age, EColor color)
 	{
-		return new PlayerASCII(name,age,color);
+		return new PlayerASCII(name,birthday,age,color);
 	}
 	
 }

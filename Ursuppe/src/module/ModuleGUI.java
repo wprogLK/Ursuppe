@@ -1,6 +1,7 @@
 package module;
 
 import java.io.PrintStream;
+import java.util.Date;
 
 import enums.EColor;
 import gameObjectsASCII.PhaseAASCII;
@@ -63,9 +64,9 @@ public class ModuleGUI implements IModule
 	}
 	
 	@Override
-	public IPlayer createAPlayer(String name, int age, EColor color)
+	public IPlayer createAPlayer(String name, Date birthday, int age, EColor color)
 	{
-		return new PlayerGUI(name,age,color);
+		return new PlayerGUI(name,birthday,age,color);
 	}
 
 

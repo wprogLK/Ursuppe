@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.io.PrintStream;
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -120,7 +121,7 @@ public interface IGame
 	 * Creates a new player
 	 * @return the new player
 	 */
-	public IPlayer createANewPlayer(String name, int age, EColor color);
+	public IPlayer createANewPlayer(String name, Date birthday, int age, EColor color);
 	///////////
 	//SETTERS//
 	///////////

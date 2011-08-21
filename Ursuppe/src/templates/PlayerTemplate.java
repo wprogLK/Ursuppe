@@ -1,6 +1,7 @@
 package templates;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import enums.EColor;
 import interfaces.IPlayer;
@@ -9,6 +10,7 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 {
 	protected String name;
 	protected int age;
+	protected Date birthday;
 	protected EColor color;
 	
 	/**
@@ -31,15 +33,18 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	 * @param age
 	 * @param color
 	 */
-	public PlayerTemplate(String name, int age, EColor color)
+	public PlayerTemplate(String name, Date birthday,int age, EColor color)
 	{
 		this.setName(name);
 		this.setAge(age);
 		this.setColor(color);
+		this.setBirthday(birthday);
 	}
 	
 	
 	
+	
+
 	///////////
 	//SETTERS//
 	///////////
@@ -55,9 +60,16 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 		this.age=age;
 	}
 	
+	@Override
 	public void setColor(EColor color)
 	{
 		this.color=color;
+	}
+	
+	@Override
+	public void setBirthday(Date birthday) 
+	{
+		this.birthday=birthday;
 	}
 
 	///////////

@@ -1,5 +1,9 @@
 package interfaces;
 
+import java.util.Date;
+
+import enums.EColor;
+
 public interface IPlayer {
 	
 	///////////
@@ -8,6 +12,8 @@ public interface IPlayer {
 	
 	public void setName(String name);
 	public void setAge(int age);
+	public void setColor(EColor color);
+	public void setBirthday(Date birthday);
 	
 	///////////
 	//GETTERS//

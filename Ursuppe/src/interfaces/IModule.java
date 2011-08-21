@@ -1,6 +1,7 @@
  package interfaces;
 
 import java.io.PrintStream;
+import java.util.Date;
 
 import enums.EColor;
 import gameObjectsASCII.*;
@@ -68,6 +69,6 @@ public  interface IModule
 	 * @param color
 	 * @return
 	 */
-	public IPlayer createAPlayer(String name, int age, EColor color);
+	public IPlayer createAPlayer(String name, Date birthday, int age, EColor color);
 	
 }

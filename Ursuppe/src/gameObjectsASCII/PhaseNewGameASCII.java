@@ -2,6 +2,7 @@ package gameObjectsASCII;
 
 import java.util.ArrayList;
 
+import enums.EColor;
 import enums.EToken;
 
 import helper.ReadAndWriteFiles;
@@ -134,6 +135,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doAfterActionC()
 	{
+		this.outStream.println(this.rb.getString("newGameSuccessfulLoad"));
 	}
 	
 	////////////
@@ -150,12 +152,13 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	public void actionDInput()
 	{
 		String input=UserInput.readInput(this.rb.getString("newGameNameInstruction"));
-		this.setInputB(input);
+		this.setInputD(input);
 	}
 	
 	@Override
 	public void doAfterActionD()
 	{
+		this.outStream.println(this.rb.getString("newGameSuccessfulName") + this.nameOfNewPlayer);
 	}
 	
 	////////////
@@ -163,15 +166,10 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	////////////
 	
 	@Override
-	public void doPreActionE()
-	{
-	}
-	
-	@Override
 	public void actionEInput()
 	{
 		String input=UserInput.readInput(this.rb.getString("newGameAgeInstructuion"));
-		this.setInputB(input);
+		this.setInputE(input);
 	}
 	
 	@Override
@@ -192,13 +190,33 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void actionFInput()
 	{
-		String input=UserInput.readInput(this.rb.getString("newGameAgeInstructuion"));
-		this.setInputB(input);
+		String strList=this.createStringOfColors();
+		String input=UserInput.readInput(this.rb.getString("newGameColorInstruction") +"\n"+ strList);
+		this.setInputF(input);
 	}
 	
+
 	@Override
 	public void doAfterActionF()
 	{
 		
+	}
+	
+	
+	///////////////////
+	//PRIVATE METHODS//
+	///////////////////
+	
+
+	private String createStringOfColors() 
+	{
+		String list="";
+		
+		for(EColor color: EColor.class.getEnumConstants())
+		{
+			list+=color +"\n";
+		}
+		
+		return list;
 	}
 }

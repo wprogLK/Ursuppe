@@ -5,6 +5,7 @@ import annotations.*;
 import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -89,9 +90,9 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	}
 	
 	@Override
-	public final IPlayer createANewPlayer(String name, int age, EColor color)
+	public final IPlayer createANewPlayer(String name, Date birthday, int age, EColor color)
 	{
-		 IPlayer newPlayer = this.module.createAPlayer(name, age, color);
+		 IPlayer newPlayer = this.module.createAPlayer(name, birthday,age, color);
 		
 		 this.addPlayer(newPlayer);
 		 

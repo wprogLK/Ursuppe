@@ -1,5 +1,7 @@
 package enums;
 
+import java.util.ArrayList;
+
 import interfaces.IPlayer;
 import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.PlayerGUI;
@@ -41,7 +43,7 @@ public enum EColor
 	Gray;
 
 	private IPlayer player;
-	
+
 	/**
 	 * sets the player to the color
 	 * @param player

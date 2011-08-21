@@ -1,5 +1,7 @@
 package gameObjectsGUI;
 
+import java.util.Date;
+
 import enums.EColor;
 import templates.PlayerTemplate;
 
@@ -21,9 +23,9 @@ public class PlayerGUI  extends PlayerTemplate
 	 * @param age
 	 * @param color
 	 */
-	public PlayerGUI(String name, int age, EColor color)
+	public PlayerGUI(String name,Date birthday, int age, EColor color)
 	{
-		super(name,age,color);
+		super(name,birthday,age,color);
 	}
 	
 	
