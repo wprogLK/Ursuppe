@@ -30,9 +30,5 @@ public class PlayerASCII extends PlayerTemplate
 		super(name,birthday, age,color);
 	}
 
-	@Override
-	public String getType() {
-		return "TYPE ASCII";
-	}
-	
+
 }

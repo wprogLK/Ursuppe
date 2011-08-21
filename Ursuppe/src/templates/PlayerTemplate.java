@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import enums.EColor;
+import enums.EPlayer;
 import interfaces.IPlayer;
 
 public abstract class PlayerTemplate implements IPlayer, Serializable
@@ -12,7 +13,7 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	protected int age;
 	protected Date birthday;
 	protected EColor color;
-	
+	protected EPlayer eType;
 	/**
 	 * is the default constructor
 	 * 
@@ -48,6 +49,12 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	///////////
 	//SETTERS//
 	///////////
+	@Override
+	public void setType(EPlayer eType)
+	{
+		this.eType=eType;
+	}
+	
 	@Override
 	public void setName(String name) 
 	{
@@ -87,8 +94,15 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 		return this.age;
 	}
 	
+	@Override
 	public EColor getColor()
 	{
 		return this.color;
+	}
+	
+	@Override
+	public EPlayer getType()
+	{
+		return this.eType;
 	}
 }

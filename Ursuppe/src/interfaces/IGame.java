@@ -92,6 +92,13 @@ public interface IGame
 	//PLAYERS//
 	///////////
 	/**
+	 * set the next player to the current player
+	 * 
+	 * @return if the nextPlayer is the head or tail => true, otherwise false
+	 */
+	public boolean nextPlayer();
+	
+	/**
 	 * gives the current player back
 	 * @return current player
 	 */

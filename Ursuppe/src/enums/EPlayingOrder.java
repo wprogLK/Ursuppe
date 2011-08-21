@@ -2,6 +2,7 @@ package enums;
 
 public enum EPlayingOrder 
 {
-	descending,		//absteigend
-	ascending;		//aufsteigend
+	Default,
+	Descending,		//absteigend
+	Ascending;		//aufsteigend
 }

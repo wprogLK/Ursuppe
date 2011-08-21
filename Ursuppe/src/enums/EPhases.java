@@ -1,5 +1,6 @@
 package enums;
 
+import annotations.OnlyForTesting;
 import interfaces.IPhase;
 /**
  * is for see the different phases
@@ -44,18 +45,18 @@ public enum EPhases
 			//**SETUPS**//
 			//////////////
 			phaseNewGame,
-			phasePreparation1,
-			phasePreparation2,
+			phasePreparation1(EPlayingOrder.Ascending),
+			phasePreparation2(EPlayingOrder.Ascending),
 			
 			////////////
 			//**PLAY**//
 			////////////
-			phase1,
-			phase2,
-			phase3,
-			phase4,
-			phase5,
-			phase6,
+			phase1(EPlayingOrder.Ascending),
+			phase2(EPlayingOrder.Descending),
+			phase3(EPlayingOrder.Descending),
+			phase4(EPlayingOrder.Descending),
+			phase5(EPlayingOrder.Descending),
+			phase6(EPlayingOrder.Descending),
 			
 			phaseGameEnd;
 		
@@ -68,9 +69,23 @@ public enum EPhases
 		private EPhases nextPhase;
 		private EPhases lastPhase;
 		
+		private EPlayingOrder order;
+		
 	///////////
 	//METHODS//
 	///////////
+		
+		EPhases(EPlayingOrder ordner)
+		{
+			this.order=order;
+		}
+		
+		EPhases()
+		{
+			this.order=EPlayingOrder.Default;
+		}
+		
+		
 		/**
 		 * setup the data (last and next ePhase) of current ePhase to {@code defaultPhase} if it is {@code null}
 		 */
@@ -93,7 +108,11 @@ public enum EPhases
 		///////////
 		//SETTERS//
 		///////////
-		
+		@OnlyForTesting
+		public void setOrder(EPlayingOrder order)
+		{
+			this.order=order;
+		}
 		/**
 		 * set the real {@link IPhase} to the current ePhase
 		 * @param the real Phase of type {@code IPhase}
@@ -153,6 +172,11 @@ public enum EPhases
 		public EPhases getLastPhase()
 		{
 			return this.lastPhase;
+		}
+
+		public EPlayingOrder getOrder() 
+		{
+			return this.order;
 		}
 		
 	

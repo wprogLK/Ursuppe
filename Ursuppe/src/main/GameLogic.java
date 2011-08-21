@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import annotations.OnlyForTesting;
 
 import enums.EPhases;
+import enums.EPlayingOrder;
 
 import module.*;
 import helper.ReadAndWriteFiles;
@@ -745,6 +746,14 @@ public class GameLogic extends Thread implements Serializable
 		{
 			phase.turnOnTestMode();
 		}
+	}
+
+
+
+	public EPlayingOrder getCurrentPlayingOrder() 
+	{
+		return this.getCurrentEPhase().getOrder();
+		
 	}
 
 

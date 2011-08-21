@@ -14,6 +14,7 @@ import com.google.inject.Injector;
 
 import enums.EColor;
 import enums.EPhases;
+import enums.EPlayer;
 import enums.EPlayingOrder;
 
 import main.GameLogic;
@@ -78,6 +79,9 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		
 		playerHead.setName("Head");
 		playerTail.setName("Tail");
+		playerHead.setType(EPlayer.HeadPlayer);
+		playerTail.setType(EPlayer.TailPlayer);
+		
 		
 	}
 	
@@ -155,7 +159,12 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		else
 		{
 			this.players.add(this.players.size()-1, player);
+			
+				
 		}
+		
+		
+		
 	}
 	
 	@Override
@@ -170,42 +179,37 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	@Override
 	public IPlayer getCurrentPlayer()
 	{
+		this.setCurrentPlayer();
+		
 		return this.currentPlayer;
 	}
 	
-	/**
-	 * set the next player to the current player
-	 * 
-	 * @return if the nextPlayer is the head or tail => true, otherwise false
-	 */
+	
+	@Override
 	public boolean nextPlayer()
 	{
 		EPlayingOrder order =this.gameLogic.getCurrentPlayingOrder();
 		
 		//TODO TEST THIS!
 		
+		int indexToInsert = 0;
+		
 		switch(order)
 		{
-			case descending: //Absteigend
+			
+		
+			case Descending: //Absteigend
 			{
-				int indexSecondLastPlayer=this.players.size()-2;
-				
-				IPlayer lastPlayer=this.players.remove(indexSecondLastPlayer);
-				this.players.add(lastPlayer);
-				
-				this.currentPlayer=this.players.get(indexSecondLastPlayer);
+				indexToInsert=this.players.size()-1;
+
 				
 				break;
 			}
 			
-			case ascending: //Aufsteigend
+			case Ascending: //Aufsteigend
 			{
-				int indexSecondPlayer=1;
-				
-				IPlayer firstPlayer=this.players.remove(indexSecondPlayer);
-				this.players.add(0, firstPlayer);
-				
-				this.currentPlayer=this.players.get(indexSecondPlayer);
+				indexToInsert=0;
+			
 				break;
 			}
 			
@@ -214,10 +218,35 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 				//TODO
 			}
 			
-			boolean isCurrentPlayerHeadOrTail=isCurrentPlayerHeadOrTail();
 		}
+		
+		this.players.remove(this.currentPlayer);
+		this.players.add(indexToInsert, this.currentPlayer);
+		
+		return isCurrentPlayerHeadOrTail();
 	}
 	
+	/**
+	 * set the correct current player (depends on the playing order of the current ePhase)
+	 */
+	private void setCurrentPlayer() {
+		EPlayingOrder order=this.gameLogic.getCurrentEPhase().getOrder();
+		switch(order)
+		{
+			case Descending:
+			{
+				this.currentPlayer=this.players.get(0);
+				break;
+			}
+			case Ascending:
+			{
+				this.currentPlayer=this.players.get(this.players.size()-1);
+				break;
+			}
+		}
+		
+	}
+
 	///////////
 	//GETTERS//
 	///////////
@@ -320,8 +349,18 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	//PRIVATE METHODS//
 	///////////////////
 	private boolean isCurrentPlayerHeadOrTail() {
-		if this.currentPlayer.getType();	//TODO
-		return false;
+		if (this.currentPlayer.getType()==EPlayer.HeadPlayer)
+		{
+			return true;
+		}
+		else if(this.currentPlayer.getType()==EPlayer.TailPlayer)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	////////////////////
