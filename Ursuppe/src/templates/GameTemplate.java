@@ -14,6 +14,7 @@ import com.google.inject.Injector;
 
 import enums.EColor;
 import enums.EPhases;
+import enums.EPlayingOrder;
 
 import main.GameLogic;
 
@@ -45,6 +46,8 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	
 	protected PrintStream outStream;
 	protected PrintStream errorStream;
+	
+	protected IPlayer currentPlayer;
 	
 	public GameTemplate(PrintStream out, PrintStream error)
 	{
@@ -164,10 +167,64 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		this.players.remove(player);
 	}
 	
+	@Override
+	public IPlayer getCurrentPlayer()
+	{
+		return this.currentPlayer;
+	}
+	
+	/**
+	 * set the next player to the current player
+	 * 
+	 * @return if the nextPlayer is the head or tail => true, otherwise false
+	 */
+	public boolean nextPlayer()
+	{
+		EPlayingOrder order =this.gameLogic.getCurrentPlayingOrder();
+		
+		//TODO TEST THIS!
+		
+		switch(order)
+		{
+			case descending: //Absteigend
+			{
+				int indexSecondLastPlayer=this.players.size()-2;
+				
+				IPlayer lastPlayer=this.players.remove(indexSecondLastPlayer);
+				this.players.add(lastPlayer);
+				
+				this.currentPlayer=this.players.get(indexSecondLastPlayer);
+				
+				break;
+			}
+			
+			case ascending: //Aufsteigend
+			{
+				int indexSecondPlayer=1;
+				
+				IPlayer firstPlayer=this.players.remove(indexSecondPlayer);
+				this.players.add(0, firstPlayer);
+				
+				this.currentPlayer=this.players.get(indexSecondPlayer);
+				break;
+			}
+			
+			default:
+			{
+				//TODO
+			}
+			
+			boolean isCurrentPlayerHeadOrTail=isCurrentPlayerHeadOrTail();
+		}
+	}
+	
 	///////////
 	//GETTERS//
 	///////////
 	
+	
+	
+
 	public PrintStream getErrorStream()
 	{
 		return this.errorStream;
@@ -226,6 +283,8 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		return this.gameLogic.getCurrentEPhase();
 	}
 	
+	
+	
 	///////////
 	//SETTERS//
 	///////////
@@ -253,6 +312,16 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	public final void setStartPhase(EPhases startPhase)
 	{
 		this.startPhase=startPhase;
+	}
+
+	
+	
+	///////////////////
+	//PRIVATE METHODS//
+	///////////////////
+	private boolean isCurrentPlayerHeadOrTail() {
+		if this.currentPlayer.getType();	//TODO
+		return false;
 	}
 	
 	////////////////////

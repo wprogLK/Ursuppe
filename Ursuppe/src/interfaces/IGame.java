@@ -91,7 +91,12 @@ public interface IGame
 	///////////
 	//PLAYERS//
 	///////////
-	
+	/**
+	 * gives the current player back
+	 * @return current player
+	 */
+	public IPlayer getCurrentPlayer();
+
 	/**
 	 * adds a player the the game if the game doesn't already contain the player
 	 * @param player
