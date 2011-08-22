@@ -66,7 +66,7 @@ public class MainASCII {
 		 game.play();
 		 
 		 
-			System.out.println(game.getCurrentPlayer());
+			System.out.println(game.getCurrentPlayer().getName());
 		 try 
 		 {
 			game.join();

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import enums.EActions;
 import enums.EColor;
 import enums.EPhases;
+import enums.EPlayer;
 
 import annotations.OnlyForTesting;
 

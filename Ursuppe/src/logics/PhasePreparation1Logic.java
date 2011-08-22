@@ -46,13 +46,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	@Override
 	public void doPreAction()
 	{
-		System.out.println("THIS IS PHASE PREPARATION 1");
+
 	}
 	
 	@Override
-	public void doAfterAction()
+	public final void doAfterAction()
 	{
-		System.out.println("DO AFTER ACTION");
 		if(!this.game.nextPlayer())
 		{
 			this.turnOnRestart();

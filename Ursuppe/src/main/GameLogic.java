@@ -310,7 +310,7 @@ public class GameLogic extends Thread implements Serializable
 		this.currentEPhase=this.game.getStartPhase();
 		
 		boolean valid=true;
-//		
+
 		return valid;
 	}
 	

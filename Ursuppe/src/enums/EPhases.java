@@ -45,8 +45,8 @@ public enum EPhases
 			//**SETUPS**//
 			//////////////
 			phaseNewGame,
-			phasePreparation1(EPlayingOrder.Ascending),
-			phasePreparation2(EPlayingOrder.Ascending),
+			phasePreparation1(EPlayingOrder.Descending),
+			phasePreparation2(EPlayingOrder.Descending),
 			
 			////////////
 			//**PLAY**//

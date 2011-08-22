@@ -198,14 +198,10 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	{
 		EPlayingOrder order =this.gameLogic.getCurrentPlayingOrder();
 		
-		//TODO TEST THIS!
-		
 		int indexToInsert = 0;
-		System.out.println("ORDER  " + order);
+
 		switch(order)
 		{
-			
-		
 			case Descending: //Absteigend
 			{
 				indexToInsert=this.players.size()-1;
@@ -237,14 +233,8 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	/**
 	 * set the correct current player (depends on the playing order of the current ePhase)
 	 */
-	private void setCurrentPlayer() {
-		System.out.println("order " + this.gameLogic);
-		
-//		while(this.gameLogic.getCurrentEPhase()==null)
-//		{
-//			System.out.println("WAIT");
-//		}
-		System.out.println(this.gameLogic.getCurrentEPhase());
+	private void setCurrentPlayer() 
+	{
 		EPlayingOrder order=this.gameLogic.getCurrentEPhase().getOrder();
 		
 		switch(order)
