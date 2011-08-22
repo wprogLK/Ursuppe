@@ -6,6 +6,7 @@ import java.util.Date;
 import enums.EColor;
 import gameObjectsASCII.*;
 import helper.UserInput;
+import interfaces.IDie;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
@@ -152,6 +153,12 @@ public class ModuleASCII implements IModule
 	public IPlayer createAPlayer(String name, Date birthday, int age, EColor color)
 	{
 		return new PlayerASCII(name,birthday,age,color);
+	}
+	
+	@Override
+	public IDie createDie()
+	{
+		return new DieASCII();
 	}
 	
 }

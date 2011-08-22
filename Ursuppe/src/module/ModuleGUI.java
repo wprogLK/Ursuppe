@@ -4,10 +4,12 @@ import java.io.PrintStream;
 import java.util.Date;
 
 import enums.EColor;
+import gameObjectsASCII.DieASCII;
 import gameObjectsASCII.PhaseAASCII;
 import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.*;
 import helper.UserInput;
+import interfaces.IDie;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
@@ -213,6 +215,13 @@ public class ModuleGUI implements IModule
 	@Override
 	public IPhase createPhaseGameEnd() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public IDie createDie()
+	{
+		//TODOs
 		return null;
 	}
 	

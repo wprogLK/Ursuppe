@@ -313,10 +313,12 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.currentAction=EActions.ActionA;
 			
+			this.doPreAction();
+			this.update();
+			
 			if (!this.doNothing)
 			{
-				this.doPreAction();
-				this.update();
+				
 				if(this.doRunActionA)
 				{
 					this.runActionA();
@@ -690,7 +692,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			this.currentAction=EActions.ActionZ;
 			
 			this.doWaiting();
-			
+			this.doAfterAction();
 			if (!this.doNothing)
 			{
 				if(this.doRunActionZ)
@@ -704,6 +706,10 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.isRunning=false;
 			this.currentAction=EActions.ActionAfterRunning;
+			this.doAfterAction();
+			
+			
+			
 			this.waitForRestart();
 		
 		
@@ -735,7 +741,10 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 * @see PhaseAASCII
 		 * @see PhaseAGUI
 		 */
-		public abstract void doPreAction();
+		protected void doPreAction()
+		{
+			
+		}
 		
 		/**
 		 * does some things after the real logic of the phase terminate
@@ -748,10 +757,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 * @see PhaseAASCII
 		 * @see PhaseAGUI
 		 */
-		public void doAfterAction()
+		protected void doAfterAction()
 		{
 			
 		}
+		
 		
 		
 		/**

@@ -75,7 +75,7 @@ public enum EPhases
 	//METHODS//
 	///////////
 		
-		EPhases(EPlayingOrder ordner)
+		EPhases(EPlayingOrder order)
 		{
 			this.order=order;
 		}

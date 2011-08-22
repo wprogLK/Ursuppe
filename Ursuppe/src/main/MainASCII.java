@@ -52,7 +52,7 @@ public class MainASCII {
 		
 		 game=module.createGame();
 		 
-		 game.setStartPhase(EPhases.phaseSplashScreen);
+		 game.setStartPhase(EPhases.phasePreparation1);
 		 
 		 game.createNew();
 		 
@@ -60,11 +60,13 @@ public class MainASCII {
 
 		 
 		
-		// IPlayer player=game.createANewPlayer();						//TODO delete
+		 IPlayer player=game.createANewPlayer();						//TODO delete
 		// SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
-		
+
 		 game.play();
 		 
+		 
+			System.out.println(game.getCurrentPlayer());
 		 try 
 		 {
 			game.join();

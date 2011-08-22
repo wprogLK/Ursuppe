@@ -21,12 +21,7 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 			this.outStream.println(this.rb.getString("phasePreparation1Title"));
 		}
 		
-		@Override
-		public void doAfterAction()
-		{
-			this.outStream.println("This was the techDemo run in ASCII. Goodbye...");
-			this.doExit();
-		}
+		
 
 	///////////
 	//ACTIONS//
@@ -41,6 +36,7 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 	public void doPreActionA()
 	{
 		this.outStream.println("What is your name?");
+		
 	}
 	
 	@Override

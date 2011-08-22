@@ -1,5 +1,7 @@
 package logics;
 
+import java.util.ArrayList;
+
 import enums.EPhases;
 import templates.PhaseTemplateLogic;
 import interfaces.IPhase;
@@ -21,8 +23,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//INPUTS//
 	//////////
 	
-	private String name; 	//ACTION A
-	private int age;		//ACTION B
+	protected ArrayList<Integer> rolledValue=new ArrayList<Integer>();
 
 		////////////
 		//...LOGIC//
@@ -39,7 +40,31 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	@Override
 	protected void setCurrentPhase()
 	{
-		this.currentPhase=EPhases.phaseA;
+		this.currentPhase=EPhases.phasePreparation1;
+	}
+	
+	@Override
+	public void doPreAction()
+	{
+		System.out.println("THIS IS PHASE PREPARATION 1");
+	}
+	
+	@Override
+	public void doAfterAction()
+	{
+		System.out.println("DO AFTER ACTION");
+		if(!this.game.nextPlayer())
+		{
+			this.turnOnRestart();
+			System.out.println("CURRENT PLAYER IS: " + this.game.getCurrentPlayer().getName());
+			System.out.println("RESTART ON");
+		}
+		else
+		{
+			this.turnOffRestart();
+			System.out.println("CURRENT PLAYER IS: " + this.game.getCurrentPlayer().getName());
+			System.out.println("RESTART OFF");
+		}
 	}
 	
 	

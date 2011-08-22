@@ -71,4 +71,5 @@ public  interface IModule
 	 */
 	public IPlayer createAPlayer(String name, Date birthday, int age, EColor color);
 	
+	public IDie createDie();
 }

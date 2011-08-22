@@ -88,6 +88,8 @@ public interface IGame
 	 */
 	public JPanel getMainPanel();
 	
+	
+	public IDie getDie();
 	///////////
 	//PLAYERS//
 	///////////

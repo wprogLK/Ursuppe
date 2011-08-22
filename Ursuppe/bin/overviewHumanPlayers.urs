@@ -3,21 +3,4 @@
 #Every line one player						#
 #For comments use #						#
 #################################################################
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
-test3Player
 Lukas

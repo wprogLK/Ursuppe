@@ -20,6 +20,7 @@ import enums.EPlayingOrder;
 import main.GameLogic;
 
 import helper.LanguageSetup;
+import interfaces.IDie;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
@@ -40,6 +41,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	protected GameLogic gameLogic;
 	protected IModule module;
 	
+	protected IDie die;
 	
 	protected ArrayList<IPlayer> players=new ArrayList<IPlayer>();
 	protected boolean isOver=false;
@@ -109,6 +111,12 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	//////////
 	//BASICS//
 	//////////
+	@Override
+	public final IDie getDie()
+	{
+		return this.die;
+	}
+	
 	@Override
 	public void update()
 	{
@@ -193,7 +201,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		//TODO TEST THIS!
 		
 		int indexToInsert = 0;
-		
+		System.out.println("ORDER  " + order);
 		switch(order)
 		{
 			
@@ -230,7 +238,15 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	 * set the correct current player (depends on the playing order of the current ePhase)
 	 */
 	private void setCurrentPlayer() {
+		System.out.println("order " + this.gameLogic);
+		
+//		while(this.gameLogic.getCurrentEPhase()==null)
+//		{
+//			System.out.println("WAIT");
+//		}
+		System.out.println(this.gameLogic.getCurrentEPhase());
 		EPlayingOrder order=this.gameLogic.getCurrentEPhase().getOrder();
+		
 		switch(order)
 		{
 			case Descending:

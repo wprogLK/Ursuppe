@@ -81,7 +81,9 @@ public class GameLogic extends Thread implements Serializable
 		this.outStream=this.game.getOutStream();
 		this.errStream=this.game.getErrorStream();
 		
-		this.setPriority(7);
+		boolean validStart=this.setStartPhase();
+		
+		this.setPriority(10);
 	}
 
 	
@@ -212,74 +214,6 @@ public class GameLogic extends Thread implements Serializable
 			
 		}
 		
-//		this.phaseA.start();
-//		this.phaseA.suspend();
-//		
-//	
-//		this.phaseSplashScreen.start();
-//		this.phaseSplashScreen.suspend();
-//		
-//		this.phaseMainMenu.start();
-//		this.phaseMainMenu.suspend();
-//		
-//		this.phaseNewGame.start();
-//		this.phaseNewGame.suspend();
-//		
-//		this.phaseSaveGame.start();
-//		this.phaseSaveGame.suspend();
-//		
-//		this.phaseLoadGame.start();
-//		this.phaseLoadGame.suspend();
-//		
-//		this.phaseOptions.start();
-//		this.phaseOptions.suspend();
-//		
-//		this.phaseHelp.start();
-//		this.phaseHelp.suspend();
-//		
-//		this.phaseCheats.start();
-//		this.phaseCheats.suspend();
-//		
-//		this.phaseAchievements.start();
-//		this.phaseAchievements.suspend();
-//		
-//		this.phaseExit.start();
-//		this.phaseExit.suspend();
-//		
-//		this.phaseAbout.start();
-//		this.phaseAbout.suspend();
-//		
-//		this.phaseBreakMenu.start();
-//		this.phaseBreakMenu.suspend();
-//		
-//		this.phaseStatistics.start();
-//		this.phaseStatistics.suspend();
-//		
-//		
-//		this.phasePreparation1.start();
-//		this.phasePreparation1.suspend();
-//		
-//		this.phasePreparation2.start();
-//		this.phasePreparation2.suspend();
-//		
-//		this.phase1.start();
-//		this.phase1.suspend();
-//		
-//		this.phase2.start();
-//		this.phase2.suspend();
-//		
-//		this.phase3.start();
-//		this.phase3.suspend();
-//		
-//		this.phase4.start();
-//		this.phase4.suspend();
-//		
-//		this.phase5.start();
-//		this.phase5.suspend();
-//		
-//		this.phase6.start();
-//		this.phase6.suspend();
-		
 	}
 	
 	
@@ -305,29 +239,7 @@ public class GameLogic extends Thread implements Serializable
 			}
 			
 		}
-//		
-//		this.phaseA.setMainPanel(mainPanel);
-//		this.phaseExit.setMainPanel(mainPanel);
-//		
-//		this.phaseSplashScreen.setMainPanel(mainPanel);
-//		this.phaseMainMenu.setMainPanel(mainPanel);
-//		this.phaseNewGame.setMainPanel(mainPanel);
-//		this.phaseLoadGame.setMainPanel(mainPanel);
-//		this.phaseOptions.setMainPanel(mainPanel);
-//		this.phaseHelp.setMainPanel(mainPanel);
-//		this.phaseCheats.setMainPanel(mainPanel);
-//		this.phaseAchievements.setMainPanel(mainPanel);
-//		this.phaseAbout.setMainPanel(mainPanel);
-//		this.phaseStatistics.setMainPanel(mainPanel);
-//		this.phaseSaveGame.setMainPanel(mainPanel);
-//		this.phaseBreakMenu.setMainPanel(mainPanel);
-//		
-//		this.phase1.setMainPanel(mainPanel);
-//		this.phase2.setMainPanel(mainPanel);
-//		this.phase3.setMainPanel(mainPanel);
-//		this.phase4.setMainPanel(mainPanel);
-//		this.phase5.setMainPanel(mainPanel);
-//		this.phase6.setMainPanel(mainPanel);
+
 	}
 	
 	
@@ -342,29 +254,7 @@ public class GameLogic extends Thread implements Serializable
 			
 		}
 		
-//		this.phaseA.setGame(this.game);
-//		this.phaseExit.setGame(this.game);
-//		
-//		this.phaseSplashScreen.setGame(this.game);
-//		this.phaseMainMenu.setGame(this.game);
-//		this.phaseNewGame.setGame(this.game);
-//		this.phaseLoadGame.setGame(this.game);
-//		this.phaseOptions.setGame(this.game);
-//		this.phaseHelp.setGame(this.game);
-//		this.phaseCheats.setGame(this.game);
-//		this.phaseAchievements.setGame(this.game);
-//		this.phaseAbout.setGame(this.game);
-//		this.phaseStatistics.setGame(this.game);
-//		this.phaseSaveGame.setGame(this.game);
-//		this.phaseBreakMenu.setGame(this.game);
-//		
-//		this.phase1.setGame(this.game);
-//		this.phase2.setGame(this.game);
-//		this.phase3.setGame(this.game);
-//		this.phase4.setGame(this.game);
-//		this.phase5.setGame(this.game);
-//		this.phase6.setGame(this.game);
-		}
+	}
 	
 	
 	///////////
@@ -398,10 +288,6 @@ public class GameLogic extends Thread implements Serializable
 	 */
 	public final void run()
 	{
-		boolean validStart=this.setStartPhase();
-		
-		assert(validStart);
-		
 		assert(!this.currentEPhase.equals(EPhases.defaultPhase));
 		
 		this.activatePhase();
@@ -424,22 +310,7 @@ public class GameLogic extends Thread implements Serializable
 		this.currentEPhase=this.game.getStartPhase();
 		
 		boolean valid=true;
-//		switch(this.currentEPhase)
-//		{
-//			case phaseA:
-//			{
-//				break;
-//			}
-//			case phaseExit:
-//			{
-//				break;
-//			}
-//			default:
-//			{
-//				this.outStream.println("ERROR:Unkown case in setStartPhase: CURRENT PHASE IS " + this.currentEPhase);
-//				valid=false;
-//			}
-//		}
+//		
 		return valid;
 	}
 	

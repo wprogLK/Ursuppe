@@ -134,8 +134,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else if (inputA.equals(this.rb.getString("instructionPhaseNewGamePlay")))	//play
 		{
-			this.currentPhase=EPhases.phasePreparation1;
-			return true;
+			return this.isReadyToPlay();
 		}
 		else
 		{
@@ -145,6 +144,21 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	}
 	
 
+
+	private boolean isReadyToPlay() {
+		if (this.game.getNumbersOfPlayers()>=2)
+		{
+			this.currentPhase=EPhases.phasePreparation1;
+			return true;
+		}
+		else
+		{
+			//TODO: throw an exception or something like this with the message "Not enough player"
+			return false;
+		}
+			
+		
+	}
 
 	////////////
 	//ACTION B//

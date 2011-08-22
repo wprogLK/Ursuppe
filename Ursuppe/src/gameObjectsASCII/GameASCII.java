@@ -33,6 +33,8 @@ public class GameASCII extends GameTemplate{
 		this.gameLogic=new GameLogic(this);
 		this.gameLogic.createASCII();
 		this.gameLogic.setGameToAllPhases();
+		
+		this.die=this.module.createDie();
 	}
 
 }
