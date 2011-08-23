@@ -20,8 +20,18 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//////////
 	//BASICS//
 	//////////
-	ArrayList<Pair> pairs=new ArrayList<Pair>();
-	ArrayList<IPlayer> orderToPlay=new ArrayList<IPlayer>();
+	private ArrayList<Pair> pairs=new ArrayList<Pair>();
+	private ArrayList<IPlayer> orderToPlay=new ArrayList<IPlayer>();
+	private ArrayList<Pair> pairsSorted=new ArrayList<Pair>();
+	
+	private ArrayList<IPlayer> originalOrder=new ArrayList<IPlayer>();
+	
+	private ArrayList<Integer> rolledValues=new ArrayList<Integer>();
+	private ArrayList<Pair> sameValueRolledPairs=new ArrayList<Pair>();
+	
+	private ArrayList<Integer> sameRolledValue=new ArrayList<Integer>();
+	
+	private boolean isSameValueRolled=false;
 	
 	//////////
 	//INPUTS//
@@ -53,21 +63,114 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	@Override
 	public final void doLogicAfterAction()
 	{
-		if(!this.game.nextPlayer())
+		//TODO TEST THIS & REFACTOR!!
+		
+		if(this.isSameValueRolled)
+		{
+			
+		}
+		else if(!this.game.nextPlayer())	//If round is NOT finished...
 		{
 			this.turnOnRestart();
 			System.out.println("CURRENT PLAYER IS: " + this.game.getCurrentPlayer().getName());
 			System.out.println("RESTART ON");
 		}
-		else
+		else	//if round is finished...
 		{
-			this.turnOffRestart();
-			System.out.println("CURRENT PLAYER IS: " + this.game.getCurrentPlayer().getName());
-			System.out.println("RESTART OFF");
+			this.checkSameValuesRolled();
+			
+			if(!this.isSameValueRolled) //No same values
+			{
+				this.turnOffRestart();
+				System.out.println("CURRENT PLAYER IS: " + this.game.getCurrentPlayer().getName());
+				System.out.println("RESTART OFF");
+					
+				System.out.println(this.pairs.size());
+					
+				this.orderToPlaySetup();
+			}
+			else	//same values
+			{
+				this.turnOnRestart();
+				
+				ArrayList<IPlayer> rollAgainPlayers=this.getPlayersWithSameRolledValue();
+				
+				this.originalOrder=this.game.overrideAllNormalPlayers(rollAgainPlayers);
+				
+				System.out.println("CURRENT PLAYER IS: " + this.game.getCurrentPlayer().getName());
+				System.out.println("RESTART ON: SAME VALUE ROLLED!");
+			}
+			
 		}
+	
 	}
 	
+	private ArrayList<IPlayer> getPlayersWithSameRolledValue() 
+	{
+		
+		//TODO: TEST THIS!
+		ArrayList<IPlayer> playersWithSameRolledValue=new ArrayList<IPlayer>();
+		
+		for (Pair pair:this.pairsSorted)
+		{
+			int playersRolledValue=pair.getDieValue();
+			
+			if(this.sameRolledValue.contains(playersRolledValue))
+			{
+				System.out.println("Übereinstimmung gefunden: "+ pair);
+				playersWithSameRolledValue.add(pair.getPlayer());
+				
+				this.pairsSorted.remove(pair);
+			}
+		}
+		
+		return playersWithSameRolledValue;
+	}
+
+	private void checkSameValuesRolled() 
+	{
+		this.isSameValueRolled=this.sameValueRolledPairs.isEmpty();
+	}
+
+	private void orderToPlaySetup() 
+	{
+		
+		while(!this.pairs.isEmpty())
+		{
+			System.out.println("SIZE OF PAIRS ARRAYLIST: " + this.pairs.size());
+			
+			Pair currentPair=this.pairs.get(0);
+			
+			for(Pair comparingPair:this.pairs)
+			{
+				System.out.println("COMPARE...");
+				if(comparingPair.getDieValue()>currentPair.getDieValue())
+				{
+					System.out.println("Pair " + comparingPair +" is better than " + currentPair);
+					currentPair=comparingPair;
+				}
+			}
+			
+			System.out.println("Beste Player is: " + currentPair.toString());
+			
+			this.orderToPlay.add(currentPair.getPlayer());
+			this.pairs.remove(currentPair);
+			this.pairsSorted.add(currentPair);
+		}
+		
+		printOrderToPlay();
+	}
 	
+	//TODO Delete this:
+	private void printOrderToPlay()
+	{
+		System.out.println("Order to play:");
+
+		for(Pair cPair:this.pairsSorted)
+		{
+			System.out.println(cPair.toString());
+		}
+	}
 		
 	///////////////
 	//RUN ACTIONS//
@@ -79,6 +182,8 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//ACTION A//
 	////////////
 	
+	
+
 	@Override
 	public  boolean setInputA(Object inputA)
 	{
@@ -118,8 +223,10 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		{
 			int value=this.game.rollDie();
 			
-			Pair pair=new Pair(this.game.getCurrentPlayer(),value);
+			System.out.println("YOU ROLLED " + value);
 			
+			Pair pair=new Pair(this.game.getCurrentPlayer(),value);
+			this.pairs.add(pair);
 			return true;
 		}
 		else
@@ -219,6 +326,11 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		public IPlayer getPlayer()
 		{
 			return player;
+		}
+		
+		public String toString()
+		{
+			return "Pair [ " + this.player.getName() + " ] [ " + this.dieValue +" ]";
 		}
 	}
 	

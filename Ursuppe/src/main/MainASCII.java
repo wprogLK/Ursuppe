@@ -56,7 +56,13 @@ public class MainASCII {
 		 
 		 game.createNew();
 
-		 IPlayer player=game.createANewPlayer();						//TODO delete
+		 IPlayer player1=game.createANewPlayer();						//TODO delete
+		 IPlayer player2=game.createANewPlayer();						//TODO delete
+		 IPlayer player3=game.createANewPlayer();						//TODO delete
+		 
+		 player1.setName("P1");
+		 player2.setName("P2");
+		 player3.setName("P3");
 		// SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
 
 		 game.play();

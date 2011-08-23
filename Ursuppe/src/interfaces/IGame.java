@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JPanel;
@@ -96,6 +97,14 @@ public interface IGame
 	///////////
 	//PLAYERS//
 	///////////
+	/**
+	 * Override the human and AI players, <i> <u> NOT </u> </i> the Head and Tail player!
+	 * 
+	 * @return the current players,  <i> <u> WITHOUT </u> </i> the Head and Tail player
+	 */
+	public ArrayList<IPlayer> overrideAllNormalPlayers(ArrayList<IPlayer> players);
+	
+	
 	public void skipTailOrHeadPlayer();
 	
 	/**
