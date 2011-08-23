@@ -1,10 +1,12 @@
 package logics;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import enums.EPhases;
 import templates.PhaseTemplateLogic;
 import interfaces.IPhase;
+import interfaces.IPlayer;
 
 /**
  * 
@@ -18,12 +20,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//////////
 	//BASICS//
 	//////////
-
+	ArrayList<Pair> pairs=new ArrayList<Pair>();
+	ArrayList<IPlayer> orderToPlay=new ArrayList<IPlayer>();
+	
 	//////////
 	//INPUTS//
 	//////////
-	
-	protected ArrayList<Integer> rolledValue=new ArrayList<Integer>();
 
 		////////////
 		//...LOGIC//
@@ -44,13 +46,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	}
 	
 	@Override
-	public void doPreAction()
+	public final void doLogicPreAction()
 	{
-
 	}
 	
 	@Override
-	public final void doAfterAction()
+	public final void doLogicAfterAction()
 	{
 		if(!this.game.nextPlayer())
 		{
@@ -113,9 +114,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		}
 		
 		
-		if (!inputString.equals(""))
+		if (inputString.equals(this.rb.getString("instructionPhasePreparation1Roll")))
 		{
-			this.game.getPlayer(1).setName(this.doCastToString(inputA)); 
+			int value=this.game.rollDie();
+			
+			Pair pair=new Pair(this.game.getCurrentPlayer(),value);
+			
 			return true;
 		}
 		else
@@ -192,5 +196,30 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//GETTERS//
 	///////////
 	
+	
+	///////////////
+	//INNER CLASS//
+	///////////////
+	private class Pair
+	{
+		private IPlayer player;
+		private int dieValue;
+	
+		public Pair(IPlayer player, int value)
+		{
+			this.player=player;
+			this.dieValue=value;
+		}
+		
+		public int getDieValue()
+		{
+			return this.dieValue;
+		}
+		
+		public IPlayer getPlayer()
+		{
+			return player;
+		}
+	}
 	
 }

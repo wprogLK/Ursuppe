@@ -90,9 +90,14 @@ public interface IGame
 	
 	
 	public IDie getDie();
+	
+	public int rollDie();
+	
 	///////////
 	//PLAYERS//
 	///////////
+	public void skipTailOrHeadPlayer();
+	
 	/**
 	 * set the next player to the current player
 	 * 

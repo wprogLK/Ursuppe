@@ -314,7 +314,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.currentAction=EActions.ActionA;
 			
-			this.doPreAction();
+			this.doAllPreAction();
+			
 			this.update();
 			
 			if (!this.doNothing)
@@ -707,9 +708,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.isRunning=false;
 			this.currentAction=EActions.ActionAfterRunning;
-			this.doAfterAction();
-			
-			
+			this.doAllAfterAction();
 			
 			this.waitForRestart();
 		
@@ -717,7 +716,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.runPhase();	//"Restart phase and run it again";
 		}
-		
+
 		private void waitForRestart() 
 		{
 			if(!this.restartOn)
@@ -1077,7 +1076,31 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			return chosedColor;
 		}
 		
+		public void doLogicAfterAction() 
+		{
 	
+		}
+		
+		public void doLogicPreAction()
+		{
+			
+		}
+		
+		private final void doAllPreAction()
+		{
+			this.game.skipTailOrHeadPlayer();
+			
+			this.doLogicPreAction();
+			this.doPreAction();
+		}
+		
+		private final void doAllAfterAction()
+		{
+			this.doLogicAfterAction();
+			this.doAfterAction();
+		}
+		
+		
 		
 		///////////////////////////////
 		//SET AND CHECK ACTION INPUTS//

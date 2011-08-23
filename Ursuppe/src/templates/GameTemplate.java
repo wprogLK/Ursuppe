@@ -112,6 +112,40 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	//BASICS//
 	//////////
 	@Override
+	public final void skipTailOrHeadPlayer()
+	{
+		this.getCurrentPlayer();
+		
+		boolean isHead=this.currentPlayer.getType()==EPlayer.HeadPlayer;
+		boolean isTail=this.currentPlayer.getType()==EPlayer.TailPlayer;
+		
+		boolean validNextPlayer;
+		
+		if(isHead || isTail)
+		{
+			validNextPlayer=false;
+		}
+		else
+		{
+			validNextPlayer=true;
+		}
+		
+		
+		while (!validNextPlayer)
+		{
+			
+			//System.out.println("Try skip in while"); //TODO Delete
+			validNextPlayer=!this.nextPlayer();
+		}
+	}
+	
+	@Override 
+	public final int rollDie()
+	{
+		return this.die.roll();
+	}
+	
+	@Override
 	public final IDie getDie()
 	{
 		return this.die;
@@ -226,6 +260,8 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		
 		this.players.remove(this.currentPlayer);
 		this.players.add(indexToInsert, this.currentPlayer);
+		
+		this.getCurrentPlayer();
 		
 		return isCurrentPlayerHeadOrTail();
 	}
@@ -354,8 +390,15 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	///////////////////
 	//PRIVATE METHODS//
 	///////////////////
-	private boolean isCurrentPlayerHeadOrTail() {
-		if (this.currentPlayer.getType()==EPlayer.HeadPlayer)
+	private boolean isCurrentPlayerHeadOrTail() 
+	{
+		if(this.currentPlayer==null)
+		{
+			System.out.println("Current player was NULL");
+			return true;
+		}
+		
+		else if (this.currentPlayer.getType()==EPlayer.HeadPlayer)
 		{
 			return true;
 		}

@@ -55,18 +55,13 @@ public class MainASCII {
 		 game.setStartPhase(EPhases.phasePreparation1);
 		 
 		 game.createNew();
-		 
-		
 
-		 
-		
 		 IPlayer player=game.createANewPlayer();						//TODO delete
 		// SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
 
 		 game.play();
 		 
 		 
-			System.out.println(game.getCurrentPlayer().getName());
 		 try 
 		 {
 			game.join();
