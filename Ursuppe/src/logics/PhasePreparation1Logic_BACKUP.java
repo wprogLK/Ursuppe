@@ -15,7 +15,7 @@ import interfaces.IPlayer;
  * 
  * @see IPhase
  */
-public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
+public abstract class PhasePreparation1Logic_BACKUP extends PhaseTemplateLogic
 {
 	//////////
 	//BASICS//
@@ -254,45 +254,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		
 		}
 		
-		return this.removeTriplesWithSameValue(sortedTriples);
-	}
-	
 		
-	private ArrayList<Triple> removeTriplesWithSameValue(ArrayList<Triple> sortedTriples) 
-	{
-		ArrayList<Triple> sortedTriplesToRemove=new ArrayList<Triple>();
-		
-		ArrayList<IPlayer> playersToRemove=new ArrayList<IPlayer>();
-		
-		for(ArrayListPlayAgain<IPlayer> list:this.listPlayAgain)
-		{
-			for(IPlayer currentPlayer:list)
-			{
-				playersToRemove.add(currentPlayer);
-			}
-		}
-		
-		
-		//calc part:
-		
-		for(Triple triple:sortedTriples)
-		{
-			IPlayer currentPlayer=triple.getPlayer();
-			if(playersToRemove.contains(currentPlayer))
-			{
-				sortedTriplesToRemove.add(triple);
-			}
-		}
-		
-		//remove part:
-		for(Triple triple:sortedTriplesToRemove)
-		{
-			sortedTriples.remove(triple);
-		}
 		
 		return sortedTriples;
 	}
-
+	
+		
 	///////////////
 	//RUN ACTIONS//
 	///////////////
