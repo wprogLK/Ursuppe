@@ -35,21 +35,23 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 	@Override
 	public void doPreActionA()
 	{
-		this.outStream.println("What is your name?");
+		
 		
 	}
 	
 	@Override
 	public void actionAInput()
 	{
-		String name=UserInput.readInput("Please, enter your name: ");
-		this.setInputA(name);
+		String instruction=UserInput.readInput(this.rb.getString("preparation1Instruction"));
+		this.setInputA(instruction);
 	}
 	
 	@Override
 	public void doAfterActionA()
 	{
-		this.outStream.println("Thank you for your name");
+		int rolledValue=this.game.getDie().getValue();
+		
+		this.outStream.println(this.game.getCurrentPlayer().getName() + " " + this.rb.getString("preparation1Rolled") + " " + rolledValue);
 	}
 	
 	////////////

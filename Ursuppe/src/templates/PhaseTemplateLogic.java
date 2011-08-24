@@ -1088,7 +1088,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 		private final void doAllPreAction()
 		{
-			this.game.skipTailOrHeadPlayer();
+			this.game.skipTailOrHeadPlayer(); //TODO Maybe delete this? And do it in each logic separately
 			
 			this.doLogicPreAction();
 			this.doPreAction();

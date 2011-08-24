@@ -2,6 +2,12 @@ package logics;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Stack;
+
+
+
+import annotations.OnlyForTesting;
 
 import enums.EPhases;
 import templates.PhaseTemplateLogic;
@@ -20,17 +26,15 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//////////
 	//BASICS//
 	//////////
+	private Stack<ValueSet> rollStack=new Stack<ValueSet>();
 	
-	private ArrayList<Triple> triples=new ArrayList<Triple>();
-	private ArrayList<IPlayer> playerOrderToPlay=new ArrayList<IPlayer>();
-	private ArrayList<Triple> triplesOrderToPlay=new ArrayList<Triple>();
-	private ArrayList<Triple> triplesToPlayAgain=new ArrayList<Triple>();
+	private ArrayList<Triple> orderToPlay=new ArrayList<Triple>();
 	
-	private ArrayList<IPlayer> originalPlayersOrder=new ArrayList<IPlayer>();
+	private ArrayList<Triple> thisRoundTriples =new ArrayList<Triple>();
 	
-	private ArrayList<ArrayListPlayAgain<IPlayer>> listPlayAgain=new ArrayList<ArrayListPlayAgain<IPlayer>>();
+	private boolean validOrderToPlay=false;
 	
-	private boolean rolledSameValue=false;
+	private ArrayList<ValueSet<IPlayer>> listPlayAgain=new ArrayList<ValueSet<IPlayer>>();
 	//////////
 	//INPUTS//
 	//////////
@@ -56,74 +60,185 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	@Override
 	public final void doLogicPreAction()
 	{
+	
 	}
 	
 	@Override
 	public final void doLogicAfterAction()
 	{
-		if(!this.game.nextPlayer())	//if round is NOT over...
+		boolean invalidNextPlayer=this.game.nextPlayer();
+		
+		if(!invalidNextPlayer)
 		{
+			System.out.println("::::turn on restart: because there is another player");
+			
 			this.turnOnRestart();
-			System.out.println("CURRENT PLAYER IS: " + this.game.getCurrentPlayer().getName());
-			System.out.println("RESTART ON");
 		}
-		else						//if round is over...
+		else
 		{
-			this.turnOffRestart();
-			this.triplesOrderToPlay=  this.sortTriples(this.triples);
-			System.out.println("RESTART OFF");
+			this.editOrderToPlay();
 			
-			this.printTripleOrderToPlay();
-			
-			this.preparePlayerToPlayAgain();
+			if(!this.validOrderToPlay)
+			{
+//				this.startReRoll();
+			}
+			else
+			{
+				System.out.println("::::turn off restart: because order to play is valid");
+				this.turnOffRestart();
+			}
 		
 		}
-		
-	
+
 	
 	}
 	
-	private void preparePlayerToPlayAgain() 
+ 
+	
+	
+
+	///////////////
+	//RUN ACTIONS//
+	///////////////
+
+	
+
+	////////////
+	//ACTION A//
+	////////////
+	
+	
+
+
+
+	
+
+	private void editOrderToPlay() 
 	{
-		if(!this.triplesToPlayAgain.isEmpty())
+		ArrayList<Triple> sortedTriples=this.sort(this.thisRoundTriples);
+		
+		for(Triple t:sortedTriples)
 		{
-			ArrayList<IPlayer> playersToPlayAgain=new ArrayList<IPlayer>();
+			System.out.println(t.toString());
+		}
+		
+		System.out.println("ListPlayAgain:");
+		System.out.println("Size: " + this.listPlayAgain.size());
+		
+		for(Triple t:sortedTriples)
+		{
+			System.out.println(t.toString());
+		}
+		
+		this.setPrevAndNextOfTriples(sortedTriples);
+		
+		System.out.println("AFTER SET PRE AND NEXT");
+		for(Triple t:sortedTriples)
+		{
+			System.out.println(t.toString());
+		}
+		
+		sortedTriples=this.checkForSameValues(sortedTriples);
+		
+		System.out.println("AFTER PLACEHOLDERS");
+		for(Triple t:sortedTriples)
+		{
+			System.out.println(t.toString());
+		}
+	}
+
+	private ArrayList<Triple> checkForSameValues(ArrayList<Triple> sortedTriples) 
+	{
+		ArrayList<Triple> sortedTriplesCopy=(ArrayList<Triple>) sortedTriples.clone();
+		ArrayList<Triple> newSortedTriples=new ArrayList<Triple>();
+		
+		while(!sortedTriplesCopy.isEmpty())
+		{
+			Triple currentTriple=sortedTriplesCopy.remove(0);
 			
-			for(Triple triple:this.triplesToPlayAgain)
+			ArrayList<Triple> triplesToRemove=new ArrayList<Triple>();
+			
+			int counter=0;
+			boolean compare=true;
+			
+			while(compare && !sortedTriplesCopy.isEmpty())
 			{
+				Triple compareTriple=sortedTriplesCopy.get(counter);
 				
+				if(compareTriple.getComapareValue()==currentTriple.getComapareValue())
+				{
+					System.out.println("FOUND TRIPLES WITH SAME VALUE: COMPARE" + compareTriple.toString() +  "  AND  CURRENT " + currentTriple.toString());
+					
+					triplesToRemove.add(compareTriple);
+					triplesToRemove.add(currentTriple);
+				}
+				else
+				{
+					compare=false;
+				}
+				
+				counter++;
 			}
-		}
-	}
-
-	private void printTripleOrderToPlay() 
-	{
-		System.out.println("triples READY to play:");
-		
-		for(Triple triple:this.triplesOrderToPlay)
-		{
-			System.out.println(triple.toString());
-		}
-		
-		System.out.println("triples NOT READY to play:");
-		
-		System.out.println("listPlayAgain is empty? " + this.listPlayAgain.isEmpty());
-		
-		for(ArrayListPlayAgain<IPlayer> currentList:this.listPlayAgain)
-		{
-			System.out.println("DIE VALUE " + currentList.getDieValue() + "  COMPARE VALUE " + currentList.getCompareValue());
 			
-			for(IPlayer player:currentList)
+			if(!triplesToRemove.isEmpty())
 			{
-				System.out.println("Player: " + player.getName());
+				Triple firstTriple=triplesToRemove.get(0);
+				
+				Triple lastTriple=triplesToRemove.get(triplesToRemove.size()-1);
+				
+				Triple placeHolderTriple=new Triple(firstTriple,lastTriple);	//TODO CHECK THIS!
+				
+				newSortedTriples.add(placeHolderTriple);
 			}
+			else
+			{
+				newSortedTriples.add(currentTriple);
+			}
+			
 		}
 		
-			
+		
+		
+		return newSortedTriples;
 	}
 
-	
-	private ArrayList<Triple> sortTriples(ArrayList<Triple> unsortedTriples)
+	private void setPrevAndNextOfTriples(ArrayList<Triple> sortedTriples) 
+	{
+		int index=0;
+		
+		//First one
+		Triple firstTriple=sortedTriples.get(0);
+		Triple secondTriple=sortedTriples.get(1);
+		
+		System.out.println("FIRST TRIPLE IS: " + firstTriple.getPlayer().getName());
+		System.out.println("SECOND TRIPLE IS: " + secondTriple.getPlayer().getName());
+		
+		firstTriple.setPrev(null);
+		firstTriple.setNext(secondTriple);
+		
+		//Middles
+		for(index=1;index<sortedTriples.size()-1;index++)
+		{
+			Triple prevTriple=sortedTriples.get(index-1);
+			Triple currentTriple=sortedTriples.get(index);
+			Triple nextTriple=sortedTriples.get(index+1);
+			
+			currentTriple.setPrev(prevTriple);
+			currentTriple.setNext(nextTriple);
+			
+		}
+		
+		//Last one
+		
+		Triple secondLastTriple=sortedTriples.get(index-1);
+		Triple lastTriple=sortedTriples.get(index);
+		
+		lastTriple.setPrev(secondLastTriple);
+		lastTriple.setNext(null);
+		
+	}
+
+	private ArrayList<Triple> sort(ArrayList<Triple> unsortedTriples) 
 	{
 		ArrayList<Triple> sortedTriples=new ArrayList<Triple>();
 		
@@ -138,172 +253,120 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				System.out.println("COMPARE...");
 				
 				//checking if there is a better triple than the current one...
-				
+			
 				if(comparingTriple.getComapareValue()>currentTriple.getComapareValue())
 				{
 					System.out.println("Triple " + comparingTriple +" is better than " + currentTriple);
 					currentTriple=comparingTriple;
 				}
-				
-				//checking if there is a triple with the same value...
-				else if(comparingTriple.getComapareValue()==currentTriple.getComapareValue())
-				{
-					if(!comparingTriple.equals(currentTriple))
-					{
-						System.out.println("Triple " + comparingTriple +" is equal to " + currentTriple +"!");
-
-						//check if listPlayAgain is not empty
-						ArrayListPlayAgain<IPlayer> arrayListRollAgain;
-						
-						if(this.listPlayAgain.isEmpty())	//if empty, create a new ArrayListPlayAgain
-						{
-							System.out.println("listPlayAgain WAS EMPTY => create a new item");
-							arrayListRollAgain=new ArrayListPlayAgain<IPlayer>(currentTriple.getDieValue(),currentTriple.getComapareValue());
-							
-							this.listPlayAgain.add(arrayListRollAgain);
-							
-							//add players:
-							System.out.println("ADD PLAYERS (A): TO THE ITEM:");
-							IPlayer currentPlayer=currentTriple.getPlayer();
-							IPlayer comparePlayer=comparingTriple.getPlayer();
-							
-							if(!arrayListRollAgain.contains(currentPlayer))
-							{
-								arrayListRollAgain.add(currentPlayer);
-							}
-							if(!arrayListRollAgain.contains(comparePlayer))
-							{
-								arrayListRollAgain.add(comparePlayer);
-							}
-						}
-						
-						else								//check if a arrayList in listPlayAgain already exists with the values
-						{
-							System.out.println("listPlayAgain WAS NOT EMPTY");
-							
-							//check if a same ArrayListPlayAgain with the correct values already exists
-							boolean alreadyExist=false;
-							
-							for(ArrayListPlayAgain<IPlayer> arrayListPlayAgainToCheck:this.listPlayAgain)
-							{
-								boolean sameCompareValue=arrayListPlayAgainToCheck.getCompareValue()==currentTriple.getComapareValue();
-								boolean sameDieValue=arrayListPlayAgainToCheck.getDieValue()==currentTriple.getDieValue();
-								
-								if(sameCompareValue && sameDieValue)
-								{
-									System.out.println("found a item with the same values...");
-									
-									alreadyExist=true;
-									arrayListRollAgain=arrayListPlayAgainToCheck;
-									
-									//add players:
-									System.out.println("ADD PLAYERS (B): TO THE ITEM:");
-									IPlayer currentPlayer=currentTriple.getPlayer();
-									IPlayer comparePlayer=comparingTriple.getPlayer();
-									
-									if(!arrayListRollAgain.contains(currentPlayer))
-									{
-										arrayListRollAgain.add(currentPlayer);
-									}
-									if(!arrayListRollAgain.contains(comparePlayer))
-									{
-										arrayListRollAgain.add(comparePlayer);
-									}
-								}
-								
-							}
-							
-							
-							//if a same ArrayListPlayAgain not exist...
-							
-							if(!alreadyExist)
-							{
-								System.out.println("found NOT a item with the same values...create a new one");
-								arrayListRollAgain=new ArrayListPlayAgain<IPlayer>(currentTriple.getDieValue(),currentTriple.getComapareValue());
-								
-								this.listPlayAgain.add(arrayListRollAgain);
-								
-								
-								//add players:
-								System.out.println("ADD PLAYERS (C): TO THE ITEM:");
-								IPlayer currentPlayer=currentTriple.getPlayer();
-								IPlayer comparePlayer=comparingTriple.getPlayer();
-								
-								if(!arrayListRollAgain.contains(currentPlayer))
-								{
-									arrayListRollAgain.add(currentPlayer);
-								}
-								if(!arrayListRollAgain.contains(comparePlayer))
-								{
-									arrayListRollAgain.add(comparePlayer);
-								}
-							}
-							
-						}
-						
-						
-						//TODO MORE! (skip tail and head, override players) 
-					}
-				}
+			
 			}
 			
 			System.out.println("Beste Player is: " + currentTriple.toString());
 			
-			unsortedTriples.remove(currentTriple);
-			sortedTriples.add(currentTriple);
+			
+				unsortedTriples.remove(currentTriple);
+				sortedTriples.add(currentTriple);
+		
+			
 		
 		}
 		
-		return this.removeTriplesWithSameValue(sortedTriples);
-	}
-	
 		
-	private ArrayList<Triple> removeTriplesWithSameValue(ArrayList<Triple> sortedTriples) 
-	{
-		ArrayList<Triple> sortedTriplesToRemove=new ArrayList<Triple>();
-		
-		ArrayList<IPlayer> playersToRemove=new ArrayList<IPlayer>();
-		
-		for(ArrayListPlayAgain<IPlayer> list:this.listPlayAgain)
-		{
-			for(IPlayer currentPlayer:list)
-			{
-				playersToRemove.add(currentPlayer);
-			}
-		}
-		
-		
-		//calc part:
-		
-		for(Triple triple:sortedTriples)
-		{
-			IPlayer currentPlayer=triple.getPlayer();
-			if(playersToRemove.contains(currentPlayer))
-			{
-				sortedTriplesToRemove.add(triple);
-			}
-		}
-		
-		//remove part:
-		for(Triple triple:sortedTriplesToRemove)
-		{
-			sortedTriples.remove(triple);
-		}
 		
 		return sortedTriples;
+	
+		
 	}
 
-	///////////////
-	//RUN ACTIONS//
-	///////////////
 
-	
 
-	////////////
-	//ACTION A//
-	////////////
+	private boolean existValueSet(Triple currentTriple, Triple comparingTriple) {
+		ValueSet<IPlayer> arrayListRollAgain;
+		boolean alreadyExist=false;
+		
+		for(ValueSet<IPlayer> arrayListPlayAgainToCheck:this.listPlayAgain)
+		{
+			boolean sameCompareValue=arrayListPlayAgainToCheck.getCompareValue()==currentTriple.getComapareValue();
+			boolean sameDieValue=arrayListPlayAgainToCheck.getDieValue()==currentTriple.getDieValue();
+			
+			if(sameCompareValue && sameDieValue)
+			{
+				System.out.println("found a item with the same values...");
+				
+				alreadyExist=true;
+				arrayListRollAgain=arrayListPlayAgainToCheck;
+				
+				//add players:
+				System.out.println("ADD PLAYERS (B): TO THE ITEM:");
+				IPlayer currentPlayer=currentTriple.getPlayer();
+				IPlayer comparePlayer=comparingTriple.getPlayer();
+				
+				if(!arrayListRollAgain.contains(currentPlayer))
+				{
+					arrayListRollAgain.add(currentPlayer);
+				}
+				if(!arrayListRollAgain.contains(comparePlayer))
+				{
+					arrayListRollAgain.add(comparePlayer);
+				}
+			}
+			
+		}
+		return alreadyExist;
+	}
 	
-	
+	private boolean existValueSet(Triple triple)
+	{
+		ValueSet<IPlayer> arrayListRollAgain;
+		boolean alreadyExist=false;
+		
+		for(ValueSet<IPlayer> arrayListPlayAgainToCheck:this.listPlayAgain)
+		{
+			boolean sameCompareValue=arrayListPlayAgainToCheck.getCompareValue()==triple.getComapareValue();
+			boolean sameDieValue=arrayListPlayAgainToCheck.getDieValue()==triple.getDieValue();
+			
+			if(sameCompareValue && sameDieValue)
+			{
+				System.out.println("found a item with the same values...");
+				
+				alreadyExist=true;
+				arrayListRollAgain=arrayListPlayAgainToCheck;
+				
+				//add players:
+				System.out.println("ADD PLAYERS (B): TO THE ITEM:");
+				IPlayer currentPlayer=triple.getPlayer();
+				IPlayer comparePlayer=triple.getPlayer();
+				
+				if(!arrayListRollAgain.contains(currentPlayer))
+				{
+					arrayListRollAgain.add(currentPlayer);
+				}
+				if(!arrayListRollAgain.contains(comparePlayer))
+				{
+					arrayListRollAgain.add(comparePlayer);
+				}
+			}
+			
+		}
+		return alreadyExist;
+	}
+
+	private Triple editSameTriples(Triple comparingTriple, Triple currentTriple) 
+	{
+		
+		//TODO: CHECK THIS!
+		
+		Triple placeHolder=new Triple(comparingTriple,currentTriple);
+		
+		currentTriple.setPrev(placeHolder);
+		currentTriple.setNext(comparingTriple);
+		
+		comparingTriple.setPrev(currentTriple);
+		comparingTriple.setNext(null);
+		
+		return placeHolder;
+	}
 
 	@Override
 	public  boolean setInputA(Object inputA)
@@ -347,7 +410,8 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			System.out.println("YOU ROLLED " + value);
 			
 			Triple triple=new Triple(this.game.getCurrentPlayer(),value);
-			this.triples.add(triple);
+			this.thisRoundTriples.add(triple);
+			
 			return true;
 		}
 		else
@@ -430,9 +494,25 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	/////////////////
 	private class Triple
 	{
+		private Triple nextTriple;
+		private Triple prevTriple;
+		
+		private Triple nextInTriple;
+		private Triple prevInTriple;
+		
 		private IPlayer player;
 		private int dieValue;
 		private int compareValue;
+		
+		private boolean isPlaceHolder=false;
+		
+		public Triple(Triple prevIn, Triple nextIn)
+		{
+			this.isPlaceHolder=true;
+			
+			this.setNextIn(nextIn);
+			this.setPrevIn(prevIn);
+		}
 		
 		public Triple(IPlayer player, int value)
 		{
@@ -458,24 +538,110 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		
 		public String toString()
 		{
-			return "Pair [ " + this.player.getName() + " ] [ die value: " + this.dieValue +" ] [ compare value: " + this.compareValue +" ]";
+			String str="";
+			
+			if(this.isPlaceHolder)
+			{
+				return "Pair (PLACEHOLDER) ";
+			}
+			else
+			{
+				String prev="";
+				String next="";
+				
+				if(this.prevTriple==null)
+				{
+					prev="null";
+				}
+				else
+				{
+					prev=this.prevTriple.getPlayer().getName();
+				}
+				
+				if(this.nextTriple==null)
+				{
+					next="null";
+				}
+				else
+				{
+					next=this.nextTriple.getPlayer().getName();
+				}
+				
+				return "Pair [ " + this.player.getName() + " ] [ die value: " + this.dieValue +" ] [ compare value: " + this.compareValue +" ] [ is placeHolder " + this.isPlaceHolder + " ] [ PREV: " + prev + " ] [ NEXT: " + next + " ]" ;
+
+			}
+			
+		}
+		
+		public void setNext(Triple nextTriple)
+		{
+			this.nextTriple=nextTriple;
+		}
+		
+
+		public void setPrev(Triple prevTriple)
+		{
+			this.prevTriple=prevTriple;
+		}
+		
+		public Triple getNext()
+		{
+			return this.nextTriple;
+		}
+		
+		public Triple getPrev()
+		{
+			return this.prevTriple;
+		}
+		
+		public void setNextIn(Triple nextTriple)
+		{
+			this.nextInTriple=nextTriple;
+		}
+		
+
+		public void setPrevIn(Triple prevTriple)
+		{
+			this.prevInTriple=prevTriple;
+		}
+		
+		public Triple getNextIn()
+		{
+			return this.nextInTriple;
+		}
+		
+		public Triple getPrevIn()
+		{
+			return this.prevInTriple;
+		}
+		
+		public boolean isPlaceHolder()
+		{
+			return this.isPlaceHolder;
 		}
 	}
 	
-	private class ArrayListPlayAgain<T> extends ArrayList<T>
+	private class ValueSet<T> extends ArrayList<T>
 	{
-		private int dieValue;
+		private int roundNumber=0;
+		private int dieValue=0;
 		private int compareValue;
 		
-		public ArrayListPlayAgain(int dieValue, int compareValue)
+		public ValueSet(int roundNumber, int dieValue)
 		{
-			this.compareValue=compareValue;
 			this.dieValue=dieValue;
+			this.compareValue=dieValue;
+			this.roundNumber=roundNumber;
+		}
+		
+		public int getRoundNumber()
+		{
+			return this.roundNumber;
 		}
 		
 		public int getDieValue()
 		{
-			return dieValue;
+			return this.dieValue;
 		}
 		
 		public int getCompareValue()
@@ -483,6 +649,11 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			return compareValue;
 		}
 		
+		
+		
+
 	}
 	
+	
+
 }
