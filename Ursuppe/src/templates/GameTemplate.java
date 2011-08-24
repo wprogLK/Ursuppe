@@ -111,6 +111,37 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	//////////
 	//BASICS//
 	//////////
+	
+	@Override
+	public ArrayList<IPlayer> overrideAllNormalPlayers(ArrayList<IPlayer> players)
+	{
+		//TODO Test this!
+		
+		ArrayList<IPlayer> outPlayers=new ArrayList<IPlayer>();
+		
+		//CREATE OUTPUT
+		for(IPlayer player:this.players)
+		{
+			boolean isPlayerHead=(player.getType()==EPlayer.HeadPlayer);
+			boolean isPlayerTail=(player.getType()==EPlayer.TailPlayer);
+			
+			if(!(isPlayerHead || isPlayerTail)) //if player isn't head or tail
+			{
+				outPlayers.add(player);
+				this.players.remove(player);
+			}
+		}
+		
+		//"CREATE" INPUT
+		for(IPlayer player:players)
+		{
+			int secondLastIndex=this.players.size()-2;
+			this.players.add(secondLastIndex, player);
+		}
+		
+		return outPlayers;
+	}
+	
 	@Override
 	public final void skipTailOrHeadPlayer()
 	{
