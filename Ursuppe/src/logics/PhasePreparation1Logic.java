@@ -143,7 +143,58 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		System.out.println("AFTER PLACEHOLDERS");
 		for(Triple t:sortedTriples)
 		{
-			System.out.println(t.toString());
+			if(t.isPlaceHolder)
+			{
+				String str="";
+				
+				String prev="";
+				String prevIn="";
+				String next="";
+				String nextIn="";
+				
+				if(t.getPrev()==null)
+				{
+					prev="prev NULL";
+				}
+				else
+				{
+					prev="Prev "+t.getPrev().getPlayer().getName();
+				}
+				
+				if(t.getPrevIn().getPlayer()==null)
+				{
+					prevIn="prevIn NULL";
+				}
+				else
+				{
+					prevIn="PrevIn" + t.getPrevIn().getPlayer().getName();
+				}
+				
+				if(t.getNext()==null)
+				{
+					next="next NULL";
+				}
+				else
+				{
+					next="Next " +t.getNext().getPlayer().getName();
+				}
+				
+				if(t.getNextIn()==null)
+				{
+					nextIn="nextIn NULL";
+				}
+				else
+				{
+					nextIn="NextIn "+t.getNextIn().getPlayer().getName();
+				}
+				
+				System.out.println("placeHolder: ["+prev +"] [  " + prevIn + "] [ " + next+ " ] [ " + nextIn+"]");
+			}
+			else
+			{
+				System.out.println(t.toString());
+			}
+			
 		}
 	}
 
@@ -169,26 +220,46 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				{
 					System.out.println("FOUND TRIPLES WITH SAME VALUE: COMPARE" + compareTriple.toString() +  "  AND  CURRENT " + currentTriple.toString());
 					
-					triplesToRemove.add(compareTriple);
 					triplesToRemove.add(currentTriple);
+					triplesToRemove.add(compareTriple);
+					
 				}
 				else
 				{
 					compare=false;
 				}
 				
+				
 				counter++;
+				
+				if(counter>=sortedTriplesCopy.size())
+				{
+					compare=false;
+				}
 			}
 			
 			if(!triplesToRemove.isEmpty())
 			{
 				Triple firstTriple=triplesToRemove.get(0);
 				
+				System.out.println(":::::::::::::::::::::TRIPLES TO REMOVE:::::::::::::::::::::: ");
+				
+				for(Triple t:triplesToRemove)
+				{
+					System.out.println(t);
+				}
+				
 				Triple lastTriple=triplesToRemove.get(triplesToRemove.size()-1);
 				
-				Triple placeHolderTriple=new Triple(firstTriple,lastTriple);	//TODO CHECK THIS!
+				Triple placeHolderTriple=editSameTriples(firstTriple,lastTriple);//new Triple(firstTriple,lastTriple);	//TODO CHECK THIS!
 				
 				newSortedTriples.add(placeHolderTriple);
+				
+				for(Triple triple:triplesToRemove)
+				{
+					sortedTriplesCopy.remove(triple);
+				}
+				
 			}
 			else
 			{
@@ -359,11 +430,23 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		
 		Triple placeHolder=new Triple(comparingTriple,currentTriple);
 		
-		currentTriple.setPrev(placeHolder);
-		currentTriple.setNext(comparingTriple);
+		placeHolder.setPrev(comparingTriple.getPrev());
+		placeHolder.setNext(currentTriple.getNext());
 		
-		comparingTriple.setPrev(currentTriple);
-		comparingTriple.setNext(null);
+		System.out.println("FIRST: " + comparingTriple.getPlayer().getName());
+		System.out.println("LAST: " + currentTriple.getPlayer().getName());
+		
+		System.out.println("FIRST Next: " + comparingTriple.getNext());
+		System.out.println("FIRST Prev: " + comparingTriple.getPrev());
+		
+		System.out.println("LAST Next: " + currentTriple.getNext());
+		System.out.println("LAST Prev: " + currentTriple.getPrev());
+		
+		//currentTriple.setPrev(placeHolder);
+		//currentTriple.setNext(comparingTriple);
+		
+		//comparingTriple.setPrev(currentTriple);
+		//comparingTriple.setNext(null);
 		
 		return placeHolder;
 	}
@@ -506,12 +589,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		
 		private boolean isPlaceHolder=false;
 		
-		public Triple(Triple prevIn, Triple nextIn)
+		public Triple(Triple first, Triple last)
 		{
 			this.isPlaceHolder=true;
 			
-			this.setNextIn(nextIn);
-			this.setPrevIn(prevIn);
+			this.setNextIn(last);
+			this.setPrevIn(first);
 		}
 		
 		public Triple(IPlayer player, int value)
@@ -542,7 +625,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			
 			if(this.isPlaceHolder)
 			{
-				return "Pair (PLACEHOLDER) ";
+				
+				str="Pair (PLACEHOLDER) :";
+				
+				str+="PREV IN: " + this.prevInTriple +"  NEXT IN: "+ this.nextInTriple;
+				
+				return str;
 			}
 			else
 			{
@@ -555,7 +643,15 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				}
 				else
 				{
-					prev=this.prevTriple.getPlayer().getName();
+					if(this.prevTriple.getPlayer()!=null)
+					{
+						prev=this.prevTriple.getPlayer().getName();
+					}
+					else
+					{
+						prev="No name";
+					}
+					
 				}
 				
 				if(this.nextTriple==null)
@@ -564,7 +660,16 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				}
 				else
 				{
-					next=this.nextTriple.getPlayer().getName();
+					if(this.nextTriple.getPlayer()!=null)
+					{
+						next=this.nextTriple.getPlayer().getName();
+					}
+					else
+					{
+						prev="No name";
+					}
+					
+					
 				}
 				
 				return "Pair [ " + this.player.getName() + " ] [ die value: " + this.dieValue +" ] [ compare value: " + this.compareValue +" ] [ is placeHolder " + this.isPlaceHolder + " ] [ PREV: " + prev + " ] [ NEXT: " + next + " ]" ;
