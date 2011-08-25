@@ -21,7 +21,7 @@ import interfaces.IPlayer;
  * 
  * @see IPhase
  */
-public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
+public abstract class PhasePreparation1LogicBACKUP_V4 extends PhaseTemplateLogic
 {
 	//////////
 	//BASICS//
@@ -143,14 +143,58 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		System.out.println("AFTER PLACEHOLDERS");
 		for(Triple t:sortedTriples)
 		{
-			System.out.println(t.toString());
-		}
-		
-		this.setPrevAndNextOfTriples(sortedTriples);
-		System.out.println("AFTER SET PRE AND NEXT WITH PLACEHOLDERS");
-		for(Triple t:sortedTriples)
-		{
-			System.out.println(t.toString());
+			if(t.isPlaceHolder)
+			{
+				String str="";
+				
+				String prev="";
+				String prevIn="";
+				String next="";
+				String nextIn="";
+				
+				if(t.getPrev()==null)
+				{
+					prev="prev NULL";
+				}
+				else
+				{
+					prev="Prev "+t.getPrev().getPlayer().getName();
+				}
+				
+				if(t.getPrevIn().getPlayer()==null)
+				{
+					prevIn="prevIn NULL";
+				}
+				else
+				{
+					prevIn="PrevIn" + t.getPrevIn().getPlayer().getName();
+				}
+				
+				if(t.getNext()==null)
+				{
+					next="next NULL";
+				}
+				else
+				{
+					next="Next " +t.getNext().getPlayer().getName();
+				}
+				
+				if(t.getNextIn()==null)
+				{
+					nextIn="nextIn NULL";
+				}
+				else
+				{
+					nextIn="NextIn "+t.getNextIn().getPlayer().getName();
+				}
+				
+				System.out.println("placeHolder: ["+prev +"] [  " + prevIn + "] [ " + next+ " ] [ " + nextIn+"]");
+			}
+			else
+			{
+				System.out.println(t.toString());
+			}
+			
 		}
 	}
 
@@ -237,8 +281,8 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		Triple firstTriple=sortedTriples.get(0);
 		Triple secondTriple=sortedTriples.get(1);
 		
-		//System.out.println("FIRST TRIPLE IS: " + firstTriple.getPlayer().getName());
-		//System.out.println("SECOND TRIPLE IS: " + secondTriple.getPlayer().getName());
+		System.out.println("FIRST TRIPLE IS: " + firstTriple.getPlayer().getName());
+		System.out.println("SECOND TRIPLE IS: " + secondTriple.getPlayer().getName());
 		
 		firstTriple.setPrev(null);
 		firstTriple.setNext(secondTriple);
@@ -379,11 +423,32 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		return alreadyExist;
 	}
 
-	private Triple editSameTriples(Triple firstTriple, Triple lastTriple) 
+	private Triple editSameTriples(Triple comparingTriple, Triple currentTriple) 
 	{
-		PlaceHolderTriple placeHolderTriple=new PlaceHolderTriple(firstTriple,lastTriple);
 		
-		return placeHolderTriple;
+		//TODO: CHECK THIS!
+		
+		Triple placeHolder=new Triple(comparingTriple,currentTriple);
+		
+		placeHolder.setPrev(comparingTriple.getPrev());
+		placeHolder.setNext(currentTriple.getNext());
+		
+		System.out.println("FIRST: " + comparingTriple.getPlayer().getName());
+		System.out.println("LAST: " + currentTriple.getPlayer().getName());
+		
+		System.out.println("FIRST Next: " + comparingTriple.getNext());
+		System.out.println("FIRST Prev: " + comparingTriple.getPrev());
+		
+		System.out.println("LAST Next: " + currentTriple.getNext());
+		System.out.println("LAST Prev: " + currentTriple.getPrev());
+		
+		//currentTriple.setPrev(placeHolder);
+		//currentTriple.setNext(comparingTriple);
+		
+		//comparingTriple.setPrev(currentTriple);
+		//comparingTriple.setNext(null);
+		
+		return placeHolder;
 	}
 
 	@Override
@@ -510,41 +575,33 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	/////////////////
 	//INNER CLASSES//
 	/////////////////
-	private static class Triple
+	private class Triple
 	{
 		private Triple nextTriple;
 		private Triple prevTriple;
+		
+		private Triple nextInTriple;
+		private Triple prevInTriple;
 		
 		private IPlayer player;
 		private int dieValue;
 		private int compareValue;
 		
-		private String type="Triple";
-		private static int counter=0;
-		protected int number=0;
+		private boolean isPlaceHolder=false;
 		
-		
-		public Triple(String type)
+		public Triple(Triple first, Triple last)
 		{
-			this.type=type;
+			this.isPlaceHolder=true;
 			
-			counter++;
-			number=counter;
+			this.setNextIn(last);
+			this.setPrevIn(first);
 		}
 		
 		public Triple(IPlayer player, int value)
 		{
-			counter++;
-			number=counter;
-			
 			this.player=player;
 			this.dieValue=value;
 			this.compareValue=value;
-		}
-		
-		public String getType()
-		{
-			return this.type;
 		}
 		
 		public int getDieValue()
@@ -566,55 +623,58 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		{
 			String str="";
 			
-			String prev="";
-			String next="";
-
-			if(this.prevTriple==null)
+			if(this.isPlaceHolder)
 			{
-				prev="null";
-			}
-			else if(this.prevTriple instanceof PlaceHolderTriple)
-			{
-				prev=this.prevTriple.toString();
+				
+				str="Pair (PLACEHOLDER) :";
+				
+				str+="PREV IN: " + this.prevInTriple +"  NEXT IN: "+ this.nextInTriple;
+				
+				return str;
 			}
 			else
 			{
-				if(this.prevTriple.getPlayer()!=null)
+				String prev="";
+				String next="";
+				
+				if(this.prevTriple==null)
 				{
-					prev=this.prevTriple.getPlayer().getName();
+					prev="null";
 				}
 				else
 				{
-					prev="No name";
+					if(this.prevTriple.getPlayer()!=null)
+					{
+						prev=this.prevTriple.getPlayer().getName();
+					}
+					else
+					{
+						prev="No name";
+					}
+					
 				}
-
-			}
-
-			if(this.nextTriple==null)
-			{
-				next="null";
-			}
-			else if(this.nextTriple instanceof PlaceHolderTriple)
-			{
-				next=this.nextTriple.toString();
-			}
-			else
-			{
-				if(this.nextTriple.getPlayer()!=null)
+				
+				if(this.nextTriple==null)
 				{
-					next=this.nextTriple.getPlayer().getName();
+					next="null";
 				}
 				else
 				{
-					prev="No name";
+					if(this.nextTriple.getPlayer()!=null)
+					{
+						next=this.nextTriple.getPlayer().getName();
+					}
+					else
+					{
+						prev="No name";
+					}
+					
+					
 				}
-
+				
+				return "Pair [ " + this.player.getName() + " ] [ die value: " + this.dieValue +" ] [ compare value: " + this.compareValue +" ] [ is placeHolder " + this.isPlaceHolder + " ] [ PREV: " + prev + " ] [ NEXT: " + next + " ]" ;
 
 			}
-
-			return "Pair (Nr " + this.number +" )[ " + this.player.getName() + " ] [ die value: " + this.dieValue +" ] [ compare value: " + this.compareValue +" ] [ PREV: " + prev + " ] [ NEXT: " + next + " ]" ;
-
-			
 			
 		}
 		
@@ -639,98 +699,30 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			return this.prevTriple;
 		}
 		
-	}
-	
-	private class PlaceHolderTriple extends Triple
-	{
-		private Triple firstTriple;
-		private Triple lastTriple;
-		
-		public PlaceHolderTriple(Triple firstTriple, Triple lastTriple)
+		public void setNextIn(Triple nextTriple)
 		{
-			super("Placeholder");
-			
-			this.firstTriple=firstTriple;
-			this.lastTriple=lastTriple;
-			
-			this.edit();
+			this.nextInTriple=nextTriple;
 		}
 		
-		private void edit()
+
+		public void setPrevIn(Triple prevTriple)
 		{
-			this.firstTriple.setPrev(this);
-			this.lastTriple.setNext(this);
+			this.prevInTriple=prevTriple;
 		}
 		
-		public Triple getFirstTriple()
+		public Triple getNextIn()
 		{
-			return this.firstTriple;
+			return this.nextInTriple;
 		}
 		
-		public Triple getLastTriple()
+		public Triple getPrevIn()
 		{
-			return this.lastTriple;
+			return this.prevInTriple;
 		}
 		
-		public int size()
+		public boolean isPlaceHolder()
 		{
-			int count=0;
-			
-			Triple nextTriple=this.firstTriple;
-			while(!nextTriple.equals(this) && nextTriple!=null)
-			{
-				nextTriple=nextTriple.getNext();
-				
-				count++;
-			}
-			
-			
-			return count;
-		}
-		
-		@Override
-		public String toString()
-		{
-			String prev="";
-			
-		
-			if(this.getPrev()!=null)
-			{
-				if(this.getPrev().getType().equals("Placeholder"))//.getClass()==  this.getClass())	//TODO CHECK THIS
-				{
-					prev=this.getPrev().toString();				//it's a placeHolderTriple
-				}	
-				else
-				{
-					prev=this.getPrev().getPlayer().getName();	//it's a normal triple
-				}
-			}
-			else
-			{
-				prev="NULL";
-			}
-			
-			
-			String next="";
-			
-			
-			if(this.getNext()!=null)
-			{
-				if(this.getNext().getType().equals("Placeholder"))//.getClass(==  this.getClass())	//TODO CHECK THIS
-				{
-					next=this.getNext().toString();					//it's a placeHolderTriple
-				}
-				else
-				{
-					next=this.getNext().getPlayer().getName();			//it's a normal triple
-				}
-			}
-			else
-			{
-				next="NULL";
-			}
-			
-			return "PLACEHOLDER (NR " + this.number+" ): [FIRST TRIPLE " + this.firstTriple.getPlayer().getName() +" ] [ LAST TRIPLE " + this.lastTriple.getPlayer().getName()+" ] [ SIZE " + this.size() +" ] [ PREV " + prev + " ] [ NEXT " + next +" ]";
+			return this.isPlaceHolder;
 		}
 	}
 	
