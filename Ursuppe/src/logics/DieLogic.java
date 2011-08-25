@@ -9,12 +9,17 @@ public class DieLogic implements IDie
 	private int value;
 	private final static int MAXVALUE=6;
 	
+	private boolean testModeOn=false;
+	
 	@Override
 	public int roll()
 	{
-		Random rnd=new Random();
+		if(!testModeOn)
+		{
+			Random rnd=new Random();
 		
-		this.value=rnd.nextInt(MAXVALUE)+1;
+			this.value=rnd.nextInt(MAXVALUE)+1;
+		}
 		
 		return this.value;
 	}
@@ -23,5 +28,24 @@ public class DieLogic implements IDie
 	public int getValue()
 	{
 		return value;
+	}
+
+	@Override
+	public void turnOnTestMode() {
+		this.testModeOn=true;
+		
+	}
+
+	@Override
+	public void turnOffTestMode() {
+		this.testModeOn=false;
+		
+	}
+
+	@Override
+	public void setFakeValue(int value) 
+	{
+		this.value=value;
+		
 	}
 }

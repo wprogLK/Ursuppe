@@ -29,7 +29,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 
-
+//TODO FIX IT: namePlayerOneShouldBeLukas assertionError
 
 @RunWith(JExample.class)
 public class SimpleGameTestGUI extends GUITestTemplate{

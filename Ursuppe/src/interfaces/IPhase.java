@@ -4,6 +4,7 @@ import java.io.PrintStream;
 
 import javax.swing.JPanel;
 
+import enums.EActions;
 import enums.EPhases;
 
 import annotations.OnlyForTesting;
@@ -52,6 +53,7 @@ public interface IPhase
 	public void turnOnWaiting();	//At the moment only used for testing
 	public void turnOffWaiting();	//At the moment only used for testing
 	
+	public boolean isWaiting();
 	//////////
 	//THREAD//
 	//////////
@@ -92,7 +94,8 @@ public interface IPhase
 	///////////
 	//GENERAL//
 	///////////
-		
+		public EActions getCurrentAction();
+		public EActions getNextAction();
 		
 		public void turnOnTestMode();
 		//////////////

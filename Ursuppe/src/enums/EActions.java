@@ -3,6 +3,7 @@ package enums;
 public enum EActions 
 {
 	ActionBeforRunning,
+	ActionDoAllPreAction,
 	
 	ActionA,
 	ActionB,

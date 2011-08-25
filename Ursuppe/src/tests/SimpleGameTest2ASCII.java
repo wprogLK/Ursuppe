@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 
 import templates.ASCIITestTemplate;
 
+//TODO: FIX IT!! phaseShouldBePhaseSplashScreen assertionError
 
 @RunWith(JExample.class)
 public class SimpleGameTest2ASCII extends ASCIITestTemplate//Thread{

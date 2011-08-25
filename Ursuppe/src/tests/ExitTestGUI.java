@@ -29,7 +29,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 
-
+//TODO FIX THIS TEST (phaseShouldBeExit assertionError)
 
 @RunWith(JExample.class)
 public class ExitTestGUI extends GUITestTemplate{

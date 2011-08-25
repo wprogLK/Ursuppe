@@ -52,6 +52,8 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	
 	protected IPlayer currentPlayer;
 	
+	protected boolean testModeOn=false;
+	
 	public GameTemplate(PrintStream out, PrintStream error)
 	{
 		this.outStream=out;
@@ -128,8 +130,13 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 			if(!(isPlayerHead || isPlayerTail)) //if player isn't head or tail
 			{
 				outPlayers.add(player);
-				this.players.remove(player);
 			}
+		}
+		
+		//REMOVE
+		for(IPlayer player:outPlayers)
+		{
+			this.players.remove(player);
 		}
 		
 		//"CREATE" INPUT
@@ -144,29 +151,43 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	
 	@Override
 	public final void skipTailOrHeadPlayer()
-	{
+	{	
 		this.getCurrentPlayer();
 		
-		boolean isHead=this.currentPlayer.getType()==EPlayer.HeadPlayer;
-		boolean isTail=this.currentPlayer.getType()==EPlayer.TailPlayer;
-		
-		boolean validNextPlayer;
-		
-		if(isHead || isTail)
+		if(this.currentPlayer==null)
 		{
-			validNextPlayer=false;
+			System.out.println("IN GAME TEMPLATE: ERROR IN SKIP TAIL OR HEAD PLAYER: MESSAGE:: CURRENT PLAYER IS NULL");
+//			if(!this.testModeOn)				//TODO Uncomment that and fix it!
+//			{
+//				throw new NullPointerException();
+//			}
 		}
 		else
 		{
-			validNextPlayer=true;
-		}
-		
-		
-		while (!validNextPlayer)
-		{
+	
 			
-			//System.out.println("Try skip in while"); //TODO Delete
-			validNextPlayer=!this.nextPlayer();
+			
+			boolean isHead=this.currentPlayer.getType()==EPlayer.HeadPlayer;
+			boolean isTail=this.currentPlayer.getType()==EPlayer.TailPlayer;
+			
+			boolean validNextPlayer;
+			
+			if(isHead || isTail)
+			{
+				validNextPlayer=false;
+			}
+			else
+			{
+				validNextPlayer=true;
+			}
+			
+			
+			while (!validNextPlayer)
+			{
+				
+				//System.out.println("Try skip in while"); //TODO Delete
+				validNextPlayer=!this.nextPlayer();
+			}
 		}
 	}
 	
@@ -392,9 +413,15 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	///////////
 	public final void turnOnTestMode()
 	{
+		this.testModeOn=true;
+		
+		this.turnOnTestModeEveryWhere();
+		
 		this.gameLogic.turnOnTestMode();
 	}
 	
+	
+
 	public final void turnOnCurrentPhaseWaiting()
 	{
 		this.gameLogic.getCurrentPhase().turnOnWaiting();
@@ -421,6 +448,13 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	///////////////////
 	//PRIVATE METHODS//
 	///////////////////
+	private void turnOnTestModeEveryWhere() 
+	{
+		this.die.turnOnTestMode();
+		//TODO Every other object turn on here!
+		
+	}
+	
 	private boolean isCurrentPlayerHeadOrTail() 
 	{
 		if(this.currentPlayer==null)

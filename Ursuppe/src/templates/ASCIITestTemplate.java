@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import helper.Setting;
 import helper.UserInput;
 import interfaces.IModule;
+import interfaces.IPhase;
 
 import module.ModuleASCII;
 
@@ -41,8 +42,18 @@ public class ASCIITestTemplate extends Thread
 		}
 	}
 		
+	protected void waitingForPhaseReady(IPhase currentPhase)
+	{
+		while(!currentPhase.isWaiting())
+		{
+			System.out.println("WAIT " + currentPhase);
+			this.waitingGeneral();
+		}
+	}
+	
 	protected void waitingGeneral()
 	{
+		
 		try 
 		{
 			Thread.sleep(500);

@@ -54,6 +54,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	private Boolean restartOn=false;
 	
 	private EActions currentAction=EActions.ActionBeforRunning;
+	private EActions nextAction=EActions.ActionDoAllPreAction;
 	///////////////////
 	//DO RUN ACTIONS?//
 	///////////////////
@@ -89,7 +90,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	//THREAD//
 	//////////
 	
-	private boolean waiting=false;
+	protected boolean waiting=true;
 	
 	//////////
 	//BASICS//
@@ -309,20 +310,29 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.setActionsToRun();
 			
-			//...ACTION A
-			this.doWaiting();
+			this.nextAction=EActions.ActionDoAllPreAction;
 			
-			this.currentAction=EActions.ActionA;
+			this.checkIfRunInTestMode();
+			
+			this.currentAction=EActions.ActionDoAllPreAction;
 			
 			this.doAllPreAction();
-			
 			this.update();
+			
+			//...ACTION A
+		
 			
 			if (!this.doNothing)
 			{
 				
 				if(this.doRunActionA)
 				{
+					this.nextAction=EActions.ActionA;
+					
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionA;
+					
 					this.runActionA();
 					this.resetInput();
 				}
@@ -330,14 +340,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION B
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionB;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionB)
 				{
+					this.nextAction=EActions.ActionB;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionB;
+					
 					this.runActionB();
 					this.resetInput();
 				}
@@ -345,14 +358,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 			//...ACTION C
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionC;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionC)
 				{
+					this.nextAction=EActions.ActionC;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionC;
+					
 					this.runActionC();
 					this.resetInput();
 				}
@@ -360,14 +376,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 
 			//...ACTION D
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionD;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionD)
 				{
+					this.nextAction=EActions.ActionD;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionD;
+					
 					this.runActionD();
 					this.resetInput();
 				}
@@ -375,14 +394,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION E
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionE;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionE)
 				{
+					this.nextAction=EActions.ActionE;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionE;
+					
 					this.runActionE();
 					this.resetInput();
 				}
@@ -390,14 +412,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION F
 			//this.waitForAValidInput();
-			this.doWaiting();
-			
-			this.currentAction=EActions.ActionF;
+		
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionF)
 				{
+					this.nextAction=EActions.ActionF;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionF;
+					
 					this.runActionF();
 					this.resetInput();
 				}
@@ -405,14 +430,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION G
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionG;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionG)
 				{
+					this.nextAction=EActions.ActionG;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionG;
+					
 					this.runActionG();
 					this.resetInput();
 				}
@@ -420,14 +448,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION H
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionH;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionH)
 				{
+					this.nextAction=EActions.ActionH;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionH;
+					
 					this.runActionH();
 					this.resetInput();
 				}
@@ -435,14 +466,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION I
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionI;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionI)
 				{
+					this.nextAction=EActions.ActionI;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionI;
+					
 					this.runActionI();
 					this.resetInput();
 				}
@@ -450,14 +484,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION J
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionJ;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionJ)
 				{
+					this.nextAction=EActions.ActionJ;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionJ;
+					
 					this.runActionC();
 					this.resetInput();
 				}
@@ -465,14 +502,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION K
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionK;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionK)
 				{
+					this.nextAction=EActions.ActionK;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionK;
+					
 					this.runActionK();
 					this.resetInput();
 				}
@@ -480,14 +520,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 			//...ACTION L
 			//this.waitForAValidInput();
-			this.doWaiting();
-			
-			this.currentAction=EActions.ActionL;
+		
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionL)
 				{
+					this.nextAction=EActions.ActionL;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionL;
+					
 					this.runActionL();
 					this.resetInput();
 				}
@@ -495,14 +538,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION M
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionM;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionM)
 				{
+					this.nextAction=EActions.ActionM;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionM;
+					
 					this.runActionM();
 					this.resetInput();
 				}
@@ -510,14 +556,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION N
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionN;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionN)
 				{
+					this.nextAction=EActions.ActionN;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionN;
+					
 					this.runActionN();
 					this.resetInput();
 				}
@@ -525,14 +574,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION O
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionO;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionO)
 				{
+					this.nextAction=EActions.ActionO;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionO;
+					
 					this.runActionO();
 					this.resetInput();
 				}
@@ -540,14 +592,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION P
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionP;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionP)
 				{
+					this.nextAction=EActions.ActionP;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionP;
+					
 					this.runActionP();
 					this.resetInput();
 				}
@@ -555,14 +610,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION Q
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionQ;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionQ)
 				{
+					this.nextAction=EActions.ActionQ;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionQ;
+					
 					this.runActionQ();
 					this.resetInput();
 				}
@@ -570,14 +628,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION R
 			//this.waitForAValidInput();
-			this.doWaiting();
-			
-			this.currentAction=EActions.ActionR;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionR)
 				{
+					this.nextAction=EActions.ActionR;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionR;
+					
+					
 					this.runActionR();
 					this.resetInput();
 				}
@@ -585,14 +646,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION S
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionS;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionS)
 				{
+					this.nextAction=EActions.ActionS;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionS;
+					
 					this.runActionS();
 					this.resetInput();
 				}
@@ -600,14 +664,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION T
 			//this.waitForAValidInput();
-			this.doWaiting();
-			
-			this.currentAction=EActions.ActionT;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionT)
 				{
+					this.nextAction=EActions.ActionT;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionT;
+					
+					
 					this.runActionT();
 					this.resetInput();
 				}
@@ -615,14 +682,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION U
 			//this.waitForAValidInput();
-			this.doWaiting();
-			
-			this.currentAction=EActions.ActionU;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionU)
 				{
+					this.nextAction=EActions.ActionU;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionU;
+					
+					
 					this.runActionU();
 					this.resetInput();
 				}
@@ -630,14 +700,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION V
 			//this.waitForAValidInput();
-			this.doWaiting();
-			
-			this.currentAction=EActions.ActionV;
+		
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionV)
 				{
+					this.nextAction=EActions.ActionV;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionV;
+					
 					this.runActionV();
 					this.resetInput();
 				}
@@ -645,14 +718,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION W
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionW;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionW)
 				{
+					this.nextAction=EActions.ActionW;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionW;
+					
 					this.runActionW();
 					this.resetInput();
 				}
@@ -660,14 +736,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION X
 			//this.waitForAValidInput();
-			this.doWaiting();
 			
-			this.currentAction=EActions.ActionX;
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionX)
 				{
+					this.nextAction=EActions.ActionX;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionX;
+					
 					this.runActionX();
 					this.resetInput();
 				}
@@ -675,14 +754,17 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION Y
 			//this.waitForAValidInput();
-			this.doWaiting();
-			
-			this.currentAction=EActions.ActionY;
+		
 			
 			if (!this.doNothing)
 			{
 				if(this.doRunActionY)
 				{
+					this.nextAction=EActions.ActionY;
+					this.checkIfRunInTestMode();
+					
+					this.currentAction=EActions.ActionY;
+					
 					this.runActionY();
 					this.resetInput();
 				}
@@ -690,15 +772,16 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			//...ACTION Z
 			//this.waitForAValidInput();
-			
-			this.currentAction=EActions.ActionZ;
-			
-			this.doWaiting();
-			this.doAfterAction();
+		
 			if (!this.doNothing)
 			{
 				if(this.doRunActionZ)
 				{
+					this.nextAction=EActions.ActionZ;
+					
+					this.checkIfRunInTestMode();
+					this.currentAction=EActions.ActionZ;
+					
 					this.runActionZ();
 					this.resetInput();
 				}
@@ -707,7 +790,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			//...END
 			
 			this.isRunning=false;
-			this.currentAction=EActions.ActionAfterRunning;
+			this.currentAction=EActions.ActionAfterRunning; //TODO add nextAction
 			this.doAllAfterAction();
 			
 			this.waitForRestart();
@@ -812,6 +895,18 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 * 
 		 */
 		public final void waitForANewInput()
+		{
+			try 
+			{
+				Thread.sleep(5);//OLD=200
+			} 
+			catch (InterruptedException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		public final void waitBeforePhaseChange()
 		{
 			try 
 			{
@@ -1088,6 +1183,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 		private final void doAllPreAction()
 		{
+			
 			this.game.skipTailOrHeadPlayer(); //TODO Maybe delete this? And do it in each logic separately
 			
 			this.doLogicPreAction();
@@ -1096,8 +1192,29 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 		private final void doAllAfterAction()
 		{
+			System.out.println("START IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
+			
 			this.doLogicAfterAction();
 			this.doAfterAction();
+			
+			System.out.println("END IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
+		}
+		
+		protected final boolean nextPlayer()	//TODO CHECK THIS!!!
+		{
+			
+			boolean validPlayer=this.game.nextPlayer();
+			
+			System.out.println("NEXT PLAYER in phase template logic is " + validPlayer);
+			
+			if(this.isInTestMode)
+			{
+				this.turnOnWaiting();
+			}
+			
+			//TODO HERE COMMENT
+			this.doWaiting();
+			return validPlayer;
 		}
 		
 		
@@ -5006,6 +5123,15 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			return this.currentAction;
 		}
 		
+		public final EActions getNextAction()
+		{
+			return this.nextAction;
+		}
+		
+		public final boolean isWaiting()
+		{
+			return this.waiting;
+		}
 		
 		///////////////////
 		//////SETTERS//////
@@ -5040,7 +5166,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		//PRIVATE METHODS//
 		///////////////////
 		
-		protected final void checkIfRunInTestMode()		//TODO delete
+		protected final void checkIfRunInTestMode()	
 		{
 			if(this.isInTestMode)
 			{
@@ -5049,7 +5175,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			}
 			else
 			{
-				this.turnOffWaiting();
+				//this.turnOffWaiting();
+				this.doWaiting();
 			}
 		}
 		
