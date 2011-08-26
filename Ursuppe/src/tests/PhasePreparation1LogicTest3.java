@@ -27,7 +27,7 @@ import templates.ASCIITestTemplate;
 
 
 @RunWith(JExample.class)
-public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
+public class PhasePreparation1LogicTest3 extends ASCIITestTemplate
 {	
 	private IPlayer player1;
 	private IPlayer player2;
@@ -98,8 +98,10 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 		instructions.add("roll");	//P3
 		
 		//Second Round
+		instructions.add("roll");	//P1
 		instructions.add("roll");	//P2
 		instructions.add("roll");	//P3
+		
 		
 		return instructions;
 	}
@@ -163,7 +165,7 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 		
 		assertTrue(game.getCurrentPlayer()==this.player2);
 		
-		game.getDie().setFakeValue(5);
+		game.getDie().setFakeValue(2);
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingForPhaseReady(game.getCurrentPhase());
@@ -190,7 +192,7 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 		
 		assertTrue(game.getCurrentPlayer()==this.player3);
 		
-		game.getDie().setFakeValue(5);
+		game.getDie().setFakeValue(2);
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingForPhaseReady(game.getCurrentPhase());
@@ -218,6 +220,33 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 	}
 	
 	@Given("phaseShouldBeStillPhasePreparation1")
+	public IGame currentPlayerShouldBePlayer1_SecondRound(IGame game)
+	{
+		IPhase currentPhase=game.getCurrentPhase();
+		
+		assertTrue(currentPhase.getCurrentAction()==EActions.ActionDoAllPreAction);
+		
+		assertTrue(game.getCurrentPlayer()==this.player1);
+		
+		game.getDie().setFakeValue(5);
+		
+		game.turnOffCurrentPhaseWaiting();
+		this.waitingForPhaseReady(game.getCurrentPhase());
+		
+		assertTrue(currentPhase.getCurrentAction()==EActions.ActionAfterRunning);
+		
+		game.turnOffCurrentPhaseWaiting();
+		this.waitingForPhaseReady(game.getCurrentPhase());
+		
+		assertTrue(currentPhase.getCurrentAction()==EActions.ActionBeforRunning);
+		
+		game.turnOffCurrentPhaseWaiting();
+		this.waitingForPhaseReady(game.getCurrentPhase());
+		
+		return game;
+	}
+	
+	@Given("currentPlayerShouldBePlayer1_SecondRound")
 	public IGame currentPlayerShouldBePlayer2_SecondRound(IGame game)
 	{
 		IPhase currentPhase=game.getCurrentPhase();
@@ -226,7 +255,7 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 		
 		assertTrue(game.getCurrentPlayer()==this.player2);
 		
-		game.getDie().setFakeValue(3);
+		game.getDie().setFakeValue(1);
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingForPhaseReady(game.getCurrentPhase());
@@ -253,7 +282,7 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 		
 		assertTrue(game.getCurrentPlayer()==this.player3);
 		
-		game.getDie().setFakeValue(6);
+		game.getDie().setFakeValue(2);
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingForPhaseReady(game.getCurrentPhase());

@@ -94,6 +94,8 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				
 				this.printOutOrder(this.orderItems, "-_-_-_-_-_-_-_-_-_-_-_- ORDER ITEMS AT THE END -_-_-_-_-_-_-_-_-_-_-_-");
 				
+				this.waiting=true;
+				
 				this.currentPhase=EPhases.phasePreparation2;
 			}
 			else
@@ -150,6 +152,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 
 	private void removePlaceholders() 
 	{
+		
 		ArrayList<Item> finalOrder=new ArrayList<Item>();
 		
 		for(Item currentItem:this.orderItems)
@@ -158,70 +161,12 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			{
 				PlaceholderItem phI=(PlaceholderItem) currentItem;
 				
-				Item prevBeforeItem= phI.getPrev();
-				Item nextAfterItem=phI.getNext();
-				
-				System.out.println("PLACEHOLDER: " + phI);
-				
-				System.out.println("preBeforeItem is" + prevBeforeItem);
-				System.out.println("nextAfterItem is" + nextAfterItem);
-				
-				if(prevBeforeItem!=null)								//TODO TEST THIS!
+				for(Item i:phI.getItemList())
 				{
-					for(Item i:phI.getItemList())
-					{
-						System.out.println("=======================================preBefor normal add " + i+ "=========================" );
-						finalOrder.add(i);
-					}
-				}
-				else if(!phI.getItemList().isEmpty())		//placeholder is/was head of the arrayList		//TODO TEST THIS!
-				{
-					Item head=phI.getItemList().remove(0);//.get(0);
-					
-					System.out.println("=======================================First Item is head: " + head+ "=========================" );
-					
-					finalOrder.add(head);
-					
-
-				}
-				else
-				{
-					System.out.println("!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!! IN HEAD: list is empty" );
+					finalOrder.add(i);
 				}
 				
-				if(nextAfterItem!=null)										//TODO TEST THIS!
-				{
-					for(Item i:phI.getItemList())
-					{
-						System.out.println("=======================================nextAfter normal add " + i+ "=========================" );
-						if(!finalOrder.contains(i))
-						{
-							finalOrder.add(i);
-						}
-						
-					}
-				}
-				if(!phI.getItemList().isEmpty())	//placeholder is/was tail of the arrayList		//TODO TEST THIS!
-				{
-					System.out.println("SIZE: " + phI.getItemList().size());
-					
-					
-					Item tail=phI.getItemList().remove(phI.getItemList().size()-1);
-					
-					System.out.println("=======================================Last Item is tail: " + tail+ "=========================" );
-					
-					if(!finalOrder.contains(tail))
-					{
-							finalOrder.add(tail);
-					}
 				
-				}
-				else
-				{
-					System.out.println("!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!! IN TAIL: list is empty" );
-				}
-				
-				this.printOutOrder(phI.getItemList(), "ITEMS AT END OF IN PLACEHOLDER");
 			}
 			else
 			{
@@ -233,8 +178,96 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				
 			}
 		}
-		
+		this.printOutOrder(finalOrder, "ITEMS AT END REPLACEING PLACEHOLDER");
 		this.orderItems=finalOrder;
+		
+//		OLD ALGORITHM:
+//
+//		ArrayList<Item> finalOrder=new ArrayList<Item>();
+//		
+//		for(Item currentItem:this.orderItems)
+//		{
+//			if(currentItem.getTyp()==EItem.Placeholder)
+//			{
+//				PlaceholderItem phI=(PlaceholderItem) currentItem;
+//				
+//				Item prevBeforeItem= phI.getPrev();
+//				Item nextAfterItem=phI.getNext();
+//				
+//				System.out.println("PLACEHOLDER: " + phI);
+//				
+//				System.out.println("preBeforeItem is" + prevBeforeItem);
+//				System.out.println("nextAfterItem is" + nextAfterItem);
+//				
+//				if(prevBeforeItem!=null)								//TODO TEST THIS!
+//				{
+//					for(Item i:phI.getItemList())
+//					{
+//						System.out.println("=======================================preBefor normal add " + i+ "=========================" );
+//						finalOrder.add(i);
+//					}
+//				}
+//				else if(!phI.getItemList().isEmpty())		//placeholder is/was head of the arrayList		//TODO TEST THIS!
+//				{
+//					Item head=phI.getItemList().remove(0);//.get(0);
+//					
+//					System.out.println("=======================================First Item is head: " + head+ "=========================" );
+//					
+//					finalOrder.add(head);
+//					
+//
+//				}
+//				else
+//				{
+//					System.out.println("!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!! IN HEAD: list is empty" );
+//				}
+//				
+//				if(nextAfterItem!=null)										//TODO TEST THIS!
+//				{
+//					for(Item i:phI.getItemList())
+//					{
+//						System.out.println("=======================================nextAfter normal add " + i+ "=========================" );
+//						if(!finalOrder.contains(i))
+//						{
+//							finalOrder.add(i);
+//						}
+//						
+//					}
+//				}
+//				if(!phI.getItemList().isEmpty())	//placeholder is/was tail of the arrayList		//TODO TEST THIS!
+//				{
+//					System.out.println("SIZE: " + phI.getItemList().size());
+//					
+//					
+//					Item tail=phI.getItemList().remove(phI.getItemList().size()-1);
+//					
+//					System.out.println("=======================================Last Item is tail: " + tail+ "=========================" );
+//					
+//					if(!finalOrder.contains(tail))
+//					{
+//							finalOrder.add(tail);
+//					}
+//				
+//				}
+//				else
+//				{
+//					System.out.println("!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!! IN TAIL: list is empty" );
+//				}
+//				
+//				this.printOutOrder(phI.getItemList(), "ITEMS AT END OF IN PLACEHOLDER");
+//			}
+//			else
+//			{
+//				System.out.println("=======================================ITEM NORMAL "+currentItem +" =========================" );
+//				if(!finalOrder.contains(currentItem))
+//				{
+//					finalOrder.add(currentItem);
+//				}
+//				
+//			}
+//		}
+//		
+//		this.orderItems=finalOrder;
 	}
 
 	private void prepareForAReRoll() 
@@ -830,9 +863,30 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			
 			this.typ=EItem.Placeholder;
 			
-			this.items=items;
+			this.removeDoublePlayers(items);
+			
+			
 		}
 		
+		private void removeDoublePlayers(ArrayList<Item> items) 
+		{
+			ArrayList<Item> itemsToSave=new ArrayList<Item>();
+			
+			for(Item item:items)
+			{
+				if(!itemsToSave.contains(item))
+				{
+					itemsToSave.add(item);
+				}
+				else
+				{
+					System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+				}
+			}
+			
+			
+			this.items=itemsToSave;
+		}
 		public int size()
 		{
 			return this.items.size();
