@@ -46,7 +46,7 @@ public class ASCIITestTemplate extends Thread
 	{
 		while(!currentPhase.isWaiting())
 		{
-			System.out.println("WAIT " + currentPhase);
+//			System.out.println("WAIT " + currentPhase);
 			this.waitingGeneral();
 		}
 	}

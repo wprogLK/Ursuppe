@@ -157,7 +157,7 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 	public IGame currentPlayerShouldBePlayer2_FirstRound(IGame game)
 	{
 		IPhase currentPhase=game.getCurrentPhase();
-		System.out.println("ACTION plaYER 2" + currentPhase.getCurrentAction());
+//		System.out.println("ACTION plaYER 2" + currentPhase.getCurrentAction());
 		
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionDoAllPreAction);
 		
@@ -253,19 +253,14 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 		
 		assertTrue(game.getCurrentPlayer()==this.player3);
 		
-		game.getDie().setFakeValue(2);
-		System.out.println("0 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-		System.out.println("IS RUNNING: " +currentPhase.getIsRunning());
+		game.getDie().setFakeValue(6);
+		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingForPhaseReady(game.getCurrentPhase());
-		System.out.println("1 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionAfterRunning);
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingForPhaseReady(game.getCurrentPhase());
-		System.out.println("2 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-		System.out.println("CURRENT ACTION= " + currentPhase.getCurrentAction());
-		System.out.println("CURRENT E PHASE CONTROL "  + game.getCurrentEPhase());
 		//assertTrue(currentPhase.getCurrentAction()==EActions.ActionBeforRunning);
 		
 //		game.turnOffCurrentPhaseWaiting();
@@ -278,10 +273,7 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 	@Given("currentPlayerShouldBePlayer3_SecondRound")
 	public IGame phaseShouldBePhasePreparation2(IGame game)
 	{
-		System.out.println("CURRENT E PHASE "  + game.getCurrentEPhase());
-		System.out.println("CURRENT E PHASE "  + game.getCurrentPhase().getCurrentAction());
-		System.out.println("CURRENT PLAYER = " + game.getCurrentPlayer().getName());
-		game.showPlayers();
+//		game.showPlayers();
 		
 		assertTrue(game.getCurrentEPhase()==EPhases.phasePreparation2);		
 	

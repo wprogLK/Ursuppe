@@ -1192,12 +1192,12 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 		private final void doAllAfterAction()
 		{
-			System.out.println("START IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
+			//System.out.println("START IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
 			
 			this.doLogicAfterAction();
 			this.doAfterAction();
 			
-			System.out.println("END IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
+			//System.out.println("END IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
 		}
 		
 		protected final boolean nextPlayer()	//TODO CHECK THIS!!!
@@ -1205,7 +1205,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			boolean validPlayer=this.game.nextPlayer();
 			
-			System.out.println("NEXT PLAYER in phase template logic is " + validPlayer);
+			//System.out.println("NEXT PLAYER in phase template logic is " + validPlayer);
 			
 			if(this.isInTestMode)
 			{

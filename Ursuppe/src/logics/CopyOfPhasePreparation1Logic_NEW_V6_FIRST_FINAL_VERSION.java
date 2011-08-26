@@ -20,7 +20,7 @@ import interfaces.IPlayer;
  * 
  * @see IPhase
  */
-public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
+public abstract class CopyOfPhasePreparation1Logic_NEW_V6_FIRST_FINAL_VERSION extends PhaseTemplateLogic
 {
 	private static enum EItem {Item, Placeholder};
 	

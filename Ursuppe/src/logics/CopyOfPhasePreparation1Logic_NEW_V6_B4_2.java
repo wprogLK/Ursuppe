@@ -20,7 +20,7 @@ import interfaces.IPlayer;
  * 
  * @see IPhase
  */
-public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
+public abstract class CopyOfPhasePreparation1Logic_NEW_V6_B4_2 extends PhaseTemplateLogic
 {
 	private static enum EItem {Item, Placeholder};
 	
@@ -78,6 +78,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		else
 		{
 			System.out.println("-_-_-_-_-_-_-_-_-_-_-_- EDIT ROUND BEFOR CHECK  -_-_-_-_-_-_-_-_-_-_-_-");
+			//this.editRoundOrder();
 			this.printOutOrder(this.roundItems, "-_-_-_-_-_-_-_-_-_-_-_- ROUND ITEMS MANUAL EDIT AFTER -_-_-_-_-_-_-_-_-_-_-_-");
 			
 			boolean validOrder=isOrderValid(this.roundNumber);
@@ -89,8 +90,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				System.out.println("--- RESTART OFF: END --");
 				this.turnOffRestart();
 				
-				this.removePlaceholders();
-				this.rebuildOrder();
+//				this.removePlaceholders();
 				
 				this.printOutOrder(this.orderItems, "-_-_-_-_-_-_-_-_-_-_-_- ORDER ITEMS AT THE END -_-_-_-_-_-_-_-_-_-_-_-");
 				
@@ -115,38 +115,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	
 	
 
-
-	private void rebuildOrder() 
-	{
-	System.out.println("*************----- SORT ORDER ITEMS-----********************");
-		
-		ArrayList<Item> sortedRoundOrder=new ArrayList<Item>();
-		
-		while(!this.orderItems.isEmpty())
-		{
-			Item currentItem=this.orderItems.get(0);
-			
-			for(Item compareItem:this.orderItems)
-			{
-				if(currentItem!=compareItem)
-				{
-					if(compareItem.getValue()>currentItem.getValue())
-					{
-						System.out.println("---------- COMPARE ITEM IS BETTER THAN CURRENT ----------");
-						
-						currentItem=compareItem;
-					}
-				}
-			}
-			System.out.println("DELETE");
-			this.orderItems.remove(currentItem);
-			sortedRoundOrder.add(currentItem);
-			
-		}
-		
-		this.orderItems=sortedRoundOrder;
-		
-	}
 
 	private void removePlaceholders() 
 	{
@@ -300,9 +268,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		if (inputString.equals(this.rb.getString("instructionPhasePreparation1Roll")))
 		{
 			int value=this.game.rollDie();
-			int dieValue=value;
-			//value=10^this.roundNumber*value;
-			value=(int) Math.pow(10, this.roundNumber)*value;
 			
 			//System.out.println("YOU ROLLED " + value);
 			
@@ -311,7 +276,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				System.out.println("------- ROLL DIE: ROUND ONE -------");
 				
 				Item item=new Item(this.game.getCurrentPlayer(),value);
-				item.setDieValue(dieValue);
 				this.roundItems.add(item);
 			}
 			else
@@ -324,7 +288,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				assert(refreshItem!=null);
 				
 				this.printOutOrder(this.roundItems, "((((((((((((((((((ROUND ITEMS BEFORE CHANGE VALUE))))))))))))))))))))))))");
-				refreshItem.setDieValue(dieValue);
+				
 				refreshItem.setValue(value);
 				this.printOutOrder(this.roundItems, "((((((((((((((((((ROUND ITEMS AFTER CHANGE VALUE))))))))))))))))))))))))");
 			}
@@ -674,7 +638,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		IPlayer player;
 		
 		int value;
-		int dieValue;
 		
 		EItem typ;
 		
@@ -695,10 +658,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			this.typ=EItem.Item;
 		}
 		
-		public void setDieValue(int dieValue)
-		{
-			this.dieValue=dieValue;
-		}
 		
 		public void setPlayer(IPlayer player)
 		{
@@ -794,7 +753,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				next+="NULL";
 			}
 			
-			String dieValue="Die value: " +this.dieValue;
 			
 			String player="Player: " + this.player.getName();
 			
@@ -802,7 +760,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			
 			String typ="Typ: " + this.typ;
 			
-			str="[ " + prev + "  " + next + "  " + player + "  " + value + "  " + dieValue + "  " + typ + "]";
+			str="[ " + prev + "  " + next + "  " + player + "  " + value + "  " + typ + "]";
 			
 			return str;
 		}
