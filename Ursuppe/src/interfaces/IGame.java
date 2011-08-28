@@ -209,4 +209,7 @@ public interface IGame
 	public PrintStream getOutStream();
 
 	public void turnOnTestMode();
+
+	@OnlyForTesting
+	public ArrayList<IPlayer> getPlayOrder();
 }

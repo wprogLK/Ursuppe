@@ -25,6 +25,9 @@ import org.junit.runner.RunWith;
 
 import templates.ASCIITestTemplate;
 
+/*
+ * In this test case every player is going to roll another value. 
+ */
 
 @RunWith(JExample.class)
 public class PhasePreparation1LogicTest1 extends ASCIITestTemplate
@@ -35,7 +38,7 @@ public class PhasePreparation1LogicTest1 extends ASCIITestTemplate
 	
 	private String fileNameWithPathSimpleGameTest;
 	
-	
+	private ArrayList<IPlayer> playingOrder=new ArrayList<IPlayer>();
 	/**
 	 * 
 	 */
@@ -61,6 +64,10 @@ public class PhasePreparation1LogicTest1 extends ASCIITestTemplate
 		this.player1.setName("P1");
 		this.player2.setName("P2");
 		this.player3.setName("P3");
+		
+		this.playingOrder.add(this.player1);
+		this.playingOrder.add(this.player2);
+		this.playingOrder.add(this.player3);
 		
 		game.turnOnTestMode();
 		
@@ -104,7 +111,6 @@ public class PhasePreparation1LogicTest1 extends ASCIITestTemplate
 	{
 		IPhase currentPhase=game.getCurrentPhase();
 		
-		//System.out.println("CURRENT ACTION 1: " +currentPhase.getCurrentAction());
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionBeforRunning);
 		
 		assertTrue(game.getCurrentEPhase()==EPhases.phasePreparation1);
@@ -194,6 +200,22 @@ public class PhasePreparation1LogicTest1 extends ASCIITestTemplate
 	
 	
 	@Given("currentPlayerShouldBePlayer3")
+	public IGame checkOrderToPlay(IGame game)
+	{		
+		ArrayList<IPlayer> gameList=game.getPlayOrder();
+		
+		game.skipTailOrHeadPlayer();
+		
+		for(int i=0; i<this.playingOrder.size(); i++)
+		{
+			assertTrue(this.playingOrder.get(i)==game.getPlayOrder().get(i));
+		}
+		
+		return game;
+	}
+	
+	
+	@Given("checkOrderToPlay")
 	public IGame phaseShouldBePhasePreparation2(IGame game)
 	{
 		game.turnOffCurrentPhaseWaiting();
@@ -204,6 +226,7 @@ public class PhasePreparation1LogicTest1 extends ASCIITestTemplate
 		return game;
 	}
 	
+
 
 	
 	

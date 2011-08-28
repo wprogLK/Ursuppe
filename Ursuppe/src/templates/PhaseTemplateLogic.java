@@ -112,6 +112,10 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		{
 			this.waiting=true;
 		}
+		else
+		{
+			this.waiting=false;
+		}
 	}
 	
 	public void turnOnSetActionsToRun()

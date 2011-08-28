@@ -25,7 +25,10 @@ import org.junit.runner.RunWith;
 
 import templates.ASCIITestTemplate;
 
-
+/*
+ * In this test in the FIRST ROUND player 2 and 3 are going to roll the same value.
+ * In the SECOND ROUND player 2 and 3 are are going to roll different values.
+ */
 @RunWith(JExample.class)
 public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 {	
@@ -34,7 +37,8 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 	private IPlayer player3;
 	
 	private String fileNameWithPathSimpleGameTest;
-	
+	private ArrayList<IPlayer> playingOrder=new ArrayList<IPlayer>();
+
 	
 	/**
 	 * 
@@ -61,6 +65,10 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 		this.player1.setName("P1");
 		this.player2.setName("P2");
 		this.player3.setName("P3");
+		
+		this.playingOrder.add(this.player3);
+		this.playingOrder.add(this.player2);
+		this.playingOrder.add(this.player1);
 		
 		game.turnOnTestMode();
 		
@@ -267,6 +275,21 @@ public class PhasePreparation1LogicTest2 extends ASCIITestTemplate
 	}
 	
 	@Given("currentPlayerShouldBePlayer3_SecondRound")
+	public IGame checkOrderToPlay(IGame game)
+	{		
+		ArrayList<IPlayer> gameList=game.getPlayOrder();
+		
+		game.skipTailOrHeadPlayer();
+		
+		for(int i=0; i<this.playingOrder.size(); i++)
+		{
+			assertTrue(this.playingOrder.get(i)==game.getPlayOrder().get(i));
+		}
+		
+		return game;
+	}
+	
+	@Given("checkOrderToPlay")
 	public IGame phaseShouldBePhasePreparation2(IGame game)
 	{
 		game.showPlayers();

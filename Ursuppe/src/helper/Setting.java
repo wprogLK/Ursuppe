@@ -15,6 +15,7 @@ public abstract class Setting
 	public static PrintStream asciiOut=System.out;
 	public static PrintStream asciiErr=System.err;
 	
+	
 	public static PrintStream guiOut=System.out;
 	public static PrintStream guiErr=System.err;
 	

@@ -500,5 +500,10 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		
 		this.outStream.println("-------PLAYERS TAIL:-----");
 	}
+	
+	public ArrayList<IPlayer> getPlayOrder()
+	{
+		return this.players;
+	}
 
 }
