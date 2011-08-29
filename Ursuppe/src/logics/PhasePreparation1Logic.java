@@ -26,7 +26,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	private static enum EItem {Item, Placeholder};
 	
 	private PlaceholderItem roundPlaceholder;
-//	private Queue<PlaceholderItem> queuePlaceholders=new LinkedList<PlaceholderItem>();
 	
 	private Stack<PlaceholderItem> stackPlaceholders=new Stack<PlaceholderItem>();
 	private ArrayList<Item> roundItems=new ArrayList<Item>();
@@ -49,8 +48,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		@Override
 		public final void changeActionToRun()
 		{
-			
-			
 			this.activateActionA();
 		}
 		
@@ -66,37 +63,33 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	@Override
 	public final void doLogicPreAction()
 	{
-//		System.out.println("+++++++++++THIS IS ROUND NUMBER " + this.roundNumber + "+++++++++++++++++");
+
 	}
 	
 	@Override
+	/**
+	 * checks if there is another valid player or if not then checks if it is a valid order to play
+	 */
 	public final void doLogicAfterAction()
 	{
 		boolean validPlayer=!this.nextPlayer();
 		
 		if(validPlayer)
 		{
-			System.out.println("--- RESTART ON: NEXT PLAYER --");
+			//Restart on because there is a valid player
 			this.turnOnRestart();
 		}
 		else
 		{
-//			System.out.println("-_-_-_-_-_-_-_-_-_-_-_- EDIT ROUND BEFOR CHECK  -_-_-_-_-_-_-_-_-_-_-_-");
-//			this.printOutOrder(this.roundItems, "-_-_-_-_-_-_-_-_-_-_-_- ROUND ITEMS MANUAL EDIT AFTER -_-_-_-_-_-_-_-_-_-_-_-");
-			
 			boolean validOrder=isOrderValid(this.roundNumber);
-//			this.printOutOrder(this.roundItems, "-_-_-_-_-_-_-_-_-_-_-_- ROUND ITEMS NOT MAnuaL EDIT AFTER -_-_-_-_-_-_-_-_-_-_-_-");
-			//this.roundItems.clear();
 			
 			if(validOrder)
 			{
-				System.out.println("--- RESTART OFF: END --");
+				//Restart off because a valid order was found
 				this.turnOffRestart();
 				
 				this.removePlaceholders();
 				this.rebuildOrder();
-				
-				this.printOutOrder(this.orderItems, "-_-_-_-_-_-_-_-_-_-_-_- ORDER ITEMS AT THE END -_-_-_-_-_-_-_-_-_-_-_-");
 				
 				this.overwriteOrderToPlay();
 				
@@ -106,7 +99,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			}
 			else
 			{
-				System.out.println("--- RESTART ON: INVALID ORDER --");
+				//Restart on because of an invalid order
 				this.roundNumber++;
 				this.turnOnRestart();
 				
@@ -115,15 +108,11 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			
 			
 		}
-		
-//		System.out.println("END OF LOGIC AFTer ACTION");
-		
-	
 	}
 	
-	
-
-
+	/**
+	 * Overwrites the current order to play with the new order
+	 */
 	private void overwriteOrderToPlay() 
 	{
 		ArrayList<IPlayer> newOrder=new ArrayList<IPlayer>();
@@ -134,16 +123,13 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		}
 		
 		this.game.overrideAllNormalPlayers(newOrder);
-		
-		System.out.println(",,,,,,,,,,,,,,,,,,,,,,ORDER TO PLAY ,,,,,,,,,,,,,,,,,,,,,,,,");
-		
-		this.game.showPlayers();
 	}
 
+	/**
+	 * sorts the order items
+	 */
 	private void rebuildOrder() 
 	{
-//	System.out.println("*************----- SORT ORDER ITEMS-----********************");
-		
 		ArrayList<Item> sortedRoundOrder=new ArrayList<Item>();
 		
 		while(!this.orderItems.isEmpty())
@@ -155,31 +141,30 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				if(currentItem!=compareItem)
 				{
 					if(compareItem.getValue()>currentItem.getValue())
-					{
-//						System.out.println("---------- COMPARE ITEM IS BETTER THAN CURRENT ----------");
-						
+					{															//Compare value is higher than the current value
 						currentItem=compareItem;
 					}
 				}
 			}
-//			System.out.println("DELETE");
-			this.orderItems.remove(currentItem);
+
+			this.orderItems.remove(currentItem);								//Delete the currentItem
 			sortedRoundOrder.add(currentItem);
 			
 		}
 		
 		this.orderItems=sortedRoundOrder;
-		
 	}
 
+	/**
+	 * removes the placeholder if there exist and create an array only with items.
+	 */
 	private void removePlaceholders() 
 	{
-		
 		ArrayList<Item> finalOrder=new ArrayList<Item>();
 		
 		for(Item currentItem:this.orderItems)
 		{
-			if(currentItem.getTyp()==EItem.Placeholder)
+			if(currentItem.getTyp()==EItem.Placeholder)						//PlaceholderItem
 			{
 				PlaceholderItem phI=(PlaceholderItem) currentItem;
 				
@@ -191,8 +176,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				
 			}
 			else
-			{
-//				System.out.println("=======================================ITEM NORMAL "+currentItem +" =========================" );
+			{																//Normal item
 				if(!finalOrder.contains(currentItem))
 				{
 					finalOrder.add(currentItem);
@@ -200,118 +184,18 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				
 			}
 		}
-		this.printOutOrder(finalOrder, "ITEMS AT END REPLACEING PLACEHOLDER");
-		this.orderItems=finalOrder;
 		
-//		OLD ALGORITHM:
-//
-//		ArrayList<Item> finalOrder=new ArrayList<Item>();
-//		
-//		for(Item currentItem:this.orderItems)
-//		{
-//			if(currentItem.getTyp()==EItem.Placeholder)
-//			{
-//				PlaceholderItem phI=(PlaceholderItem) currentItem;
-//				
-//				Item prevBeforeItem= phI.getPrev();
-//				Item nextAfterItem=phI.getNext();
-//				
-//				System.out.println("PLACEHOLDER: " + phI);
-//				
-//				System.out.println("preBeforeItem is" + prevBeforeItem);
-//				System.out.println("nextAfterItem is" + nextAfterItem);
-//				
-//				if(prevBeforeItem!=null)								//TODO TEST THIS!
-//				{
-//					for(Item i:phI.getItemList())
-//					{
-//						System.out.println("=======================================preBefor normal add " + i+ "=========================" );
-//						finalOrder.add(i);
-//					}
-//				}
-//				else if(!phI.getItemList().isEmpty())		//placeholder is/was head of the arrayList		//TODO TEST THIS!
-//				{
-//					Item head=phI.getItemList().remove(0);//.get(0);
-//					
-//					System.out.println("=======================================First Item is head: " + head+ "=========================" );
-//					
-//					finalOrder.add(head);
-//					
-//
-//				}
-//				else
-//				{
-//					System.out.println("!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!! IN HEAD: list is empty" );
-//				}
-//				
-//				if(nextAfterItem!=null)										//TODO TEST THIS!
-//				{
-//					for(Item i:phI.getItemList())
-//					{
-//						System.out.println("=======================================nextAfter normal add " + i+ "=========================" );
-//						if(!finalOrder.contains(i))
-//						{
-//							finalOrder.add(i);
-//						}
-//						
-//					}
-//				}
-//				if(!phI.getItemList().isEmpty())	//placeholder is/was tail of the arrayList		//TODO TEST THIS!
-//				{
-//					System.out.println("SIZE: " + phI.getItemList().size());
-//					
-//					
-//					Item tail=phI.getItemList().remove(phI.getItemList().size()-1);
-//					
-//					System.out.println("=======================================Last Item is tail: " + tail+ "=========================" );
-//					
-//					if(!finalOrder.contains(tail))
-//					{
-//							finalOrder.add(tail);
-//					}
-//				
-//				}
-//				else
-//				{
-//					System.out.println("!!!!!!!!!!!!!!!!ERROR!!!!!!!!!!!!!! IN TAIL: list is empty" );
-//				}
-//				
-//				this.printOutOrder(phI.getItemList(), "ITEMS AT END OF IN PLACEHOLDER");
-//			}
-//			else
-//			{
-//				System.out.println("=======================================ITEM NORMAL "+currentItem +" =========================" );
-//				if(!finalOrder.contains(currentItem))
-//				{
-//					finalOrder.add(currentItem);
-//				}
-//				
-//			}
-//		}
-//		
-//		this.orderItems=finalOrder;
+		this.orderItems=finalOrder;
 	}
 
 	private void prepareForAReRoll() 
 	{
-		//this.roundPlaceholder=this.queuePlaceholders.poll();
 		this.roundPlaceholder=this.stackPlaceholders.pop();
 		
 		ArrayList<IPlayer> newPlayers=this.roundPlaceholder.getPlayerList();
-//		ArrayList<IPlayer> newPlayers= this.stackPlaceholders.firstElement().getPlayerList();
-//		ArrayList<IPlayer> newPlayers=this.queuePlaceholders.peek().getPlayerList();
 		
 		this.game.overrideAllNormalPlayers(newPlayers);
 		
-		System.out.println("----------------------------------------------------------------------------------------------------------------------------");
-//		System.out.println("size of queue before: " + this.queuePlaceholders.size());
-		
-
-		
-		
-		System.out.println("----------------------------------------------------------------------------------------------------------------------------");
-//		System.out.println("size of queue after: " + this.queuePlaceholders.size());
-	
 		this.roundItems=this.roundPlaceholder.getItemList();
 	}
 
@@ -366,65 +250,25 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		{
 			int value=this.game.rollDie();
 			int dieValue=value;
-			//value=10^this.roundNumber*value;
 			value=(int) Math.pow(10, this.roundNumber)*value;
 			
-			//System.out.println("YOU ROLLED " + value);
-			
-			if(this.roundNumber==1)
+			if(this.roundNumber==1)			//First round
 			{
-//				System.out.println("------- ROLL DIE: ROUND ONE -------");
-				
 				Item item=new Item(this.game.getCurrentPlayer(),value);
 				item.setDieValue(dieValue);
 				this.roundItems.add(item);
 			}
 			else
-			{
-				System.out.println("/////////////////////////ROUND NR: " + this.roundNumber + "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
-//				System.out.println("------- ROLL DIE: NOT ROUND ONE -------");
-				this.printOutOrder(this.roundItems, "ROUND ITEMS:");
-				
+			{								//not first round
 				Item refreshItem=this.getItemWithPlayer(this.game.getCurrentPlayer());
-				System.out.println("CURRENT PLAYER is " + this.game.getCurrentPlayer().getName());
+
 				assert(refreshItem!=null);
 				
-//				this.printOutOrder(this.roundItems, "((((((((((((((((((ROUND ITEMS BEFORE CHANGE VALUE))))))))))))))))))))))))");
 				refreshItem.setDieValue(dieValue);
 				refreshItem.setValue(value);
-//				this.printOutOrder(this.roundItems, "((((((((((((((((((ROUND ITEMS AFTER CHANGE VALUE))))))))))))))))))))))))");
 			}
 			
 			return true;
-			
-//			if(this.roundNumber!=0)
-//			{
-//				//Triple triple=this.currentPlaceHolderTriple.firstTriple;						
-//				Triple triple=this.currentTripleOfPlaceholder;							//TODO CHANGED HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//				
-//				assert(triple.getPlayer()==this.game.getCurrentPlayer());
-//				
-//				triple.setValue(value);
-//				
-//				if(!triple.getType().equals("Placeholder"))
-//				{
-//					System.out.println("''''''''''''''''''''''''''''''''''PLACEHOLDER NOCH NICHT FERTIG ABGEARBEITET!''''''''''''''''''''''''''''''''''''''''''''");
-//					//this.currentPlaceHolderTriple.setFirstTriple(triple.getNext());
-//					this.currentTripleOfPlaceholder=this.currentPlaceHolderTriple.getNext();
-//				}
-//				else
-//				{
-//					System.out.println("''''''''''''''''''''''''''''''''''PLACEHOLDER ERFOLRGREICH ABGEARBEITET!''''''''''''''''''''''''''''''''''''''''''''");
-//				}
-//				this.thisRoundTriples.add(triple);
-//			}
-//			else
-//			{
-//				Triple triple=new Triple(this.game.getCurrentPlayer(),value);
-//				this.thisRoundTriples.add(triple);
-//			}
-//			
-//			return true;
 		}
 		else
 		{
@@ -434,19 +278,14 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 
 	private Item getItemWithPlayer(IPlayer currentPlayer) 
 	{
-		
-//		System.out.println("/////////////////////////////////////////////////////////////////////////////////////////////");
-		System.out.println("CURRENT PLAYER IS " + currentPlayer.getName());
 		for(Item currentItem :this.roundItems)
 		{
 			
 			if(currentItem.getPlayer().equals(currentPlayer))
 			{
-				System.out.println("CURRENT ITEM IS " + currentItem);
 				return currentItem;
 			}
 		}
-//		System.out.println("/////////////////////////////////////////////////////////////////////////////////////////////");
 		return null;
 	}
 
@@ -468,14 +307,17 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//SPECIAL METHODES FOR THIS LOGIC//
 	///////////////////////////////////
 	
+	/**
+	 * checks if the current order is a valid one.
+	 * @param the current round number
+	 * @return true if it is a valid order
+	 */
 	private boolean isOrderValid(int roundNumber) 
 	{
 		boolean validOrder=false;
 		
 		if(roundNumber==1)	//is first round?
 		{
-			System.out.println("IT IS ROUND ONE");
-			
 			this.editRoundOrder();
 			
 			validOrder=isOrderValid(roundNumber+1);
@@ -484,98 +326,53 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		}
 		else		//not first round
 		{
-			System.out.println("IT IS NOT ROUND ONE");
-			
 			boolean isStackPlaceholdersEmpty=this.stackPlaceholders.isEmpty();
-			
-//			boolean isStackPlaceholdersEmpty=this.queuePlaceholders.isEmpty();
-//			boolean isRoundItemsEmpty=this.roundItems.isEmpty();
 			
 			if(isStackPlaceholdersEmpty)
 			{
-//				System.out.println("::::::::::::::::::::::::::::: OPTION A::::::::::::::::::::::::::");
-//				System.out.println("IS ROUND ITEMS EMPTY: " + this.roundItems.isEmpty());
 				validOrder=true;
 			}
 			else
 			{
-//				System.out.println("::::::::::::::::::::::::::::: OPTION B::::::::::::::::::::::::::");
-//				System.out.println("IS ROUND ITEMS EMPTY: " + this.roundItems.isEmpty());
-				this.prepareNextRound();
+				//do nothing
 			}
 			
-//			this.printOutOrder(roundItems, ":::::::::::::::::::::::::::::::::::::::::: roundItems before::::::::::::::::::::::::::::::::::::");
-//			this.printOutOrder(orderItems, ":::::::::::::::::::::::::::::::::::::::::: orderItems before::::::::::::::::::::::::::::::::::::");
-			
-			
-			//this.sortRoundOrder();
-			
-//			this.printOutOrder(roundItems, ":::::::::::::::::::::::::::::::::::::::::: roundItems after sort::::::::::::::::::::::::::::::::::::");
-//			this.printOutOrder(orderItems, ":::::::::::::::::::::::::::::::::::::::::: orderItems after sort::::::::::::::::::::::::::::::::::::");
-			//this.editRoundOrder();	
 		}
 		
 		return validOrder;
 	}
 	
+	/**
+	 * is called only in the first round and will save the basic order 
+	 */
 	private void saveBasicOrder() 
 	{
 		assert (this.roundNumber==1);
 		assert (this.orderItems.isEmpty());
 		
-//		this.orderItems=this.roundItems;
-		
 		for(Item currentItem:this.roundItems)
 		{
 			this.orderItems.add(currentItem);
 		}
-		
-		this.printOutOrder(this.orderItems, "BASIC ORDER");
-	}
-	
-	private void printOutOrder(ArrayList<Item> items,String message)
-	{
-		System.out.println("*****************************************************************************************************");
-		System.out.println("************************" + message + "************************");
-		System.out.println("*****************************************************************************************************");
-		
-		for(Item item:items)
-		{
-			System.out.println("\t " + item.toString());
-		}
-		
-		System.out.println("*****************************************************************************************************");
-		
-		
 	}
 
-	private void prepareNextRound() 
-	{
-		
-		
-	}
-
+	/**
+	 * edit the complete roundOrder
+	 */
 	private void editRoundOrder() 
 	{
-//		System.out.println("---- EDIT ORDER START ----");
-		this.printOutOrder(this.roundItems, "UNSORTED ORDER");
-		
 		this.sortRoundOrder();
-//		this.printOutOrder(this.roundItems, "SORTED ORDER");
 		
 		this.setPrevAndNextRoundOrder();
-//		this.printOutOrder(this.roundItems, "SET PRE AND NEXT ORDER");
 		
 		this.checkSameValueRoundOrder();
-//		this.printOutOrder(this.roundItems, "ORDER WITH PLACEHOLDERITEM");
-		
-//		System.out.println("---- EDIT ORDER END ----");
 	}
 	
+	/**
+	 * sorts the current round order after die values
+	 */
 	private void sortRoundOrder() 
 	{
-//		System.out.println("----- SORT ROUND ORDER -----");
-		
 		ArrayList<Item> sortedRoundOrder=new ArrayList<Item>();
 		
 		while(!this.roundItems.isEmpty())
@@ -587,9 +384,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				if(currentItem!=compareItem)
 				{
 					if(compareItem.getValue()>currentItem.getValue())
-					{
-//						System.out.println("---------- COMPARE ITEM IS BETTER THAN CURRENT ----------");
-						
+					{													//compare value is better than the current one
 						currentItem=compareItem;
 					}
 				}
@@ -597,17 +392,16 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			
 			this.roundItems.remove(currentItem);
 			sortedRoundOrder.add(currentItem);
-			
 		}
 		
 		this.roundItems=sortedRoundOrder;
 	}
 
-
+	/**
+	 * set the prev and next of the sorted round order
+	 */
 	private void setPrevAndNextRoundOrder() 
 	{
-//		System.out.println("----- SET PREV AND NEXT ROUND ORDER -----");
-		
 		for(int index=0;index<this.roundItems.size();index++)
 		{
 			if(index==0) 								//First Item
@@ -639,12 +433,13 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		currentItem.setPrev(prevItem);
 		currentItem.setNext(nextItem);
 	}
-
+	
+	/**
+	 * checks if more than one player rolled the same value.
+	 * if its true these players will be saved in a placeholderItem and the normal items will be replace with it.
+	 */
 	private void checkSameValueRoundOrder() 
 	{
-//		System.out.println("----- CHECK SAME VALUE ROUND ORDER -----");
-		
-		//ArrayList<Item> sortedItemsCopy=(ArrayList<Item>) this.roundItems.clone();
 		ArrayList<Item> newSortedItems=new ArrayList<Item>();
 		
 		while(!this.roundItems.isEmpty())
@@ -656,18 +451,16 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			int counter=0;
 			boolean compare=true;
 			
-			
-			
 			while(compare && !this.roundItems.isEmpty())
 			{
-				Item compareTriple=this.roundItems.get(counter);
+				Item compareItem=this.roundItems.get(counter);
 				
-				if(compareTriple.getValue()==currentItem.getValue())
+				if(compareItem.getValue()==currentItem.getValue())
 				{
-					//found a triple with the same value!
+					//found items with the same value!
 					
 					itemsToRemove.add(currentItem);
-					itemsToRemove.add(compareTriple);
+					itemsToRemove.add(compareItem);
 				}
 				else
 				{
@@ -686,31 +479,18 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			{
 				Item firstTriple=itemsToRemove.get(0);
 				
-				for(Item t:itemsToRemove)
-				{
-					System.out.println(t);
-				}
-				
 				Item lastTriple=itemsToRemove.get(itemsToRemove.size()-1);
 				
-				//Item placeHolderTriple=editSameTriples(firstTriple,lastTriple);
 				PlaceholderItem placeholderItem=new PlaceholderItem(itemsToRemove);
-				
 				
 				//Set pre and next before and after placeholder:
 				Item preBeforeItem=itemsToRemove.get(0).getPrev();
 				Item nextAfterItem=itemsToRemove.get(itemsToRemove.size()-1).getNext();
 				
-//				System.out.println("..............................................................................................");
-//				System.out.println("preBeforeItem is " + preBeforeItem);
-//				System.out.println("nextAfterItem is " + nextAfterItem);
-//				System.out.println("..............................................................................................");
-				
-				placeholderItem.setPrev(preBeforeItem);		//TODO f
+				placeholderItem.setPrev(preBeforeItem);	
 				placeholderItem.setNext(nextAfterItem);
 				
 				this.stackPlaceholders.push(placeholderItem);			
-//				this.queuePlaceholders.offer(placeholderItem);
 				
 				newSortedItems.add(placeholderItem);
 				
@@ -735,6 +515,14 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	/////////////////
 	//INNER CLASSES//
 	/////////////////
+	/**
+	 * Item is a inner class of PhasePreparation1Logic class.
+	 * 
+	 * <br> The item contains a next and a prev item, a player and the value of the rolled value.
+	 * 
+	 * @author Lukas Keller
+	 * @version 1.0.0
+	 */
 	private class Item
 	{
 		Item nextItem;
@@ -882,6 +670,14 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		}
 	}
 	
+	/**
+	 * PlaceholderItem is a inner class of PhasePreparation1Logic class.
+	 * 
+	 * <br> it can contains more than one item. It is used for different items with the same rolled value.
+	 * 
+	 * @author Lukas Keller
+	 * @version 1.0.0
+	 */
 	private class PlaceholderItem extends Item
 	{
 		ArrayList<Item> items=new ArrayList<Item>();
@@ -913,10 +709,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				if(!itemsToSave.contains(item))
 				{
 					itemsToSave.add(item);
-				}
-				else
-				{
-//					System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 				}
 			}
 			

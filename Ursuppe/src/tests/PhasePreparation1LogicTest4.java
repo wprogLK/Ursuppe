@@ -133,7 +133,6 @@ public class PhasePreparation1LogicTest4 extends ASCIITestTemplate
 	{
 		IPhase currentPhase=game.getCurrentPhase();
 		
-		//System.out.println("CURRENT ACTION 1: " +currentPhase.getCurrentAction());
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionBeforRunning);
 		
 		assertTrue(game.getCurrentEPhase()==EPhases.phasePreparation1);
@@ -183,7 +182,6 @@ public class PhasePreparation1LogicTest4 extends ASCIITestTemplate
 	public IGame currentPlayerShouldBePlayer2_FirstRound(IGame game)
 	{
 		IPhase currentPhase=game.getCurrentPhase();
-//		System.out.println("ACTION plaYER 2" + currentPhase.getCurrentAction());
 		
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionDoAllPreAction);
 		
@@ -280,7 +278,7 @@ public class PhasePreparation1LogicTest4 extends ASCIITestTemplate
 		IPhase currentPhase=game.getCurrentPhase();
 		
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionDoAllPreAction);
-		System.out.println("éééééééééééééééééééééééééééééééé PLAYER " + game.getCurrentPlayer().getName() );
+
 		assertTrue(game.getCurrentPlayer()==this.player2); 
 		
 		game.getDie().setFakeValue(5);
@@ -306,7 +304,6 @@ public class PhasePreparation1LogicTest4 extends ASCIITestTemplate
 	public IGame currentPlayerShouldBePlayer4_SecondRound(IGame game)
 	{
 		IPhase currentPhase=game.getCurrentPhase();
-		System.out.println(":::::::::::::::::::::::::::::::::::::::::" + currentPhase.getCurrentAction());
 		
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionDoAllPreAction);
 		
