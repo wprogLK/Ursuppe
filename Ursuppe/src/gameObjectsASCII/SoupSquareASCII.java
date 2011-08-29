@@ -16,6 +16,9 @@ public class SoupSquareASCII extends SoupSquareLogic{
 	 */
 	public SoupSquareASCII() {
 		// TODO Auto-generated constructor stub
+	
 	}
+	
+	
 
 }

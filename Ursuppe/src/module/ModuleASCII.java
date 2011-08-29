@@ -185,24 +185,21 @@ public class ModuleASCII implements IModule
 	@Override
 	public IBoard createBoard() 
 	{
-		//TODO
-		return null;
+		return new BoardASCII(this.outStream,this.errorStream);
 	}
 
 
 	@Override
 	public ISoupSquare createSoupSquare() 
 	{
-		//TODO
-		return null;
+		return new SoupSquareASCII();
 	}
 
 
 	@Override
 	public ICompassSquare createCompassSquare() 
 	{
-		//TODO
-		return null;
+		return new CompassSquareASCII();
 	}
 	
 }

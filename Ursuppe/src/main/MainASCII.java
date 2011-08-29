@@ -9,15 +9,18 @@ import java.util.Date;
 import helper.ErrorLogger;
 import helper.SaveAndLoad;
 import helper.Setting;
+import interfaces.IBoard;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPlayer;
+import interfaces.ISquare;
 import enums.EColor;
 import enums.EPhases;
 import enums.EToken;
 import gameObjectsASCII.GameASCII;
 
 import logics.BoardLogic;
+import logics.SoupSquareLogic;
 import module.*;
 
 import annotations.OnlyForTesting;
@@ -50,7 +53,11 @@ public class MainASCII {
 	 */
 	public static void main(String[] args) 
 	{
-		 BoardLogic b=new BoardLogic();
+		 IBoard b=module.createBoard();
+		
+		 
+		 System.out.println("BOARD \n" + b.toString());
+		 
 		 game=module.createGame();
 		 
 		 game.setStartPhase(EPhases.phasePreparation1);
