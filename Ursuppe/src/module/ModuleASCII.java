@@ -6,11 +6,15 @@ import java.util.Date;
 import enums.EColor;
 import gameObjectsASCII.*;
 import helper.UserInput;
+import interfaces.IAmoeba;
+import interfaces.IBoard;
+import interfaces.ICompassSquare;
 import interfaces.IDie;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
 import interfaces.IPlayer;
+import interfaces.ISoupSquare;
 
 /**
  * used if {@code game} is running in ASCII mode.
@@ -159,6 +163,46 @@ public class ModuleASCII implements IModule
 	public IDie createDie()
 	{
 		return new DieASCII();
+	}
+
+
+	@Override
+	public IAmoeba createAmoeba() 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public IAmoeba createAmoeba(EColor color, int number) 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public IBoard createBoard() 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public ISoupSquare createSoupSquare() 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public ICompassSquare createCompassSquare() 
+	{
+		//TODO
+		return null;
 	}
 	
 }

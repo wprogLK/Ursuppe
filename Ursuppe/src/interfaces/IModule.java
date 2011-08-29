@@ -72,4 +72,49 @@ public  interface IModule
 	public IPlayer createAPlayer(String name, Date birthday, int age, EColor color);
 	
 	public IDie createDie();
+	
+	/**
+	 * Creates default amoeba
+	 * @return
+	 */
+	public IAmoeba createAmoeba();
+	
+	/**
+	 * Creates a specific amoeba
+	 * @param color
+	 * @param number
+	 * @return
+	 */
+	public IAmoeba createAmoeba(EColor color, int number);
+	
+	/**
+	 * Creates a default board
+	 * @return
+	 */
+	public IBoard createBoard();
+	
+	//public IBoard createBoard(ArrayList<ISquare> soup, )	//TODO
+	
+	/**
+	 * Creates a default soupSquare
+	 * @return
+	 */
+	public ISoupSquare createSoupSquare();
+	
+//	/**
+//	 * Creates a specific soupSquare
+//	 * @return
+//	 */		
+//	public ISoupSquare createSoupSquare()	//TODO
+	
+	/**
+	 * Creates a default compassSquare
+	 */
+	public ICompassSquare createCompassSquare();
+	
+//	/**
+//	 * Creates a specific compassSquare
+//	 * @return
+//	 */
+//	public ICompassSquare createCompassSquare(); 	//TODO
 }

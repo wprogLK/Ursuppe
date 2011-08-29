@@ -17,6 +17,7 @@ import enums.EPhases;
 import enums.EToken;
 import gameObjectsASCII.GameASCII;
 
+import logics.BoardLogic;
 import module.*;
 
 import annotations.OnlyForTesting;
@@ -49,7 +50,7 @@ public class MainASCII {
 	 */
 	public static void main(String[] args) 
 	{
-		
+		 BoardLogic b=new BoardLogic();
 		 game=module.createGame();
 		 
 		 game.setStartPhase(EPhases.phasePreparation1);

@@ -9,11 +9,15 @@ import gameObjectsASCII.PhaseAASCII;
 import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.*;
 import helper.UserInput;
+import interfaces.IAmoeba;
+import interfaces.IBoard;
+import interfaces.ICompassSquare;
 import interfaces.IDie;
 import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPhase;
 import interfaces.IPlayer;
+import interfaces.ISoupSquare;
 
 import com.google.inject.AbstractModule;
 /**
@@ -222,6 +226,46 @@ public class ModuleGUI implements IModule
 	public IDie createDie()
 	{
 		//TODOs
+		return null;
+	}
+	
+	
+	@Override
+	public IAmoeba createAmoeba() 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public IAmoeba createAmoeba(EColor color, int number) 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public IBoard createBoard() 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public ISoupSquare createSoupSquare() 
+	{
+		//TODO
+		return null;
+	}
+
+
+	@Override
+	public ICompassSquare createCompassSquare() 
+	{
+		//TODO
 		return null;
 	}
 	
