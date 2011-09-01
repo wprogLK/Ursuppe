@@ -3,7 +3,12 @@
  */
 package logics;
 
+import java.util.ArrayList;
+
+import enums.EColor;
 import templates.SquareTemplate;
+import interfaces.IAmoeba;
+import interfaces.IFood;
 import interfaces.ISoupSquare;
 
 
@@ -13,12 +18,14 @@ import interfaces.ISoupSquare;
  */
 public class SoupSquareLogic extends SquareTemplate implements ISoupSquare
 {
-
-	ISoupSquare upSquare;
-	ISoupSquare downSquare;
+	protected ArrayList<IAmoeba> amoebas=new ArrayList<IAmoeba>();
+	protected ArrayList<IFood> foods=new ArrayList<IFood>();
 	
-	ISoupSquare leftSquare;
-	ISoupSquare rightSquare;
+	protected ISoupSquare upSquare;
+	protected ISoupSquare downSquare;
+	
+	protected ISoupSquare leftSquare;
+	protected ISoupSquare rightSquare;
 	
 	/**
 	 * 
@@ -133,5 +140,88 @@ public class SoupSquareLogic extends SquareTemplate implements ISoupSquare
 	{
 		this.rightSquare=square;
 	}
+
+	//////////
+	//AMOEBA//
+	//////////
+	
+	@Override
+	public void addAmoeba(IAmoeba amoeba) 
+	{
+		assert(!this.amoebas.contains(amoeba));
+		
+		this.amoebas.add(amoeba);
+	}
+
+	@Override
+	public void removeAmoeba(IAmoeba amoeba) 
+	{
+		assert(this.amoebas.contains(amoeba));
+		
+		this.amoebas.remove(amoeba);
+	}
+	
+	@Override
+	public boolean isSquareEmpty()
+	{
+		return this.amoebas.isEmpty();
+	}
+	
+	////////
+	//FOOD//
+	////////
+
+	@Override
+	public void addFood(IFood food) 
+	{
+		assert(!this.foods.contains(food));
+		
+		this.foods.add(food);
+	}
+
+	@Override
+	public void removeFood(IFood food) 
+	{
+		assert(this.foods.contains(food));
+		
+		this.foods.remove(food);
+	}
+
+	@Override
+	public void removeFood(EColor color, int number) 
+	{
+//		boolean foodWithColorExist=true;		//TODO
+//		
+//		while()
+//		
+	}
+	
+	@Override
+	public boolean hasEnoughFoodOfColor(EColor color, int numberToCount)
+	{
+		boolean count=true;
+		
+		int coloredFoodCounter=0;
+		
+		for(int foodCounter=0; (foodCounter<this.foods.size()) && (count); foodCounter++)
+		{
+			IFood food=this.foods.get(foodCounter);
+			
+			if(food.getColor()==color)
+			{
+				coloredFoodCounter++;
+				
+				if(foodCounter>=foodCounter)
+				{
+					return true;
+				}
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	
 
 }

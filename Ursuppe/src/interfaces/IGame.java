@@ -162,6 +162,8 @@ public interface IGame
 	
 	public  void turnOnCurrentPhaseWaiting();
 	public  void turnOffCurrentPhaseWaiting();
+	
+	
 	///////////
 	//GETTERS//
 	///////////
@@ -212,4 +214,6 @@ public interface IGame
 
 	@OnlyForTesting
 	public ArrayList<IPlayer> getPlayOrder();
+
+
 }

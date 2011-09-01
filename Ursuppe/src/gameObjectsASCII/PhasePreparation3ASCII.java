@@ -5,7 +5,7 @@ import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhasePreparation2Logic;
 
-public class PhasePreparation2ASCII extends PhasePreparation2Logic
+public class PhasePreparation3ASCII extends PhasePreparation2Logic
 {
 	/////////////
 	//BASICS...//
@@ -17,7 +17,7 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 		@Override
 		public void doPreAction()
 		{
-			this.outStream.println(this.rb.getString("phasePreparation2Title"));
+			this.outStream.println(this.rb.getString("phasePreparation3Title"));
 		}
 		
 		@Override

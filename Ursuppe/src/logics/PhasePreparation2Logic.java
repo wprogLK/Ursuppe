@@ -1,11 +1,14 @@
 package logics;
 
+import java.util.ArrayList;
+
 import enums.EPhases;
 import templates.PhaseTemplateLogic;
 import interfaces.IPhase;
+import interfaces.IPlayer;
 
 /**
- * 
+ * This preparation phase is about set the players on the board
  * @author Lukas Keller
  * @version 1.0.0
  * 
@@ -21,8 +24,10 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	//INPUTS//
 	//////////
 	
-	private String name; 	//ACTION A
-	private int age;		//ACTION B
+	//private String name; 	//ACTION A
+	
+	protected ArrayList<Integer> possibleStartPositions=new ArrayList<Integer>();
+	protected ArrayList<IPlayer> orderToPlay=new ArrayList<IPlayer>();
 
 		////////////
 		//...LOGIC//
@@ -39,10 +44,54 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	@Override
 	protected void setCurrentPhase()
 	{
-		this.currentPhase=EPhases.phaseA;
+		this.currentPhase=EPhases.phasePreparation2;
 	}
 	
+	@Override
+	public void doLogicPreActionFirstRun()
+	{
+		this.preparePossibleStartPositions();
+		
+		this.prepareOrderToPlay();
+	}
 	
+	private void prepareOrderToPlay() 
+	{
+		for(int i=0; i<this.game.getNumbersOfPlayers();i++)
+		{
+			this.orderToPlay.add(null);
+		}
+	}
+
+	private void preparePossibleStartPositions() 
+	{
+		for(int i=1; i<this.game.getNumbersOfPlayers()+1;i++)
+		{
+			this.possibleStartPositions.add(i);
+		}
+		
+	}
+	
+	public final void doLogicAfterAction()
+	{
+		boolean validPlayer=!this.nextPlayer();
+		
+		if(validPlayer)
+		{
+			this.turnOnRestart();
+		}
+		else
+		{
+			this.turnOffRestart();
+			
+			this.overrideOrderToPlay();
+			
+			this.waiting=true;
+			
+			this.currentPhase=EPhases.phasePreparation3;
+		}
+		
+	}
 		
 	///////////////
 	//RUN ACTIONS//
@@ -53,7 +102,7 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	////////////
 	//ACTION A//
 	////////////
-	
+
 	@Override
 	public  boolean setInputA(Object inputA)
 	{
@@ -77,81 +126,56 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionA(Object inputA)
 	{
-		String inputString="";
+		int inputPos=0;
 		
-		if(!this.tryCastToString(inputA))
+		if(!this.tryCastToInteger(inputA))
 		{
 			return false;
 		}
 		else
 		{
-			inputString=this.doCastToString(inputA);
+			inputPos=this.doCastToInteger(inputA);
+			return this.understandInputPosition(inputPos);
 		}
 		
 		
-		if (!inputString.equals(""))
-		{
-			this.game.getPlayer(1).setName(this.doCastToString(inputA)); 
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	
 	}
 	
 
 
-	////////////
-	//ACTION B//
-	////////////
-	@Override
-	public  boolean setInputB(Object inputB)
+	private boolean understandInputPosition(int inputPos) 
 	{
-		String inputString="";
-		boolean validBasic = false;
-		this.isInputNew=true;
-		
-		if(!this.tryCastToString(inputB))
+		if(this.possibleStartPositions.contains(inputPos))
 		{
-			return false;
-		}
-		else
-		{
-			inputString=this.doCastToString(inputB);
-		}
-		
-	
-		validBasic=this.checkBasicInputs(inputString);
-		
-		if(validBasic)
-		{
-			this.isInputValid=true;
+			this.editOrderToPlay(inputPos);
+			
+			int index=this.possibleStartPositions.indexOf(inputPos);
+			this.possibleStartPositions.remove(index);
+			
+			this.editOrderToPlay(inputPos);
+			
+			this.game.getCurrentPlayer().setScore(inputPos);
+			
 			return true;
 		}
 		else
 		{
-			boolean valid=this.checkInputActionB(inputString);
-			this.isInputValid=valid;
-			return valid;
+			return false;
 		}
 		
 	}
-	
-	
-	@Override
-	public final boolean checkInputActionB(Object inputB)
+
+	private void editOrderToPlay(int inputPos) 
 	{
-		if(!this.tryCastToInteger(inputB))
-		{
-			return false;
-		}
-		else
-		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputB)); 
-			return true;
-		}
+		int index=inputPos-1;
+		IPlayer player=this.game.getCurrentPlayer();
+		
+		this.orderToPlay.remove(index);
+		this.orderToPlay.add(index, player);
 	}
+
+	
 	
 	
 
@@ -167,6 +191,16 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	///////////
 	//GETTERS//
 	///////////
+
+	
+	///////////////////
+	//PRIVATE METHODS//
+	///////////////////
+	private void overrideOrderToPlay() 
+	{
+		this.game.overrideAllNormalPlayers(this.orderToPlay);
+	}
+	
 	
 	
 }

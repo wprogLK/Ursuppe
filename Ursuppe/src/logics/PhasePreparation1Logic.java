@@ -15,7 +15,7 @@ import interfaces.IPhase;
 import interfaces.IPlayer;
 
 /**
- * 
+ * This preparation phase is about rolling the dice to get a order to set the players on the board
  * @author Lukas Keller
  * @version 1.0.0
  * 

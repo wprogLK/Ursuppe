@@ -14,6 +14,7 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	protected Date birthday;
 	protected EColor color;
 	protected EPlayer eType;
+	protected int score;
 	/**
 	 * is the default constructor
 	 * 
@@ -26,6 +27,7 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 		this.setName("[SubjectName]");
 		this.setAge(0);
 		this.setColor(EColor.Default);
+		this.score=-1;
 	}
 	
 	/**
@@ -40,6 +42,7 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 		this.setAge(age);
 		this.setColor(color);
 		this.setBirthday(birthday);
+		this.score=-1;
 	}
 	
 	
@@ -78,10 +81,22 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	{
 		this.birthday=birthday;
 	}
+	
+	@Override
+	public void setScore(int value)
+	{
+		this.score=value;
+	}
 
 	///////////
 	//GETTERS//
 	///////////
+	@Override
+	public int getScore()
+	{
+		return this.score;
+	}
+	
 	@Override
 	public String getName() 
 	{

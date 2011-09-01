@@ -16,6 +16,8 @@ public interface IPlayer {
 	public void setColor(EColor color);
 	public void setBirthday(Date birthday);
 	public void setType(EPlayer eType);
+	
+	void setScore(int value);
 	///////////
 	//GETTERS//
 	///////////
@@ -26,5 +28,8 @@ public interface IPlayer {
 	public EColor getColor();
 	
 	public EPlayer getType();
+	
+	public int getScore();
+	
 	
 }

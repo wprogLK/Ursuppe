@@ -1,5 +1,7 @@
 package interfaces;
 
+import enums.EColor;
+
 public interface ISoupSquare
 {
 	public void setUpSquare(ISoupSquare square);
@@ -20,5 +22,18 @@ public interface ISoupSquare
 	
 	public boolean hasLeftSquare();
 	public boolean hasRightSquare();
+	
+	
+	public void addAmoeba(IAmoeba amoeba);
+	public void removeAmoeba(IAmoeba amoeba);
+	
+	public void addFood(IFood food);
+	public void removeFood(IFood food);
+	
+	public void removeFood(EColor color, int number);
+	
+	public boolean hasEnoughFoodOfColor(EColor color, int numberToCount);
+	
+	public boolean isSquareEmpty();
 	
 }

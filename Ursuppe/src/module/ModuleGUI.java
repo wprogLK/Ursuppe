@@ -172,6 +172,12 @@ public class ModuleGUI implements IModule
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public IPhase createPhasePreparation3() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 	@Override

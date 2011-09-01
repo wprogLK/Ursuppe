@@ -51,6 +51,8 @@ public class GameLogic extends Thread implements Serializable
 	
 	private IPhase phasePreparation1;
 	private IPhase phasePreparation2;
+	private IPhase phasePreparation3;
+	
 	private IPhase phase1;
 	private IPhase phase2;
 	private IPhase phase3;
@@ -140,6 +142,8 @@ public class GameLogic extends Thread implements Serializable
 		
 		this.phasesList.add(this.phasePreparation1);
 		this.phasesList.add(this.phasePreparation2);
+		this.phasesList.add(this.phasePreparation3);
+		
 		this.phasesList.add(this.phase1);
 		this.phasesList.add(this.phase2);
 		this.phasesList.add(this.phase3);
@@ -194,6 +198,8 @@ public class GameLogic extends Thread implements Serializable
 		
 		this.phasePreparation1=this.module.createPhasePreparation1();
 		this.phasePreparation2=this.module.createPhasePreparation2();
+		this.phasePreparation3=this.module.createPhasePreparation2();
+		
 		this.phase1=this.module.createPhase1();
 		this.phase2=this.module.createPhase2();
 		this.phase3=this.module.createPhase3();
@@ -474,6 +480,15 @@ public class GameLogic extends Thread implements Serializable
 				
 				this.phasePreparation2.doStart();
 				this.joinCurrentPhase(this.phasePreparation2);
+				break;
+			}
+			case phasePreparation3:
+			{
+				this.currentPhase=this.phasePreparation3;
+				this.currentEPhase.setPhase(this.phasePreparation3);
+				
+				this.phasePreparation3.doStart();
+				this.joinCurrentPhase(this.phasePreparation3);
 				break;
 			}
 			case phase1:

@@ -96,6 +96,11 @@ public class ModuleASCII implements IModule
 	{
 		return new PhasePreparation2ASCII();
 	}
+	public IPhase createPhasePreparation3()
+	{
+		return new PhasePreparation3ASCII();
+	}
+	
 	public IPhase createPhase1()
 	{
 		return new Phase1ASCII();

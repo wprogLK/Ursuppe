@@ -46,6 +46,8 @@ public  interface IModule
 	
 	public IPhase createPhasePreparation1();
 	public IPhase createPhasePreparation2();
+	public IPhase createPhasePreparation3();
+	
 	public IPhase createPhase1();
 	public IPhase createPhase2();
 	public IPhase createPhase3();

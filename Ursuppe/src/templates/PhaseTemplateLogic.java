@@ -55,6 +55,10 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	
 	private EActions currentAction=EActions.ActionBeforRunning;
 	private EActions nextAction=EActions.ActionDoAllPreAction;
+	
+	private boolean firstRun=true;
+	private boolean lastRun=false;
+	
 	///////////////////
 	//DO RUN ACTIONS?//
 	///////////////////
@@ -96,7 +100,6 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	//BASICS//
 	//////////
 	
-	
 	/**
 	 * Constructor:
 	 * <br />
@@ -117,6 +120,12 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			this.waiting=false;
 		}
 	}
+	
+	public void resetFirstRun()
+	{
+		this.firstRun=true;
+	}
+	
 	
 	public void turnOnSetActionsToRun()
 	{
@@ -1190,10 +1199,32 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			this.game.skipTailOrHeadPlayer(); //TODO Maybe delete this? And do it in each logic separately
 			
+			this.doAllPreActionsFirstRun();
+			
 			this.doLogicPreAction();
 			this.doPreAction();
 		}
 		
+		private void doAllPreActionsFirstRun() 
+		{
+			if(this.firstRun)
+			{
+				this.doLogicPreActionFirstRun();
+				this.doPreActionFirstRun();
+				
+				this.firstRun=false;
+			}
+			
+		}
+
+		public void doLogicPreActionFirstRun() 
+		{
+		}
+
+		public void doPreActionFirstRun() 
+		{
+		}
+
 		private final void doAllAfterAction()
 		{
 			//System.out.println("START IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
@@ -1201,9 +1232,27 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			this.doLogicAfterAction();
 			this.doAfterAction();
 			
+			this.doAllAfterActionLast();
 			//System.out.println("END IN PHASE TEMPLATE LOGIC DO ALL AFTER ACTION");
 		}
 		
+		private final void doAllAfterActionLast() 
+		{
+			if(this.lastRun)
+			{
+				this.doAfterActionLastRun();
+				this.doLogicAfterActionLastRun();
+			}
+		}
+
+		public  void doLogicAfterActionLastRun() 
+		{
+		}
+
+		public void doAfterActionLastRun() 
+		{
+		}
+
 		protected final boolean nextPlayer()	//TODO CHECK THIS!!!
 		{
 			
@@ -5143,11 +5192,13 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		
 		public final void turnOnRestart()
 		{
+			this.lastRun=false;
 			this.restartOn=true;
 		}
 		
 		public final void turnOffRestart()
 		{
+			this.lastRun=true;
 			this.restartOn=false;
 		}
 		

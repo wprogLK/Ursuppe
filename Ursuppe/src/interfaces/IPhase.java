@@ -54,6 +54,8 @@ public interface IPhase
 	public void turnOffWaiting();	//At the moment only used for testing
 	
 	public boolean isWaiting();
+	
+	public void resetFirstRun();
 	//////////
 	//THREAD//
 	//////////
