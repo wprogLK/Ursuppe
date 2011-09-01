@@ -138,5 +138,13 @@ public class CompassSquareLogic extends SquareTemplate implements ICompassSquare
 	}
 	
 	
+	//////////////
+	//TO STRING//
+	/////////////
+	public String getLineNumber(int nr)
+	{
+		return "compass square";
+	}
+	
 
 }

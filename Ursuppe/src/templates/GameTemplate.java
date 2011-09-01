@@ -20,6 +20,7 @@ import enums.EPlayingOrder;
 import main.GameLogic;
 
 import helper.LanguageSetup;
+import helper.Setting;
 import interfaces.IDie;
 import interfaces.IGame;
 import interfaces.IModule;
@@ -53,6 +54,8 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	protected IPlayer currentPlayer;
 	
 	protected boolean testModeOn=false;
+	
+	private ArrayList<EColor> usedColors=new ArrayList<EColor>();
 	
 	public GameTemplate(PrintStream out, PrintStream error)
 	{
@@ -106,6 +109,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		 IPlayer newPlayer = this.module.createAPlayer(name, birthday,age, color);
 		
 		 this.addPlayer(newPlayer);
+		
 		 
 		 return newPlayer;
 	}
@@ -212,6 +216,8 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	@Override
 	public final void play()
 	{
+		Setting.usedColors=this.usedColors;
+		
 		this.start();
 	}
 	
@@ -253,7 +259,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		else
 		{
 			this.players.add(this.players.size()-1, player);
-			
+			this.usedColors.add(player.getColor());
 				
 		}
 		

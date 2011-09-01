@@ -55,7 +55,6 @@ public interface IPhase
 	
 	public boolean isWaiting();
 	
-	public void resetFirstRun();
 	//////////
 	//THREAD//
 	//////////

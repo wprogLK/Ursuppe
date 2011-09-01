@@ -174,8 +174,7 @@ public class ModuleASCII implements IModule
 	@Override
 	public IAmoeba createAmoeba() 
 	{
-		//TODO
-		return null;
+		return new AmoebaASCII();
 	}
 
 

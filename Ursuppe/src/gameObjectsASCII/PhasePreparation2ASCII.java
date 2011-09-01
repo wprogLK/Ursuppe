@@ -54,7 +54,9 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 	{
 		IPlayer player=this.game.getCurrentPlayer();
 		
-		String message=player.getName() + " "+ this.rb.getString("preparation2Choosed") + " " + player.getScore();
+		String[] arg={player.getName(),this.doCastToString(player.getScore())};
+		String message=String.format(this.rb.getString("preparation2ChoosedNEW"), arg);
+		
 		this.outStream.println(message);
 	}
 

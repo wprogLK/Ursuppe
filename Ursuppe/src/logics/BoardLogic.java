@@ -5,6 +5,7 @@ package logics;
 
 import java.io.PrintStream;
 
+import interfaces.IAmoeba;
 import interfaces.IBoard;
 import interfaces.ICompassSquare;
 import interfaces.IModule;
@@ -39,7 +40,7 @@ public class BoardLogic implements IBoard
 		this.outStream=out;
 		this.errorStream=error;
 		
-		this.buildEmptyBoard(5,5);
+		this.buildEmptyBoard(6,6);
 		
 		this.buildOriginalBoard();
 	}
@@ -61,27 +62,28 @@ public class BoardLogic implements IBoard
 	}
 
 
-	private void buildSoupSquares() {
+	private void buildSoupSquares() 
+	{
 		//First line
 		for(int x=1;x<this.soupBoard.length-1;x++)
 		{
 			ISoupSquare square=this.module.createSoupSquare();
-			this.soupBoard[x][0]=square;
+			this.soupBoard[0][x]=square;
 		}
 		
 		//Middle lines
-		for(int x=0;x<this.soupBoard.length-1;x++)
+		for(int y=1;y<this.soupBoard.length-2;y++)
 		{
-			for(int y=1;y<this.soupBoard.length-1;y++)
+			for(int x=0;x<this.soupBoard.length-1;x++)
 			{
 				ISoupSquare square=this.module.createSoupSquare();
-				this.soupBoard[x][y]=square;
+				this.soupBoard[y][x]=square;
 			}
 		}
 		
 		//Last line
 		ISoupSquare square=this.module.createSoupSquare();
-		this.soupBoard[3][4]=square;
+		this.soupBoard[4][3]=square;
 	}
 
 
@@ -197,6 +199,15 @@ public class BoardLogic implements IBoard
 	public void addPlayer(IPlayer player) 
 	{
 		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void testAddAmeba() {
+		IAmoeba amoeba=this.module.createAmoeba();
+		
+		this.soupBoard[1][1].addAmoeba(amoeba);
 		
 	}
 

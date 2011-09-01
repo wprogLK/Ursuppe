@@ -349,7 +349,7 @@ public class Player extends JPanel{
 	
 	public void setScore(int score)
 	{
-		assert score>0;
+		//assert score>0;
 		this.score=score;
 		this.posX=this.constDistance*score*this.image.getWidth()+this.constDistance2;
 		this.posY=0;
@@ -362,7 +362,7 @@ public class Player extends JPanel{
 	
 	public int getScore()
 	{
-		assert score>0;
+		//assert score>0;
 		return this.score;
 	}
 	

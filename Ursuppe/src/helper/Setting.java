@@ -1,6 +1,9 @@
 package helper;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+
+import enums.EColor;
 
 public abstract class Setting 
 {
@@ -21,6 +24,9 @@ public abstract class Setting
 	
 	public static PrintStream testOut=System.out;//new PrintStream(new NullOutputStream());//System.out;
 	public static PrintStream testErr=new PrintStream(new NullOutputStream());//System.err;
+	
+	public static ArrayList<EColor> usedColors=new ArrayList<EColor>();
+	
 	
 	
 }

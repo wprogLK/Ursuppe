@@ -45,7 +45,8 @@ public class MainASCII {
 		 IBoard b=module.createBoard();
 		
 		 
-		 System.out.println("BOARD \n" + b.toString());
+		 
+		
 		 
 		 game=module.createGame();
 		 
@@ -71,7 +72,11 @@ public class MainASCII {
 		// SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
 
 		 game.play();
+		 System.out.println("BOARD \n" + b.toString());
 		 
+		 b.testAddAmeba();
+		 
+		 System.out.println("BOARD \n" + b.toString());
 		 
 		 try 
 		 {

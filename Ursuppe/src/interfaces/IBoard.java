@@ -1,5 +1,7 @@
 package interfaces;
 
+import annotations.OnlyForTesting;
+
 
 public interface IBoard 
 {
@@ -10,4 +12,7 @@ public interface IBoard
 	public void setCompassSquare(ICompassSquare compass, int x, int y);
 	
 	public void addPlayer(IPlayer player);
+	
+	@OnlyForTesting
+	public void testAddAmeba();
 }

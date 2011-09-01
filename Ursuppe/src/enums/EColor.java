@@ -32,18 +32,27 @@ import gameObjectsGUI.PlayerGUI;
  */
 public enum EColor 
 {
-	Default,
-	Red,
-	Blue,
-	Yellow,
-	Black,
-	White,
-	Pink,
-	Green,
-	Gray;
+	Default("DE","de"),
+	Red("RE","re"),
+	Blue("BL","bl"),
+	Yellow("YE","ye"),
+	Black("BL","bl"),
+	White("WH","wh"),
+	Pink("PI","pi"),
+	Green("GE","ge"),
+	Gray("GA","gA");
 
 	private IPlayer player;
-
+	
+	private String bigBegin;
+	private String smallBegin;
+	
+	EColor(String bigBegin, String smallBegin)
+	{
+		this.bigBegin=bigBegin;
+		this.smallBegin=smallBegin;
+	}
+	
 	/**
 	 * sets the player to the color
 	 * @param player
@@ -64,5 +73,15 @@ public enum EColor
 	public IPlayer getPlayer()
 	{
 		return this.player;
+	}
+	
+	public String getBigBegin()
+	{
+		return this.bigBegin;
+	}
+	
+	public String getSmallBegin()
+	{
+		return this.smallBegin;
 	}
 }

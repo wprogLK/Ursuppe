@@ -36,4 +36,15 @@ public interface ISoupSquare
 	
 	public boolean isSquareEmpty();
 	
+	
+	public int getAmoebaNumberWithColor(EColor color);
+	public int getFoodNumberWithColor(EColor color);
+	
+	/////////////////////
+	//TO STRING METHODS//
+	/////////////////////
+	public String getLineNumber(int nr);
+	
+
+	
 }

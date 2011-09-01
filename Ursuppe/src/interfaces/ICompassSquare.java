@@ -18,4 +18,6 @@ public interface ICompassSquare
 	
 	public void setFakedOzoneLayers(ArrayList<Integer> ozoneLayers);
 	public void setFakedDirections(ArrayList<EDirections> directions);
+	
+	public String getLineNumber(int nr);
 }

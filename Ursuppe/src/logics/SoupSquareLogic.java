@@ -167,6 +167,22 @@ public class SoupSquareLogic extends SquareTemplate implements ISoupSquare
 		return this.amoebas.isEmpty();
 	}
 	
+	@Override 
+	public int getAmoebaNumberWithColor(EColor color)
+	{
+		int counter=0;
+		
+		for(IAmoeba amoeba:this.amoebas)
+		{
+			if(amoeba.getColor()==color)
+			{
+				counter++;
+			}
+		}
+		
+		return counter;
+	}
+	
 	////////
 	//FOOD//
 	////////
@@ -222,6 +238,29 @@ public class SoupSquareLogic extends SquareTemplate implements ISoupSquare
 		
 	}
 	
+	@Override 
+	public int getFoodNumberWithColor(EColor color)
+	{
+		int counter=0;
+		
+		for(IFood food:this.foods)
+		{
+			if(food.getColor()==color)
+			{
+				counter++;
+			}
+		}
+		
+		return counter;
+	}
+	
+	//////////////
+	//TO STRING//
+	/////////////
+	public String getLineNumber(int nr)
+	{
+		return "Soup square";
+	}
 	
 
 }
