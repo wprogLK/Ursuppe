@@ -27,8 +27,9 @@ import gameObjectsGUI.PlayerGUI;
  * 	<li> Gray </li>
  * </ul>
  * </p>
- * @author Lukas
- *  @version 1.0.0
+ * 
+ * @author Lukas Keller
+ * @version 1.0.0
  */
 public enum EColor 
 {
@@ -75,11 +76,19 @@ public enum EColor
 		return this.player;
 	}
 	
+	/**
+	 * gets the token of the color in capital letters
+	 * @return a string with the first two letters of the color
+	 */
 	public String getBigBegin()
 	{
 		return this.bigBegin;
 	}
 	
+	/**
+	 * gets the token of the color in small letters
+	 * @return a string with the first two letters of the color
+	 */
 	public String getSmallBegin()
 	{
 		return this.smallBegin;

@@ -393,8 +393,6 @@ public class PhasePreparation1LogicTest4 extends ASCIITestTemplate
 	@Given("currentPlayerShouldBePlayer3_ThirdRound")
 	public IGame checkOrderToPlay(IGame game)
 	{		
-		ArrayList<IPlayer> gameList=game.getPlayOrder();
-		
 		game.skipTailOrHeadPlayer();
 		
 		for(int i=0; i<this.playingOrder.size(); i++)

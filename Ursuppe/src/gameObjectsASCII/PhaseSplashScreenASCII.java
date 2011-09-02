@@ -3,7 +3,11 @@ package gameObjectsASCII;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseSplashScreenLogic;
-
+/**
+ * the splashScreen phase for ASCII game
+ * @author Lukas Keller
+ * @version 1.0.0
+ */
 public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 {
 
@@ -35,12 +39,6 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 	////////////
 	//ACTION A//
 	////////////
-	
-	@Override
-	public void doPreActionA()
-	{
-
-	}
 	
 	@Override
 	public void actionAInput()

@@ -4,9 +4,15 @@ import interfaces.IPlayer;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhasePreparation2Logic;
-
+/**
+ * the third preparation phase for ASCII game
+ * @author Lukas Keller
+ * @version 1.0.0
+ */
 public class PhasePreparation3ASCII extends PhasePreparation2Logic
 {
+	//TODO
+	
 	/////////////
 	//BASICS...//
 	/////////////
@@ -15,7 +21,7 @@ public class PhasePreparation3ASCII extends PhasePreparation2Logic
 		////////////
 	
 		@Override
-		public void doPreAction()
+		public void doPreActionFirstRun()
 		{
 			this.outStream.println(this.rb.getString("phasePreparation3Title"));
 		}
@@ -23,7 +29,7 @@ public class PhasePreparation3ASCII extends PhasePreparation2Logic
 		@Override
 		public void doAfterActionLastRun()
 		{
-			this.outStream.println(this.rb.getString("preaparation2Sucessful"));
+			this.outStream.println(this.rb.getString("preaparation3Sucessful"));
 		}
 
 	///////////
@@ -38,7 +44,7 @@ public class PhasePreparation3ASCII extends PhasePreparation2Logic
 	@Override
 	public void doPreActionA()
 	{
-		this.outStream.println(this.rb.getString("preparation2Instruction"));
+		this.outStream.println(this.rb.getString("preparation3Instruction"));
 	}
 	
 	@Override

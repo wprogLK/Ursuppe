@@ -1,5 +1,44 @@
 package enums;
-
+/**
+ * All possibles directions which a player can roll and an amoeba can move.
+ * 
+ * <br><u> Overview: </u>
+ * 
+ * <table border="1">
+ * 	<tr>
+ * 		<th> Direction </th>
+ * 		<th> Value </th>
+ * 	</tr>
+ * 	<tr>
+ * 		<td> North </td>
+ * 		<td> 2 </td>
+ * 	</tr>
+ * 
+ * 	<tr>
+ * 		<td> South </td>
+ * 		<td> 4 </td>
+ * 	</tr>
+ * 
+ * 	<tr>
+ * 		<td> West </td>
+ * 		<td> 1 </td>
+ * 	</tr>
+ * 
+ * 	<tr>
+ * 		<td> East </td>
+ * 		<td> 3 </td>
+ * 	</tr>
+ * 
+ * 	<tr>
+ * 		<td> Middle </td>
+ * 		<td> 5 </td>
+ * 	</tr>
+ * </table>
+ * 
+ * @author Lukas Keller
+ * @version 1.0.0
+ *
+ */
 public enum EDirections 
 {
 	North(2),
@@ -15,6 +54,11 @@ public enum EDirections
 		this.dieValue=dieValue;
 	}
 	
+	/**
+	 * returns the direction of the incoming value
+	 * @param value, should be between 1 and 5
+	 * @return the direction
+	 */
 	public static EDirections getDirection(int value)
 	{
 		switch(value)

@@ -24,7 +24,7 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	//INPUTS//
 	//////////
 	
-	//private String name; 	//ACTION A
+																					//ACTION A: chose position
 	
 	protected ArrayList<Integer> possibleStartPositions=new ArrayList<Integer>();
 	protected ArrayList<IPlayer> orderToPlay=new ArrayList<IPlayer>();
@@ -137,13 +137,8 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 			inputPos=this.doCastToInteger(inputA);
 			return this.understandInputPosition(inputPos);
 		}
-		
-		
-	
 	}
 	
-
-
 	private boolean understandInputPosition(int inputPos) 
 	{
 		if(this.possibleStartPositions.contains(inputPos))
@@ -163,7 +158,6 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 		{
 			return false;
 		}
-		
 	}
 
 	private void editOrderToPlay(int inputPos) 
@@ -175,17 +169,9 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 		this.orderToPlay.add(index, player);
 	}
 
-	
-	
-	
-
 	///////////
 	//SETTERS//
 	///////////
-	
-	
-	
-
 	
 	
 	///////////

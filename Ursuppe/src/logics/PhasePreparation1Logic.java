@@ -41,7 +41,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	//////////
 	//INPUTS//
 	//////////
-
+																		//Action A: roll the die
 		////////////
 		//...LOGIC//
 		////////////
@@ -58,12 +58,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	protected void setCurrentPhase()
 	{
 		this.currentPhase=EPhases.phasePreparation1;
-	}
-	
-	@Override
-	public final void doLogicPreAction()
-	{
-
 	}
 	
 	@Override
@@ -105,8 +99,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				
 				this.prepareForAReRoll();
 			}
-			
-			
 		}
 	}
 	
@@ -172,8 +164,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				{
 					finalOrder.add(i);
 				}
-				
-				
 			}
 			else
 			{																//Normal item
@@ -181,7 +171,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				{
 					finalOrder.add(currentItem);
 				}
-				
 			}
 		}
 		
@@ -208,8 +197,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	////////////
 	//ACTION A//
 	////////////
-
-	
 
 	@Override
 	public  boolean setInputA(Object inputA)
@@ -292,10 +279,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	///////////
 	//SETTERS//
 	///////////
-	
-	
-	
-
 	
 	
 	///////////
@@ -477,10 +460,6 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 			
 			if(!itemsToRemove.isEmpty())
 			{
-				Item firstTriple=itemsToRemove.get(0);
-				
-				Item lastTriple=itemsToRemove.get(itemsToRemove.size()-1);
-				
 				PlaceholderItem placeholderItem=new PlaceholderItem(itemsToRemove);
 				
 				//Set pre and next before and after placeholder:

@@ -21,7 +21,11 @@ import org.junit.runner.RunWith;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-
+/**
+ * @author Lukas Keller
+ * @version 1.0.0
+ *
+ */
 public class GUITestTemplate extends Thread
 {
 	protected final PrintStream outStream= Setting.testOut;

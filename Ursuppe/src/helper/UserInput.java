@@ -14,7 +14,7 @@ import enums.EMode;
  * 
  *<br/> only needed for modus ASCII and for cheats
  * @author Lukas
- * @version 1.0.0.1
+ * @version 1.0.0
  */
 public abstract class UserInput extends Thread
 {
@@ -84,8 +84,6 @@ public abstract class UserInput extends Thread
 			}
 			case guiMode:
 			{
-//				System.out.println("GUI USER INPUT");
-//				return guiUserInput(message);
 				return null;	//TODO
 			}
 			default:
@@ -95,21 +93,6 @@ public abstract class UserInput extends Thread
 			}
 		}
 	}
-//	
-//	/*
-//	 * maybe not relly used 
-//	 */
-//	private static String guiUserInput(String message) 
-//	{
-//		while(!newInput)
-//		{
-//			doSleep();
-//		}
-//		
-//		newInput=false;		//reset the input
-//		
-//		return input;
-//	}
 
 	private static String fakeUserInput(String message) 
 	{	

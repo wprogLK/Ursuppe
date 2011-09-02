@@ -20,7 +20,8 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	//////////
 	//INPUTS//
 	//////////
-
+													//ACTION A: Chose action
+	
 		////////////
 		//...LOGIC//
 		////////////
@@ -128,7 +129,7 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 		else
 		{
 			valid=false;
-			this.outStream.println("Input was: " + input);	//TODO delete this
+			//TODO
 		}
 		
 		return valid;

@@ -3,8 +3,8 @@ package gameObjectsASCII;
 import logics.Phase1Logic;
 
 /**
- * @author Lukas
- *
+ * @author Lukas Keller
+ * @version 1.0.0
  */
 public class Phase1ASCII extends Phase1Logic
 {

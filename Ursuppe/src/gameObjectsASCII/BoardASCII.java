@@ -14,8 +14,9 @@ import logics.BoardLogic;
 import module.ModuleASCII;
 
 /**
- * @author Lukas
- *
+ * This is the board for the ASCII game.
+ * @author Lukas Keller
+ * @version 1.0.0
  */
 public class BoardASCII extends BoardLogic{
 
@@ -27,6 +28,10 @@ public class BoardASCII extends BoardLogic{
 		super(out,error,new ModuleASCII(out,error));
 	}
 	
+	/**
+	 * creates a full ASCII board with all squares
+	 */
+	@Override
 	public String toString()
 	{
 		String str="";
@@ -37,7 +42,6 @@ public class BoardASCII extends BoardLogic{
 			String firstLine="|";
 			String secondLine="|";
 			String thirdLine="|";
-			String bottonLine="";
 			
 			for(int y=0; y<this.soupBoard.length-1;y++)
 			{
@@ -46,9 +50,9 @@ public class BoardASCII extends BoardLogic{
 				if(square==null)
 				{
 					topLine+=SquareTemplate.createLine()+"|";
-					firstLine+=SquareTemplate.nullSquareLineOne()+"|";//SquareTemplate.normalSquare("")+"|";
-					secondLine+=SquareTemplate.nullSquareLineOne()+"|";//SquareTemplate.normalSquare("")+"|";
-					thirdLine+=SquareTemplate.nullSquareLineOne()+"|";//SquareTemplate.normalSquare("")+"|";
+					firstLine+=SquareTemplate.nullSquareLineOne()+"|";
+					secondLine+=SquareTemplate.nullSquareLineOne()+"|";
+					thirdLine+=SquareTemplate.nullSquareLineOne()+"|";
 				}
 				else if(x==this.compassSquare.getPosX() && y==this.compassSquare.getPosY())
 				{
@@ -75,41 +79,8 @@ public class BoardASCII extends BoardLogic{
 		{
 			str+=SquareTemplate.createLine()+"|";
 		}
-		
-		
-		
+
 		return str;
-		
-		
-		
-		
-//		String str="";
-//		
-//		for(int x=0; x<this.soupBoard.length-1;x++)
-//		{
-//			for(int y=0; y<this.soupBoard.length-1;y++)
-//			{
-//				ISoupSquare square=this.soupBoard[x][y];
-//				
-//				if(square==null)
-//				{
-//					str+="NULL\t";
-//				}
-//				else if(x==this.compassSquare.getPosX() && y==this.compassSquare.getPosY())
-//				{
-//					str+=this.compassSquare.toString();
-//				}
-//				else
-//				{
-//					str+=square.toString()+"\t";
-//				}
-//				
-//			
-//			}
-//			str+="\n";
-//		}
-//		
-//		return str;
 	}
 
 }

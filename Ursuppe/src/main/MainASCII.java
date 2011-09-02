@@ -45,12 +45,8 @@ public class MainASCII {
 	public static void main(String[] args) 
 	{
 	
-		 IBoard b=module.createBoard();
-		
-		 
-		 
-		
-		 
+		// IBoard b=module.createBoard();
+
 		 game=module.createGame();
 		 
 		 game.setStartPhase(EPhases.phasePreparation1);
@@ -81,11 +77,11 @@ public class MainASCII {
 		// SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
 
 		 game.play();
-		 System.out.println("BOARD \n" + b.toString());
+		// System.out.println("BOARD \n" + b.toString());
 		 
-		 b.testAddAmeba();
+		// b.testAddAmeba();
 		 
-		 System.out.println("BOARD \n" + b.toString());
+		// System.out.println("BOARD \n" + b.toString());
 		 
 		 try 
 		 {

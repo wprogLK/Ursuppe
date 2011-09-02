@@ -11,8 +11,9 @@ import java.util.Date;
 import java.util.Properties;
 
 /**
- * @author Lukas
- *
+ * This is an abstract class and is used to write down exceptions in a file.
+ * @author Lukas Keller
+ * @version 1.0.0
  */
 public abstract class ErrorLogger 
 {
@@ -32,6 +33,10 @@ public abstract class ErrorLogger
 		errStream=error;
 	}
 	
+	/**
+	 * open the file and write a new exception e down.
+	 * @param Exception e
+	 */
 	public static void logAError(Exception e)
 	{
 		ArrayList<String> data=createData(e);
@@ -41,16 +46,19 @@ public abstract class ErrorLogger
 		ReadAndWriteFiles.addDataErrorLog(data);
 	}
 
+	/**
+	 * Create all important information of the current situation and exception
+	 * @param Exception e
+	 * @return string with all important information
+	 */
 	private static ArrayList<String> createData(Exception e) 
 	{
 		ArrayList<String> arrAll=new ArrayList<String>();
 		
 		//Date:
-		String arrData= createData();
+		String arrDate= createDate();
 		arrAll.add("DATE: ");
-		arrAll.add(arrData);
-		
-			
+		arrAll.add(arrDate);
 		
 		//Exception:
 		ArrayList<String> arrException=createException(e);
@@ -59,7 +67,6 @@ public abstract class ErrorLogger
 			arrAll.add(str);
 		}
 		
-		
 		//SystemProperties:
 		ArrayList<String> arrSystemProp=createSystemProperties();
 		for(String str:arrSystemProp)
@@ -67,9 +74,9 @@ public abstract class ErrorLogger
 			arrAll.add(str);
 		}
 		
-		
 		//GameProperties:
 		//TODO
+		
 		return arrAll;
 	}
 
@@ -139,8 +146,7 @@ public abstract class ErrorLogger
 		list.add(exceptionMessage);
 		String exceptionLocalizedMessage="Localized message: " + e.getLocalizedMessage();
 		list.add(exceptionLocalizedMessage);
-//		String exceptionCause="Cause: " + e.getCause().toString();				//TODO: what is that?
-//		list.add(exceptionCause);
+
 		ArrayList<String> arrStack= createStack(e);
 		for(String str:arrStack)
 		{
@@ -151,7 +157,7 @@ public abstract class ErrorLogger
 		return list;
 	}
 
-	private static String createData() 
+	private static String createDate() 
 	{
 		Date d = new Date(); 
 		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT ); 

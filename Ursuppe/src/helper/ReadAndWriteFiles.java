@@ -60,23 +60,6 @@ public abstract class ReadAndWriteFiles
 		return readFile(Setting.pathSaveGames+"overviewSaveGames.urs");
 	}
 	
-//	public static void createNewFileWithData(String fileNameWithPath, ArrayList<String> data)
-//	{
-//		
-//			try 
-//			{
-//				FileWriter writer = new FileWriter(fileNameWithPath);
-//			} 
-//			catch (IOException e) 
-//			{
-//				e.printStackTrace();
-//			}
-//			
-//			
-//			  
-//
-//	}
-	
 	private static  ArrayList readFile(String fileName)
 	{
 		try
@@ -100,7 +83,6 @@ public abstract class ReadAndWriteFiles
 						arLiTMP.add(line);
 					}
 				}
-				
 			}
 		
 			fileReader.close(); 
@@ -112,9 +94,6 @@ public abstract class ReadAndWriteFiles
 			e.printStackTrace();
 			return new ArrayList();
 		}
-		
-		
-		
 	}
 	
 	private static  ArrayList readFileWithComments(String fileNameWithPath)
@@ -137,7 +116,6 @@ public abstract class ReadAndWriteFiles
 				{
 						arLiTMP.add(line);
 				}
-				
 			}
 		
 			fileReader.close(); 
@@ -149,9 +127,6 @@ public abstract class ReadAndWriteFiles
 			e.printStackTrace();
 			return new ArrayList();
 		}
-		
-		
-		
 	}
 
 	public static  void writeFile(ArrayList<String> input, String fileNameWithPath)
@@ -170,15 +145,12 @@ public abstract class ReadAndWriteFiles
 				writer.write(strLine);
 				writer.newLine();
 			}
-			
-			
+
 			writer.close();
 		} 
 		catch (IOException e) 
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
 				
 	}
@@ -221,7 +193,6 @@ public abstract class ReadAndWriteFiles
 		}
 		
 		writeFile(data, Setting.pathErrorLogs + Setting.fileNameErrorLogs);
-		
 	}
 
 	private static ArrayList<String> readErrorLogWithComments() 

@@ -26,8 +26,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//////////
 	//BASICS//
 	//////////
-
-	static final long ONE_HOUR = 60 * 60 * 1000L;
 	
 	protected String nameOfNewPlayer;
 	protected int ageOfNewPlayer;
@@ -39,6 +37,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//////////
 	protected ArrayList<String> arrayHumanPlayers;
 	protected ArrayList<String> arrayAIPlayers;
+	
 										//ACTION A: Do you want to add a player or go back or play?
 										//ACTION B: Load an exist player or create a new one?
 										//ACTION C: Load (AI and human)
@@ -156,8 +155,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 			//TODO: throw an exception or something like this with the message "Not enough player"
 			return false;
 		}
-			
-		
 	}
 
 	////////////
@@ -264,7 +261,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		{
 			inputString=this.doCastToString(inputC);
 		}
-		
 	
 		validBasic=this.checkBasicInputs(inputString);
 		
@@ -279,7 +275,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 			this.isInputValid=valid;
 			return valid;
 		}
-		
 	}
 	
 	
@@ -292,7 +287,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	@Override
 	public final boolean checkInputActionC(Object inputC)
 	{
-		
 		String input=this.doCastToString(inputC);
 		
 		char token=input.charAt(0);
@@ -349,8 +343,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		
 		
 		IPlayer player=SaveAndLoad.loadPlayer(filename+".urs");
-	
-		
 		
 		this.game.addPlayer(player);
 		
@@ -365,8 +357,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		
 		return valid;
 	}
-	
-
 	
 	
 	////////////
@@ -402,7 +392,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 			this.isInputValid=valid;
 			return valid;
 		}
-		
 	}
 	
 	
@@ -443,7 +432,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		{
 			inputString=this.doCastToString(inputE);
 		}
-		
 	
 		validBasic=this.checkBasicInputs(inputString);
 		
@@ -493,9 +481,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 			this.ageOfNewPlayer=this.calculateAge(this.birthdayDateOfNewPlayer); //TODO implement this method
 		}	
 			
-		
 		return valid;
-
 	}
 	
 	
@@ -560,11 +546,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	///////////
 	//SETTERS//
 	///////////
-	
-	
-	
 
-	
 	
 	///////////
 	//GETTERS//
@@ -578,7 +560,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	{
 		IPlayer player=this.game.createANewPlayer(this.nameOfNewPlayer, this.birthdayDateOfNewPlayer,this.ageOfNewPlayer, this.colorOfNewPlayer);
 		SaveAndLoad.saveHumanPlayer(player, nameOfNewPlayer, EToken.HU);
-		
 	}
 
 	private int calculateAge(Date birthday) 

@@ -3,7 +3,54 @@ package enums;
 import annotations.OnlyForTesting;
 import interfaces.IPhase;
 /**
- * is for see the different phases
+ * contains all phases
+ * 
+ * <p><u> Overview:</u> </p>
+ * 
+ * <ul>
+ * 	<li> DEFAULT: </li>
+ * 		<ul> 
+ * 			<li> defaultPhase </li>
+ * 		</ul>
+ * 
+ * 	<li> BASICS: </li>
+ * 		<ul> 
+ * 			<li> phaseSplashScreen </li>
+ * 			<li> phaseExit </li>
+ * 			<li> phaseMainMenu </li>
+ * 			<li> phaseSaveGame </li>
+ * 			<li> phaseLoadGame </li>
+ * 			<li> phaseBreakMenu </li>
+ * 			<li> phaseStatistics </li>
+ * 			<li> phaseAbout </li>
+ * 			<li> phaseHelp </li>
+ * 			<li> phaseOptions </li>
+ * 			<li> phaseAchievements </li>
+ * 			<li> phaseCheats </li>
+ * 		</ul>
+ * 
+ * <li> SETUPS: </li>
+ * 		<ul> 
+ * 			<li> phaseNewGame </li>
+ * 			<li> phasePreparation1 </li>
+ * 			<li> phasePreparation2 </li>
+ * 			<li> phasePreparation3 </li>
+ * 		</ul>
+ * 
+ *  <li> PLAY: </li>
+ * 		<ul> 
+ * 			<li> phase1 </li>
+ * 			<li> phase2 </li>
+ * 			<li> phase3 </li>
+ * 			<li> phase4 </li>
+ * 			<li> phase5 </li>
+ *  		<li> phase6 </li>
+ *   		<li> phaseGameEnd </li>
+ * 		</ul>
+ * 
+ * 
+ * <br>
+ * 
  * @author Lukas Keller
  * @version 1.0.0
  *
@@ -76,11 +123,19 @@ public enum EPhases
 	//METHODS//
 	///////////
 		
+		/**
+		 * Constructor with order
+		 */
 		EPhases(EPlayingOrder order)
 		{
 			this.order=order;
 		}
 		
+		/**
+		 * Default constructor.
+		 * 
+		 * Sets the EPlayingOrder default
+		 */
 		EPhases()
 		{
 			this.order=EPlayingOrder.Default;
@@ -114,6 +169,7 @@ public enum EPhases
 		{
 			this.order=order;
 		}
+		
 		/**
 		 * set the real {@link IPhase} to the current ePhase
 		 * @param the real Phase of type {@code IPhase}
@@ -174,7 +230,11 @@ public enum EPhases
 		{
 			return this.lastPhase;
 		}
-
+		
+		/**
+		 * gets the playing order of this ePhase.
+		 * @return plaiying order of this ePhase
+		 */
 		public EPlayingOrder getOrder() 
 		{
 			return this.order;

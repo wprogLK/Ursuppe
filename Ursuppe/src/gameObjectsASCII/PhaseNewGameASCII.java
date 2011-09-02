@@ -9,11 +9,13 @@ import helper.ReadAndWriteFiles;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseNewGameLogic;
-
+/**
+ * This is the whole phase new game for the ASCII game
+ * @author Lukas Keller
+ * @version 1.0.0
+ */
 public class PhaseNewGameASCII extends PhaseNewGameLogic
 {
-
-	
 	/////////////
 	//BASICS...//
 	/////////////
@@ -22,17 +24,11 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		////////////
 	
 		@Override
-		public void doPreAction()
+		public void doPreActionFirstRun()
 		{
 			this.outStream.println(this.rb.getString("phaseNewGameTitle"));
 		}
 		
-		@Override
-		public void doAfterAction()
-		{
-
-		}
-
 	///////////
 	//ACTIONS//
 	///////////
@@ -55,12 +51,6 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		this.setInputA(input);
 	}
 	
-	@Override
-	public void doAfterActionA()
-	{
-		
-	}
-	
 	////////////
 	//ACTION B//
 	////////////
@@ -78,11 +68,6 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		this.setInputB(input);
 	}
 	
-	@Override
-	public void doAfterActionB()
-	{
-	}
-
 	////////////
 	//ACTION C//
 	////////////
@@ -96,40 +81,10 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void actionCInput()
 	{
-		//SORT OF HUMAN AND AI PLAYERS AND PREPARE THEM AS TWO STRINGS
-	
 		String message=this.prepareStringForLoadPlayers(this.arrayHumanPlayers, this.arrayAIPlayers);
-		
 		
 		String input=UserInput.readInput(this.rb.getString("newGameLoadInstruction") + "\n" + message);
 		this.setInputC(input);
-	}
-	
-	private String prepareStringForLoadPlayers(ArrayList<String> arrHumanPlayers, ArrayList<String> arrAIPlayers)
-	{
-		int nrHumanPlayers=0;
-		int nrAIPlayers=0;
-	
-		String output="";
-		String strHumanPlayers="Human players: \n";
-		String strAIPlayers="Artifical intelligence players: \n";
-		
-		for(String strHuman:arrHumanPlayers)
-		{
-			strHumanPlayers=strHumanPlayers+ " ( H" + nrHumanPlayers + " ) " + "\t" + strHuman + "\n";
-			nrHumanPlayers++;
-		}
-		
-		for(String strAI:arrAIPlayers)
-		{
-			strAIPlayers=strAIPlayers+ " ( A" + nrAIPlayers + " ) " + "\t" + strAI + "\n";
-			nrHumanPlayers++;
-		}
-		
-		
-		output=strHumanPlayers+strAIPlayers;
-		
-		return output;
 	}
 	
 	@Override
@@ -172,42 +127,27 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		this.setInputE(input);
 	}
 	
-	@Override
-	public void doAfterActionE()
-	{
-		
-	}
-	
 	////////////
 	//ACTION F/
 	////////////
 	
 	@Override
-	public void doPreActionF()
-	{
-	}
-	
-	@Override
 	public void actionFInput()
 	{
 		String strList=this.createStringOfColors();
+		
 		String input=UserInput.readInput(this.rb.getString("newGameColorInstruction") +"\n"+ strList);
 		this.setInputF(input);
 	}
-	
-
-	@Override
-	public void doAfterActionF()
-	{
-		
-	}
-	
 	
 	///////////////////
 	//PRIVATE METHODS//
 	///////////////////
 	
-
+	/**
+	 * creates a string of all possible EColors
+	 * @return string with a list of all colors
+	 */
 	private String createStringOfColors() 
 	{
 		String list="";
@@ -218,5 +158,38 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		}
 		
 		return list;
+	}
+	
+	/**
+	 * Prepare the human and AI players as a string
+	 * @param arrHumanPlayers
+	 * @param arrAIPlayers
+	 * @return a string which includes a list of all AI and human players with their token and an index
+	 */
+	private String prepareStringForLoadPlayers(ArrayList<String> arrHumanPlayers, ArrayList<String> arrAIPlayers)
+	{
+		int nrHumanPlayers=0;
+		int nrAIPlayers=0;
+	
+		String output="";
+		String strHumanPlayers="Human players: \n";
+		String strAIPlayers="Artifical intelligence players: \n";
+		
+		for(String strHuman:arrHumanPlayers)
+		{
+			strHumanPlayers=strHumanPlayers+ " ( H" + nrHumanPlayers + " ) " + "\t" + strHuman + "\n";
+			nrHumanPlayers++;
+		}
+		
+		for(String strAI:arrAIPlayers)
+		{
+			strAIPlayers=strAIPlayers+ " ( A" + nrAIPlayers + " ) " + "\t" + strAI + "\n";
+			nrHumanPlayers++;
+		}
+		
+		
+		output=strHumanPlayers+strAIPlayers;
+		
+		return output;
 	}
 }

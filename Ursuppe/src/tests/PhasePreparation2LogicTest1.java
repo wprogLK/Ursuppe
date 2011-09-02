@@ -156,7 +156,6 @@ public class PhasePreparation2LogicTest1 extends ASCIITestTemplate
 	public IGame currentPlayerShouldBePlayer2(IGame game)
 	{
 		IPhase currentPhase=game.getCurrentPhase();
-		//System.out.println("ACTION plaYER 2" + currentPhase.getCurrentAction());
 		
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionDoAllPreAction);
 		
@@ -199,8 +198,6 @@ public class PhasePreparation2LogicTest1 extends ASCIITestTemplate
 	@Given("currentPlayerShouldBePlayer3")
 	public IGame checkOrderToPlay(IGame game)
 	{		
-		ArrayList<IPlayer> gameList=game.getPlayOrder();
-		
 		game.skipTailOrHeadPlayer();
 		
 		for(int i=0; i<this.playingOrder.size(); i++)

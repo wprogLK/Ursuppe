@@ -62,8 +62,8 @@ public interface IPhase
 	 * <u>Only (!) </u> for the first time to start the thread. Called by in the GameLogic.
 	 */
 	public void start();
-	public Thread.State getState();
 	public void join() throws InterruptedException;
+	
 	public void waitForANewInput();
 	
 	public void resume();

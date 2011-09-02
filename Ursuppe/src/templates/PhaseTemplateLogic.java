@@ -1253,19 +1253,15 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		{
 		}
 
-		protected final boolean nextPlayer()	//TODO CHECK THIS!!!
+		protected final boolean nextPlayer()
 		{
-			
 			boolean validPlayer=this.game.nextPlayer();
-			
-			//System.out.println("NEXT PLAYER in phase template logic is " + validPlayer);
 			
 			if(this.isInTestMode)
 			{
 				this.turnOnWaiting();
 			}
 			
-			//TODO HERE COMMENT
 			this.doWaiting();
 			return validPlayer;
 		}

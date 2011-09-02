@@ -8,7 +8,8 @@ import java.util.*;
 /**
  * it's for every class which needs language. 
  * 
- * @author Lukas
+ * @author Lukas Keller
+ * @version 1.0.0
  */
 public class LanguageSetup extends Thread
 {
@@ -37,7 +38,6 @@ public class LanguageSetup extends Thread
 	{
 		this.defaultLanguageSetup();
 		this.createBundle();
-		
 	}
 	
 	public void setup(String[] args)

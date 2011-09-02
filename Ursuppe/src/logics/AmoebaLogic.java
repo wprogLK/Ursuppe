@@ -7,7 +7,8 @@ import enums.EColor;
 import interfaces.IAmoeba;
 
 /**
- * @author Lukas
+ * @author Lukas Keller
+ * @version 1.0.0
  *
  */
 public class AmoebaLogic implements IAmoeba

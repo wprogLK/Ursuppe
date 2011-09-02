@@ -202,8 +202,6 @@ public class PhasePreparation1LogicTest1 extends ASCIITestTemplate
 	@Given("currentPlayerShouldBePlayer3")
 	public IGame checkOrderToPlay(IGame game)
 	{		
-		ArrayList<IPlayer> gameList=game.getPlayOrder();
-		
 		game.skipTailOrHeadPlayer();
 		
 		for(int i=0; i<this.playingOrder.size(); i++)

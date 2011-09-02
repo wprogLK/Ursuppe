@@ -13,7 +13,8 @@ import interfaces.ISoupSquare;
 
 
 /**
- * @author Lukas
+ * @author Lukas Keller
+ * @version 1.0.0
  *
  */
 public class SoupSquareLogic extends SquareTemplate implements ISoupSquare
@@ -233,9 +234,7 @@ public class SoupSquareLogic extends SquareTemplate implements ISoupSquare
 				}
 			}
 		}
-		
 		return false;
-		
 	}
 	
 	@Override 

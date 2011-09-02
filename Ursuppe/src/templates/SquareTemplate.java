@@ -8,7 +8,8 @@ import helper.Setting;
 import interfaces.ISquare;
 
 /**
- * @author Lukas
+ * @author Lukas Keller
+ * @version 1.0.0
  *
  */
 public class SquareTemplate implements ISquare
@@ -46,7 +47,7 @@ public class SquareTemplate implements ISquare
 	}
 	
 	
-	public static String normalSquare(String input)
+	public String normalSquare(String input)
 	{
 		setMaxLength();
 		return fillWithSign(input,maxLength-1,spaceholderSign);

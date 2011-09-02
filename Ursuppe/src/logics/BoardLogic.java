@@ -13,16 +13,20 @@ import interfaces.IPlayer;
 import interfaces.ISoupSquare;
 
 /**
- * @author Lukas
- *
+ * @author Lukas Keller
+ * @version 1.0.0
  */
 public class BoardLogic implements IBoard
 {
 	/*
+	 * NOTE: COORINATE SYSTEM OF 2D-ARRAY:
+	 * 
 	 * 	[0][0]	[0][1]	[0][2]
 	 * 	[1][0]	[1][1]	[1][2]
 	 * 	[2][0]	[2][1]	[2][2]
 	 */
+	
+	
 	protected IModule module;
 	
 	protected PrintStream outStream;
@@ -30,6 +34,7 @@ public class BoardLogic implements IBoard
 	
 	protected ISoupSquare[][] soupBoard;
 	protected ICompassSquare compassSquare;
+	
 	/**
 	 * default constructor which build the original board
 	 */
@@ -53,14 +58,12 @@ public class BoardLogic implements IBoard
 		this.buildCompassSquare();
 	}
 
-
 	private void buildCompassSquare() 
 	{
 		this.compassSquare=this.module.createCompassSquare();
 		
 		this.setCompassSquare(compassSquare, 2, 2);
 	}
-
 
 	private void buildSoupSquares() 
 	{
@@ -124,12 +127,12 @@ public class BoardLogic implements IBoard
 	private void configSquare(int x, int y, ISoupSquare square) 
 	{
 		//TODO CHECK THIS!
+		//TODO REFACTOR
 		ISoupSquare neighborLeft;
 		ISoupSquare neighborRight;
 		ISoupSquare neighborUp;
 		ISoupSquare neighborDown;
 	
-		
 		if(x==0)
 		{
 			neighborLeft=null;
@@ -198,26 +201,16 @@ public class BoardLogic implements IBoard
 	@Override
 	public void addPlayer(IPlayer player) 
 	{
-		// TODO Auto-generated method stub
-		
+		// TODO
 	}
 
 
 	@Override
-	public void testAddAmeba() {
+	public void testAddAmeba() 
+	{
 		IAmoeba amoeba=this.module.createAmoeba();
 		
 		this.soupBoard[1][1].addAmoeba(amoeba);
-		
-		
 	}
-
-
-	
-
-
-
-
-	
 	
 }

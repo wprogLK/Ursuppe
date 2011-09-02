@@ -13,7 +13,11 @@ import module.ModuleASCII;
 
 
 
-
+/**
+ * @author Lukas Keller
+ * @version 1.0.0
+ *
+ */
 public class ASCIITestTemplate extends Thread
 {
 	

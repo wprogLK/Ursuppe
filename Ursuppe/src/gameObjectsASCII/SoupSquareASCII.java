@@ -11,20 +11,18 @@ import helper.Setting;
 import logics.SoupSquareLogic;
 
 /**
- * @author Lukas
- *
+ * @author Lukas Keller
+ * @version 1.0.0
  */
 public class SoupSquareASCII extends SoupSquareLogic{
 
 	/**
 	 * 
 	 */
-	public SoupSquareASCII() {
-		// TODO Auto-generated constructor stub
-	
+	public SoupSquareASCII() 
+	{
+		//TODO ?
 	}
-	
-	
 	
 	/////////////
 	//TO STRING//
@@ -37,7 +35,6 @@ public class SoupSquareASCII extends SoupSquareLogic{
 	
 	public String getLineNumber(int nr)
 	{
-		
 		String line="";
 		
 		switch(nr)
@@ -140,7 +137,6 @@ public class SoupSquareASCII extends SoupSquareLogic{
 		}
 		
 		return str;
-		
 	}
 
 

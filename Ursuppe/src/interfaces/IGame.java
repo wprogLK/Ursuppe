@@ -89,9 +89,17 @@ public interface IGame
 	 */
 	public JPanel getMainPanel();
 	
-	
+	/**
+	 * returns the used die
+	 * @return IDie
+	 */
 	public IDie getDie();
 	
+	/**
+	 * roll the the die 
+	 * @return get the rolled value back (between 1 and 6)
+	 * @see IDie#roll()
+	 */
 	public int rollDie();
 	
 	///////////
@@ -209,7 +217,8 @@ public interface IGame
 	public PrintStream getErrorStream();
 
 	public PrintStream getOutStream();
-
+	
+	@OnlyForTesting
 	public void turnOnTestMode();
 
 	@OnlyForTesting

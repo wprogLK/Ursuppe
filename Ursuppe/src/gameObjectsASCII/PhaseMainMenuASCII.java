@@ -3,7 +3,11 @@ package gameObjectsASCII;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseMainMenuLogic;
-
+/**
+ * This is the whole main menu for the ASCII game
+ * @author Lukas Keller
+ * @version 1.0.0
+ */
 public class PhaseMainMenuASCII extends PhaseMainMenuLogic
 {
 	String strMenu="";
@@ -45,9 +49,6 @@ public class PhaseMainMenuASCII extends PhaseMainMenuLogic
 		String name=UserInput.readInput(this.rb.getString("mainMenuInstruction") + "\n" + strMenu);
 		this.setInputA(name);
 	}
-	
-	
-
 
 	@Override
 	public void doAfterActionA()

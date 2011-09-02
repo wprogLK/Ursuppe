@@ -3,7 +3,11 @@ package logics;
 import interfaces.IDie;
 
 import java.util.Random;
-
+/**
+ * @author Lukas Keller
+ * @version 1.0.0
+ *
+ */
 public class DieLogic implements IDie
 {
 	private int value;

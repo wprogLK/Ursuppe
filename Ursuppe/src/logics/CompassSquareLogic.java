@@ -10,7 +10,8 @@ import interfaces.ICompassSquare;
 import interfaces.ISquare;
 
 /**
- * @author Lukas
+ * @author Lukas Keller
+ * @version 1.0.0
  *
  */
 public class CompassSquareLogic extends SquareTemplate implements ICompassSquare
@@ -32,14 +33,15 @@ public class CompassSquareLogic extends SquareTemplate implements ICompassSquare
 	}
 
 	@Override
-	public void setPosition(int x, int y) {
+	public void setPosition(int x, int y) 
+	{
 		this.x=x;
 		this.y=y;
-		
 	}
 
 	@Override
-	public int getPosX() {
+	public int getPosX() 
+	{
 		
 		return this.x;
 	}
@@ -72,8 +74,6 @@ public class CompassSquareLogic extends SquareTemplate implements ICompassSquare
 			this.createRandomOzoneLayers();
 			//TODO to implement: if it was the last item => game over
 		}
-		
-		
 	}
 
 	private void createRandomOzoneLayers() 

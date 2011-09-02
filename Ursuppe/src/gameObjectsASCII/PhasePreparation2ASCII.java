@@ -4,7 +4,11 @@ import interfaces.IPlayer;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhasePreparation2Logic;
-
+/**
+ * the second preparation phase for ASCII game
+ * @author Lukas Keller
+ * @version 1.0.0
+ */
 public class PhasePreparation2ASCII extends PhasePreparation2Logic
 {
 	/////////////
@@ -15,7 +19,7 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 		////////////
 	
 		@Override
-		public void doPreAction()
+		public void doPreActionFirstRun()
 		{
 			this.outStream.println(this.rb.getString("phasePreparation2Title"));
 		}
@@ -63,6 +67,9 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 	//////////////////
 	//PRIVAT METHODS//
 	//////////////////
+	/**
+	 * create a string with all possible start positions
+	 */
 	private String getPossiblePositions()
 	{
 		String str="";

@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 import enums.EColor;
 
+/**
+ * 
+ * @author Lukas Keller
+ * @version 1.0.0
+ */
 public abstract class Setting 
 {
 	public static String pathSavePlayers="data/saveplayers/";
@@ -22,8 +27,8 @@ public abstract class Setting
 	public static PrintStream guiOut=System.out;
 	public static PrintStream guiErr=System.err;
 	
-	public static PrintStream testOut=System.out;//new PrintStream(new NullOutputStream());//System.out;
-	public static PrintStream testErr=new PrintStream(new NullOutputStream());//System.err;
+	public static PrintStream testOut=System.out;	//TODO: change back to: new PrintStream(new NullOutputStream())
+	public static PrintStream testErr=new PrintStream(new NullOutputStream());//TODO: change back to(?) :System.err;
 	
 	public static ArrayList<EColor> usedColors=new ArrayList<EColor>();
 	

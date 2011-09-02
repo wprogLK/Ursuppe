@@ -4,7 +4,11 @@ import java.util.Date;
 
 import enums.EColor;
 import templates.PlayerTemplate;
-
+/**
+ * ascii player for the ascii game
+ * @author Lukas Keller
+ * @version 1.0.0
+ */
 public class PlayerASCII extends PlayerTemplate
 {
 	

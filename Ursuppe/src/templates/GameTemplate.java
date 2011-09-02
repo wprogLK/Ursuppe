@@ -121,8 +121,6 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	@Override
 	public ArrayList<IPlayer> overrideAllNormalPlayers(ArrayList<IPlayer> players)
 	{
-		//TODO Test this!
-		
 		ArrayList<IPlayer> outPlayers=new ArrayList<IPlayer>();
 		
 		//CREATE OUTPUT
@@ -188,8 +186,6 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 			
 			while (!validNextPlayer)
 			{
-				
-				//System.out.println("Try skip in while"); //TODO Delete
 				validNextPlayer=!this.nextPlayer();
 			}
 		}
@@ -265,12 +261,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 				
 				this.usedColors.add(player.getColor());
 			}
-		
-				
 		}
-		
-		
-		
 	}
 	
 	@Override
@@ -350,15 +341,11 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 				break;
 			}
 		}
-		
 	}
 
 	///////////
 	//GETTERS//
 	///////////
-	
-	
-	
 
 	public PrintStream getErrorStream()
 	{
@@ -418,8 +405,6 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		return this.gameLogic.getCurrentEPhase();
 	}
 	
-	
-	
 	///////////
 	//SETTERS//
 	///////////
@@ -431,8 +416,6 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		
 		this.gameLogic.turnOnTestMode();
 	}
-	
-	
 
 	public final void turnOnCurrentPhaseWaiting()
 	{
@@ -455,8 +438,6 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		this.startPhase=startPhase;
 	}
 
-	
-	
 	///////////////////
 	//PRIVATE METHODS//
 	///////////////////

@@ -53,11 +53,8 @@ public abstract class SaveAndLoad {
 		saveObject(player,filename);
 	}
 	
-	
-	
 	public static void saveObject(Object obj, String filename)
 	{
-	      
 		try
 	    {
 	      FileOutputStream file = new FileOutputStream( filename );
@@ -70,8 +67,6 @@ public abstract class SaveAndLoad {
 	    { 
 	    	System.err.println( e + " Error in saveObject " + filename); 
 	    }
-
-		
 	}
 	
 	public static Object loadObject(String filename)

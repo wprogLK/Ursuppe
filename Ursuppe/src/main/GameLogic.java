@@ -217,9 +217,7 @@ public class GameLogic extends Thread implements Serializable
 				phase.start();
 				phase.suspend();
 			}
-			
 		}
-		
 	}
 	
 	
@@ -243,9 +241,7 @@ public class GameLogic extends Thread implements Serializable
 			{
 				phase.setMainPanel(mainPanel);
 			}
-			
 		}
-
 	}
 	
 	
@@ -257,9 +253,7 @@ public class GameLogic extends Thread implements Serializable
 			{
 				phase.setGame(this.game);
 			}
-			
 		}
-		
 	}
 	
 	
@@ -269,11 +263,6 @@ public class GameLogic extends Thread implements Serializable
 	
 	public IPhase getCurrentPhase() 
 	{
-//For debugging:
-//		this.outStream.println("CURRENT P is " + this.currentPhase);
-//		this.outStream.println("CURRENT eP is " + this.currentEPhase);
-//		this.outStream.println("CHANGED = " + this.changed);
-		
 		this.changed=false;
 		
 		return this.currentPhase;
@@ -329,8 +318,6 @@ public class GameLogic extends Thread implements Serializable
 		
 		if (!this.currentEPhase.equals(changedPhase))
 		{
-			//this.outStream.println(".............................CHANGE!......................................");
-			
 			changedPhase.setLastPhase(this.currentEPhase);
 			
 			this.currentEPhase=changedPhase;
@@ -339,8 +326,6 @@ public class GameLogic extends Thread implements Serializable
 		}
 		else
 		{
-			//this.outStream.println(".............................NOT CHANGE!......................................");
-			//this.outStream.println("The changed phase was: " + changedPhase);
 			return false;
 		}
 		

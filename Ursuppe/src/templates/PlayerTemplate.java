@@ -1,12 +1,17 @@
 package templates;
 
 import java.io.Serializable;
+
 import java.util.Date;
 
 import enums.EColor;
 import enums.EPlayer;
 import interfaces.IPlayer;
-
+/**
+ * @author Lukas Keller
+ * @version 1.0.0
+ *
+ */
 public abstract class PlayerTemplate implements IPlayer, Serializable
 {
 	protected String name;
