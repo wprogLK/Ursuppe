@@ -259,7 +259,13 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		else
 		{
 			this.players.add(this.players.size()-1, player);
-			this.usedColors.add(player.getColor());
+			
+			if(player.getColor()!=EColor.Default)
+			{
+				
+				this.usedColors.add(player.getColor());
+			}
+		
 				
 		}
 		

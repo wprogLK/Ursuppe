@@ -28,26 +28,34 @@ public class CompassSquareASCII extends CompassSquareLogic{
 	
 	public String getLineNumber(int nr)
 	{
+		String line="";
+		
 		switch(nr)
 		{
 			case 1:
 			{
-				return this.getLineOne();
+				line=this.getLineOne();
+				break;
 			}
 			case 2:
 			{
-				return this.getLineTwo();
+				line=this.getLineTwo();
+				break;
 			}
 			case 3:
 			{
-				return this.getLineThree();
+				line=this.getLineThree();
+				break;
 			}
 			default:
 			{
 				//TODO Exception
-				return "";
+				line="";
+				break;
 			}
 		}
+		
+		return this.normalSquare(line);
 	}
 	
 	

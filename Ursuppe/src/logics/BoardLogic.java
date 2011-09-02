@@ -209,6 +209,7 @@ public class BoardLogic implements IBoard
 		
 		this.soupBoard[1][1].addAmoeba(amoeba);
 		
+		
 	}
 
 

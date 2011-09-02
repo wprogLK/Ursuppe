@@ -18,8 +18,8 @@ public class AmoebaLogic implements IAmoeba
 	@Override
 	public EColor getColor() 
 	{
-		System.out.println("//////////////GET COLOR OF AMOEBA////////////");
-		return this.color.Default;
+		//TODO
+		return this.color.Blue;
 	}
 	
 

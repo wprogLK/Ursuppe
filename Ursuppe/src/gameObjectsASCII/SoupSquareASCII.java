@@ -37,26 +37,35 @@ public class SoupSquareASCII extends SoupSquareLogic{
 	
 	public String getLineNumber(int nr)
 	{
+		
+		String line="";
+		
 		switch(nr)
 		{
 			case 1:
 			{
-				return this.getLineOne();
+				line=this.getLineOne();
+				break;
 			}
 			case 2:
 			{
-				return this.getLineTwo();
+				line=this.getLineTwo();
+				break;
 			}
 			case 3:
 			{
-				return this.getLineThree();
+				line=this.getLineThree();
+				break;
 			}
 			default:
 			{
 				//TODO Exception
-				return "";
+				line="";
+				break;
 			}
 		}
+		
+		return this.normalSquare(line);
 	}
 	
 	
@@ -66,8 +75,6 @@ public class SoupSquareASCII extends SoupSquareLogic{
 	
 	private String getLineOne()
 	{
-		
-		
 		String format=this.prepareStringForLineOne();
 		
 		System.out.println("FORMAT: " + format);
@@ -80,40 +87,28 @@ public class SoupSquareASCII extends SoupSquareLogic{
 		
 		String lineOne=String.format(format, a);//numbersOfAmoebas);
 		
-		
 		return lineOne;
-		
-		
 	}
-
-
-
+	
 	private String prepareStringForLineOne() {
 		String str="";
 		
 		for(EColor color:Setting.usedColors)
 		{
-			str+=color.getBigBegin()+": %s  ";
+			str+=" "+color.getBigBegin()+": %s ";
 		}
-		
-		str+="||  ";
 		
 		return str;
 		
 	}
 
-
-
-	private void getAllNumbersOfAmebas(ArrayList<Integer> numbersOfAmoebas) {
+	private void getAllNumbersOfAmebas(ArrayList<Integer> numbersOfAmoebas) 
+	{
 		for(EColor color:Setting.usedColors)
 		{
 			int number=this.getAmoebaNumberWithColor(color);
-			System.out.println("Color " + color + "NUMBER " + number);
 			numbersOfAmoebas.add(number);
-			
 		}
-		
-		System.out.println("size: " + numbersOfAmoebas.size());
 	}
 	
 	private String getLineTwo()
@@ -125,16 +120,13 @@ public class SoupSquareASCII extends SoupSquareLogic{
 	{
 		String format=this.prepareStringForLineThree();
 		
-		System.out.println("FORMAT 3: " + format);
-		
 		ArrayList<Integer> numbersOfFoods=new ArrayList<Integer>();
 		
 		this.getAllNumbersOfFoods(numbersOfFoods);
 		
-		Object[] a=numbersOfFoods.toArray();
+		Object[] array=numbersOfFoods.toArray();
 		
-		String lineThree=String.format(format, a);//numbersOfAmoebas);
-		
+		String lineThree=String.format(format, array);//numbersOfAmoebas);
 		
 		return lineThree;
 	}
@@ -144,10 +136,8 @@ public class SoupSquareASCII extends SoupSquareLogic{
 		
 		for(EColor color:Setting.usedColors)
 		{
-			str+=color.getSmallBegin()+": %s  ";
+			str+=" "+color.getSmallBegin()+": %s ";
 		}
-		
-		str+="||  ";
 		
 		return str;
 		
@@ -160,11 +150,7 @@ public class SoupSquareASCII extends SoupSquareLogic{
 			int number=this.getFoodNumberWithColor(color);
 			System.out.println("Color " + color + "NUMBER " + number);
 			numbersOfFoods.add(number);
-			
 		}
-		
-		System.out.println("size: " + numbersOfFoods.size());
-		
 	}
 
 }
