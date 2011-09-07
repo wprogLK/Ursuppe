@@ -34,5 +34,7 @@ public class PlayerASCII extends PlayerTemplate
 		super(name,birthday, age,color);
 	}
 
+	
+
 
 }

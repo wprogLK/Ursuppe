@@ -3,6 +3,8 @@
 import java.io.PrintStream;
 import java.util.Date;
 
+import templates.ModuleTemplate;
+
 import enums.EColor;
 import gameObjectsASCII.*;
 import helper.UserInput;
@@ -27,16 +29,11 @@ import interfaces.ISoupSquare;
  * @see IGame
  * @see GameASCII
  */
-public class ModuleASCII implements IModule
+public class ModuleASCII extends ModuleTemplate
 {
-	private PrintStream outStream;
-	private PrintStream errorStream;
-	
-	
 	public ModuleASCII(PrintStream out, PrintStream err)
 	{
-		this.outStream=out;
-		this.errorStream=err;
+		super(out,err);
 		
 		UserInput.turnOnASCIIMode();
 	}
@@ -155,13 +152,25 @@ public class ModuleASCII implements IModule
 	@Override
 	public IPlayer createAPlayer()
 	{
-		return new PlayerASCII();
+		IPlayer player= new PlayerASCII();
+		
+		EColor colorPlayer=player.getColor();
+		
+		player.setAmoeba(this.createAllAmoebas(colorPlayer));
+		
+		return player;
 	}
 	
 	@Override
 	public IPlayer createAPlayer(String name, Date birthday, int age, EColor color)
 	{
-		return new PlayerASCII(name,birthday,age,color);
+		IPlayer player=new PlayerASCII(name,birthday,age,color);
+		
+		EColor colorPlayer=player.getColor();
+		
+		player.setAmoeba(this.createAllAmoebas(colorPlayer));
+		
+		return player;
 	}
 	
 	@Override
@@ -181,8 +190,7 @@ public class ModuleASCII implements IModule
 	@Override
 	public IAmoeba createAmoeba(EColor color, int number) 
 	{
-		//TODO
-		return null;
+		return new AmoebaASCII(color,number);
 	}
 
 

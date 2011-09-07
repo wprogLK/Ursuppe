@@ -3,6 +3,7 @@
  */
 package gameObjectsASCII;
 
+import enums.EColor;
 import logics.AmoebaLogic;
 
 /**
@@ -17,7 +18,17 @@ public class AmoebaASCII extends AmoebaLogic{
 	 */
 	public AmoebaASCII() 
 	{
-		// TODO
+		super();
+	}
+	
+	public AmoebaASCII(EColor color, int number)
+	{
+		super(color,number);
+	}
+	
+	public String toString()
+	{
+		return "NR: " + this.number + " DP: " + this.damagePoints;
 	}
 
 }

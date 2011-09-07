@@ -3,6 +3,8 @@ package module;
 import java.io.PrintStream;
 import java.util.Date;
 
+import templates.ModuleTemplate;
+
 import enums.EColor;
 import gameObjectsASCII.DieASCII;
 import gameObjectsASCII.PhaseAASCII;
@@ -31,16 +33,12 @@ import com.google.inject.AbstractModule;
  * @see IGame
  * @see GameGUI
  */
-public class ModuleGUI implements IModule
+public class ModuleGUI extends ModuleTemplate
 {
-	private PrintStream outStream;
-	private PrintStream errorStream;
-	
-	
 	public ModuleGUI(PrintStream out, PrintStream err)
 	{
-		this.outStream=out;
-		this.errorStream=err;
+		super(out, err);
+
 		
 		UserInput.turnOnGUIMode();
 	}

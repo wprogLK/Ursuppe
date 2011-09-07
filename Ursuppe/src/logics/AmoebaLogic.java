@@ -13,15 +13,58 @@ import interfaces.IAmoeba;
  */
 public class AmoebaLogic implements IAmoeba
 {
-	private EColor color;
+	protected EColor color;
+	protected int number;
+	protected int damagePoints;
 	
-	
-	@Override
-	public EColor getColor() 
+	public AmoebaLogic()
 	{
-		//TODO
-		return this.color.Blue;
+		this.color=EColor.Default;
+		this.number=1;
+		this.damagePoints=0;
 	}
 	
+	public AmoebaLogic(EColor color, int number)
+	{
+		this.color=color;
+		this.number=number;
+		this.damagePoints=0;
+	}
+	
+	//////////
+	//BASICS//
+	//////////
+	
+	@Override
+	public final void resetDamagePoints()
+	{
+		this.damagePoints=0;
+	}
+	
+	@Override
+	public final void addOneDamagePoint()
+	{
+		this.damagePoints++;
+	}
+	
+	///////////
+	//SETTERS//
+	///////////
+	
+	@Override
+	public final void setColor(EColor color)
+	{
+		this.color=color;
+	}
+	
+	///////////
+	//GETTERS//
+	///////////
+	
+	@Override
+	public final EColor getColor() 
+	{
+		return this.color;
+	}
 
 }

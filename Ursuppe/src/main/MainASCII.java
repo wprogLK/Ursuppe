@@ -1,9 +1,11 @@
 package main;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import helper.Setting;
+import interfaces.IAmoeba;
 import interfaces.IBoard;
 import interfaces.IGame;
 import interfaces.IModule;
@@ -45,7 +47,7 @@ public class MainASCII {
 	public static void main(String[] args) 
 	{
 	
-		// IBoard b=module.createBoard();
+		 IBoard b=module.createBoard();
 
 		 game=module.createGame();
 		 
@@ -56,6 +58,7 @@ public class MainASCII {
 		 
 		 IPlayer player1=game.createANewPlayer("Player 1", null,0,EColor.Blue);						//TODO delete
 		 IPlayer player2=game.createANewPlayer("Player 2", null,0,EColor.Red);						//TODO delete
+		
 //		 IPlayer player3=game.createANewPlayer("Player 3", null,0,EColor.Yellow);						//TODO delete
 //		 IPlayer player4=game.createANewPlayer("Player 4", null,0,EColor.Gray);						//TODO delete
 //		 IPlayer player5=game.createANewPlayer("Player 4", null,0,EColor.Green);						//TODO delete
@@ -77,7 +80,7 @@ public class MainASCII {
 		// SaveAndLoad.saveHumanPlayer(player, "test3Player",EToken.HU);	//TODO delete
 
 		 game.play();
-		// System.out.println("BOARD \n" + b.toString());
+		 System.out.println("BOARD \n" + b.toString());
 		 
 		// b.testAddAmeba();
 		 

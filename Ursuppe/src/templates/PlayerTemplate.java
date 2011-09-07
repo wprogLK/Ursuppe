@@ -2,11 +2,13 @@ package templates;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import enums.EColor;
 import enums.EPlayer;
 import interfaces.IPlayer;
+import interfaces.IAmoeba;
 /**
  * @author Lukas Keller
  * @version 1.0.0
@@ -14,6 +16,9 @@ import interfaces.IPlayer;
  */
 public abstract class PlayerTemplate implements IPlayer, Serializable
 {
+	protected ArrayList<IAmoeba> amoebasOffBoard=new ArrayList<IAmoeba>();
+	protected ArrayList<IAmoeba> amoebasOnBoard=new ArrayList<IAmoeba>();
+	
 	protected String name;
 	protected int age;
 	protected Date birthday;
@@ -36,7 +41,7 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	}
 	
 	/**
-	 * is the concrete constructor
+	 * is the concrete constructor for a new player
 	 * @param name
 	 * @param age
 	 * @param color
@@ -51,12 +56,44 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	}
 	
 	
+	///////////
+	//AMOEBAS//
+	///////////
+	
+	@Override 
+	public void takeAmoebaOffTheBoard(IAmoeba amoeba)
+	{
+		assert this.amoebasOnBoard.contains(amoeba);
+		assert !this.amoebasOffBoard.contains(amoeba);
+		
+		this.amoebasOnBoard.remove(amoeba);
+		this.amoebasOffBoard.add(amoeba);
+	}
+	
+	@Override 
+	public void putAmoebaOnTheBoard(IAmoeba amoeba)
+	{
+		assert this.amoebasOnBoard.contains(amoeba);
+		assert !this.amoebasOffBoard.contains(amoeba);
+		
+		this.amoebasOnBoard.remove(amoeba);
+		this.amoebasOffBoard.add(amoeba);
+	}
+	
+	
 	
 	
 
 	///////////
 	//SETTERS//
 	///////////
+	@Override
+	public void setAmoeba(ArrayList<IAmoeba> amoebas)
+	{
+		this.amoebasOffBoard=amoebas;
+		this.amoebasOnBoard.clear();
+	}
+	
 	@Override
 	public void setType(EPlayer eType)
 	{
@@ -79,6 +116,7 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	public void setColor(EColor color)
 	{
 		this.color=color;
+		this.updateAmoebaColor();
 	}
 	
 	@Override
@@ -96,6 +134,19 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	///////////
 	//GETTERS//
 	///////////
+	@Override
+	public ArrayList<IAmoeba> getAmoebasOffBoard()
+	{
+		return this.amoebasOffBoard;
+	}
+	
+	@Override
+	public ArrayList<IAmoeba> getAmoebasOnBoard()
+	{
+		return this.amoebasOnBoard;
+	}
+	
+	
 	@Override
 	public int getScore()
 	{
@@ -124,5 +175,22 @@ public abstract class PlayerTemplate implements IPlayer, Serializable
 	public EPlayer getType()
 	{
 		return this.eType;
+	}
+	
+	///////////////////
+	//PRIVATE METHODS//
+	///////////////////
+	
+	private void updateAmoebaColor()
+	{
+		for(IAmoeba amoeba:this.amoebasOffBoard)
+		{
+			amoeba.setColor(this.color);
+		}
+		
+		for(IAmoeba amoeba:this.amoebasOnBoard)
+		{
+			amoeba.setColor(this.color);
+		}
 	}
 }

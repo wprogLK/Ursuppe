@@ -32,4 +32,7 @@ public abstract class Setting
 	
 	public static ArrayList<EColor> usedColors=new ArrayList<EColor>();
 	
+	
+	public static int maxNumbersOfAmoebasPerPlayer=7;
+	
 }
