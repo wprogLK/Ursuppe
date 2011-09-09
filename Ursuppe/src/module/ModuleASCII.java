@@ -38,7 +38,9 @@ public class ModuleASCII extends ModuleTemplate
 		UserInput.turnOnASCIIMode();
 	}
 	
-	
+	/////////////////
+	//CREATE PHASES//
+	/////////////////
 	public IPhase createPhaseA()
 	{
 		return new PhaseAASCII();
@@ -141,7 +143,9 @@ public class ModuleASCII extends ModuleTemplate
 	}
 	
 	
-	
+	//////////////////
+	//CREATE OBJECTS//
+	//////////////////
 	
 	@Override
 	public IGame createGame()

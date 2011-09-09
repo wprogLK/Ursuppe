@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import enums.EColor;
 import enums.EPhases;
 
+import annotations.OnlyForASCII;
 import annotations.OnlyForTesting;
 
 import gameObjectsGUI.*;
@@ -158,6 +159,14 @@ public interface IGame
 	 * @return the new player
 	 */
 	public IPlayer createANewPlayer(String name, Date birthday, int age, EColor color);
+	
+	
+	/////////
+	//BOARD//
+	/////////
+	@OnlyForASCII
+	public void showBoard();
+	
 	///////////
 	//SETTERS//
 	///////////
@@ -223,6 +232,9 @@ public interface IGame
 
 	@OnlyForTesting
 	public ArrayList<IPlayer> getPlayOrder();
+	
+	@OnlyForTesting
+	IBoard getBoard();
 
 
 }

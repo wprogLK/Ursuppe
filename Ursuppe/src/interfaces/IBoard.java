@@ -33,11 +33,23 @@ public interface IBoard
 	public void setCompassSquare(ICompassSquare compass, int x, int y);
 	
 	/**
-	 * add a player to the board and the players amoebas too if needed
+	 * add a player to the board on a "ladderSquares"/ the scoreLadder
 	 * @param player
 	 */
 	public void addPlayer(IPlayer player);
 	
+	public void addAmoebaToSquare(IAmoeba amoeba, int x, int y);
+	public void removeAmoebaFromCurrentSquare(IAmoeba amoeba);
+	public void setAmoebaOnBoard(IAmoeba amoeba);
+	public void takeAmobeaOffBoard(IAmoeba amoeba);
+	
+	////////////////////
+	//ONLY FOR TESTING//
+	////////////////////
+	
+	@OnlyForTesting
+	public boolean testExistSoupSquare(int x, int y);
 	@OnlyForTesting
 	public void testAddAmeba();
+	
 }

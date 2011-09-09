@@ -21,6 +21,7 @@ import main.GameLogic;
 
 import helper.LanguageSetup;
 import helper.Setting;
+import interfaces.IBoard;
 import interfaces.IDie;
 import interfaces.IGame;
 import interfaces.IModule;
@@ -43,6 +44,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	protected IModule module;
 	
 	protected IDie die;
+	protected IBoard board;
 	
 	protected ArrayList<IPlayer> players=new ArrayList<IPlayer>();
 	protected boolean isOver=false;
@@ -342,6 +344,16 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 			}
 		}
 	}
+	
+	/////////
+	//BOARD//
+	/////////
+	@Override
+	@OnlyForASCII
+	public void showBoard()
+	{
+		//do nothing
+	}
 
 	///////////
 	//GETTERS//
@@ -469,7 +481,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 			return false;
 		}
 	}
-	
+
 	////////////////////
 	//ONLY FOR TESTING//
 	////////////////////
@@ -497,6 +509,13 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	public ArrayList<IPlayer> getPlayOrder()
 	{
 		return this.players;
+	}
+	
+	@Override
+	@OnlyForTesting
+	public IBoard getBoard()
+	{
+		return this.board;
 	}
 
 }

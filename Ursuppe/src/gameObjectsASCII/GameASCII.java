@@ -35,6 +35,17 @@ public class GameASCII extends GameTemplate{
 		this.gameLogic.setGameToAllPhases();
 		
 		this.die=this.module.createDie();
+		this.board=this.module.createBoard();
+	}
+	
+	
+	/////////
+	//BOARD//
+	/////////
+	@Override
+	public void showBoard()
+	{
+		this.outStream.println(this.board.toString());
 	}
 
 }

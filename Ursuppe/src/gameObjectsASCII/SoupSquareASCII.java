@@ -74,7 +74,7 @@ public class SoupSquareASCII extends SoupSquareLogic{
 	{
 		String format=this.prepareStringForLineOne();
 		
-		System.out.println("FORMAT: " + format);
+//		System.out.println("FORMAT: " + format); //TODO DELETE
 		
 		ArrayList<Integer> numbersOfAmoebas=new ArrayList<Integer>();
 		
@@ -144,7 +144,7 @@ public class SoupSquareASCII extends SoupSquareLogic{
 		for(EColor color:Setting.usedColors)
 		{
 			int number=this.getFoodNumberWithColor(color);
-			System.out.println("Color " + color + "NUMBER " + number);
+			//System.out.println("Color " + color + "NUMBER " + number); //TODO DELETE
 			numbersOfFoods.add(number);
 		}
 	}

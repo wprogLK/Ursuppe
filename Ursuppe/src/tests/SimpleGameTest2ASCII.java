@@ -23,6 +23,7 @@ import ch.unibe.jexample.Given;
 import org.junit.runner.RunWith;
 
 import templates.ASCIITestTemplate;
+import tests.hamcrest.CheckEPhases;
 
 //TODO: FIX IT!! phaseShouldBePhaseSplashScreen assertionError
 
@@ -101,12 +102,12 @@ public class SimpleGameTest2ASCII extends ASCIITestTemplate//Thread{
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingGeneral();
 		
-		assertTrue(game.getCurrentEPhase()==EPhases.phaseMainMenu);
+		assertCurrentEPhase(game, EPhases.phaseMainMenu);
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingGeneral();
 		
-		assertTrue(game.getCurrentEPhase()==EPhases.phaseNewGame);	
+		assertCurrentEPhase(game, EPhases.phaseNewGame);
 		
 		return game;
 	}
