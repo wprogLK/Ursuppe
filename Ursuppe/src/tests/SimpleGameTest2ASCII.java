@@ -25,14 +25,9 @@ import org.junit.runner.RunWith;
 import templates.ASCIITestTemplate;
 import tests.hamcrest.CheckEPhases;
 
-//TODO: FIX IT!! phaseShouldBePhaseSplashScreen assertionError
-
 @RunWith(JExample.class)
-public class SimpleGameTest2ASCII extends ASCIITestTemplate//Thread{
+public class SimpleGameTest2ASCII extends ASCIITestTemplate
 {	
-	private IPlayer playerOne;
-	private IPlayer playerTwo;
-	
 	private String fileNameWithPathSimpleGameTest;
 	
 	
@@ -97,12 +92,18 @@ public class SimpleGameTest2ASCII extends ASCIITestTemplate//Thread{
 	@Given("simpleGameTest")
 	public IGame phaseShouldBePhaseSplashScreen(IGame game)
 	{
-		assertTrue(game.getCurrentEPhase()==EPhases.phaseSplashScreen);		//TODO AB HIER
+		assertTrue(game.getCurrentEPhase()==EPhases.phaseSplashScreen);
+		
+		game.turnOffCurrentPhaseWaiting();
+		this.waitingGeneral();
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingGeneral();
 		
 		assertCurrentEPhase(game, EPhases.phaseMainMenu);
+		
+		game.turnOffCurrentPhaseWaiting();
+		this.waitingGeneral();
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingGeneral();

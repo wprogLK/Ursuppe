@@ -318,6 +318,9 @@ public class GameLogic extends Thread implements Serializable
 		
 		if (!this.currentEPhase.equals(changedPhase))
 		{
+			
+			System.out.println("------------------PHASE CHANGE! ------------------" );
+			
 			changedPhase.setLastPhase(this.currentEPhase);
 			
 			this.currentEPhase=changedPhase;

@@ -1,5 +1,7 @@
 package gameObjectsASCII;
 
+import exceptions.InputException;
+import interfaces.IModule;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseSplashScreenLogic;
@@ -19,6 +21,11 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 		//...LOGIC//
 		////////////
 	
+		public PhaseSplashScreenASCII(IModule module) 
+		{
+			super(module);
+		}
+
 		@Override
 		public void doPreAction()
 		{
@@ -44,7 +51,16 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 	public void actionAInput()
 	{
 		String instruction=UserInput.readInput(this.rb.getString("splashScreenASCIIStartInstruction"));
-		this.setInputA(instruction);
+		
+		try
+		{
+			this.setInputA(instruction);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 }

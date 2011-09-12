@@ -1,5 +1,7 @@
 package gameObjectsASCII;
 
+import exceptions.InputException;
+import interfaces.IModule;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseMainMenuLogic;
@@ -10,6 +12,12 @@ import logics.PhaseMainMenuLogic;
  */
 public class PhaseMainMenuASCII extends PhaseMainMenuLogic
 {
+	public PhaseMainMenuASCII(IModule module) 
+	{
+		super(module);
+	}
+
+
 	String strMenu="";
 	
 	/////////////
@@ -47,7 +55,16 @@ public class PhaseMainMenuASCII extends PhaseMainMenuLogic
 		String strMenu=this.buildMenu();
 		
 		String name=UserInput.readInput(this.rb.getString("mainMenuInstruction") + "\n" + strMenu);
-		this.setInputA(name);
+		
+		try 
+		{
+			this.setInputA(name);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Override

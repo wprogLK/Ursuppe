@@ -127,6 +127,7 @@ public class PhasePreparation2LogicTest1 extends ASCIITestTemplate
 	@Given("phaseShouldBePhasePreparation2")
 	public IGame currentPlayerShouldBePlayer1(IGame game)
 	{
+		
 		IPhase currentPhase=game.getCurrentPhase();
 		
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionDoAllPreAction);
@@ -135,7 +136,7 @@ public class PhasePreparation2LogicTest1 extends ASCIITestTemplate
 		
 		game.turnOffCurrentPhaseWaiting();
 		this.waitingForPhaseReady(game.getCurrentPhase());
-		
+	
 		assertTrue(currentPhase.getCurrentAction()==EActions.ActionAfterRunning);
 		
 		

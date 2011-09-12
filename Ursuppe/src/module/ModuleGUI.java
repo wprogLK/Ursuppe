@@ -6,7 +6,9 @@ import java.util.Date;
 import templates.ModuleTemplate;
 
 import enums.EColor;
+import exceptions.InputException;
 import gameObjectsASCII.DieASCII;
+import gameObjectsASCII.InputExceptionASCII;
 import gameObjectsASCII.PhaseAASCII;
 import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.*;
@@ -16,6 +18,7 @@ import interfaces.IBoard;
 import interfaces.ICompassSquare;
 import interfaces.IDie;
 import interfaces.IGame;
+import interfaces.IInputException;
 import interfaces.IModule;
 import interfaces.IPhase;
 import interfaces.IPlayer;
@@ -47,12 +50,12 @@ public class ModuleGUI extends ModuleTemplate
 	@Override
 	public IPhase createPhaseA() 
 	{
-		return new PhaseAGUI();
+		return new PhaseAGUI(this);
 	}
 	@Override
 	public IPhase createPhaseExit()
 	{
-		return new PhaseExitGUI();
+		return new PhaseExitGUI(this);
 	}
 	
 	@Override
@@ -273,4 +276,34 @@ public class ModuleGUI extends ModuleTemplate
 		return null;
 	}
 	
+	//////////////
+	//EXCEPTIONS//
+	//////////////
+	@Override
+	public InputException createInputException(String message)
+	{
+		return new InputExceptionGUI(message);
+	}
+	
+	public InputException createInputExceptionUnkownInstruction(String inputInstruction)
+	{
+		String str="Sorry, but I don't know the instruction " + inputInstruction + " Try it again ...";
+		
+		return new InputExceptionASCII(str);
+	}
+	
+	public InputException createInputExceptionParseToString()
+	{
+		return new InputExceptionASCII("Error: the input can not parse to a string! Try it again ...");
+	}
+	
+	public InputException createInputExceptionParseToInteger()
+	{
+		return new InputExceptionASCII("Error: the input can not parse to an integer! Try it again ...");
+	}
+	
+	public InputException createInputExceptionParseToEColor()
+	{
+		return new InputExceptionASCII("Error: Your input wasn't a valid color! Try it again ...");
+	}
 }

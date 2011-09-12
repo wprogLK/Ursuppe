@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import enums.EActions;
 import enums.EPhases;
+import exceptions.InputException;
 
 import annotations.OnlyForTesting;
 
@@ -104,16 +105,16 @@ public interface IPhase
 		//////////////
 	
 		@OnlyForTesting
-		public boolean setInputA(Object inputA);
+		public void setInputA(Object inputA) throws InputException;
 		
 		@OnlyForTesting
-		public boolean setInputB(Object inputB);
+		public void setInputB(Object inputB) throws InputException;
 		
 		@OnlyForTesting
-		public boolean setInputC(Object inputC);
+		public void setInputC(Object inputC) throws InputException;
 		
 		@OnlyForTesting
-		public void setAllInput(String message);
+		public void setAllInput(String message) throws InputException;
 		
 	///////
 	//GUI//
@@ -146,6 +147,7 @@ public interface IPhase
 		@OnlyForTesting
 		public void fakeClickYes();
 
+		
 		
 
 		

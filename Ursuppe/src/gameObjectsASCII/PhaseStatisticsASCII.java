@@ -1,12 +1,17 @@
 package gameObjectsASCII;
 
+import exceptions.InputException;
+import interfaces.IModule;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseStatisticsLogic;
 
 public class PhaseStatisticsASCII extends PhaseStatisticsLogic
 {
-
+	public PhaseStatisticsASCII(IModule module)
+	{
+		super(module);
+	}
 	
 	/////////////
 	//BASICS...//
@@ -47,7 +52,16 @@ public class PhaseStatisticsASCII extends PhaseStatisticsLogic
 	public void actionAInput()
 	{
 		String name=UserInput.readInput("Please, enter your name: ");
-		this.setInputA(name);
+		
+		try
+		{
+			this.setInputA(name);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Override
@@ -70,7 +84,16 @@ public class PhaseStatisticsASCII extends PhaseStatisticsLogic
 	public void actionBInput()
 	{
 		String age=UserInput.readInput("Please, enter your age: ");
-		this.setInputB(age);
+		
+		try
+		{
+			this.setInputB(age);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Override

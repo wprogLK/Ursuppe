@@ -1,9 +1,12 @@
 package gameObjectsASCII;
 
+import interfaces.IModule;
+
 import java.util.ArrayList;
 
 import enums.EColor;
 import enums.EToken;
+import exceptions.InputException;
 
 import helper.ReadAndWriteFiles;
 import helper.UserInput;
@@ -23,6 +26,11 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		//...LOGIC//
 		////////////
 	
+		public PhaseNewGameASCII(IModule module) 
+		{
+			super(module);
+		}
+
 		@Override
 		public void doPreActionFirstRun()
 		{
@@ -48,7 +56,16 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	public void actionAInput()
 	{
 		String input=UserInput.readInput(this.rb.getString("newGameAddOrPlay"));
-		this.setInputA(input);
+		
+		try
+		{
+			this.setInputA(input);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	////////////
@@ -65,7 +82,16 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	public void actionBInput()
 	{
 		String input=UserInput.readInput(this.rb.getString("newGameLoadOrCreatePlayer"));
-		this.setInputB(input);
+		try
+		{
+			this.setInputB(input);
+		}
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	
 	////////////
@@ -84,7 +110,15 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		String message=this.prepareStringForLoadPlayers(this.arrayHumanPlayers, this.arrayAIPlayers);
 		
 		String input=UserInput.readInput(this.rb.getString("newGameLoadInstruction") + "\n" + message);
-		this.setInputC(input);
+		try
+		{
+			this.setInputC(input);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Override
@@ -107,7 +141,15 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	public void actionDInput()
 	{
 		String input=UserInput.readInput(this.rb.getString("newGameNameInstruction"));
-		this.setInputD(input);
+		try
+		{
+			this.setInputD(input);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Override
@@ -124,7 +166,15 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	public void actionEInput()
 	{
 		String input=UserInput.readInput(this.rb.getString("newGameAgeInstructuion"));
-		this.setInputE(input);
+		try
+		{
+			this.setInputE(input);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	////////////
@@ -137,7 +187,15 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		String strList=this.createStringOfColors();
 		
 		String input=UserInput.readInput(this.rb.getString("newGameColorInstruction") +"\n"+ strList);
-		this.setInputF(input);
+		try
+		{
+			this.setInputF(input);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	///////////////////

@@ -1,7 +1,9 @@
 package logics;
 
 import enums.EPhases;
+import exceptions.InputException;
 import templates.PhaseTemplateLogic;
+import interfaces.IModule;
 import interfaces.IPhase;
 
 /**
@@ -13,6 +15,11 @@ import interfaces.IPhase;
  */
 public abstract class PhaseExitLogic extends PhaseTemplateLogic
 {
+	public PhaseExitLogic(IModule module) 
+	{
+		super(module);
+	}
+	
 	//////////
 	//BASICS//
 	//////////
@@ -21,6 +28,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 	//INPUTS//
 	//////////
 	
+		
 		////////////
 		//...LOGIC//
 		////////////
@@ -50,23 +58,25 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 	////////////
 	
 	@Override
-	public  boolean setInputA(Object inputA)
+	public void setInputA(Object inputA) throws InputException
 	{
-		this.isInputNew=true;
-		boolean valid=this.checkInputActionA(inputA);
-		this.isInputValid=valid;
-		return valid;
+		if(this.getDoRunActionA())
+		{
+			this.isInputNew=true;
+			
+			this.checkInputActionA(inputA);
+		}
 	}
 	
 	
 	@Override
-	public final boolean checkInputActionA(Object inputA)
+	public final void checkInputActionA(Object inputA) throws InputException
 	{
 		String inputString="";
 		
 		if(!this.tryCastToString(inputA))
 		{
-			return false;
+			throw this.module.createInputExceptionParseToString();
 		}
 		else
 		{
@@ -77,7 +87,7 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 		{
 			this.outStream.println("Bye");
 			System.exit(0);
-			return true;
+			this.isInputValid=true;
 		}
 		else if(this.inputEqualsNo(inputString))
 		{
@@ -86,73 +96,20 @@ public abstract class PhaseExitLogic extends PhaseTemplateLogic
 				this.currentPhase=this.lastPhase;
 				
 				this.doNothing=true;
-				return true;
+				this.isInputValid=true;
 			}
 			else
 			{
-				return true;
+				this.isInputValid=true;
 			}
 			
 		}
 		else
 		{
-			this.outStream.println("The input wasn't yes/no. It was " + inputString);
-			return false;
+			throw this.module.createInputExceptionUnkownInstruction(inputString);
 		}
 	}
 	
-
-
-	////////////
-	//ACTION B//
-	////////////
-	@Override
-	public  boolean setInputB(Object inputB)
-	{
-		String inputString="";
-		boolean validBasic = false;
-		this.isInputNew=true;
-		
-		if(!this.tryCastToString(inputB))
-		{
-			return false;
-		}
-		else
-		{
-			inputString=this.doCastToString(inputB);
-		}
-		
-	
-		validBasic=this.checkBasicInputs(inputString);
-		
-		if(validBasic)
-		{
-			this.isInputValid=true;
-			return true;
-		}
-		else
-		{
-			boolean valid=this.checkInputActionB(inputString);
-			this.isInputValid=valid;
-			return valid;
-		}
-		
-	}
-	
-	
-	@Override
-	public final boolean checkInputActionB(Object inputB)
-	{
-		if(!this.tryCastToInteger(inputB))
-		{
-			return false;
-		}
-		else
-		{
-			this.game.getPlayer(0).setAge(this.doCastToInteger(inputB)); 
-			return true;
-		}
-	}
 	
 	
 

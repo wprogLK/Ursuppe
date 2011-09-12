@@ -1,5 +1,7 @@
 package gameObjectsASCII;
 
+import exceptions.InputException;
+import interfaces.IModule;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhasePreparation1Logic;
@@ -17,6 +19,13 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 		//...LOGIC//
 		////////////
 	
+		public PhasePreparation1ASCII(IModule module) 
+		{
+			super(module);
+		}
+
+
+
 		@Override
 		public void doPreActionFirstRun()
 		{
@@ -38,7 +47,18 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 	public void actionAInput()
 	{
 		String instruction=UserInput.readInput(this.rb.getString("preparation1Instruction"));
-		this.setInputA(instruction);
+		
+		
+		try 
+		{
+			this.setInputA(instruction);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	
 	@Override

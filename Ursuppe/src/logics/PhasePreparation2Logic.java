@@ -3,7 +3,9 @@ package logics;
 import java.util.ArrayList;
 
 import enums.EPhases;
+import exceptions.InputException;
 import templates.PhaseTemplateLogic;
+import interfaces.IModule;
 import interfaces.IPhase;
 import interfaces.IPlayer;
 
@@ -26,6 +28,11 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	
 																					//ACTION A: chose position
 	
+	public PhasePreparation2Logic(IModule module) 
+	{
+		super(module);
+	}
+
 	protected ArrayList<Integer> possibleStartPositions=new ArrayList<Integer>();
 	protected ArrayList<IPlayer> orderToPlay=new ArrayList<IPlayer>();
 
@@ -104,42 +111,37 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	////////////
 
 	@Override
-	public  boolean setInputA(Object inputA)
+	public void setInputA(Object inputA) throws InputException
 	{
 		boolean validBasic = false;
 		this.isInputNew=true;
 		
 		validBasic=this.checkBasicInputs(inputA);
-		if(validBasic)
+		
+		if(!validBasic)
 		{
-			return true;
-		}
-		else
-		{
-			boolean valid=this.checkInputActionA(inputA);
-			this.isInputValid=valid;
-			return valid;
+			this.checkInputActionA(inputA);
 		}
 	}
 	
 	
 	@Override
-	public final boolean checkInputActionA(Object inputA)
+	public final void checkInputActionA(Object inputA) throws InputException
 	{
 		int inputPos=0;
 		
 		if(!this.tryCastToInteger(inputA))
 		{
-			return false;
+			this.module.createInputExceptionParseToInteger();
 		}
 		else
 		{
 			inputPos=this.doCastToInteger(inputA);
-			return this.understandInputPosition(inputPos);
+			this.understandInputPosition(inputPos);
 		}
 	}
 	
-	private boolean understandInputPosition(int inputPos) 
+	private void understandInputPosition(int inputPos) 
 	{
 		if(this.possibleStartPositions.contains(inputPos))
 		{
@@ -152,11 +154,11 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 			
 			this.game.getCurrentPlayer().setScore(inputPos);
 			
-			return true;
+			this.isInputValid=true;
 		}
 		else
 		{
-			return false;
+			this.module.createInputException("Your favourite position " + inputPos + " is not possible. Please take another one...");
 		}
 	}
 

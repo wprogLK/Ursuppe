@@ -1,5 +1,7 @@
 package gameObjectsGUI;
 
+import interfaces.IModule;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -7,9 +9,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import exceptions.InputException;
+
 import logics.PhaseALogic;
 
-public class PhaseAGUI extends PhaseALogic implements ActionListener{
+public class PhaseAGUI extends PhaseALogic implements ActionListener
+{
+	public PhaseAGUI(IModule module) 
+	{
+		super(module);
+	}
+
 	/////////////////
 	//INPUT MANAGER//
 	/////////////////
@@ -115,7 +125,7 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 			
 			private void nameSetFalseEditable()
 			{
-				this.validInputName=false;
+				this.validInputName=true;
 				
 				this.textFieldName.setBackground(Color.GRAY);
 				this.textFieldName.setEditable(false);
@@ -179,17 +189,16 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 	{
 		if (!this.validInputName)
 		{
-			this.validInputName=this.setInputA(this.textFieldName.getText());
-			
-			
-			if(!validInputName)
+			try 
+			{
+				this.setInputA(this.textFieldName.getText());
+				this.nameSetFalseEditable();
+			} 
+			catch (InputException e) 
 			{
 				this.textFieldName.setBackground(Color.RED);
 				this.textFieldName.setEditable(true);
-			}
-			else
-			{
-				this.nameSetFalseEditable();
+
 			}
 		}
 		else
@@ -202,16 +211,15 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 	{
 		if (!this.validInputAge)
 		{
-			this.validInputAge=this.setInputB(this.textFieldAge.getText());
-			
-			if(!validInputAge)
+			try 
+			{
+				this.setInputB(this.textFieldAge.getText());
+				this.ageSetFalseEditable();
+			}
+			catch (InputException e)
 			{
 				this.textFieldAge.setBackground(Color.RED);
 				this.textFieldAge.setEditable(true);
-			}
-			else
-			{
-				this.ageSetFalseEditable();
 			}
 		}
 		else
@@ -249,7 +257,9 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener{
 		else if(event.getSource().equals(this.buttonExit))
 		{
 			this.buttonExit.setEnabled(false);
+			
 			this.setAllInput("Exit");
+		
 			this.buttonExit.setEnabled(true);
 		}
 		

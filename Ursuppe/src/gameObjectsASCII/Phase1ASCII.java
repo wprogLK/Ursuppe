@@ -1,5 +1,6 @@
 package gameObjectsASCII;
 
+import interfaces.IModule;
 import logics.Phase1Logic;
 
 /**
@@ -17,6 +18,11 @@ public class Phase1ASCII extends Phase1Logic
 		//...LOGIC//
 		////////////
 	
+		public Phase1ASCII(IModule module) 
+		{
+			super(module);
+		}
+
 		@Override
 		public void doPreAction()
 		{

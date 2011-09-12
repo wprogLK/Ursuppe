@@ -10,7 +10,9 @@ import java.util.Stack;
 import annotations.OnlyForTesting;
 
 import enums.EPhases;
+import exceptions.InputException;
 import templates.PhaseTemplateLogic;
+import interfaces.IModule;
 import interfaces.IPhase;
 import interfaces.IPlayer;
 
@@ -23,6 +25,11 @@ import interfaces.IPlayer;
  */
 public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 {
+	public PhasePreparation1Logic(IModule module) 
+	{
+		super(module);
+	}
+
 	private static enum EItem {Item, Placeholder};
 	
 	private PlaceholderItem roundPlaceholder;
@@ -199,33 +206,32 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	////////////
 
 	@Override
-	public  boolean setInputA(Object inputA)
+	public  void setInputA(Object inputA) throws InputException
 	{
-		boolean validBasic = false;
-		this.isInputNew=true;
+		if(this.getDoRunActionA())
+		{
+			boolean validBasic = false;
+			this.isInputNew=true;
+			
+			validBasic=this.checkBasicInputs(inputA);
+			if(!validBasic)
+			{
+				this.checkInputActionA(inputA);
+			}
+		}
 		
-		validBasic=this.checkBasicInputs(inputA);
-		if(validBasic)
-		{
-			return true;
-		}
-		else
-		{
-			boolean valid=this.checkInputActionA(inputA);
-			this.isInputValid=valid;
-			return valid;
-		}
 	}
 	
 	
 	@Override
-	public final boolean checkInputActionA(Object inputA)
+	public final void checkInputActionA(Object inputA) throws InputException
 	{
 		String inputString="";
 		
 		if(!this.tryCastToString(inputA))
 		{
-			return false;
+			//TODO: create another exeption for this case!
+			throw this.module.createInputExceptionParseToString();
 		}
 		else
 		{
@@ -255,11 +261,11 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 				refreshItem.setValue(value);
 			}
 			
-			return true;
+			this.isInputValid=true;
 		}
 		else
 		{
-			return false;
+			throw this.module.createInputExceptionUnkownInstruction(inputString);
 		}
 	}
 

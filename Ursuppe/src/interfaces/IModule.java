@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.Date;
 
 import enums.EColor;
+import exceptions.InputException;
 import gameObjectsASCII.*;
 import interfaces.IGame;
 import interfaces.IPhase;
@@ -105,4 +106,15 @@ public  interface IModule
 	 * Creates a default compassSquare
 	 */
 	public ICompassSquare createCompassSquare();
+	
+	
+	//////////////
+	//EXCEPTIONS//
+	//////////////
+	public InputException createInputException(String message);
+	public InputException createInputExceptionUnkownInstruction(String inputInstruction);
+	
+	public InputException createInputExceptionParseToString();
+	public InputException createInputExceptionParseToInteger();
+	public InputException createInputExceptionParseToEColor();
 }

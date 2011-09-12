@@ -1,11 +1,18 @@
 package gameObjectsASCII;
 
+import interfaces.IModule;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseMainMenuLogic;
 
 public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 {
+	public PhaseBreakMenuASCII(IModule module) 
+	{
+		super(module);
+	}
+
+
 	String strMenu="";
 	
 	/////////////
@@ -31,30 +38,27 @@ public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 	//ACTION A//
 	////////////
 	
-	@Override
-	public void doPreActionA()
-	{
-		this.outStream.println();
-	}
-	
-	@Override
-	public void actionAInput()
-	{
-		String strMenu=this.buildMenu();
-		
-		String name=UserInput.readInput(this.rb.getString("mainMenuInstruction") + "\n" + strMenu);
-		this.setInputA(name);
-	}
-	
-	
-
-
-	@Override
-	public void doAfterActionA()
-	{
-		this.outStream.println("Thank you for your name");
-	}
-	
+//	@Override
+//	public void doPreActionA()
+//	{
+//		this.outStream.println();
+//	}
+//	
+//	@Override
+//	public void actionAInput()
+//	{
+//		String strMenu=this.buildMenu();
+//		
+//		String name=UserInput.readInput(this.rb.getString("mainMenuInstruction") + "\n" + strMenu);
+//		this.setInputA(name);
+//	}
+//	
+//	@Override
+//	public void doAfterActionA()
+//	{
+//		this.outStream.println("Thank you for your name");
+//	}
+//	
 	///////////
 	//PRIVATE//
 	///////////

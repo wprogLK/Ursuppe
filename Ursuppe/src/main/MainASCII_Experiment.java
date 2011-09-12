@@ -12,6 +12,7 @@ import interfaces.IModule;
 import interfaces.IPlayer;
 import enums.EColor;
 import enums.EPhases;
+import exceptions.InputException;
 import gameObjectsASCII.GameASCII;
 
 import module.*;
@@ -46,6 +47,7 @@ public class MainASCII_Experiment {
 	 */
 	public static void main(String[] args) 
 	{
+		
 		 game=module.createGame();
 		 
 		 game.setStartPhase(EPhases.phasePreparation1);
@@ -119,5 +121,9 @@ public class MainASCII_Experiment {
 		return game;
 	}
 	
+	public static void test() throws InputException
+	{
+		throw new InputException("Hallo");
+	}
 	
 }

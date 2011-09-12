@@ -35,4 +35,6 @@ public abstract class Setting
 	
 	public static int maxNumbersOfAmoebasPerPlayer=7;
 	
+	public static int numberOfFirstAmoebasOnBoardPerPlayer=2;	//Numbers of amoebas which each player can set on the board in the first round
+	
 }

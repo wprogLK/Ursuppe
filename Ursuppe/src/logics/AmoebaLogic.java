@@ -3,6 +3,8 @@
  */
 package logics;
 
+import java.io.Serializable;
+
 import enums.EColor;
 import interfaces.IAmoeba;
 
@@ -11,7 +13,7 @@ import interfaces.IAmoeba;
  * @version 1.0.0
  *
  */
-public class AmoebaLogic implements IAmoeba
+public class AmoebaLogic implements IAmoeba, Serializable
 {
 	protected EColor color;
 	protected int number;

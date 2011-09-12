@@ -38,14 +38,12 @@ public interface IBoard
 	 */
 	public void addPlayer(IPlayer player);
 	
-	public void addAmoebaToSquare(IAmoeba amoeba, int x, int y); //TODO delete //make it private
-	public void removeAmoebaFromCurrentSquare(IAmoeba amoeba);
-	public void setAmoebaOnBoard(IAmoeba amoeba);				//TODO delete //make it private
-	public void takeAmobeaOffBoard(IAmoeba amoeba);				//TODO delete //make it private
-
-	public void turnOnSetFirstAmoeba();
-	public void turnOffSetFirstAmoeba();
 	
+	public void removeAmoebaFromCurrentSquare(IAmoeba amoeba);
+
+	/*
+	 * TODO: add an other argument for the gene which allows to set every where an amoeba
+	 */
 	public void addAmoeba(IAmoeba amoeba, int x, int y);
 	public void removeAmoeba(IAmoeba amoeba);
 	

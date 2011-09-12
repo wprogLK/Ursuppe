@@ -1,5 +1,7 @@
 package gameObjectsGUI;
 
+import interfaces.IModule;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,12 @@ import annotations.OnlyForTesting;
 import logics.PhaseExitLogic;
 
 public class PhaseExitGUI extends PhaseExitLogic implements ActionListener{
+	
+	public PhaseExitGUI(IModule module)
+	{
+		super(module);
+	}
+	
 	/////////////////
 	//INPUT MANAGER//
 	/////////////////

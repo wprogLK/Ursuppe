@@ -1,7 +1,9 @@
 package logics;
 
 import enums.EPhases;
+import exceptions.InputException;
 import templates.PhaseTemplateLogic;
+import interfaces.IModule;
 import interfaces.IPhase;
 
 /**
@@ -22,6 +24,11 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	//////////
 													//ACTION A: Chose action
 	
+		public PhaseMainMenuLogic(IModule module) 
+		{
+			super(module);
+		}
+
 		////////////
 		//...LOGIC//
 		////////////
@@ -53,87 +60,88 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	////////////
 	
 	@Override
-	public  boolean setInputA(Object inputA)
+	public void setInputA(Object inputA) throws InputException
 	{
 		//This time don't check the basic instructions because they're not needed here
 		
 		this.isInputNew=true;
 	
-		boolean valid=this.checkInputActionA(inputA);
-		this.isInputValid=valid;
-		return valid;
-		
+		this.checkInputActionA(inputA);
 	}
 	
 	
 	@Override
-	public final boolean checkInputActionA(Object inputA)
+	public final void checkInputActionA(Object inputA) throws InputException
 	{
 		String inputString="";
 		
 		if(!this.tryCastToString(inputA))
 		{
-			return false;
+			throw this.module.createInputExceptionParseToString();
 		}
 		else
 		{
 			inputString=this.doCastToString(inputA);
+			this.checkSelectedEntry(inputString);
 		}
 		
-		return this.checkSelectedEntry(inputString);
+	 
 		
 	}
 	
 
 
-	private boolean checkSelectedEntry(String input)
+	private void checkSelectedEntry(String input) throws InputException
 	{
-		boolean valid=true;
-		
 		if(input.equals("1"))			//New Game
 		{
 			this.currentPhase=EPhases.phaseNewGame;
+			this.isInputValid=true;
 		}
 		else if(input.equals("2"))		//Load Game	
 		{
 			this.currentPhase=EPhases.phaseLoadGame;
+			this.isInputValid=true;
 		}
 		else if(input.equals("3"))		//Options
 		{
 			this.currentPhase=EPhases.phaseOptions;
+			this.isInputValid=true;
 		}
 		else if(input.equals("4"))		//Help
 		{
 			this.currentPhase=EPhases.phaseHelp;
+			this.isInputValid=true;
 		}
 		else if(input.equals("5"))		//Cheats
 		{
 			this.currentPhase=EPhases.phaseCheats;
+			this.isInputValid=true;
 		}
 		else if(input.equals("6"))		//Achievements
 		{
 			this.currentPhase=EPhases.phaseAchievements;
+			this.isInputValid=true;
 		}
 		else if(input.equals("7"))		//Statistics
 		{
 			this.currentPhase=EPhases.phaseStatistics;
+			this.isInputValid=true;
 		}
 		else if(input.equals("8"))		//About
 		{
 			this.currentPhase=EPhases.phaseAbout;
+			this.isInputValid=true;
 		}
 		else if(input.equals("9"))		//Exit
 		{
 			this.currentPhase=EPhases.phaseExit;
+			this.isInputValid=true;
 		}
 		else
 		{
-			valid=false;
-			//TODO
+			throw this.module.createInputExceptionUnkownInstruction(input);
 		}
-		
-		return valid;
-		
 	}
 	
 

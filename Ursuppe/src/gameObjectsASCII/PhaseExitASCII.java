@@ -1,5 +1,7 @@
 package gameObjectsASCII;
 
+import exceptions.InputException;
+import interfaces.IModule;
 import helper.UserInput;
 import logics.PhaseExitLogic;
 
@@ -7,7 +9,12 @@ public class PhaseExitASCII extends PhaseExitLogic
 {
 
 	
-	/////////////
+	public PhaseExitASCII(IModule module) 
+	{
+		super(module);
+	}
+
+		/////////////
 	//BASICS...//
 	/////////////
 		////////////
@@ -43,8 +50,18 @@ public class PhaseExitASCII extends PhaseExitLogic
 	@Override
 	public void actionAInput()
 	{
-		String name=UserInput.readInput("y/n");
-		this.setInputA(name);
+		String answer=UserInput.readInput("y/n");
+		
+		try 
+		{
+			this.setInputA(answer);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
+			
 	}
 	
 	

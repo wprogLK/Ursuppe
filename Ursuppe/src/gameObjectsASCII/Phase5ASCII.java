@@ -1,5 +1,6 @@
 package gameObjectsASCII;
 
+import interfaces.IModule;
 import helper.UserInput;
 import logics.Phase5Logic;
 import logics.PhaseALogic;
@@ -15,6 +16,11 @@ public class Phase5ASCII extends Phase5Logic
 		//...LOGIC//
 		////////////
 	
+		public Phase5ASCII(IModule module) 
+		{
+			super(module);
+		}
+
 		@Override
 		public void doPreAction()
 		{
@@ -37,47 +43,47 @@ public class Phase5ASCII extends Phase5Logic
 	//ACTION A//
 	////////////
 	
-	@Override
-	public void doPreActionA()
-	{
-		this.outStream.println("What is your name?");
-	}
-	
-	@Override
-	public void actionAInput()
-	{
-		String name=UserInput.readInput("Please, enter your name: ");
-		this.setInputA(name);
-	}
-	
-	@Override
-	public void doAfterActionA()
-	{
-		this.outStream.println("Thank you for your name");
-	}
-	
+//	@Override
+//	public void doPreActionA()
+//	{
+//		this.outStream.println("What is your name?");
+//	}
+//	
+//	@Override
+//	public void actionAInput()
+//	{
+//		String name=UserInput.readInput("Please, enter your name: ");
+//		this.setInputA(name);
+//	}
+//	
+//	@Override
+//	public void doAfterActionA()
+//	{
+//		this.outStream.println("Thank you for your name");
+//	}
+//	
 	////////////
 	//ACTION B//
 	////////////
 	
-	@Override
-	public void doPreActionB()
-	{
-		this.outStream.println("How old are you?");
-	}
-	
-	@Override
-	public void actionBInput()
-	{
-		String age=UserInput.readInput("Please, enter your age: ");
-		this.setInputB(age);
-	}
-	
-	@Override
-	public void doAfterActionB()
-	{
-		this.outStream.println("Thank you for your age");
-	}
+//	@Override
+//	public void doPreActionB()
+//	{
+//		this.outStream.println("How old are you?");
+//	}
+//	
+//	@Override
+//	public void actionBInput()
+//	{
+//		String age=UserInput.readInput("Please, enter your age: ");
+//		this.setInputB(age);
+//	}
+//	
+//	@Override
+//	public void doAfterActionB()
+//	{
+//		this.outStream.println("Thank you for your age");
+//	}
 
 	
 	

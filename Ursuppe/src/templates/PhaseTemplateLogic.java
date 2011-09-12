@@ -8,6 +8,7 @@ import enums.EActions;
 import enums.EColor;
 import enums.EPhases;
 import enums.EPlayer;
+import exceptions.InputException;
 
 import annotations.OnlyForTesting;
 
@@ -16,6 +17,7 @@ import gameObjectsGUI.PhaseAGUI;
 import helper.LanguageSetup;
 import helper.UserInput;
 import interfaces.IGame;
+import interfaces.IModule;
 import interfaces.IPhase;
 
 import main.GameLogic;
@@ -59,6 +61,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	private boolean firstRun=true;
 	private boolean lastRun=false;
 	
+	protected IModule module;
 	///////////////////
 	//DO RUN ACTIONS?//
 	///////////////////
@@ -105,9 +108,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	 * <br />
 	 * set the priority of the extended Thread up to 3
 	 */
-	public PhaseTemplateLogic()
+	public PhaseTemplateLogic(IModule module)
 	{
-		this.setPriority(3);
+		this.setModule(module);
+		
+		this.setPriority(1);
 		
 		this.setCurrentPhase();
 		
@@ -119,6 +124,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		{
 			this.waiting=false;
 		}
+	}
+	
+	protected void setModule(IModule module)
+	{
+		this.module=module;
 	}
 	
 	public void resetFirstRun()
@@ -870,6 +880,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 */
 		public final void resetInput()
 		{
+			//this.waitForAValidInput();
+			
 			this.isInputNew=false;
 			this.isInputValid=false;
 		}
@@ -987,14 +999,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 				if(validBasicInput)
 				{
 					this.doNothing=true;
+					this.isInputValid=true;
 				}
 				
-				
-				
 				return validBasicInput;
-			
 			}
-			
 		}
 		
 	///////////
@@ -1291,6 +1300,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			* 	Can do some extra things which are <u>implemented in a concrete phaseLogic</u> in its method (should be call each set-method of actions to set the message as input)
 			* 	Can be override by a concrete phase 
 			* </p>
+			 * @throws InputException 
 			* 
 			* @see PhaseAASCII
 		 	* @see PhaseAGUI
@@ -1300,36 +1310,46 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			public final void setAllInput(String message)
 			{
 				this.outStream.println("IN PHASE TEMPLATE LOGIC: MESSAGE IS " +message);
-				this.setInputA(message);
-				this.setInputB(message);
-				this.setInputC(message);
-				this.setInputD(message);
-				this.setInputE(message);
-				this.setInputF(message);
-				this.setInputG(message);
-				this.setInputH(message);
-				this.setInputI(message);
-				this.setInputJ(message);
-				this.setInputK(message);
-				this.setInputL(message);
-				this.setInputM(message);
-				this.setInputN(message);
-				this.setInputO(message);
-				this.setInputP(message);
-				this.setInputQ(message);
-				this.setInputR(message);
-				this.setInputS(message);
-				this.setInputT(message);
-				this.setInputU(message);
-				this.setInputV(message);
-				this.setInputW(message);
-				this.setInputX(message);
-				this.setInputY(message);
-				this.setInputZ(message);
+				
+				try 
+				{
+					this.setInputA(message);
+					this.setInputB(message);
+					this.setInputC(message);
+					this.setInputD(message);
+					this.setInputE(message);
+					this.setInputF(message);
+					this.setInputG(message);
+					this.setInputH(message);
+					this.setInputI(message);
+					this.setInputJ(message);
+					this.setInputK(message);
+					this.setInputL(message);
+					this.setInputM(message);
+					this.setInputN(message);
+					this.setInputO(message);
+					this.setInputP(message);
+					this.setInputQ(message);
+					this.setInputR(message);
+					this.setInputS(message);
+					this.setInputT(message);
+					this.setInputU(message);
+					this.setInputV(message);
+					this.setInputW(message);
+					this.setInputX(message);
+					this.setInputY(message);
+					this.setInputZ(message);
+				} 
+				catch (InputException e) 
+				{
+					//TODO: THIS should never happen
+				}
+				
+				
 			}
 		
 			////////////
-			//ACTION A//
+			//ACTION A//			//TODO HERE
 			////////////
 			/**
 			 * checks the input of Action A
@@ -1344,12 +1364,13 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 			<li> <u>true</u> if the input was <u>valid</u> </li>
 			 * 			<li> <u>false</u> if the input was <u>invalid</u> </li>
 			 * 		</ul>
+			 * @throws InputException 
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionA(Object inputA)
+			public  void checkInputActionA(Object inputA) throws InputException
 			{ 
-				return false;
+			
 			}
 			
 			/**
@@ -1365,12 +1386,12 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 			<li> <u>true</u> if the input was <u>set</u> </li>
 			 * 			<li> <u>false</u> if the input was <u>not set</u> </li>
 			 * 		</ul>
+			 * @throws InputException 
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputA(Object inputA)
+			public void setInputA(Object inputA) throws InputException
 			{
-				return false;
 			}
 			
 			
@@ -1393,9 +1414,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionB(Object inputB)
+			public void checkInputActionB(Object inputB) throws InputException
 			{
-				return false;
 			}
 			
 			/**
@@ -1414,9 +1434,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean setInputB(Object inputB)
+			public void setInputB(Object inputB) throws InputException
 			{
-				return false;
 			}
 			////////////
 			//ACTION C//
@@ -1438,9 +1457,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionC(Object inputC)
+			public  void checkInputActionC(Object inputC) throws InputException
 			{
-				return false;
 			}
 			
 			/**
@@ -1459,9 +1477,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean setInputC(Object inputC)
+			public  void setInputC(Object inputC) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1483,9 +1500,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionD(Object inputD)
+			public  void checkInputActionD(Object inputD) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1504,9 +1520,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputD(Object inputD)
+			public void setInputD(Object inputD) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1528,9 +1543,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionE(Object inputE)
+			public  void checkInputActionE(Object inputE) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1549,9 +1563,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputE(Object inputE)
+			public void setInputE(Object inputE) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1573,9 +1586,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionF(Object inputF)
+			public  void checkInputActionF(Object inputF) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1594,9 +1606,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputF(Object inputF)
+			public void setInputF(Object inputF) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1618,9 +1629,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionG(Object inputG)
+			public  void checkInputActionG(Object inputG) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1639,9 +1649,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputG(Object inputG)
+			public void setInputG(Object inputG) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1663,9 +1672,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionH(Object inputH)
+			public  void checkInputActionH(Object inputH) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1684,9 +1692,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputH(Object inputH)
+			public void setInputH(Object inputH) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1708,9 +1715,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionI(Object inputI)
+			public  void checkInputActionI(Object inputI) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1729,9 +1735,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputI(Object inputI)
+			public void setInputI(Object inputI) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1753,9 +1758,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionJ(Object inputJ)
+			public  void checkInputActionJ(Object inputJ) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1774,9 +1778,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputJ(Object inputJ)
+			public void setInputJ(Object inputJ) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1798,9 +1801,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionK(Object inputK)
+			public  void checkInputActionK(Object inputK) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1819,9 +1821,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputK(Object inputK)
+			public void setInputK(Object inputK) throws InputException
 			{
-				return false;
 			}
 			
 			
@@ -1844,9 +1845,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionL(Object inputL)
+			public  void checkInputActionL(Object inputL) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1865,9 +1865,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputL(Object inputL)
+			public void setInputL(Object inputL) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1889,9 +1888,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionM(Object inputM)
+			public  void checkInputActionM(Object inputM) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1910,9 +1908,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputM(Object inputM)
+			public void setInputM(Object inputM) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1934,9 +1931,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionN(Object inputN)
+			public  void checkInputActionN(Object inputN) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -1955,9 +1951,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputN(Object inputN)
+			public void setInputN(Object inputN) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -1979,9 +1974,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionO(Object inputO)
+			public  void checkInputActionO(Object inputO) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2000,9 +1994,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputO(Object inputO)
+			public void setInputO(Object inputO) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2024,9 +2017,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionP(Object inputP)
+			public  void checkInputActionP(Object inputP) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2045,9 +2037,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputP(Object inputP)
+			public void setInputP(Object inputP) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2069,9 +2060,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionQ(Object inputQ)
+			public  void checkInputActionQ(Object inputQ) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2090,9 +2080,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputQ(Object inputQ)
+			public void setInputQ(Object inputQ) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2114,9 +2103,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionR(Object inputR)
+			public  void checkInputActionR(Object inputR) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2135,9 +2123,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputR(Object inputR)
+			public void setInputR(Object inputR) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2159,9 +2146,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionS(Object inputS)
+			public  void checkInputActionS(Object inputS) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2180,9 +2166,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputS(Object inputS)
+			public void setInputS(Object inputS) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2204,9 +2189,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionT(Object inputT)
+			public  void checkInputActionT(Object inputT) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2225,9 +2209,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputT(Object inputT)
+			public void setInputT(Object inputT) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2249,9 +2232,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionU(Object inputU)
+			public  void checkInputActionU(Object inputU) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2270,9 +2252,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputU(Object inputU)
+			public void setInputU(Object inputU) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2294,9 +2275,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionV(Object inputV)
+			public  void checkInputActionV(Object inputV) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2315,9 +2295,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputV(Object inputV)
+			public void setInputV(Object inputV) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2339,9 +2318,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionW(Object inputW)
+			public  void checkInputActionW(Object inputW) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2360,9 +2338,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputW(Object inputW)
+			public void setInputW(Object inputW) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2384,9 +2361,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionX(Object inputX)
+			public  void checkInputActionX(Object inputX) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2405,9 +2381,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputX(Object inputX)
+			public void setInputX(Object inputX) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2429,9 +2404,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionY(Object inputY)
+			public  void checkInputActionY(Object inputY) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2450,9 +2424,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputY(Object inputY)
+			public void setInputY(Object inputY) throws InputException
 			{
-				return false;
 			}
 			
 			////////////
@@ -2474,9 +2447,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  boolean checkInputActionZ(Object inputZ)
+			public  void checkInputActionZ(Object inputZ) throws InputException
 			{ 
-				return false;
 			}
 			
 			/**
@@ -2495,9 +2467,8 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public boolean setInputZ(Object inputZ)
+			public void setInputZ(Object inputZ) throws InputException
 			{
-				return false;
 			}
 			
 			
@@ -4893,6 +4864,19 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 	}
 	
 	
+	////////////////
+	//CHANGE PHASE//
+	////////////////
+	
+	protected final void changeToPhase(EPhases phase)
+	{
+		this.deactivateAllActions();
+		
+		
+		
+		this.currentPhase=phase;
+	}
+	
 	////////////////////////////////
 	//ACTIVATE/DEATCTIVATE ACTIONS//
 	////////////////////////////////
@@ -5034,6 +5018,37 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		//////////////
 		//DEACTIVATE//
 		//////////////
+		
+		private final void deactivateAllActions()
+		{
+			this.deactivateActionA();
+			this.deactivateActionB();
+			this.deactivateActionC();
+			this.deactivateActionD();
+			this.deactivateActionE();
+			this.deactivateActionF();
+			this.deactivateActionG();
+			this.deactivateActionH();
+			this.deactivateActionI();
+			this.deactivateActionJ();
+			this.deactivateActionK();
+			this.deactivateActionL();
+			this.deactivateActionM();
+			this.deactivateActionN();
+			this.deactivateActionO();
+			this.deactivateActionP();
+			this.deactivateActionQ();
+			this.deactivateActionR();
+			this.deactivateActionS();
+			this.deactivateActionT();
+			this.deactivateActionU();
+			this.deactivateActionV();
+			this.deactivateActionW();
+			this.deactivateActionX();
+			this.deactivateActionY();
+			this.deactivateActionZ();
+			
+		}
 		
 		public final void deactivateActionA()
 		{

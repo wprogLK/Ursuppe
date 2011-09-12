@@ -1,7 +1,9 @@
 package logics;
 
 import enums.EPhases;
+import exceptions.InputException;
 import templates.PhaseTemplateLogic;
+import interfaces.IModule;
 import interfaces.IPhase;
 
 /**
@@ -17,7 +19,12 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 	//BASICS//
 	//////////
 
-	//////////
+	public PhaseSplashScreenLogic(IModule module) 
+	{
+		super(module);
+	}
+
+		//////////
 	//INPUTS//
 	//////////
 													//ACTION A: start
@@ -35,23 +42,24 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 		////////////
 		
 		@Override
-		public  boolean setInputA(Object inputA)
+		public  void setInputA(Object inputA) throws InputException
 		{
-			this.isInputNew=true;
-			boolean valid=this.checkInputActionA(inputA);
-			this.isInputValid=valid;
-			return valid;
+			if(this.getDoRunActionA())
+			{
+				this.isInputNew=true;
+				this.checkInputActionA(inputA);
+			}
 		}
 		
 		
 		@Override
-		public final boolean checkInputActionA(Object inputA)
+		public final void checkInputActionA(Object inputA) throws InputException
 		{
 			String inputString="";
 			
 			if(!this.tryCastToString(inputA))
 			{
-				return false;
+				throw this.module.createInputExceptionParseToString();
 			}
 			else
 			{
@@ -62,11 +70,11 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 			{
 				this.currentPhase=EPhases.phaseMainMenu;
 				
-				return true;
+				this.isInputValid=true;
 			}
 			else
 			{
-				return false;
+				throw this.module.createInputExceptionUnkownInstruction(inputString);
 			}
 		}
 		

@@ -1,5 +1,7 @@
 package gameObjectsASCII;
 
+import exceptions.InputException;
+import interfaces.IModule;
 import interfaces.IPlayer;
 import helper.UserInput;
 import logics.PhaseALogic;
@@ -18,6 +20,11 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 		//...LOGIC//
 		////////////
 	
+		public PhasePreparation2ASCII(IModule module) 
+		{
+			super(module);
+		}
+
 		@Override
 		public void doPreActionFirstRun()
 		{
@@ -50,7 +57,15 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 	{
 		String pos=UserInput.readInput(this.getPossiblePositions());
 		
-		this.setInputA(pos);
+		try 
+		{
+			this.setInputA(pos);
+		} 
+		catch (InputException e) 
+		{
+			//TODO
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Override
