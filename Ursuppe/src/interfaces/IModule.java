@@ -5,6 +5,18 @@ import java.util.Date;
 
 import enums.EColor;
 import exceptions.InputException;
+import exceptions.GameExceptions.AmoebaAlreadyOnBoardException;
+import exceptions.GameExceptions.InvalidSquareException;
+import exceptions.GameExceptions.NotEnoughPlayersException;
+import exceptions.InputExceptions.ImpossibleStartPositionException;
+import exceptions.InputExceptions.InputEmptyException;
+import exceptions.InputExceptions.InputWrongDataFormatException;
+import exceptions.InputExceptions.InputWrongSizeException;
+import exceptions.InputExceptions.InputWrongTokenException;
+import exceptions.InputExceptions.ParseToEColorException;
+import exceptions.InputExceptions.ParseToIntegerException;
+import exceptions.InputExceptions.ParseToStringException;
+import exceptions.InputExceptions.UnknownInstructionException;
 import gameObjectsASCII.*;
 import interfaces.IGame;
 import interfaces.IPhase;
@@ -94,7 +106,7 @@ public  interface IModule
 	 * Creates a default board
 	 * @return
 	 */
-	public IBoard createBoard();
+	public IBoard createBoard(IGame game);
 	
 	/**
 	 * Creates a default soupSquare
@@ -111,10 +123,31 @@ public  interface IModule
 	//////////////
 	//EXCEPTIONS//
 	//////////////
-	public InputException createInputException(String message);
-	public InputException createInputExceptionUnkownInstruction(String inputInstruction);
 	
-	public InputException createInputExceptionParseToString();
-	public InputException createInputExceptionParseToInteger();
-	public InputException createInputExceptionParseToEColor();
+	//********************//
+	//**INPUT EXCEPTIONS**//
+	//********************//
+	public void throwInputExceptionUnkownInstruction(String inputInstruction) throws UnknownInstructionException;
+	
+	public void throwInputExceptionParseToString() throws ParseToStringException;
+	public void throwInputExceptionParseToInteger() throws ParseToIntegerException;
+	public void throwInputExceptionParseToEColor() throws ParseToEColorException;
+	
+	public void throwInputExceptionEmptyInput() throws InputEmptyException;
+	
+	public void throwInputExceptionWrongDataFormat() throws InputWrongDataFormatException;
+	public void throwInputExceptionWrongSize(String expression) throws InputWrongSizeException;
+	public void throwInputExceptionWrongToken(char tokenSign) throws InputWrongTokenException;
+	
+	public void throwInputExceptionImpossibleStartPosition() throws ImpossibleStartPositionException;
+	
+	//*******************//
+	//**GAME EXCEPTIONS**//
+	//*******************//
+	public void throwGameExceptionInvalidSquare(int x, int y) throws InvalidSquareException;
+	public void throwGameExcptionAmoebaAlreadyOnBoard() throws AmoebaAlreadyOnBoardException;
+	
+	public void throwGameExeptionNotEnoughPlayers() throws NotEnoughPlayersException;
+	
+	
 }

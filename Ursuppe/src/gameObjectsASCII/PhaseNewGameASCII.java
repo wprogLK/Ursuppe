@@ -61,7 +61,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		{
 			this.setInputA(input);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());
@@ -86,7 +86,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		{
 			this.setInputB(input);
 		}
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());
@@ -114,7 +114,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		{
 			this.setInputC(input);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());
@@ -145,7 +145,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		{
 			this.setInputD(input);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());
@@ -170,7 +170,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		{
 			this.setInputE(input);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());
@@ -191,7 +191,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		{
 			this.setInputF(input);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());

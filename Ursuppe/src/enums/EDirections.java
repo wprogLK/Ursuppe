@@ -91,6 +91,11 @@ public enum EDirections
 		}
 
 	}
+	
+	public int getDieValue()
+	{
+		return this.dieValue;
+	}
 }
 
 

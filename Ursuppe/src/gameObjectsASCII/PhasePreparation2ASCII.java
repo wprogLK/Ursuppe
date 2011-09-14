@@ -4,7 +4,6 @@ import exceptions.InputException;
 import interfaces.IModule;
 import interfaces.IPlayer;
 import helper.UserInput;
-import logics.PhaseALogic;
 import logics.PhasePreparation2Logic;
 /**
  * the second preparation phase for ASCII game
@@ -53,7 +52,7 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 	}
 	
 	@Override
-	public void actionAInput()
+	public void actionAInput() throws Exception
 	{
 		String pos=UserInput.readInput(this.getPossiblePositions());
 		
@@ -61,15 +60,14 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 		{
 			this.setInputA(pos);
 		} 
-		catch (InputException e) 
+		catch (InputException e)
 		{
-			//TODO
-			System.out.println(e.getMessage());
+			System.out.println("PhasePrep2 its a inputException " + e);
 		}
 	}
 	
 	@Override
-	public void doAfterActionA()
+	public void doAfterActionA() throws Exception
 	{
 		IPlayer player=this.game.getCurrentPlayer();
 		

@@ -42,7 +42,7 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 		////////////
 		
 		@Override
-		public  void setInputA(Object inputA) throws InputException
+		public  void setInputA(Object inputA) throws Exception
 		{
 			if(this.getDoRunActionA())
 			{
@@ -53,18 +53,9 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 		
 		
 		@Override
-		public final void checkInputActionA(Object inputA) throws InputException
+		public final void checkInputActionA(Object inputA) throws Exception
 		{
-			String inputString="";
-			
-			if(!this.tryCastToString(inputA))
-			{
-				throw this.module.createInputExceptionParseToString();
-			}
-			else
-			{
-				inputString=this.doCastToString(inputA);
-			}
+			String inputString=this.doCastToString(inputA);
 			
 			if(this.inputEqualsStart(inputString))
 			{
@@ -74,7 +65,7 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 			}
 			else
 			{
-				throw this.module.createInputExceptionUnkownInstruction(inputString);
+				 this.module.throwInputExceptionUnkownInstruction(inputString);
 			}
 		}
 		

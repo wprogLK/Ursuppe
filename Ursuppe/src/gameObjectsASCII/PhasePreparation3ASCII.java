@@ -63,7 +63,7 @@ public class PhasePreparation3ASCII extends PhasePreparation2Logic
 		{
 			this.setInputA(pos);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());

@@ -105,16 +105,16 @@ public interface IPhase
 		//////////////
 	
 		@OnlyForTesting
-		public void setInputA(Object inputA) throws InputException;
+		public void setInputA(Object inputA) throws Exception;
 		
 		@OnlyForTesting
-		public void setInputB(Object inputB) throws InputException;
+		public void setInputB(Object inputB) throws Exception;
 		
 		@OnlyForTesting
-		public void setInputC(Object inputC) throws InputException;
+		public void setInputC(Object inputC) throws Exception;
 		
 		@OnlyForTesting
-		public void setAllInput(String message) throws InputException;
+		public void setAllInput(String message) throws Exception;
 		
 	///////
 	//GUI//

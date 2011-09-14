@@ -83,7 +83,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	////////////
 	
 	@Override
-	public  void setInputA(Object inputA) throws InputException
+	public  void setInputA(Object inputA) throws Exception
 	{
 		if(this.getDoRunActionA())
 		{
@@ -101,19 +101,10 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionA(Object inputA) throws InputException
+	public final void checkInputActionA(Object inputA) throws Exception
 	{
-		String inputString="";
-		
-		if(!this.tryCastToString(inputA))
-		{
-			throw this.module.createInputExceptionParseToString();
-		}
-		else
-		{
-			inputString=this.doCastToString(inputA);
-		}
-		
+		String inputString=this.doCastToString(inputA);
+	
 		this.tryUnderstandInputA(inputString);
 	}
 	
@@ -123,10 +114,12 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	 * @param inputA
 	 * @return - true if correct <br/> - false if incorrect
 	 */
-	private void tryUnderstandInputA(String inputA) throws InputException
+	private void tryUnderstandInputA(String inputA) throws Exception
 	{
 		if (inputA.equals(this.rb.getString("instructionPhaseNewGameAddPlayer")))	//add new player
 		{
+			this.deactivateAllActions();
+			
 			this.activateActionB();
 			this.isInputValid=true;
 		}
@@ -138,14 +131,14 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			throw this.module.createInputExceptionUnkownInstruction(inputA);
+			this.module.throwInputExceptionUnkownInstruction(inputA);
 		}
 		
 	}
 	
 
 
-	private void isReadyToPlay() throws InputException
+	private void isReadyToPlay() throws Exception
 	{
 		if (this.game.getNumbersOfPlayers()>=2)			
 		{
@@ -157,7 +150,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			throw this.module.createInputException("You can not play the game. You are not enough players.");
+			this.module.throwGameExeptionNotEnoughPlayers();
 		}
 	}
 
@@ -165,23 +158,14 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//ACTION B//
 	////////////
 	@Override
-	public  void setInputB(Object inputB) throws InputException
+	public  void setInputB(Object inputB) throws Exception
 	{
 		if(this.getDoRunActionB())
 		{
-			String inputString="";
 			boolean validBasic = false;
 			this.isInputNew=true;
-			
-			if(!this.tryCastToString(inputB))
-			{
-				throw this.module.createInputExceptionParseToString();
-			}
-			else
-			{
-				inputString=this.doCastToString(inputB);
-			}
-			
+		
+			String inputString=this.doCastToString(inputB);
 		
 			validBasic=this.checkBasicInputs(inputString);
 			
@@ -194,18 +178,9 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionB(Object inputB) throws InputException
+	public final void checkInputActionB(Object inputB) throws Exception
 	{
-		String inputString="";
-		
-		if(!this.tryCastToString(inputB))
-		{
-			throw this.module.createInputExceptionParseToString();
-		}
-		else
-		{
-			inputString=this.doCastToString(inputB);
-		}
+		String	inputString=this.doCastToString(inputB);
 		
 		this.tryUnderstandInputB(inputString);
 		
@@ -217,15 +192,19 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	 * @param inputA
 	 * @return - true if correct <br/> - false if incorrect
 	 */
-	private void tryUnderstandInputB(String inputB) throws InputException
+	private void tryUnderstandInputB(String inputB) throws Exception
 	{
 		if (inputB.equals(this.rb.getString("instructionPhaseNewGameLoadPlayer")))	//load player
 		{
+			this.deactivateAllActions();
+			
 			this.activateActionC();
 			this.isInputValid=true;
 		}
 		else if (inputB.equals(this.rb.getString("instructionPhaseNewGameCreatePlayer")))	//create new player
 		{
+			this.deactivateAllActions();
+			
 			this.activateActionD();
 			this.activateActionE();
 			this.activateActionF();
@@ -234,7 +213,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			throw this.module.createInputExceptionUnkownInstruction(inputB);
+			this.module.throwInputExceptionUnkownInstruction(inputB);
 		}
 		
 	}
@@ -245,23 +224,15 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public  void setInputC(Object inputC) throws InputException
+	public  void setInputC(Object inputC) throws Exception
 	{
 		if(this.getDoRunActionC())
 		{
-			String inputString="";
 			boolean validBasic = false;
 			this.isInputNew=true;
 			
-			if(!this.tryCastToString(inputC))
-			{
-				throw this.module.createInputExceptionParseToString();
-			}
-			else
-			{
-				inputString=this.doCastToString(inputC);
-			}
-		
+			String inputString=this.doCastToString(inputC);
+			
 			validBasic=this.checkBasicInputs(inputString);
 			
 			if(!validBasic)
@@ -280,22 +251,16 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	}
 
 	@Override
-	public final void checkInputActionC(Object inputC) throws InputException 
+	public final void checkInputActionC(Object inputC) throws Exception 
 	{
 		String input=this.doCastToString(inputC);
 		
 		char token=input.charAt(0);
 		String number=input.subSequence(1, input.length()).toString();
 		
-		if(!this.tryCastToInteger(number))
-		{
-			throw this.module.createInputExceptionParseToInteger();
-		}
-		else
-		{
-			int intInput=this.doCastToInteger(number);
-			this.tryUnderstandInputC(token,intInput);
-		}
+		int intInput=this.doCastToInteger(number);
+		this.tryUnderstandInputC(token,intInput);
+		
 	}
 	
 	
@@ -305,7 +270,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	 * @param inputC
 	 * @return - true if correct <br/> - false if incorrect
 	 */
-	private void tryUnderstandInputC(char token, int number) throws InputException
+	private void tryUnderstandInputC(char token, int number) throws Exception
 	{
 		//TODO: TEST THIS (with the new throwing exceptions!)
 		
@@ -327,7 +292,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			throw this.module.createInputException("Error: Token " + token + " not found!");
+			this.module.throwInputExceptionWrongToken(token);
 		}
 		
 		//TODO: check if out of bounds exception
@@ -355,24 +320,15 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//ACTION D//
 	////////////
 	@Override
-	public  void setInputD(Object inputD) throws InputException
+	public  void setInputD(Object inputD) throws Exception
 	{
 		if(this.getDoRunActionD())
 		{
-			String inputString="";
 			boolean validBasic = false;
 			this.isInputNew=true;
-			
-			if(!this.tryCastToString(inputD))
-			{
-				throw this.module.createInputExceptionParseToString();
-			}
-			else
-			{
-				inputString=this.doCastToString(inputD);
-			}
-			
 		
+			String inputString=this.doCastToString(inputD);
+			
 			validBasic=this.checkBasicInputs(inputString);
 			
 			if(!validBasic)		
@@ -385,14 +341,14 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionD(Object inputD) throws InputException
+	public final void checkInputActionD(Object inputD) throws Exception
 	{
 		boolean valid=true;
 		String name=this.doCastToString(inputD);
 		
 		if(name.equals(""))
 		{
-			throw this.module.createInputException("Error: Please enter a name with at least one letter. Try again...");
+			this.module.throwInputExceptionEmptyInput();
 		}
 		else
 		{
@@ -406,22 +362,14 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//ACTION E//
 	////////////
 	@Override
-	public  void setInputE(Object inputE) throws InputException
+	public  void setInputE(Object inputE) throws Exception
 	{
 		if(this.getDoRunActionE())
 		{
-			String inputString="";
 			boolean validBasic = false;
 			this.isInputNew=true;
-			
-			if(!this.tryCastToString(inputE))
-			{
-				throw this.module.createInputExceptionParseToString();
-			}
-			else
-			{
-				inputString=this.doCastToString(inputE);
-			}
+		
+			String inputString=this.doCastToString(inputE);
 		
 			validBasic=this.checkBasicInputs(inputString);
 			
@@ -434,7 +382,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionE(Object inputE) throws InputException
+	public final void checkInputActionE(Object inputE) throws Exception
 	{
 		String strInput=this.doCastToString(inputE);
 		
@@ -443,11 +391,11 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		//check if length is right
 		if(strInput.length()<10)
 		{
-			throw this.module.createInputException("Error: Your input " + inputE + " was too short! Try it again...");
+			this.module.throwInputExceptionWrongSize("short");
 		}
 		else if(strInput.length()>10)
 		{
-			throw this.module.createInputException("Error: Your input " + inputE + " was too long! Try it again...");
+			this.module.throwInputExceptionWrongSize("long");
 		}
 		else
 		{
@@ -460,7 +408,7 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 			} 
 			catch (ParseException e) 
 			{
-				throw this.module.createInputException("Error: Your input hadn't the correct format! Try it again...");
+				this.module.throwInputExceptionWrongDataFormat();
 			}
 			
 			this.ageOfNewPlayer=this.calculateAge(this.birthdayDateOfNewPlayer); //TODO implement this method
@@ -474,21 +422,12 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	//ACTION F//
 	////////////
 	@Override
-	public  void setInputF(Object inputF) throws InputException
+	public  void setInputF(Object inputF) throws Exception
 	{
-		String inputString="";
 		boolean validBasic = false;
 		this.isInputNew=true;
 		
-		if(!this.tryCastToString(inputF))
-		{
-			throw this.module.createInputExceptionParseToString();
-		}
-		else
-		{
-			inputString=this.doCastToString(inputF);
-		}
-		
+		String inputString=this.doCastToString(inputF);
 	
 		validBasic=this.checkBasicInputs(inputString);
 		
@@ -501,22 +440,16 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionF(Object inputF) throws InputException
+	public final void checkInputActionF(Object inputF) throws Exception
 	{
-		if(!this.tryCastToEColor(inputF))
-		{
-			throw this.module.createInputExceptionParseToEColor();
-		}
-		else
-		{
-			this.colorOfNewPlayer=this.doCastToEColor(inputF);
+		
+		this.colorOfNewPlayer=this.doCastToEColor(inputF);
 			
-			this.turnOnRestart();
+		this.turnOnRestart();
 			
-			this.createNewPlayer();
+		this.createNewPlayer();
 			
-			this.isInputValid=true;
-		}
+		this.isInputValid=true;
 	}
 	
 	

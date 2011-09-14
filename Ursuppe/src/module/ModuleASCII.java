@@ -201,9 +201,9 @@ public class ModuleASCII extends ModuleTemplate
 
 
 	@Override
-	public IBoard createBoard() 
+	public IBoard createBoard(IGame game) 
 	{
-		return new BoardASCII(this.outStream,this.errorStream);
+		return new BoardASCII(this.outStream,this.errorStream, game);
 	}
 
 
@@ -220,33 +220,5 @@ public class ModuleASCII extends ModuleTemplate
 		return new CompassSquareASCII();
 	}
 	
-	//////////////
-	//EXCEPTIONS//
-	//////////////
-	public InputException createInputException(String message)
-	{
-		return new InputExceptionASCII(message);
-	}
 	
-	public InputException createInputExceptionUnkownInstruction(String inputInstruction)
-	{
-		String str="Sorry, but I don't know the instruction " + inputInstruction + " Try it again ...";
-		
-		return new InputExceptionASCII(str);
-	}
-	
-	public InputException createInputExceptionParseToString()
-	{
-		return new InputExceptionASCII("Error: the input can not parse to a string! Try it again ...");
-	}
-	
-	public InputException createInputExceptionParseToInteger()
-	{
-		return new InputExceptionASCII("Error: the input can not parse to an integer! Try it again ...");
-	}
-	
-	public InputException createInputExceptionParseToEColor()
-	{
-		return new InputExceptionASCII("Error: Your input wasn't a valid color! Try it again ...");
-	}
 }

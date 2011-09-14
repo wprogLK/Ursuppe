@@ -58,7 +58,7 @@ public class PhaseAASCII extends PhaseALogic
 		{
 			this.setInputA(name);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());
@@ -90,7 +90,7 @@ public class PhaseAASCII extends PhaseALogic
 		{
 			this.setInputB(age);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());

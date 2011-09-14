@@ -3,15 +3,15 @@
  */
 package exceptions;
 
-import interfaces.IInputException;
+import helper.LanguageSetup;
 
 /**
- * @author Lukas
- *
+ * @author Lukas Keller
+ * @version 1.0.0
  */
-public class InputException extends Exception
+public abstract class InputException extends Exception
 {
-	String message;
+	static protected LanguageSetup languageSetup;
 	
 	public InputException(String message)
 	{

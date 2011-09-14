@@ -60,7 +60,7 @@ public class PhaseMainMenuASCII extends PhaseMainMenuLogic
 		{
 			this.setInputA(name);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());

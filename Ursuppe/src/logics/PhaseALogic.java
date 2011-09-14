@@ -64,7 +64,7 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 	////////////
 	
 	@Override
-	public  void setInputA(Object inputA) throws InputException
+	public  void setInputA(Object inputA) throws Exception
 	{
 		if(this.getDoRunActionA())
 		{
@@ -83,19 +83,9 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionA(Object inputA) throws InputException
+	public final void checkInputActionA(Object inputA) throws Exception
 	{
-		String inputString="";
-		
-		if(!this.tryCastToString(inputA))
-		{
-			throw this.module.createInputException("Please enter a string");
-		}
-		else
-		{
-			inputString=this.doCastToString(inputA);
-		}
-		
+		String inputString=this.doCastToString(inputA);
 		
 		if (!inputString.equals(""))
 		{
@@ -105,7 +95,7 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			throw this.module.createInputException("An empty name is not allowed");
+			this.module.throwInputExceptionEmptyInput();
 		}
 	}
 	
@@ -115,24 +105,15 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 	//ACTION B//
 	////////////
 	@Override
-	public  void setInputB(Object inputB) throws InputException
+	public  void setInputB(Object inputB) throws Exception
 	{
 		if(this.getDoRunActionB())
 		{
-			String inputString="";
 			boolean validBasic = false;
 			this.isInputNew=true;
 			
-			if(!this.tryCastToString(inputB))
-			{
-				throw this.module.createInputException("Please enter some valid input");
-			}
-			else
-			{
-				inputString=this.doCastToString(inputB);
-			}
-			
-		
+			String inputString=this.doCastToString(inputB);
+	
 			validBasic=this.checkBasicInputs(inputString);
 			
 			if(!validBasic)
@@ -146,17 +127,10 @@ public abstract class PhaseALogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionB(Object inputB) throws InputException
+	public final void checkInputActionB(Object inputB) throws Exception
 	{
-		if(!this.tryCastToInteger(inputB))
-		{
-			throw this.module.createInputException("Please enter a number");
-		}
-		else
-		{
-			this.game.getPlayer(1).setAge(this.doCastToInteger(inputB)); 
-			this.isInputValid=true; //TODO: This is new!
-		}
+		this.game.getPlayer(1).setAge(this.doCastToInteger(inputB)); 
+		this.isInputValid=true; //TODO: This is new!
 	}
 	
 	

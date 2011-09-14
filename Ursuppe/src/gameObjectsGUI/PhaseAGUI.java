@@ -194,7 +194,7 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener
 				this.setInputA(this.textFieldName.getText());
 				this.nameSetFalseEditable();
 			} 
-			catch (InputException e) 
+			catch (Exception e) 
 			{
 				this.textFieldName.setBackground(Color.RED);
 				this.textFieldName.setEditable(true);
@@ -216,7 +216,7 @@ public class PhaseAGUI extends PhaseALogic implements ActionListener
 				this.setInputB(this.textFieldAge.getText());
 				this.ageSetFalseEditable();
 			}
-			catch (InputException e)
+			catch (Exception e) 
 			{
 				this.textFieldAge.setBackground(Color.RED);
 				this.textFieldAge.setEditable(true);

@@ -56,7 +56,7 @@ public class PhaseSplashScreenASCII extends PhaseSplashScreenLogic
 		{
 			this.setInputA(instruction);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());

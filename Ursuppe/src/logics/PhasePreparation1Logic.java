@@ -206,7 +206,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	////////////
 
 	@Override
-	public  void setInputA(Object inputA) throws InputException
+	public  void setInputA(Object inputA) throws Exception
 	{
 		if(this.getDoRunActionA())
 		{
@@ -224,20 +224,9 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionA(Object inputA) throws InputException
+	public final void checkInputActionA(Object inputA) throws Exception
 	{
-		String inputString="";
-		
-		if(!this.tryCastToString(inputA))
-		{
-			//TODO: create another exeption for this case!
-			throw this.module.createInputExceptionParseToString();
-		}
-		else
-		{
-			inputString=this.doCastToString(inputA);
-		}
-		
+		String inputString=this.doCastToString(inputA);
 		
 		if (inputString.equals(this.rb.getString("instructionPhasePreparation1Roll")))
 		{
@@ -265,7 +254,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 		}
 		else
 		{
-			throw this.module.createInputExceptionUnkownInstruction(inputString);
+			this.module.throwInputExceptionUnkownInstruction(inputString);
 		}
 	}
 

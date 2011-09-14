@@ -184,6 +184,9 @@ public interface IGame
 	///////////
 	//GETTERS//
 	///////////
+	
+	public int getCurrentRoundNumber();
+	
 	/**
 	 * gets the startPhase which will show at the begin of the game.
 	 * 

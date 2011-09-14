@@ -8,7 +8,6 @@ import templates.ModuleTemplate;
 import enums.EColor;
 import exceptions.InputException;
 import gameObjectsASCII.DieASCII;
-import gameObjectsASCII.InputExceptionASCII;
 import gameObjectsASCII.PhaseAASCII;
 import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.*;
@@ -254,7 +253,7 @@ public class ModuleGUI extends ModuleTemplate
 
 
 	@Override
-	public IBoard createBoard() 
+	public IBoard createBoard(IGame game) 
 	{
 		//TODO
 		return null;
@@ -274,36 +273,5 @@ public class ModuleGUI extends ModuleTemplate
 	{
 		//TODO
 		return null;
-	}
-	
-	//////////////
-	//EXCEPTIONS//
-	//////////////
-	@Override
-	public InputException createInputException(String message)
-	{
-		return new InputExceptionGUI(message);
-	}
-	
-	public InputException createInputExceptionUnkownInstruction(String inputInstruction)
-	{
-		String str="Sorry, but I don't know the instruction " + inputInstruction + " Try it again ...";
-		
-		return new InputExceptionASCII(str);
-	}
-	
-	public InputException createInputExceptionParseToString()
-	{
-		return new InputExceptionASCII("Error: the input can not parse to a string! Try it again ...");
-	}
-	
-	public InputException createInputExceptionParseToInteger()
-	{
-		return new InputExceptionASCII("Error: the input can not parse to an integer! Try it again ...");
-	}
-	
-	public InputException createInputExceptionParseToEColor()
-	{
-		return new InputExceptionASCII("Error: Your input wasn't a valid color! Try it again ...");
 	}
 }

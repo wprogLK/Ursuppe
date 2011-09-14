@@ -111,7 +111,7 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	////////////
 
 	@Override
-	public void setInputA(Object inputA) throws InputException
+	public void setInputA(Object inputA) throws Exception
 	{
 		boolean validBasic = false;
 		this.isInputNew=true;
@@ -126,22 +126,13 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionA(Object inputA) throws InputException
+	public final void checkInputActionA(Object inputA) throws Exception
 	{
-		int inputPos=0;
-		
-		if(!this.tryCastToInteger(inputA))
-		{
-			this.module.createInputExceptionParseToInteger();
-		}
-		else
-		{
-			inputPos=this.doCastToInteger(inputA);
-			this.understandInputPosition(inputPos);
-		}
+		int inputPos=this.doCastToInteger(inputA);
+		this.understandInputPosition(inputPos);
 	}
 	
-	private void understandInputPosition(int inputPos) 
+	private void understandInputPosition(int inputPos) throws Exception
 	{
 		if(this.possibleStartPositions.contains(inputPos))
 		{
@@ -158,7 +149,7 @@ public abstract class PhasePreparation2Logic extends PhaseTemplateLogic
 		}
 		else
 		{
-			this.module.createInputException("Your favourite position " + inputPos + " is not possible. Please take another one...");
+			this.module.throwInputExceptionImpossibleStartPosition();
 		}
 	}
 

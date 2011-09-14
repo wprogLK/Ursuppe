@@ -60,7 +60,7 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	////////////
 	
 	@Override
-	public void setInputA(Object inputA) throws InputException
+	public void setInputA(Object inputA) throws Exception
 	{
 		//This time don't check the basic instructions because they're not needed here
 		
@@ -71,27 +71,15 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionA(Object inputA) throws InputException
+	public final void checkInputActionA(Object inputA) throws Exception
 	{
-		String inputString="";
-		
-		if(!this.tryCastToString(inputA))
-		{
-			throw this.module.createInputExceptionParseToString();
-		}
-		else
-		{
-			inputString=this.doCastToString(inputA);
-			this.checkSelectedEntry(inputString);
-		}
-		
-	 
-		
+		String inputString=this.doCastToString(inputA);
+		this.checkSelectedEntry(inputString);
 	}
 	
 
 
-	private void checkSelectedEntry(String input) throws InputException
+	private void checkSelectedEntry(String input) throws Exception
 	{
 		if(input.equals("1"))			//New Game
 		{
@@ -140,7 +128,7 @@ public abstract class PhaseMainMenuLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			throw this.module.createInputExceptionUnkownInstruction(input);
+			this.module.throwInputExceptionUnkownInstruction(input);
 		}
 	}
 	

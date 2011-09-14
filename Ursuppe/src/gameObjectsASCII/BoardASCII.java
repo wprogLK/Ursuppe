@@ -7,6 +7,7 @@ import java.io.PrintStream;
 
 import templates.SquareTemplate;
 
+import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.ISoupSquare;
 import interfaces.ISquare;
@@ -23,9 +24,9 @@ public class BoardASCII extends BoardLogic{
 	/**
 	 * 
 	 */
-	public BoardASCII(PrintStream out, PrintStream error) 
+	public BoardASCII(PrintStream out, PrintStream error, IGame game) 
 	{
-		super(out,error,new ModuleASCII(out,error));
+		super(out,error,new ModuleASCII(out,error), game);
 	}
 	
 	/**

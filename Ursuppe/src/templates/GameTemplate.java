@@ -57,12 +57,16 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	
 	protected boolean testModeOn=false;
 	
+	protected int roundNumber;
+	
 	private ArrayList<EColor> usedColors=new ArrayList<EColor>();
 	
 	public GameTemplate(PrintStream out, PrintStream error)
 	{
 		this.outStream=out;
 		this.errorStream=error;
+		
+		this.roundNumber=1;
 	}
 	
 	/**
@@ -160,7 +164,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 		
 		if(this.currentPlayer==null)
 		{
-			System.out.println("IN GAME TEMPLATE: ERROR IN SKIP TAIL OR HEAD PLAYER: MESSAGE:: CURRENT PLAYER IS NULL");
+			//System.out.println("IN GAME TEMPLATE: ERROR IN SKIP TAIL OR HEAD PLAYER: MESSAGE:: CURRENT PLAYER IS NULL"); 
 //			if(!this.testModeOn)				//TODO Uncomment that and fix it!
 //			{
 //				throw new NullPointerException();
@@ -348,6 +352,7 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	/////////
 	//BOARD//
 	/////////
+	
 	@Override
 	@OnlyForASCII
 	public void showBoard()
@@ -358,7 +363,12 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	///////////
 	//GETTERS//
 	///////////
-
+	@Override
+	public final int getCurrentRoundNumber()
+	{
+		return this.roundNumber;
+	}
+	
 	public PrintStream getErrorStream()
 	{
 		return this.errorStream;

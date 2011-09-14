@@ -149,12 +149,12 @@ public enum EPhases
 		{
 			if (this.lastPhase==null)
 			{
-				this.lastPhase=this.defaultPhase;
+				this.lastPhase=EPhases.defaultPhase;
 			}
 			
 			if (this.nextPhase==null)
 			{
-				this.nextPhase=this.defaultPhase;
+				this.nextPhase=EPhases.defaultPhase;
 			}
 			
 			this.phase.setLastPhase(this.lastPhase);

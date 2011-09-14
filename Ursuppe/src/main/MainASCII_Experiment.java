@@ -120,10 +120,6 @@ public class MainASCII_Experiment {
 	{
 		return game;
 	}
-	
-	public static void test() throws InputException
-	{
-		throw new InputException("Hallo");
-	}
+
 	
 }

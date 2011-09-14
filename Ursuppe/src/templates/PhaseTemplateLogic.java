@@ -8,7 +8,6 @@ import enums.EActions;
 import enums.EColor;
 import enums.EPhases;
 import enums.EPlayer;
-import exceptions.InputException;
 
 import annotations.OnlyForTesting;
 
@@ -29,7 +28,7 @@ import main.GameLogic;
  * 
  * @see IPhase
  */
-public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
+public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase 
 {
 	//////////
 	//BASICS//
@@ -321,512 +320,522 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 */
 		public void runLogic()
 		{
-			
-			//#BugHunting
-			//this.outStream.println("IN PHASE TEMPLATE LOGIC: - PHASE OF GAME: " + this.game.getCurrentPhase() + "\n - ePHASE OF GAME: " + this.game.getCurrentEPhase());
-			
-			this.currentAction=EActions.ActionBeforRunning;
-			
-			this.isRunning=true;
-			
-			this.turnOffRestart();
-			
-			this.setActionsToRun();
-			
-			this.nextAction=EActions.ActionDoAllPreAction;
-			
-			this.checkIfRunInTestMode();
-			
-			this.currentAction=EActions.ActionDoAllPreAction;
-			
-			this.doAllPreAction();
-			this.update();
-			
-			//...ACTION A
-		
-			
-			if (!this.doNothing)
+			try
 			{
+				this.currentAction=EActions.ActionBeforRunning;
+	
+				this.isRunning=true;
+	
+				this.turnOffRestart();
+	
+				this.setActionsToRun();
+	
+				this.nextAction=EActions.ActionDoAllPreAction;
+	
+				this.checkIfRunInTestMode();
+	
+				this.currentAction=EActions.ActionDoAllPreAction;
+	
+				this.doAllPreAction();
+				this.update();
+	
+				//...ACTION A
+	
+	
+				if (!this.doNothing)
+				{
+	
+					if(this.doRunActionA)
+					{
+						this.nextAction=EActions.ActionA;
+	
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionA;
+	
+						this.runActionA();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION B
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionB)
+					{
+						this.nextAction=EActions.ActionB;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionB;
+	
+						this.runActionB();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION C
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionC)
+					{
+						this.nextAction=EActions.ActionC;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionC;
+	
+						this.runActionC();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION D
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionD)
+					{
+						this.nextAction=EActions.ActionD;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionD;
+	
+						this.runActionD();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION E
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionE)
+					{
+						this.nextAction=EActions.ActionE;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionE;
+	
+						this.runActionE();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION F
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionF)
+					{
+						this.nextAction=EActions.ActionF;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionF;
+	
+						this.runActionF();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION G
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionG)
+					{
+						this.nextAction=EActions.ActionG;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionG;
+	
+						this.runActionG();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION H
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionH)
+					{
+						this.nextAction=EActions.ActionH;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionH;
+	
+						this.runActionH();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION I
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionI)
+					{
+						this.nextAction=EActions.ActionI;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionI;
+	
+						this.runActionI();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION J
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionJ)
+					{
+						this.nextAction=EActions.ActionJ;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionJ;
+	
+						this.runActionC();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION K
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionK)
+					{
+						this.nextAction=EActions.ActionK;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionK;
+	
+						this.runActionK();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION L
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionL)
+					{
+						this.nextAction=EActions.ActionL;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionL;
+	
+						this.runActionL();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION M
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionM)
+					{
+						this.nextAction=EActions.ActionM;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionM;
+	
+						this.runActionM();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION N
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionN)
+					{
+						this.nextAction=EActions.ActionN;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionN;
+	
+						this.runActionN();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION O
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionO)
+					{
+						this.nextAction=EActions.ActionO;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionO;
+	
+						this.runActionO();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION P
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionP)
+					{
+						this.nextAction=EActions.ActionP;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionP;
+	
+						this.runActionP();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION Q
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionQ)
+					{
+						this.nextAction=EActions.ActionQ;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionQ;
+	
+						this.runActionQ();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION R
+				//this.waitForAValidInput();
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionR)
+					{
+						this.nextAction=EActions.ActionR;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionR;
+	
+	
+						this.runActionR();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION S
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionS)
+					{
+						this.nextAction=EActions.ActionS;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionS;
+	
+						this.runActionS();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION T
+				//this.waitForAValidInput();
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionT)
+					{
+						this.nextAction=EActions.ActionT;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionT;
+	
+	
+						this.runActionT();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION U
+				//this.waitForAValidInput();
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionU)
+					{
+						this.nextAction=EActions.ActionU;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionU;
+	
+	
+						this.runActionU();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION V
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionV)
+					{
+						this.nextAction=EActions.ActionV;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionV;
+	
+						this.runActionV();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION W
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionW)
+					{
+						this.nextAction=EActions.ActionW;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionW;
+	
+						this.runActionW();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION X
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionX)
+					{
+						this.nextAction=EActions.ActionX;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionX;
+	
+						this.runActionX();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION Y
+				//this.waitForAValidInput();
+	
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionY)
+					{
+						this.nextAction=EActions.ActionY;
+						this.checkIfRunInTestMode();
+	
+						this.currentAction=EActions.ActionY;
+	
+						this.runActionY();
+						this.resetInput();
+					}
+				}
+	
+				//...ACTION Z
+				//this.waitForAValidInput();
+	
+				if (!this.doNothing)
+				{
+					if(this.doRunActionZ)
+					{
+						this.nextAction=EActions.ActionZ;
+	
+						this.checkIfRunInTestMode();
+						this.currentAction=EActions.ActionZ;
+	
+						this.runActionZ();
+						this.resetInput();
+					}
+				}
+	
+				//...END
+	
+				this.isRunning=false;
+				this.currentAction=EActions.ActionAfterRunning; //TODO add nextAction
+				this.doAllAfterAction();
+	
+				this.waitForRestart();
 				
-				if(this.doRunActionA)
-				{
-					this.nextAction=EActions.ActionA;
+				
 					
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionA;
-					
-					this.runActionA();
-					this.resetInput();
-				}
+				this.runPhase();	//"Restart phase and run it again";
 			}
-			
-			//...ACTION B
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
+			catch(Exception e)
 			{
-				if(this.doRunActionB)
-				{
-					this.nextAction=EActions.ActionB;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionB;
-					
-					this.runActionB();
-					this.resetInput();
-				}
-			}
-		
-			//...ACTION C
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionC)
-				{
-					this.nextAction=EActions.ActionC;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionC;
-					
-					this.runActionC();
-					this.resetInput();
-				}
-			}
-
-			//...ACTION D
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionD)
-				{
-					this.nextAction=EActions.ActionD;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionD;
-					
-					this.runActionD();
-					this.resetInput();
-				}
+				//TODO: VERY IMPORTANT: IMPLEMENT HERE ERROR HANDLER!!
+				//If an exception is here, it can not be a Game or InputException. It must be a java exception!
+				
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!WARNING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				System.out.println("JAVA ERROR: There is a unkown exception in PhaseTemplateLogic.class!");
+				e.printStackTrace();
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			}
 			
-			//...ACTION E
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionE)
-				{
-					this.nextAction=EActions.ActionE;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionE;
-					
-					this.runActionE();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION F
-			//this.waitForAValidInput();
-		
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionF)
-				{
-					this.nextAction=EActions.ActionF;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionF;
-					
-					this.runActionF();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION G
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionG)
-				{
-					this.nextAction=EActions.ActionG;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionG;
-					
-					this.runActionG();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION H
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionH)
-				{
-					this.nextAction=EActions.ActionH;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionH;
-					
-					this.runActionH();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION I
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionI)
-				{
-					this.nextAction=EActions.ActionI;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionI;
-					
-					this.runActionI();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION J
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionJ)
-				{
-					this.nextAction=EActions.ActionJ;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionJ;
-					
-					this.runActionC();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION K
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionK)
-				{
-					this.nextAction=EActions.ActionK;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionK;
-					
-					this.runActionK();
-					this.resetInput();
-				}
-			}
-		
-			//...ACTION L
-			//this.waitForAValidInput();
-		
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionL)
-				{
-					this.nextAction=EActions.ActionL;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionL;
-					
-					this.runActionL();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION M
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionM)
-				{
-					this.nextAction=EActions.ActionM;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionM;
-					
-					this.runActionM();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION N
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionN)
-				{
-					this.nextAction=EActions.ActionN;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionN;
-					
-					this.runActionN();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION O
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionO)
-				{
-					this.nextAction=EActions.ActionO;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionO;
-					
-					this.runActionO();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION P
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionP)
-				{
-					this.nextAction=EActions.ActionP;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionP;
-					
-					this.runActionP();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION Q
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionQ)
-				{
-					this.nextAction=EActions.ActionQ;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionQ;
-					
-					this.runActionQ();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION R
-			//this.waitForAValidInput();
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionR)
-				{
-					this.nextAction=EActions.ActionR;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionR;
-					
-					
-					this.runActionR();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION S
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionS)
-				{
-					this.nextAction=EActions.ActionS;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionS;
-					
-					this.runActionS();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION T
-			//this.waitForAValidInput();
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionT)
-				{
-					this.nextAction=EActions.ActionT;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionT;
-					
-					
-					this.runActionT();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION U
-			//this.waitForAValidInput();
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionU)
-				{
-					this.nextAction=EActions.ActionU;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionU;
-					
-					
-					this.runActionU();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION V
-			//this.waitForAValidInput();
-		
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionV)
-				{
-					this.nextAction=EActions.ActionV;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionV;
-					
-					this.runActionV();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION W
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionW)
-				{
-					this.nextAction=EActions.ActionW;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionW;
-					
-					this.runActionW();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION X
-			//this.waitForAValidInput();
-			
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionX)
-				{
-					this.nextAction=EActions.ActionX;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionX;
-					
-					this.runActionX();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION Y
-			//this.waitForAValidInput();
-		
-			
-			if (!this.doNothing)
-			{
-				if(this.doRunActionY)
-				{
-					this.nextAction=EActions.ActionY;
-					this.checkIfRunInTestMode();
-					
-					this.currentAction=EActions.ActionY;
-					
-					this.runActionY();
-					this.resetInput();
-				}
-			}
-			
-			//...ACTION Z
-			//this.waitForAValidInput();
-		
-			if (!this.doNothing)
-			{
-				if(this.doRunActionZ)
-				{
-					this.nextAction=EActions.ActionZ;
-					
-					this.checkIfRunInTestMode();
-					this.currentAction=EActions.ActionZ;
-					
-					this.runActionZ();
-					this.resetInput();
-				}
-			}
-			
-			//...END
-			
-			this.isRunning=false;
-			this.currentAction=EActions.ActionAfterRunning; //TODO add nextAction
-			this.doAllAfterAction();
-			
-			this.waitForRestart();
-		
-		
-			
-			this.runPhase();	//"Restart phase and run it again";
 		}
 
 		private void waitForRestart() 
 		{
 			if(!this.restartOn)
-			{	
+			{					
 				this.suspend();
 			}
 			else
@@ -970,146 +979,44 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 *		</tr>
 		 *	
 		 *	</table>
+		 * @throws Exception 
 		 * @throws DoNothingException 
 		 *
 		 */
-		protected final boolean checkBasicInputs(Object input)// throws DoNothingException
+		protected final boolean checkBasicInputs(Object input) throws Exception// throws DoNothingException
 		{
-			boolean validCast=this.tryCastToString(input);
+			String strInput=this.doCastToString(input);
 			
-			if(!validCast)
+			boolean validBasicInput=true;
+				
+			if (strInput.toLowerCase().equals(this.rb.getString("instructionExit")))
+				//if (input.equals("Exit") || input.equals("exit"))
 			{
-				return false;
+				this.doExit();
 			}
 			else
 			{
-				boolean validBasicInput=true;
-				String strInput=this.doCastToString(input);
-				if (strInput.toLowerCase().equals(this.rb.getString("instructionExit")))
-				//if (input.equals("Exit") || input.equals("exit"))
-				{
-					this.doExit();
-				}
-				else
-				{
-					validBasicInput=false;
-				}
-				
-
-				if(validBasicInput)
-				{
-					this.doNothing=true;
-					this.isInputValid=true;
-				}
-				
-				return validBasicInput;
+				validBasicInput=false;
 			}
+
+
+			if(validBasicInput)
+			{
+				this.doNothing=true;
+				this.isInputValid=true;
+			}
+
+			return validBasicInput;
+
 		}
 		
 	///////////
 	//ACTIONS//
 	///////////
 		
-		///////////////////
-		//TRY BASIC CASTS//
-		///////////////////
-		/**
-		 * try to cast the input object into a String
-		 *
-		 * @return 
-		 * 		<ul>
-		 * 			<li> <u>true</u> if the cast was <u>successful</u> </li>
-		 * 			<li> <u>false</u> if the input was <u>not successful</u> </li>
-		 * 		</ul>
-		 */
-		public final boolean tryCastToString(Object input)
-		{
-			boolean valid = true;
-			
-			try
-			{
-				String inputString=input.toString();
-			}
-			catch(ClassCastException e)
-			{
-				valid =false;
-			}
-			
-			
-			return valid;
-		}
-		
-		/**
-		 * try to cast the input object into a Integer
-		 *
-		 * @return 
-		 * 		<ul>
-		 * 			<li> <u>true</u> if the cast was <u>successful</u> </li>
-		 * 			<li> <u>false</u> if the input was <u>not successful</u> </li>
-		 * 		</ul>
-		 */
-		public final boolean tryCastToInteger(Object input)
-		{
-			boolean valid = true;
-			
-			String inputString="";
-			//Cast to String
-			try
-			{
-				inputString=input.toString();
-			}
-			catch(ClassCastException e)
-			{
-				valid = false;
-			}
-			
-			//cast String to Integer:
-			try
-			{
-				int inputInteger=Integer.parseInt(inputString);
-			}
-			catch(NumberFormatException e)
-			{
-				valid = false;
-			}
-			
-			return valid;
-		}
-		
-		
-		/**
-		 * try to cast the input object into a color
-		 *
-		 * @return 
-		 * 		<ul>
-		 * 			<li> <u>true</u> if the cast was <u>successful</u> </li>
-		 * 			<li> <u>false</u> if the input was <u>not successful</u> </li>
-		 * 		</ul>
-		 */
-		public final boolean tryCastToEColor(Object input)
-		{
-			boolean valid = false;
-			
-			String inputString=input.toString();
-
-			EColor chosedColor=null;
-
-			for(EColor color:EColor.class.getEnumConstants())
-			{
-				if(color.toString().equals(inputString))
-				{
-					chosedColor=color;
-
-					valid=true;
-				}
-			}
-				
-			return valid;
-		}
-		
-		///////////////////
-		//DO BASIC CASTS//
-		///////////////////
+		////////////
+		//DO CASTS//
+		////////////
 		/**
 		 * do cast the input object into a String
 		 *
@@ -1119,7 +1026,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 * 			<li> <u>null</u> if the input was <u>not successful</u> </li>
 		 * 		</ul>
 		 */
-		public final String doCastToString(Object input)
+		public final String doCastToString(Object input) throws Exception
 		{
 			
 			try
@@ -1129,6 +1036,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			}
 			catch(ClassCastException e)
 			{
+				this.module.throwInputExceptionParseToString();
 				return null;
 			}
 		}
@@ -1142,7 +1050,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 * 			<li> <u>false</u> if the input was <u>not successful</u> </li>
 		 * 		</ul>
 		 */
-		public final Integer doCastToInteger(Object input)
+		public final Integer doCastToInteger(Object input)throws Exception
 		{
 			String inputString="";
 			//Cast to String
@@ -1150,8 +1058,9 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			{
 				inputString=input.toString();
 			}
-			catch(ClassCastException e)
+			catch(NullPointerException e)
 			{
+				this.module.throwInputExceptionParseToString();
 				return null;
 			}
 			
@@ -1161,8 +1070,9 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 				int inputInteger=Integer.parseInt(inputString);
 				return inputInteger;
 			}
-			catch(ClassCastException e)
+			catch(NumberFormatException e)
 			{
+				this.module.throwInputExceptionParseToInteger();
 				return null;
 			}
 		}
@@ -1176,7 +1086,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		 * 			<li> <u>false</u> if the input was <u>not successful</u> </li>
 		 * 		</ul>
 		 */
-		public final EColor doCastToEColor(Object input)
+		public final EColor doCastToEColor(Object input) throws Exception
 		{
 			String inputString=input.toString();
 
@@ -1189,8 +1099,18 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 					return color;
 				}
 			}
-				
-			return chosedColor;
+			
+			if(chosedColor==null)
+			{
+				this.module.throwInputExceptionParseToEColor();
+				return null;
+			}
+			else
+			{
+				return chosedColor;
+			}
+			
+			
 		}
 		
 		public void doLogicAfterAction() 
@@ -1300,7 +1220,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			* 	Can do some extra things which are <u>implemented in a concrete phaseLogic</u> in its method (should be call each set-method of actions to set the message as input)
 			* 	Can be override by a concrete phase 
 			* </p>
-			 * @throws InputException 
+			 * @throws Exception 
 			* 
 			* @see PhaseAASCII
 		 	* @see PhaseAGUI
@@ -1309,8 +1229,6 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			@Override
 			public final void setAllInput(String message)
 			{
-				this.outStream.println("IN PHASE TEMPLATE LOGIC: MESSAGE IS " +message);
-				
 				try 
 				{
 					this.setInputA(message);
@@ -1340,7 +1258,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 					this.setInputY(message);
 					this.setInputZ(message);
 				} 
-				catch (InputException e) 
+				catch (Exception e) 
 				{
 					//TODO: THIS should never happen
 				}
@@ -1364,11 +1282,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 			<li> <u>true</u> if the input was <u>valid</u> </li>
 			 * 			<li> <u>false</u> if the input was <u>invalid</u> </li>
 			 * 		</ul>
-			 * @throws InputException 
+			 * @throws Exception 
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionA(Object inputA) throws InputException
+			public  void checkInputActionA(Object inputA) throws Exception
 			{ 
 			
 			}
@@ -1386,11 +1304,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 			<li> <u>true</u> if the input was <u>set</u> </li>
 			 * 			<li> <u>false</u> if the input was <u>not set</u> </li>
 			 * 		</ul>
-			 * @throws InputException 
+			 * @throws Exception 
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputA(Object inputA) throws InputException
+			public void setInputA(Object inputA) throws Exception
 			{
 			}
 			
@@ -1414,7 +1332,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void checkInputActionB(Object inputB) throws InputException
+			public void checkInputActionB(Object inputB) throws Exception
 			{
 			}
 			
@@ -1434,7 +1352,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputB(Object inputB) throws InputException
+			public void setInputB(Object inputB) throws Exception
 			{
 			}
 			////////////
@@ -1457,7 +1375,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionC(Object inputC) throws InputException
+			public  void checkInputActionC(Object inputC) throws Exception
 			{
 			}
 			
@@ -1477,7 +1395,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void setInputC(Object inputC) throws InputException
+			public  void setInputC(Object inputC) throws Exception
 			{
 			}
 			
@@ -1500,7 +1418,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionD(Object inputD) throws InputException
+			public  void checkInputActionD(Object inputD) throws Exception
 			{ 
 			}
 			
@@ -1520,7 +1438,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputD(Object inputD) throws InputException
+			public void setInputD(Object inputD) throws Exception
 			{
 			}
 			
@@ -1543,7 +1461,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionE(Object inputE) throws InputException
+			public  void checkInputActionE(Object inputE) throws Exception
 			{ 
 			}
 			
@@ -1563,7 +1481,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputE(Object inputE) throws InputException
+			public void setInputE(Object inputE) throws Exception
 			{
 			}
 			
@@ -1586,7 +1504,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionF(Object inputF) throws InputException
+			public  void checkInputActionF(Object inputF) throws Exception
 			{ 
 			}
 			
@@ -1606,7 +1524,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputF(Object inputF) throws InputException
+			public void setInputF(Object inputF) throws Exception
 			{
 			}
 			
@@ -1629,7 +1547,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionG(Object inputG) throws InputException
+			public  void checkInputActionG(Object inputG) throws Exception
 			{ 
 			}
 			
@@ -1649,7 +1567,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputG(Object inputG) throws InputException
+			public void setInputG(Object inputG) throws Exception
 			{
 			}
 			
@@ -1672,7 +1590,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionH(Object inputH) throws InputException
+			public  void checkInputActionH(Object inputH) throws Exception
 			{ 
 			}
 			
@@ -1692,7 +1610,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputH(Object inputH) throws InputException
+			public void setInputH(Object inputH) throws Exception
 			{
 			}
 			
@@ -1715,7 +1633,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionI(Object inputI) throws InputException
+			public  void checkInputActionI(Object inputI) throws Exception
 			{ 
 			}
 			
@@ -1735,7 +1653,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputI(Object inputI) throws InputException
+			public void setInputI(Object inputI) throws Exception
 			{
 			}
 			
@@ -1758,7 +1676,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionJ(Object inputJ) throws InputException
+			public  void checkInputActionJ(Object inputJ) throws Exception
 			{ 
 			}
 			
@@ -1778,7 +1696,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputJ(Object inputJ) throws InputException
+			public void setInputJ(Object inputJ) throws Exception
 			{
 			}
 			
@@ -1801,7 +1719,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionK(Object inputK) throws InputException
+			public  void checkInputActionK(Object inputK) throws Exception
 			{ 
 			}
 			
@@ -1821,7 +1739,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputK(Object inputK) throws InputException
+			public void setInputK(Object inputK) throws Exception
 			{
 			}
 			
@@ -1845,7 +1763,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionL(Object inputL) throws InputException
+			public  void checkInputActionL(Object inputL) throws Exception
 			{ 
 			}
 			
@@ -1865,7 +1783,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputL(Object inputL) throws InputException
+			public void setInputL(Object inputL) throws Exception
 			{
 			}
 			
@@ -1888,7 +1806,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionM(Object inputM) throws InputException
+			public  void checkInputActionM(Object inputM) throws Exception
 			{ 
 			}
 			
@@ -1908,7 +1826,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputM(Object inputM) throws InputException
+			public void setInputM(Object inputM) throws Exception
 			{
 			}
 			
@@ -1931,7 +1849,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionN(Object inputN) throws InputException
+			public  void checkInputActionN(Object inputN) throws Exception
 			{ 
 			}
 			
@@ -1951,7 +1869,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputN(Object inputN) throws InputException
+			public void setInputN(Object inputN) throws Exception
 			{
 			}
 			
@@ -1974,7 +1892,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionO(Object inputO) throws InputException
+			public  void checkInputActionO(Object inputO) throws Exception
 			{ 
 			}
 			
@@ -1994,7 +1912,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputO(Object inputO) throws InputException
+			public void setInputO(Object inputO) throws Exception
 			{
 			}
 			
@@ -2017,7 +1935,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionP(Object inputP) throws InputException
+			public  void checkInputActionP(Object inputP) throws Exception
 			{ 
 			}
 			
@@ -2037,7 +1955,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputP(Object inputP) throws InputException
+			public void setInputP(Object inputP) throws Exception
 			{
 			}
 			
@@ -2060,7 +1978,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionQ(Object inputQ) throws InputException
+			public  void checkInputActionQ(Object inputQ) throws Exception
 			{ 
 			}
 			
@@ -2080,7 +1998,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputQ(Object inputQ) throws InputException
+			public void setInputQ(Object inputQ) throws Exception
 			{
 			}
 			
@@ -2103,7 +2021,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionR(Object inputR) throws InputException
+			public  void checkInputActionR(Object inputR) throws Exception
 			{ 
 			}
 			
@@ -2123,7 +2041,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputR(Object inputR) throws InputException
+			public void setInputR(Object inputR) throws Exception
 			{
 			}
 			
@@ -2146,7 +2064,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionS(Object inputS) throws InputException
+			public  void checkInputActionS(Object inputS) throws Exception
 			{ 
 			}
 			
@@ -2166,7 +2084,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputS(Object inputS) throws InputException
+			public void setInputS(Object inputS) throws Exception
 			{
 			}
 			
@@ -2189,7 +2107,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionT(Object inputT) throws InputException
+			public  void checkInputActionT(Object inputT) throws Exception
 			{ 
 			}
 			
@@ -2209,7 +2127,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputT(Object inputT) throws InputException
+			public void setInputT(Object inputT) throws Exception
 			{
 			}
 			
@@ -2232,7 +2150,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionU(Object inputU) throws InputException
+			public  void checkInputActionU(Object inputU) throws Exception
 			{ 
 			}
 			
@@ -2252,7 +2170,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputU(Object inputU) throws InputException
+			public void setInputU(Object inputU) throws Exception
 			{
 			}
 			
@@ -2275,7 +2193,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionV(Object inputV) throws InputException
+			public  void checkInputActionV(Object inputV) throws Exception
 			{ 
 			}
 			
@@ -2295,7 +2213,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputV(Object inputV) throws InputException
+			public void setInputV(Object inputV) throws Exception
 			{
 			}
 			
@@ -2318,7 +2236,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionW(Object inputW) throws InputException
+			public  void checkInputActionW(Object inputW) throws Exception
 			{ 
 			}
 			
@@ -2338,7 +2256,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputW(Object inputW) throws InputException
+			public void setInputW(Object inputW) throws Exception
 			{
 			}
 			
@@ -2361,7 +2279,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionX(Object inputX) throws InputException
+			public  void checkInputActionX(Object inputX) throws Exception
 			{ 
 			}
 			
@@ -2381,7 +2299,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputX(Object inputX) throws InputException
+			public void setInputX(Object inputX) throws Exception
 			{
 			}
 			
@@ -2404,7 +2322,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionY(Object inputY) throws InputException
+			public  void checkInputActionY(Object inputY) throws Exception
 			{ 
 			}
 			
@@ -2424,7 +2342,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputY(Object inputY) throws InputException
+			public void setInputY(Object inputY) throws Exception
 			{
 			}
 			
@@ -2447,7 +2365,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public  void checkInputActionZ(Object inputZ) throws InputException
+			public  void checkInputActionZ(Object inputZ) throws Exception
 			{ 
 			}
 			
@@ -2467,7 +2385,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void setInputZ(Object inputZ) throws InputException
+			public void setInputZ(Object inputZ) throws Exception
 			{
 			}
 			
@@ -2479,7 +2397,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action A
 		 */
-		protected final void runActionA()
+		protected final void runActionA() throws Exception
 		{
 			this.doPreActionA();
 			
@@ -2498,7 +2416,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action B
 		 */
-		protected final void runActionB()
+		protected final void runActionB() throws Exception
 		{
 			this.doPreActionB();
 			
@@ -2518,7 +2436,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action C
 		 */
-		protected final void runActionC()
+		protected final void runActionC() throws Exception
 		{
 			this.doPreActionC();
 			
@@ -2537,7 +2455,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action D
 		 */
-		protected final void runActionD()
+		protected final void runActionD() throws Exception
 		{
 			this.doPreActionD();
 			
@@ -2556,7 +2474,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action E
 		 */
-		protected final void runActionE()
+		protected final void runActionE() throws Exception
 		{
 			this.doPreActionE();
 			
@@ -2575,7 +2493,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action F
 		 */
-		protected final void runActionF()
+		protected final void runActionF() throws Exception
 		{
 			this.doPreActionF();
 			
@@ -2594,7 +2512,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action G
 		 */
-		protected final void runActionG()
+		protected final void runActionG() throws Exception
 		{
 			this.doPreActionG();
 			
@@ -2613,7 +2531,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action H
 		 */
-		protected final void runActionH()
+		protected final void runActionH() throws Exception
 		{
 			this.doPreActionH();
 			
@@ -2632,7 +2550,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action I
 		 */
-		protected final void runActionI()
+		protected final void runActionI() throws Exception
 		{
 			this.doPreActionI();
 			
@@ -2651,7 +2569,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action J
 		 */
-		protected final void runActionJ()
+		protected final void runActionJ() throws Exception
 		{
 			this.doPreActionJ();
 			
@@ -2670,7 +2588,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action K
 		 */
-		protected final void runActionK()
+		protected final void runActionK() throws Exception
 		{
 			this.doPreActionK();
 			
@@ -2689,7 +2607,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action L
 		 */
-		protected final void runActionL()
+		protected final void runActionL() throws Exception
 		{
 			this.doPreActionL();
 			
@@ -2708,7 +2626,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action M
 		 */
-		protected final void runActionM()
+		protected final void runActionM() throws Exception
 		{
 			this.doPreActionM();
 			
@@ -2727,7 +2645,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action N
 		 */
-		protected final void runActionN()
+		protected final void runActionN() throws Exception
 		{
 			this.doPreActionN();
 			
@@ -2746,7 +2664,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action O
 		 */
-		protected final void runActionO()
+		protected final void runActionO() throws Exception
 		{
 			this.doPreActionO();
 			
@@ -2765,7 +2683,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action P
 		 */
-		protected final void runActionP()
+		protected final void runActionP() throws Exception
 		{
 			this.doPreActionP();
 			
@@ -2784,7 +2702,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action Q
 		 */
-		protected final void runActionQ()
+		protected final void runActionQ() throws Exception
 		{
 			this.doPreActionQ();
 			
@@ -2803,7 +2721,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action R
 		 */
-		protected final void runActionR()
+		protected final void runActionR() throws Exception
 		{
 			this.doPreActionR();
 			
@@ -2822,7 +2740,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action S
 		 */
-		protected final void runActionS()
+		protected final void runActionS() throws Exception
 		{
 			this.doPreActionS();
 			
@@ -2841,7 +2759,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action T
 		 */
-		protected final void runActionT()
+		protected final void runActionT() throws Exception
 		{
 			this.doPreActionT();
 			
@@ -2860,7 +2778,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action U
 		 */
-		protected final void runActionU()
+		protected final void runActionU() throws Exception
 		{
 			this.doPreActionU();
 			
@@ -2879,7 +2797,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action V
 		 */
-		protected final void runActionV()
+		protected final void runActionV() throws Exception
 		{
 			this.doPreActionA();
 			
@@ -2898,7 +2816,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action W
 		 */
-		protected final void runActionW()
+		protected final void runActionW() throws Exception
 		{
 			this.doPreActionW();
 			
@@ -2917,7 +2835,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action X
 		 */
-		protected final void runActionX()
+		protected final void runActionX() throws Exception
 		{
 			this.doPreActionX();
 			
@@ -2936,7 +2854,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action Y
 		 */
-		protected final void runActionY()
+		protected final void runActionY() throws Exception
 		{
 			this.doPreActionY();
 			
@@ -2955,7 +2873,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		/**
 		 * runs action Z
 		 */
-		protected final void runActionZ()
+		protected final void runActionZ() throws Exception
 		{
 			this.doPreActionZ();
 			
@@ -2996,7 +2914,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action A
 			 */
-			private final void doActionA()
+			private final void doActionA() throws Exception
 			{
 				this.actionAInput();
 				
@@ -3016,7 +2934,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionA()
+			public void doPreActionA() throws Exception
 			{
 				
 			}
@@ -3031,11 +2949,12 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * can be implemented in a concrete phaseASCII/phaseGUI in its method
 			 * can be override by a concrete phaseASCII/phaseGUI
 			 * </p>
+			 * @throws Exception 
 			 * 
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionAInput()
+			public void actionAInput() throws Exception
 			{
 				
 			}
@@ -3047,10 +2966,11 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * can be implemented in a concrete phaseLogic in its method
 			 * can be override by a concrete phaseLogic
 			 * </p>
+			 * @throws Exception 
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionA()
+			public void doAfterActionA() throws Exception
 			{
 				
 			}
@@ -3062,7 +2982,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action B
 			 */
-			private final void doActionB()
+			private final void doActionB() throws Exception
 			{
 				this.actionBInput();
 				
@@ -3082,7 +3002,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionB()
+			public void doPreActionB() throws Exception
 			{
 				
 			}
@@ -3101,7 +3021,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionBInput()
+			public void actionBInput() throws Exception
 			{
 				
 			}
@@ -3116,7 +3036,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionB()
+			public void doAfterActionB() throws Exception
 			{
 				
 			}
@@ -3127,7 +3047,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action C
 			 */
-			private final void doActionC()
+			private final void doActionC() throws Exception
 			{
 				this.actionCInput();
 				
@@ -3147,7 +3067,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionC()
+			public void doPreActionC() throws Exception
 			{
 				
 			}
@@ -3166,7 +3086,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionCInput()
+			public void actionCInput() throws Exception
 			{
 				
 			}
@@ -3181,7 +3101,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseCLogic
 			 */
-			public void doAfterActionC()
+			public void doAfterActionC() throws Exception
 			{
 				
 			}
@@ -3194,7 +3114,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action D
 			 */
-			private final void doActionD()
+			private final void doActionD() throws Exception
 			{
 				this.actionDInput();
 				
@@ -3214,7 +3134,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionD()
+			public void doPreActionD() throws Exception
 			{
 				
 			}
@@ -3233,7 +3153,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionDInput()
+			public void actionDInput() throws Exception
 			{
 				
 			}
@@ -3248,7 +3168,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionD()
+			public void doAfterActionD() throws Exception
 			{
 				
 			}
@@ -3260,7 +3180,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action E
 			 */
-			private final void doActionE()
+			private final void doActionE() throws Exception
 			{
 				this.actionEInput();
 				
@@ -3280,7 +3200,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionE()
+			public void doPreActionE() throws Exception
 			{
 				
 			}
@@ -3299,7 +3219,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionEInput()
+			public void actionEInput() throws Exception
 			{
 				
 			}
@@ -3314,7 +3234,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionE()
+			public void doAfterActionE() throws Exception
 			{
 				
 			}
@@ -3326,7 +3246,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action F
 			 */
-			private final void doActionF()
+			private final void doActionF() throws Exception
 			{
 				this.actionFInput();
 				
@@ -3346,7 +3266,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionF()
+			public void doPreActionF() throws Exception
 			{
 				
 			}
@@ -3365,7 +3285,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionFInput()
+			public void actionFInput() throws Exception
 			{
 				
 			}
@@ -3380,7 +3300,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionF()
+			public void doAfterActionF() throws Exception
 			{
 				
 			}
@@ -3392,7 +3312,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action G
 			 */
-			private final void doActionG()
+			private final void doActionG() throws Exception
 			{
 				this.actionGInput();
 				
@@ -3412,7 +3332,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionG()
+			public void doPreActionG() throws Exception
 			{
 				
 			}
@@ -3431,7 +3351,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionGInput()
+			public void actionGInput() throws Exception
 			{
 				
 			}
@@ -3446,7 +3366,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionG()
+			public void doAfterActionG() throws Exception
 			{
 				
 			}
@@ -3458,7 +3378,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action A
 			 */
-			private final void doActionH()
+			private final void doActionH() throws Exception
 			{
 				this.actionHInput();
 				
@@ -3478,7 +3398,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionH()
+			public void doPreActionH() throws Exception
 			{
 				
 			}
@@ -3497,7 +3417,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionHInput()
+			public void actionHInput() throws Exception
 			{
 				
 			}
@@ -3512,7 +3432,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionH()
+			public void doAfterActionH() throws Exception
 			{
 				
 			}
@@ -3524,7 +3444,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action I
 			 */
-			private final void doActionI()
+			private final void doActionI() throws Exception
 			{
 				this.actionIInput();
 				
@@ -3544,7 +3464,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionI()
+			public void doPreActionI() throws Exception
 			{
 				
 			}
@@ -3563,7 +3483,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionIInput()
+			public void actionIInput() throws Exception
 			{
 				
 			}
@@ -3578,7 +3498,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionI()
+			public void doAfterActionI() throws Exception
 			{
 				
 			}
@@ -3590,7 +3510,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action J
 			 */
-			private final void doActionJ()
+			private final void doActionJ() throws Exception
 			{
 				this.actionJInput();
 				
@@ -3610,7 +3530,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionJ()
+			public void doPreActionJ() throws Exception
 			{
 				
 			}
@@ -3629,7 +3549,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionJInput()
+			public void actionJInput() throws Exception
 			{
 				
 			}
@@ -3644,7 +3564,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionJ()
+			public void doAfterActionJ() throws Exception
 			{
 				
 			}
@@ -3656,7 +3576,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action K
 			 */
-			private final void doActionK()
+			private final void doActionK() throws Exception
 			{
 				this.actionKInput();
 				
@@ -3676,7 +3596,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionK()
+			public void doPreActionK() throws Exception
 			{
 				
 			}
@@ -3695,7 +3615,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionKInput()
+			public void actionKInput() throws Exception
 			{
 				
 			}
@@ -3710,7 +3630,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionK()
+			public void doAfterActionK() throws Exception
 			{
 				
 			}
@@ -3722,7 +3642,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action L
 			 */
-			private final void doActionL()
+			private final void doActionL() throws Exception
 			{
 				this.actionLInput();
 				
@@ -3742,7 +3662,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionL()
+			public void doPreActionL() throws Exception
 			{
 				
 			}
@@ -3761,7 +3681,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionLInput()
+			public void actionLInput() throws Exception
 			{
 				
 			}
@@ -3776,7 +3696,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionL()
+			public void doAfterActionL() throws Exception
 			{
 				
 			}
@@ -3788,7 +3708,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action M
 			 */
-			private final void doActionM()
+			private final void doActionM() throws Exception
 			{
 				this.actionMInput();
 				
@@ -3808,7 +3728,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionM()
+			public void doPreActionM() throws Exception
 			{
 				
 			}
@@ -3827,7 +3747,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionMInput()
+			public void actionMInput() throws Exception
 			{
 				
 			}
@@ -3842,7 +3762,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionM()
+			public void doAfterActionM() throws Exception
 			{
 				
 			}
@@ -3854,7 +3774,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action N
 			 */
-			private final void doActionN()
+			private final void doActionN() throws Exception
 			{
 				this.actionNInput();
 				
@@ -3874,7 +3794,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionN()
+			public void doPreActionN() throws Exception
 			{
 				
 			}
@@ -3893,7 +3813,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionNInput()
+			public void actionNInput() throws Exception
 			{
 				
 			}
@@ -3908,7 +3828,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionN()
+			public void doAfterActionN() throws Exception
 			{
 				
 			}
@@ -3920,7 +3840,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action O
 			 */
-			private final void doActionO()
+			private final void doActionO() throws Exception
 			{
 				this.actionOInput();
 				
@@ -3940,7 +3860,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionO()
+			public void doPreActionO() throws Exception
 			{
 				
 			}
@@ -3959,7 +3879,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionOInput()
+			public void actionOInput() throws Exception
 			{
 				
 			}
@@ -3974,7 +3894,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionO()
+			public void doAfterActionO() throws Exception
 			{
 				
 			}
@@ -3986,7 +3906,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action P
 			 */
-			private final void doActionP()
+			private final void doActionP() throws Exception
 			{
 				this.actionPInput();
 				
@@ -4006,7 +3926,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionP()
+			public void doPreActionP() throws Exception
 			{
 				
 			}
@@ -4025,7 +3945,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionPInput()
+			public void actionPInput() throws Exception
 			{
 				
 			}
@@ -4040,7 +3960,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionP()
+			public void doAfterActionP() throws Exception
 			{
 				
 			}
@@ -4052,7 +3972,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action Q
 			 */
-			private final void doActionQ()
+			private final void doActionQ() throws Exception
 			{
 				this.actionQInput();
 				
@@ -4072,7 +3992,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionQ()
+			public void doPreActionQ() throws Exception
 			{
 				
 			}
@@ -4091,7 +4011,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionQInput()
+			public void actionQInput() throws Exception
 			{
 				
 			}
@@ -4106,7 +4026,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionQ()
+			public void doAfterActionQ() throws Exception
 			{
 				
 			}
@@ -4118,7 +4038,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action R
 			 */
-			private final void doActionR()
+			private final void doActionR() throws Exception
 			{
 				this.actionRInput();
 				
@@ -4138,7 +4058,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionR()
+			public void doPreActionR() throws Exception
 			{
 				
 			}
@@ -4157,7 +4077,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionRInput()
+			public void actionRInput() throws Exception
 			{
 				
 			}
@@ -4172,7 +4092,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionR()
+			public void doAfterActionR() throws Exception
 			{
 				
 			}
@@ -4184,7 +4104,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action S
 			 */
-			private final void doActionS()
+			private final void doActionS() throws Exception
 			{
 				this.actionSInput();
 				
@@ -4204,7 +4124,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionS()
+			public void doPreActionS() throws Exception
 			{
 				
 			}
@@ -4223,7 +4143,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionSInput()
+			public void actionSInput() throws Exception
 			{
 				
 			}
@@ -4238,7 +4158,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionS()
+			public void doAfterActionS() throws Exception
 			{
 				
 			}
@@ -4250,7 +4170,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action T
 			 */
-			private final void doActionT()
+			private final void doActionT() throws Exception
 			{
 				this.actionTInput();
 				
@@ -4270,7 +4190,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionT()
+			public void doPreActionT() throws Exception
 			{
 				
 			}
@@ -4289,7 +4209,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionTInput()
+			public void actionTInput() throws Exception
 			{
 				
 			}
@@ -4304,7 +4224,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionT()
+			public void doAfterActionT() throws Exception
 			{
 				
 			}
@@ -4316,7 +4236,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action U 
 			 */
-			private final void doActionU()
+			private final void doActionU() throws Exception
 			{
 				this.actionUInput();
 				
@@ -4336,7 +4256,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionU()
+			public void doPreActionU() throws Exception
 			{
 				
 			}
@@ -4355,7 +4275,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionUInput()
+			public void actionUInput() throws Exception
 			{
 				
 			}
@@ -4370,7 +4290,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionU()
+			public void doAfterActionU() throws Exception
 			{
 				
 			}
@@ -4382,7 +4302,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action V
 			 */
-			private final void doActionV()
+			private final void doActionV() throws Exception
 			{
 				this.actionVInput();
 				
@@ -4402,7 +4322,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionV()
+			public void doPreActionV() throws Exception
 			{
 				
 			}
@@ -4421,7 +4341,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionVInput()
+			public void actionVInput() throws Exception
 			{
 				
 			}
@@ -4436,7 +4356,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionV()
+			public void doAfterActionV() throws Exception
 			{
 				
 			}
@@ -4448,7 +4368,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action W
 			 */
-			private final void doActionW()
+			private final void doActionW() throws Exception
 			{
 				this.actionWInput();
 				
@@ -4468,7 +4388,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionW()
+			public void doPreActionW() throws Exception
 			{
 				
 			}
@@ -4487,7 +4407,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionWInput()
+			public void actionWInput() throws Exception
 			{
 				
 			}
@@ -4502,7 +4422,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionW()
+			public void doAfterActionW() throws Exception
 			{
 				
 			}
@@ -4514,7 +4434,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action X
 			 */
-			private final void doActionX()
+			private final void doActionX() throws Exception
 			{
 				this.actionXInput();
 				
@@ -4534,7 +4454,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionX()
+			public void doPreActionX() throws Exception
 			{
 				
 			}
@@ -4553,7 +4473,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionXInput()
+			public void actionXInput() throws Exception
 			{
 				
 			}
@@ -4568,7 +4488,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionX()
+			public void doAfterActionX() throws Exception
 			{
 				
 			}
@@ -4580,7 +4500,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action Y
 			 */
-			private final void doActionY()
+			private final void doActionY() throws Exception
 			{
 				this.actionYInput();
 				
@@ -4600,7 +4520,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionY()
+			public void doPreActionY() throws Exception
 			{
 				
 			}
@@ -4619,7 +4539,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionYInput()
+			public void actionYInput() throws Exception
 			{
 				
 			}
@@ -4634,7 +4554,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionY()
+			public void doAfterActionY() throws Exception
 			{
 				
 			}
@@ -4646,7 +4566,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			/**
 			 * does action Z
 			 */
-			private final void doActionZ()
+			private final void doActionZ() throws Exception
 			{
 				this.actionZInput();
 				
@@ -4666,7 +4586,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doPreActionZ()
+			public void doPreActionZ() throws Exception
 			{
 				
 			}
@@ -4685,7 +4605,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * @see PhaseAASCII
 			 * @see PhaseAGUI
 			 */
-			public void actionZInput()
+			public void actionZInput() throws Exception
 			{
 				
 			}
@@ -4700,7 +4620,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			 * 
 			 * @see PhaseALogic
 			 */
-			public void doAfterActionZ()
+			public void doAfterActionZ() throws Exception
 			{
 				
 			}
@@ -5019,7 +4939,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 		//DEACTIVATE//
 		//////////////
 		
-		private final void deactivateAllActions()
+		public final void deactivateAllActions()
 		{
 			this.deactivateActionA();
 			this.deactivateActionB();

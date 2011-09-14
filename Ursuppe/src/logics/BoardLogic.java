@@ -8,12 +8,16 @@ import java.io.PrintStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import exceptions.GameExceptions.AmoebaAlreadyOnBoardException;
+import exceptions.GameExceptions.InvalidSquareException;
+
 import annotations.OnlyForTesting;
 
 import helper.Setting;
 import interfaces.IAmoeba;
 import interfaces.IBoard;
 import interfaces.ICompassSquare;
+import interfaces.IGame;
 import interfaces.IModule;
 import interfaces.IPlayer;
 import interfaces.ISoupSquare;
@@ -43,21 +47,25 @@ public class BoardLogic implements IBoard, Serializable
 	protected Triples placesOfAmoebas=new Triples();
 	protected ICompassSquare compassSquare;
 	
+	protected IGame game;
+	
 	protected ArrayList<IAmoeba> onBoardAmoebas=new ArrayList<IAmoeba>();
 	
 	/**
 	 * default constructor which build the original board
 	 */
-	public BoardLogic(PrintStream out, PrintStream error, IModule module)
+	public BoardLogic(PrintStream out, PrintStream error, IModule module, IGame game)
 	{
 		this.module=module;
 		
 		this.outStream=out;
 		this.errorStream=error;
+		this.game=game;
 		
 		this.buildEmptyBoard(6,6);
 		
 		this.buildOriginalBoard();
+		
 	}
 
 	///////////
@@ -95,13 +103,15 @@ public class BoardLogic implements IBoard, Serializable
 	{
 		boolean firstSetOn=this.checkFirstSetActive();
 		
+		
+		
 		if(firstSetOn)
 		{
-			this.tryFirstSet(amoeba, x, y);
+			this.firstSet(amoeba, x, y);
 		}
 		else
 		{
-			this.tryNormalSet(amoeba, x,y);
+			this.normalSet(amoeba, x,y);
 		}
 		
 	}
@@ -155,18 +165,18 @@ public class BoardLogic implements IBoard, Serializable
 	////////////////////
 	//PRIVATE METHODES//
 	////////////////////
-	private final void tryFirstSet(IAmoeba amoeba, int x, int y)
+	private final void firstSet(IAmoeba amoeba, int x, int y)
 	{
 		
 	}
 	
 	/**
-	 * try set an amoeba in a normal round
+	 * set an amoeba in a normal round
 	 * @param amoeba
 	 * @param x
 	 * @param y
 	 */
-	private final void tryNormalSet(IAmoeba amoeba, int x,int y)
+	private final void normalSet(IAmoeba amoeba, int x,int y)
 	{
 		
 	}
@@ -177,14 +187,7 @@ public class BoardLogic implements IBoard, Serializable
 	 */
 	private final boolean checkFirstSetActive()
 	{
-		//TODO: TEST THIS!
-		
-		int numberOfPlayers=Setting.usedColors.size();
-		int numberOfAmoebasToSetPerPlayer=Setting.numberOfFirstAmoebasOnBoardPerPlayer;
-		
-		int totalNumberOfAmoebasFirst=numberOfPlayers*numberOfAmoebasToSetPerPlayer;
-		
-		if(this.onBoardAmoebas.size()<totalNumberOfAmoebasFirst)
+		if(this.game.getCurrentRoundNumber()==1)
 		{
 			return true;
 		}
@@ -211,6 +214,27 @@ public class BoardLogic implements IBoard, Serializable
 	{
 		//TODO
 		return false;
+	}
+	
+	private final void checkValidAmoebaToAdd(IAmoeba amoeba, int x, int y) throws Exception
+	{
+		boolean validAmoeba=this.onBoardAmoebas.contains(amoeba);
+		boolean validSquare=this.existSoupSquare(x,y);
+		
+		boolean valid=validAmoeba && validSquare;
+		
+		if(!validAmoeba)
+		{
+			this.module.throwGameExcptionAmoebaAlreadyOnBoard();
+		}
+		
+		if(!validSquare)
+		{
+			this.module.throwGameExceptionInvalidSquare(x, y);
+		}
+		
+		//TODO:CHECK THIS!
+		
 	}
 	
 	private final void addAmoebaToSquare(IAmoeba amoeba, int x, int y)			//TODO: private

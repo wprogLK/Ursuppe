@@ -1,7 +1,5 @@
 package enums;
 
-import java.util.ArrayList;
-
 import interfaces.IPlayer;
 import gameObjectsASCII.PlayerASCII;
 import gameObjectsGUI.PlayerGUI;

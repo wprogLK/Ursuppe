@@ -56,7 +56,7 @@ public class PhaseExitASCII extends PhaseExitLogic
 		{
 			this.setInputA(answer);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());

@@ -57,7 +57,7 @@ public class PhaseStatisticsASCII extends PhaseStatisticsLogic
 		{
 			this.setInputA(name);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());
@@ -89,7 +89,7 @@ public class PhaseStatisticsASCII extends PhaseStatisticsLogic
 		{
 			this.setInputB(age);
 		} 
-		catch (InputException e) 
+		catch (Exception e)
 		{
 			//TODO
 			System.out.println(e.getMessage());

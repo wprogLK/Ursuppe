@@ -48,7 +48,7 @@ public class MainASCII {
 	{
 		 game=module.createGame();
 		 
-		 game.setStartPhase(EPhases.phaseNewGame);
+		 game.setStartPhase(EPhases.phaseSplashScreen);
 		 
 		 game.createNew();
 		 

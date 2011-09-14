@@ -63,7 +63,7 @@ public abstract class PhaseBreakMenuLogic extends PhaseTemplateLogic
 	////////////
 	
 	@Override
-	public  void setInputA(Object inputA) throws InputException
+	public  void setInputA(Object inputA) throws Exception
 	{
 		if(this.getDoRunActionA())
 		{
@@ -81,19 +81,9 @@ public abstract class PhaseBreakMenuLogic extends PhaseTemplateLogic
 	
 	
 	@Override
-	public final void checkInputActionA(Object inputA)throws InputException
+	public final void checkInputActionA(Object inputA)throws Exception
 	{
-		String inputString="";
-		
-		if(!this.tryCastToString(inputA))
-		{
-			this.module.createInputExceptionParseToString();
-		}
-		else
-		{
-			inputString=this.doCastToString(inputA);
-		}
-		
+		String inputString=this.doCastToString(inputA);
 		
 		if (!inputString.equals(""))
 		{
@@ -102,12 +92,9 @@ public abstract class PhaseBreakMenuLogic extends PhaseTemplateLogic
 		}
 		else
 		{
-			this.module.createInputException("wrong input");
+			this.module.throwInputExceptionEmptyInput();
 		}
 	}
-	
-
-
 
 	
 	
