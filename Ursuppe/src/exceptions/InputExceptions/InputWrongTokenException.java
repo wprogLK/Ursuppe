@@ -3,6 +3,7 @@
  */
 package exceptions.InputExceptions;
 
+import helper.LanguagePack;
 import exceptions.InputException;
 
 /**
@@ -18,6 +19,11 @@ public class InputWrongTokenException extends InputException
 	
 	public InputWrongTokenException(char token)
 	{
-		super(String.format(message, token));
+		super(String.format(LanguagePack.getTranslation("inputExceptionInputWrongToken"), token));
+	}
+
+	public InputWrongTokenException(String input) 
+	{
+		super(LanguagePack.getTranslation("inputExceptionInputWrongTokenUnknownCombination",input));
 	}
 }

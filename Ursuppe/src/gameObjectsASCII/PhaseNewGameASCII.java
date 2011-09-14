@@ -8,6 +8,7 @@ import enums.EColor;
 import enums.EToken;
 import exceptions.InputException;
 
+import helper.LanguagePack;
 import helper.ReadAndWriteFiles;
 import helper.UserInput;
 import logics.PhaseALogic;
@@ -34,7 +35,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 		@Override
 		public void doPreActionFirstRun()
 		{
-			this.outStream.println(this.rb.getString("phaseNewGameTitle"));
+			this.outStream.println(LanguagePack.getTranslation("phaseNewGameTitle"));
 		}
 		
 	///////////
@@ -49,13 +50,13 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionA()
 	{
-		this.outStream.println(this.rb.getString("phaseNewGameAddAPlayerOrPlay"));
+		this.outStream.println(LanguagePack.getTranslation("phaseNewGameAddAPlayerOrPlay"));
 	}
 	
 	@Override
 	public void actionAInput()
 	{
-		String input=UserInput.readInput(this.rb.getString("newGameAddOrPlay"));
+		String input=UserInput.readInput(LanguagePack.getTranslation("newGameAddOrPlay"));
 		
 		try
 		{
@@ -75,13 +76,13 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionB()
 	{
-		this.outStream.println(this.rb.getString("phaseNewGameLoadOrCreatePlayer"));
+		this.outStream.println(LanguagePack.getTranslation("phaseNewGameLoadOrCreatePlayer"));
 	}
 	
 	@Override
 	public void actionBInput()
 	{
-		String input=UserInput.readInput(this.rb.getString("newGameLoadOrCreatePlayer"));
+		String input=UserInput.readInput(LanguagePack.getTranslation("newGameLoadOrCreatePlayer"));
 		try
 		{
 			this.setInputB(input);
@@ -101,7 +102,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionC()
 	{
-		this.outStream.println(this.rb.getString("phaseNewGameLoadAPlayer"));
+		this.outStream.println(LanguagePack.getTranslation("phaseNewGameLoadAPlayer"));
 	}
 	
 	@Override
@@ -109,7 +110,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	{
 		String message=this.prepareStringForLoadPlayers(this.arrayHumanPlayers, this.arrayAIPlayers);
 		
-		String input=UserInput.readInput(this.rb.getString("newGameLoadInstruction") + "\n" + message);
+		String input=UserInput.readInput(LanguagePack.getTranslation("newGameLoadInstruction") + "\n" + message);
 		try
 		{
 			this.setInputC(input);
@@ -124,7 +125,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doAfterActionC()
 	{
-		this.outStream.println(this.rb.getString("newGameSuccessfulLoad"));
+		this.outStream.println(LanguagePack.getTranslation("newGameSuccessfulLoad"));
 	}
 	
 	////////////
@@ -134,13 +135,13 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doPreActionD()
 	{
-		this.outStream.println(this.rb.getString("phaseNewGameCreatePlayer"));
+		this.outStream.println(LanguagePack.getTranslation("phaseNewGameCreatePlayer"));
 	}
 	
 	@Override
 	public void actionDInput()
 	{
-		String input=UserInput.readInput(this.rb.getString("newGameNameInstruction"));
+		String input=UserInput.readInput(LanguagePack.getTranslation("newGameNameInstruction"));
 		try
 		{
 			this.setInputD(input);
@@ -155,7 +156,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void doAfterActionD()
 	{
-		this.outStream.println(this.rb.getString("newGameSuccessfulName") + this.nameOfNewPlayer);
+		this.outStream.println(LanguagePack.getTranslation("newGameSuccessfulName") + this.nameOfNewPlayer);
 	}
 	
 	////////////
@@ -165,7 +166,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	@Override
 	public void actionEInput()
 	{
-		String input=UserInput.readInput(this.rb.getString("newGameAgeInstructuion"));
+		String input=UserInput.readInput(LanguagePack.getTranslation("newGameAgeInstructuion"));
 		try
 		{
 			this.setInputE(input);
@@ -186,7 +187,7 @@ public class PhaseNewGameASCII extends PhaseNewGameLogic
 	{
 		String strList=this.createStringOfColors();
 		
-		String input=UserInput.readInput(this.rb.getString("newGameColorInstruction") +"\n"+ strList);
+		String input=UserInput.readInput(LanguagePack.getTranslation("newGameColorInstruction") +"\n"+ strList);
 		try
 		{
 			this.setInputF(input);

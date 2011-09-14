@@ -108,6 +108,11 @@ public abstract class ModuleTemplate implements IModule
 		throw new InputWrongTokenException(tokenSign);
 	}
 	
+	public void throwInputExceptionUnkownCombination(String input) throws InputWrongTokenException
+	{
+		throw new InputWrongTokenException(input);
+	}
+	
 	public void throwInputExceptionImpossibleStartPosition() throws ImpossibleStartPositionException
 	{
 		throw new ImpossibleStartPositionException();

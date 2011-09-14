@@ -3,6 +3,7 @@
  */
 package exceptions.GameExceptions;
 
+import helper.LanguagePack;
 import exceptions.GameException;
 
 /**
@@ -12,11 +13,9 @@ import exceptions.GameException;
  */
 public class AmoebaAlreadyOnBoardException extends GameException
 {
-	private static String message="Error: Amoeba can not add to the board. The choosen amoeba exist already on the board!";
-	
 	public AmoebaAlreadyOnBoardException() 
 	{
-		super(message);
+		super(LanguagePack.getTranslation("gameExceptionAmoebaAlreadyOnBoard"));
 
 	}
 }

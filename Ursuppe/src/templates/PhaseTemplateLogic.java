@@ -13,7 +13,7 @@ import annotations.OnlyForTesting;
 
 import gameObjectsASCII.PhaseAASCII;
 import gameObjectsGUI.PhaseAGUI;
-import helper.LanguageSetup;
+import helper.LanguagePack;
 import helper.UserInput;
 import interfaces.IGame;
 import interfaces.IModule;
@@ -28,7 +28,7 @@ import main.GameLogic;
  * 
  * @see IPhase
  */
-public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase 
+public abstract class PhaseTemplateLogic extends Thread implements IPhase 
 {
 	//////////
 	//BASICS//
@@ -989,7 +989,7 @@ public abstract class PhaseTemplateLogic extends LanguageSetup implements IPhase
 			
 			boolean validBasicInput=true;
 				
-			if (strInput.toLowerCase().equals(this.rb.getString("instructionExit")))
+			if (strInput.toLowerCase().equals(LanguagePack.getTranslation("instructionExit")))
 				//if (input.equals("Exit") || input.equals("exit"))
 			{
 				this.doExit();

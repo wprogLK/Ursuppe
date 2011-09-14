@@ -19,7 +19,7 @@ import enums.EPlayingOrder;
 
 import main.GameLogic;
 
-import helper.LanguageSetup;
+import helper.LanguagePack;
 import helper.Setting;
 import interfaces.IBoard;
 import interfaces.IDie;
@@ -38,7 +38,7 @@ import gameObjectsASCII.*;
  * @see GameASCII
  * @see GameGUI
  */
-public abstract class GameTemplate extends LanguageSetup implements IGame{
+public abstract class GameTemplate extends Thread implements IGame{
 
 	protected GameLogic gameLogic;
 	protected IModule module;
@@ -85,6 +85,11 @@ public abstract class GameTemplate extends LanguageSetup implements IGame{
 	//////////
 	//CREATE//
 	//////////
+	public void setupLanguage(String[] args)
+	{
+		LanguagePack.setup(args);
+	}
+	
 	protected final void setupPlayers()
 	{
 		IPlayer playerTail=this.createANewPlayer();

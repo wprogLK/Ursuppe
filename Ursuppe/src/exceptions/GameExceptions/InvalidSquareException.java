@@ -3,6 +3,7 @@
  */
 package exceptions.GameExceptions;
 
+import helper.LanguagePack;
 import exceptions.GameException;
 
 /**
@@ -12,10 +13,8 @@ import exceptions.GameException;
  */
 public class InvalidSquareException extends GameException
 {
-private static String message="Error: The square %s | %s doesn't exist! Please chose a valid square!";
-	
 	public InvalidSquareException(int x, int y)
 	{
-		super(String.format(message, x,y));
+		super(String.format(LanguagePack.getTranslation("gameExceptionInvalidSquare"),x,y));
 	}
 }

@@ -3,6 +3,7 @@
  */
 package exceptions.InputExceptions;
 
+import helper.LanguagePack;
 import exceptions.InputException;
 
 /**
@@ -12,10 +13,8 @@ import exceptions.InputException;
  */
 public class InputWrongDataFormatException extends InputException
 {
-	private static String message="Error: Your input hasn't the correct data format! Try it again...";
-	
 	public InputWrongDataFormatException()
 	{
-		super(message);
+		super(LanguagePack.getTranslation("inputExceptionInputWrongDataFormate"));
 	}
 }

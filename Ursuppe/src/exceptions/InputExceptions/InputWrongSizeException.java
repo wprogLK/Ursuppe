@@ -3,6 +3,7 @@
  */
 package exceptions.InputExceptions;
 
+import helper.LanguagePack;
 import exceptions.InputException;
 
 /**
@@ -12,10 +13,8 @@ import exceptions.InputException;
  */
 public class InputWrongSizeException extends InputException
 {
-	private static String message="Error: Your input hasn't the correct size! It was too %s. Try it again...";
-	
 	public InputWrongSizeException(String expression)
 	{
-		super(String.format(message, expression));
+		super(LanguagePack.getTranslation("inputExceptionInputWrongSize"));
 	}
 }

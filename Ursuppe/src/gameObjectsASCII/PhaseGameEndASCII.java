@@ -1,6 +1,7 @@
 package gameObjectsASCII;
 
 import interfaces.IModule;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseGameEndLogic;
@@ -24,7 +25,7 @@ public class PhaseGameEndASCII extends PhaseGameEndLogic
 		@Override
 		public void doPreAction()
 		{
-			this.outStream.println(this.rb.getString("phaseGameEndTitle"));
+			this.outStream.println(LanguagePack.getTranslation("phaseGameEndTitle"));
 		}
 		
 		@Override

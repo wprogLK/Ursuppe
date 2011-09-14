@@ -47,7 +47,7 @@ public class MainASCII {
 	public static void main(String[] args) 
 	{
 		 game=module.createGame();
-		 
+		 game.setupLanguage(args);
 		 game.setStartPhase(EPhases.phaseSplashScreen);
 		 
 		 game.createNew();

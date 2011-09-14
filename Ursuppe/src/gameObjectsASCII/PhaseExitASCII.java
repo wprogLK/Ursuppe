@@ -2,6 +2,7 @@ package gameObjectsASCII;
 
 import exceptions.InputException;
 import interfaces.IModule;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhaseExitLogic;
 
@@ -23,7 +24,7 @@ public class PhaseExitASCII extends PhaseExitLogic
 		@Override
 		public void doPreAction()
 		{
-			this.outStream.println(this.rb.getString("phaseExitTitle"));
+			this.outStream.println(LanguagePack.getTranslation("phaseExitTitle"));
 			this.outStream.println("You want to leave the game?");
 		}
 

@@ -1,6 +1,7 @@
 package gameObjectsASCII;
 
 import interfaces.IModule;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseSaveGameLogic;
@@ -24,7 +25,7 @@ public class PhaseSaveGameASCII extends PhaseSaveGameLogic
 		@Override
 		public void doPreAction()
 		{
-			this.outStream.println(this.rb.getString("phaseSaveGameTitle"));
+			this.outStream.println(LanguagePack.getTranslation("phaseSaveGameTitle"));
 		}
 		
 		@Override

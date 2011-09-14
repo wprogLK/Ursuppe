@@ -1,6 +1,7 @@
 package gameObjectsASCII;
 
 import interfaces.IModule;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseMainMenuLogic;
@@ -25,7 +26,7 @@ public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 		@Override
 		public void doPreAction()
 		{
-			this.outStream.println(this.rb.getString("phaseBreakMenuTitle"));	
+			this.outStream.println(LanguagePack.getTranslation("phaseBreakMenuTitle"));	
 		}
 		
 
@@ -68,15 +69,15 @@ public class PhaseBreakMenuASCII extends PhaseMainMenuLogic
 	 */
 	private String buildMenu() 
 	{
-		this.addEntry(1,this.rb.getString("phaseMainMenuNewGame"));
-		this.addEntry(2,this.rb.getString("phaseMainMenuLoadGame"));
-		this.addEntry(3,this.rb.getString("phaseMainMenuOptions"));
-		this.addEntry(4,this.rb.getString("phaseMainMenuHelp"));
-		this.addEntry(5,this.rb.getString("phaseMainMenuCheats"));
-		this.addEntry(6,this.rb.getString("phaseMainMenuAchievements"));
-		this.addEntry(7,this.rb.getString("phaseMainMenuStatistics"));
-		this.addEntry(8,this.rb.getString("phaseMainMenuAbout"));
-		this.addEntry(9,this.rb.getString("phaseMainMenuExit"));
+		this.addEntry(1,LanguagePack.getTranslation("phaseMainMenuNewGame"));
+		this.addEntry(2,LanguagePack.getTranslation("phaseMainMenuLoadGame"));
+		this.addEntry(3,LanguagePack.getTranslation("phaseMainMenuOptions"));
+		this.addEntry(4,LanguagePack.getTranslation("phaseMainMenuHelp"));
+		this.addEntry(5,LanguagePack.getTranslation("phaseMainMenuCheats"));
+		this.addEntry(6,LanguagePack.getTranslation("phaseMainMenuAchievements"));
+		this.addEntry(7,LanguagePack.getTranslation("phaseMainMenuStatistics"));
+		this.addEntry(8,LanguagePack.getTranslation("phaseMainMenuAbout"));
+		this.addEntry(9,LanguagePack.getTranslation("phaseMainMenuExit"));
 		return this.strMenu;
 	}
 

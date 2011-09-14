@@ -3,6 +3,7 @@ package gameObjectsASCII;
 import exceptions.InputException;
 import interfaces.IModule;
 import interfaces.IPlayer;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhasePreparation2Logic;
 /**
@@ -27,13 +28,13 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 		@Override
 		public void doPreActionFirstRun()
 		{
-			this.outStream.println(this.rb.getString("phasePreparation2Title"));
+			this.outStream.println(LanguagePack.getTranslation("phasePreparation2Title"));
 		}
 		
 		@Override
 		public void doAfterActionLastRun()
 		{
-			this.outStream.println(this.rb.getString("preaparation2Sucessful"));
+			this.outStream.println(LanguagePack.getTranslation("preaparation2Sucessful"));
 		}
 
 	///////////
@@ -48,7 +49,7 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 	@Override
 	public void doPreActionA()
 	{
-		this.outStream.println(this.rb.getString("preparation2Instruction"));
+		this.outStream.println(LanguagePack.getTranslation("preparation2Instruction"));
 	}
 	
 	@Override
@@ -72,8 +73,7 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 		IPlayer player=this.game.getCurrentPlayer();
 		
 		String[] arg={player.getName(),this.doCastToString(player.getScore())};
-		String message=String.format(this.rb.getString("preparation2ChoosedNEW"), arg);
-		
+		String message=LanguagePack.getTranslation("preparation2ChoosedNEW",arg);
 		this.outStream.println(message);
 	}
 
@@ -89,7 +89,7 @@ public class PhasePreparation2ASCII extends PhasePreparation2Logic
 		
 		for(int pos:this.possibleStartPositions)
 		{
-			str+="( " + pos + " ) : " + this.rb.getString("wordPosition") + pos + "\n";
+			str+="( " + pos + " ) : " + LanguagePack.getTranslation("wordPosition") + pos + "\n";
 		}
 		
 		return str;

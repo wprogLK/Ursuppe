@@ -3,6 +3,7 @@
  */
 package exceptions.InputExceptions;
 
+import helper.LanguagePack;
 import exceptions.InputException;
 
 /**
@@ -12,10 +13,8 @@ import exceptions.InputException;
  */
 public class ParseToIntegerException extends InputException
 {
-	private static String message="Error: The input can not parse to an integer! Try it again...";
-	
 	public ParseToIntegerException() 
 	{
-		super(message);
+		super(LanguagePack.getTranslation("inputExceptionParseToInteger"));
 	}
 }

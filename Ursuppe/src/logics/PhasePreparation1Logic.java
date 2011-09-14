@@ -12,6 +12,7 @@ import annotations.OnlyForTesting;
 import enums.EPhases;
 import exceptions.InputException;
 import templates.PhaseTemplateLogic;
+import helper.LanguagePack;
 import interfaces.IModule;
 import interfaces.IPhase;
 import interfaces.IPlayer;
@@ -228,7 +229,7 @@ public abstract class PhasePreparation1Logic extends PhaseTemplateLogic
 	{
 		String inputString=this.doCastToString(inputA);
 		
-		if (inputString.equals(this.rb.getString("instructionPhasePreparation1Roll")))
+		if (inputString.equals(LanguagePack.getTranslation("instructionPhasePreparation1Roll")))
 		{
 			int value=this.game.rollDie();
 			int dieValue=value;

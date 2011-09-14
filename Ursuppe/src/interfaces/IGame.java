@@ -103,6 +103,8 @@ public interface IGame
 	 */
 	public int rollDie();
 	
+	
+	public void setupLanguage(String[] args);
 	///////////
 	//PLAYERS//
 	///////////
@@ -238,6 +240,8 @@ public interface IGame
 	
 	@OnlyForTesting
 	IBoard getBoard();
+
+	
 
 
 }

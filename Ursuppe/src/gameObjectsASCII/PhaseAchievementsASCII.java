@@ -1,6 +1,7 @@
 package gameObjectsASCII;
 
 import interfaces.IModule;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseAchievementsLogic;
@@ -24,7 +25,7 @@ public class PhaseAchievementsASCII extends PhaseAchievementsLogic
 		@Override
 		public void doPreAction()
 		{
-			this.outStream.println(this.rb.getString("phaseAchievementsTitle"));
+			this.outStream.println(LanguagePack.getTranslation("phaseAchievementsTitle"));
 		}
 		
 		@Override

@@ -137,7 +137,9 @@ public  interface IModule
 	
 	public void throwInputExceptionWrongDataFormat() throws InputWrongDataFormatException;
 	public void throwInputExceptionWrongSize(String expression) throws InputWrongSizeException;
+	
 	public void throwInputExceptionWrongToken(char tokenSign) throws InputWrongTokenException;
+	public void throwInputExceptionUnkownCombination(String input) throws InputWrongTokenException;
 	
 	public void throwInputExceptionImpossibleStartPosition() throws ImpossibleStartPositionException;
 	

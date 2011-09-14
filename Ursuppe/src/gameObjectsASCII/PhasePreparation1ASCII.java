@@ -2,6 +2,7 @@ package gameObjectsASCII;
 
 import exceptions.InputException;
 import interfaces.IModule;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhasePreparation1Logic;
@@ -29,7 +30,7 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 		@Override
 		public void doPreActionFirstRun()
 		{
-			this.outStream.println(this.rb.getString("phasePreparation1Title"));
+			this.outStream.println(LanguagePack.getTranslation("phasePreparation1Title"));
 		}
 		
 		
@@ -46,7 +47,7 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 	@Override
 	public void actionAInput()
 	{
-		String instruction=UserInput.readInput(this.rb.getString("preparation1Instruction"));
+		String instruction=UserInput.readInput(LanguagePack.getTranslation("preparation1Instruction"));
 		
 		
 		try 
@@ -66,7 +67,7 @@ public class PhasePreparation1ASCII extends PhasePreparation1Logic
 	{
 		int rolledValue=this.game.getDie().getValue();
 		
-		this.outStream.println(this.game.getCurrentPlayer().getName() + " " + this.rb.getString("preparation1Rolled") + " " + rolledValue);
+		this.outStream.println(this.game.getCurrentPlayer().getName() + " " + LanguagePack.getTranslation("preparation1Rolled") + " " + rolledValue);
 	}
 
 }

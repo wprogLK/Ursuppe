@@ -3,6 +3,7 @@ package logics;
 import enums.EPhases;
 import exceptions.InputException;
 import templates.PhaseTemplateLogic;
+import helper.LanguagePack;
 import interfaces.IModule;
 import interfaces.IPhase;
 
@@ -92,7 +93,7 @@ public abstract class PhaseSplashScreenLogic extends PhaseTemplateLogic
 	 */
 	private final boolean inputEqualsStart(String inputString)
 	{
-		if(inputString.toLowerCase().equals(this.rb.getString("instructionStart")))
+		if(inputString.toLowerCase().equals(LanguagePack.getTranslation("instructionStart")))
 		{
 			return true;
 		}

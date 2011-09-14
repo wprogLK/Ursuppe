@@ -3,6 +3,7 @@
  */
 package exceptions.InputExceptions;
 
+import helper.LanguagePack;
 import exceptions.InputException;
 
 /**
@@ -12,10 +13,8 @@ import exceptions.InputException;
  */
 public class UnknownInstructionException extends InputException
 {
-	private static String message="Error: Sorry but I don't know what you want to do with the input %s . Try it again...";
-	
 	public UnknownInstructionException(String inputInstruction)
 	{
-		super(String.format(message, inputInstruction));
+		super(String.format(LanguagePack.getTranslation("inputExceptionUnknownInstruction"), inputInstruction));
 	}
 }

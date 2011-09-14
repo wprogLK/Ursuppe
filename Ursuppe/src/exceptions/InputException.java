@@ -3,7 +3,6 @@
  */
 package exceptions;
 
-import helper.LanguageSetup;
 
 /**
  * @author Lukas Keller
@@ -11,8 +10,6 @@ import helper.LanguageSetup;
  */
 public abstract class InputException extends Exception
 {
-	static protected LanguageSetup languageSetup;
-	
 	public InputException(String message)
 	{
 		super(message);

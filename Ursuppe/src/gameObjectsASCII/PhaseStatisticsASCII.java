@@ -2,6 +2,7 @@ package gameObjectsASCII;
 
 import exceptions.InputException;
 import interfaces.IModule;
+import helper.LanguagePack;
 import helper.UserInput;
 import logics.PhaseALogic;
 import logics.PhaseStatisticsLogic;
@@ -23,7 +24,7 @@ public class PhaseStatisticsASCII extends PhaseStatisticsLogic
 		@Override
 		public void doPreAction()
 		{
-			this.outStream.println(this.rb.getString("phaseStatisticsTitle"));
+			this.outStream.println(LanguagePack.getTranslation("phaseStatisticsTitle"));
 		}
 		
 		@Override

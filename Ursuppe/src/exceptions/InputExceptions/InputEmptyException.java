@@ -3,6 +3,7 @@
  */
 package exceptions.InputExceptions;
 
+import helper.LanguagePack;
 import exceptions.InputException;
 
 /**
@@ -12,10 +13,8 @@ import exceptions.InputException;
  */
 public class InputEmptyException extends InputException
 {
-	private static String message="Error: Your input was empty but empty input is not valid! Try it again...";
-	
 	public InputEmptyException()
 	{
-		super(message);
+		super(LanguagePack.getTranslation("inputExceptionInputEmpty"));
 	}
 }

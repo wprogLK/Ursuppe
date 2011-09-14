@@ -3,6 +3,7 @@
  */
 package exceptions.GameExceptions;
 
+import helper.LanguagePack;
 import exceptions.GameException;
 
 /**
@@ -12,10 +13,8 @@ import exceptions.GameException;
  */
 public class NotEnoughPlayersException extends GameException
 {
-private static String message="Error: You can not play the game! You aren't enough players. Load or create an other one...";
-	
 	public NotEnoughPlayersException()
 	{
-		super(message);
+		super(LanguagePack.getTranslation("gameExceptionNotEnoughPlayers"));
 	}
 }

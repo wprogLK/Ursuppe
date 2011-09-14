@@ -9,7 +9,9 @@ import enums.EColor;
 import enums.EPhases;
 import enums.EToken;
 import exceptions.InputException;
+import exceptions.InputExceptions.ParseToIntegerException;
 import templates.PhaseTemplateLogic;
+import helper.LanguagePack;
 import helper.ReadAndWriteFiles;
 import helper.SaveAndLoad;
 import interfaces.IModule;
@@ -116,14 +118,14 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	 */
 	private void tryUnderstandInputA(String inputA) throws Exception
 	{
-		if (inputA.equals(this.rb.getString("instructionPhaseNewGameAddPlayer")))	//add new player
+		if (inputA.equals(LanguagePack.getTranslation("instructionPhaseNewGameAddPlayer")))	//add new player
 		{
 			this.deactivateAllActions();
 			
 			this.activateActionB();
 			this.isInputValid=true;
 		}
-		else if (inputA.equals(this.rb.getString("instructionPhaseNewGamePlay")))	//play
+		else if (inputA.equals(LanguagePack.getTranslation("instructionPhaseNewGamePlay")))	//play
 		{
 			this.isReadyToPlay();
 			
@@ -142,8 +144,6 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	{
 		if (this.game.getNumbersOfPlayers()>=2)			
 		{
-			System.out.println("...play");
-			
 			this.changeToPhase(EPhases.phasePreparation1);
 			
 			this.isInputValid=true;
@@ -194,14 +194,14 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 	 */
 	private void tryUnderstandInputB(String inputB) throws Exception
 	{
-		if (inputB.equals(this.rb.getString("instructionPhaseNewGameLoadPlayer")))	//load player
+		if (inputB.equals(LanguagePack.getTranslation("instructionPhaseNewGameLoadPlayer")))	//load player
 		{
 			this.deactivateAllActions();
 			
 			this.activateActionC();
 			this.isInputValid=true;
 		}
-		else if (inputB.equals(this.rb.getString("instructionPhaseNewGameCreatePlayer")))	//create new player
+		else if (inputB.equals(LanguagePack.getTranslation("instructionPhaseNewGameCreatePlayer")))	//create new player
 		{
 			this.deactivateAllActions();
 			
@@ -257,10 +257,17 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		
 		char token=input.charAt(0);
 		String number=input.subSequence(1, input.length()).toString();
-		
-		int intInput=this.doCastToInteger(number);
-		this.tryUnderstandInputC(token,intInput);
-		
+		try
+		{
+			int intInput=this.doCastToInteger(number);
+			this.tryUnderstandInputC(token,intInput);
+		}
+		catch(ParseToIntegerException e)
+		{
+			this.module.throwInputExceptionUnkownCombination(input);
+		}
+	
+	
 	}
 	
 	
@@ -391,11 +398,11 @@ public abstract class PhaseNewGameLogic extends PhaseTemplateLogic
 		//check if length is right
 		if(strInput.length()<10)
 		{
-			this.module.throwInputExceptionWrongSize("short");
+			this.module.throwInputExceptionWrongSize(LanguagePack.getTranslation("wordShort"));
 		}
 		else if(strInput.length()>10)
 		{
-			this.module.throwInputExceptionWrongSize("long");
+			this.module.throwInputExceptionWrongSize(LanguagePack.getTranslation("wordLong"));
 		}
 		else
 		{

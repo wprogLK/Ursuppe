@@ -3,6 +3,7 @@
  */
 package exceptions.InputExceptions;
 
+import helper.LanguagePack;
 import exceptions.InputException;
 
 /**
@@ -16,6 +17,6 @@ public class ParseToEColorException extends InputException
 
 	public ParseToEColorException() 
 	{
-		super(message);
+		super(LanguagePack.getTranslation("inputExceptionParseToEColor"));
 	}
 }
