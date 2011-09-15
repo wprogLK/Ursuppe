@@ -99,11 +99,11 @@ public class BoardLogic implements IBoard, Serializable
 	///////////
 	
 	@Override
-	public void addAmoeba(IAmoeba amoeba, int x, int y) 
+	public void addAmoeba(IAmoeba amoeba, int x, int y) throws Exception 
 	{
 		boolean firstSetOn=this.checkFirstSetActive();
 		
-		
+		this.checkValidAmoebaToAdd(amoeba, x, y);
 		
 		if(firstSetOn)
 		{
@@ -114,12 +114,29 @@ public class BoardLogic implements IBoard, Serializable
 			this.normalSet(amoeba, x,y);
 		}
 		
+		
+		this.addAmoebaToSquare(amoeba, x, y);
+		this.setAmoebaOnBoard(amoeba);
+		//TODO: Test this
 	}
 
 	@Override
 	public void removeAmoeba(IAmoeba amoeba) 
 	{
-		// TODO Auto-generated method stub
+		boolean valid=this.onBoardAmoebas.contains(amoeba);
+		
+		if(!valid)
+		{
+			//TODO:
+			//this.module.throwAmoebaNotOnBoardException();
+		}
+		else
+		{
+			this.removeAmoebaFromCurrentSquare(amoeba);
+			this.takeAmobeaOffBoard(amoeba);
+		}
+		
+		//TODO test this!
 		
 	}
 	
@@ -218,17 +235,16 @@ public class BoardLogic implements IBoard, Serializable
 	
 	private final void checkValidAmoebaToAdd(IAmoeba amoeba, int x, int y) throws Exception
 	{
-		boolean validAmoeba=this.onBoardAmoebas.contains(amoeba);
-		boolean validSquare=this.existSoupSquare(x,y);
+		boolean invalidAmoeba=!this.onBoardAmoebas.contains(amoeba);
+		boolean invalidSquare=!this.existSoupSquare(x,y);
 		
-		boolean valid=validAmoeba && validSquare;
 		
-		if(!validAmoeba)
+		if(invalidAmoeba)
 		{
 			this.module.throwGameExcptionAmoebaAlreadyOnBoard();
 		}
 		
-		if(!validSquare)
+		if(invalidSquare)
 		{
 			this.module.throwGameExceptionInvalidSquare(x, y);
 		}
@@ -237,46 +253,25 @@ public class BoardLogic implements IBoard, Serializable
 		
 	}
 	
+	
+	
 	private final void addAmoebaToSquare(IAmoeba amoeba, int x, int y)			//TODO: private
 	{
-		boolean validAmoeba=this.onBoardAmoebas.contains(amoeba);
-		boolean validSquare=this.existSoupSquare(x,y);
-		
-		boolean valid=validAmoeba && validSquare;
-		
-		if(valid)
-		{
-			ISoupSquare square=this.getSquare(x, y);
+		ISoupSquare square=this.getSquare(x, y);
 			
-			square.addAmoeba(amoeba);
+		square.addAmoeba(amoeba);
 			
-			this.placesOfAmoebas.addTriple(x, y, amoeba);
-		}
-		else
-		{
-			//TODO: maybe throw an exception?
-		}
+		this.placesOfAmoebas.addTriple(x, y, amoeba);
 	}
 	
 	@Override
 	public final void removeAmoebaFromCurrentSquare(IAmoeba amoeba)			//TODO: private
 	{
-		boolean valid=this.onBoardAmoebas.contains(amoeba);
-		
-		if(valid)
-		{
-			ISoupSquare square=this.getSoupSquareOfAmoeba(amoeba);
+		ISoupSquare square=this.getSoupSquareOfAmoeba(amoeba);
 			
-			square.removeAmoeba(amoeba);
+		square.removeAmoeba(amoeba);
 			
-			this.placesOfAmoebas.removeTriple(amoeba);
-		}
-		else
-		{
-			//TODO: maybe throw an exception?
-		}
-		
-		
+		this.placesOfAmoebas.removeTriple(amoeba);
 	}
 	
 	private final void setAmoebaOnBoard(IAmoeba amoeba)

@@ -39,13 +39,13 @@ public interface IBoard
 	public void addPlayer(IPlayer player);
 	
 	
-	public void removeAmoebaFromCurrentSquare(IAmoeba amoeba);
+	public void removeAmoebaFromCurrentSquare(IAmoeba amoeba); //TODO maybe private?
 
 	/*
-	 * TODO: add an other argument for the gene which allows to set every where an amoeba
+	 * TODO: add an other argument for the gene which allows to set everywhere an amoeba
 	 */
-	public void addAmoeba(IAmoeba amoeba, int x, int y);
-	public void removeAmoeba(IAmoeba amoeba);
+	public void addAmoeba(IAmoeba amoeba, int x, int y) throws Exception;
+	public void removeAmoeba(IAmoeba amoeba) throws Exception;;
 	
 	////////////////////
 	//ONLY FOR TESTING//
