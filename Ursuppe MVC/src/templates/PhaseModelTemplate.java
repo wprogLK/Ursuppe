@@ -5,6 +5,7 @@ package templates;
 
 import interfaces.IModel;
 
+import java.io.PrintStream;
 import java.util.Observable;
 
 import enums.EPhase;
@@ -16,6 +17,9 @@ import enums.EPhase;
 public abstract class PhaseModelTemplate extends Observable implements IModel 
 {
 	protected EPhase currentEPhase;
+	
+	protected PrintStream outStream;
+	protected PrintStream errStream;
 	
 	/**
 	 * 
@@ -32,6 +36,12 @@ public abstract class PhaseModelTemplate extends Observable implements IModel
 		
 		setChanged();
 		notifyObservers();
+	}
+	
+	@Override
+	public final EPhase getCurrentEPhase() 
+	{
+		return this.currentEPhase;
 	}
 
 

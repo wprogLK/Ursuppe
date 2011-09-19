@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import models.phases.MainMenuPhaseModel;
+import models.phases.OptionsPhaseModel;
 
 public class OptionsController implements ActionListener
 {

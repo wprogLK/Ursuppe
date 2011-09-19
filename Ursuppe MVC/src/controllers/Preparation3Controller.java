@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import models.phases.MainMenuPhaseModel;
+import models.phases.Preparation3PhaseModel;
 
 public class Preparation3Controller implements ActionListener
 {

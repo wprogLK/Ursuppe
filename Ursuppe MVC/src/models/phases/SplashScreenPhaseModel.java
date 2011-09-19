@@ -22,13 +22,6 @@ public class SplashScreenPhaseModel extends PhaseModelTemplate
 		super(EPhase.phaseSplashScreen);
 	}	
 		
-	
-	@Override
-	public EPhase getCurrentEPhase() 
-	{
-		return this.currentEPhase;
-	}
-	
 	public void goToMainMenu()
 	{
 		this.changePhase(EPhase.phaseMainMenu);

@@ -5,15 +5,17 @@ package templates;
 
 import interfaces.IViewASCII;
 
+import java.io.PrintStream;
 import java.util.Observable;
-
+import helpers.Setting;
 /**
  * @author Lukas
  *
  */
 public abstract class PhaseViewASCIITemplate implements IViewASCII
 {
-	
+	protected PrintStream outStream=Setting.asciiOut;
+	protected PrintStream errStream=Setting.asciiErr;
 	/**
 	 * 
 	 */

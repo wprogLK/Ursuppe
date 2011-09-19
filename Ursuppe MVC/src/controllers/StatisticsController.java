@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import models.phases.MainMenuPhaseModel;
+import models.phases.StatisticsPhaseModel;
 
 public class StatisticsController implements ActionListener
 {

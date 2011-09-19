@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import java.io.PrintStream;
 
 import tests.hamcrest.CheckEPhases;
+import tests.hamcrests.CheckEPhase;
 import enums.EPhase;
 
 import helpers.Setting;

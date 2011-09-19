@@ -6,12 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import models.phases.MainMenuPhaseModel;
+import models.phases.Phase6Model;
 
-public class PhaseGameEndController implements ActionListener
+public class Phase6Controller implements ActionListener
 {
-	private PhaseGameEndModel model;
+	private Phase6Model model;
 	
-	public PhaseGameEndController(PhaseGameEndModel model)
+	public Phase6Controller(Phase6Model model)
 	{
 		this.model=model;
 	}

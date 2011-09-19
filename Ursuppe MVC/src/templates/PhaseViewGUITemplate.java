@@ -3,9 +3,11 @@
  */
 package templates;
 
+import helpers.Setting;
 import interfaces.IViewGUI;
 
 import java.awt.Container;
+import java.io.PrintStream;
 import java.util.Observable;
 
 import javax.swing.JFrame;
@@ -18,6 +20,9 @@ public abstract class PhaseViewGUITemplate extends Observable implements IViewGU
 {
 	protected Container container;
 	protected JFrame window;
+	
+	protected PrintStream outStream=Setting.guiOut;
+	protected PrintStream errStream=Setting.guiErr;
 	/**
 	 * 
 	 */

@@ -5,6 +5,7 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import models.phases.AboutPhaseModel;
 import models.phases.MainMenuPhaseModel;
 
 public class AboutController implements ActionListener

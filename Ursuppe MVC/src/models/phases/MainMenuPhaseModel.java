@@ -22,18 +22,10 @@ public class MainMenuPhaseModel extends PhaseModelTemplate
 		super(EPhase.phaseMainMenu);
 	}	
 		
-	
-	@Override
-	public EPhase getCurrentEPhase() 
-	{
-		return this.currentEPhase;
-	}
-	
 	public void goToMainMenu()
 	{
 		this.changePhase(EPhase.phaseMainMenu);
 	}
-
 
 	public void doExit() 
 	{
