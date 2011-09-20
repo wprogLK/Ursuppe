@@ -29,4 +29,6 @@ public class AmoebaViewASCII extends GameObjectViewASCIITemplate
 		System.out.println("START: MAIN MENU");
 	}
 
+	
+
 }

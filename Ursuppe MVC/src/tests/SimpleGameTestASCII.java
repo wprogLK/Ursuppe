@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import interfaces.IUrsuppe;
 
 
+import enums.EMode;
 import enums.EPhase;
 import gameObjects.ASCII.UrsuppeASCII;
 import helpers.UserInput;
@@ -27,59 +28,44 @@ import tests.templates.ASCIITestTemplate;
 @RunWith(JExample.class)
 public class SimpleGameTestASCII extends ASCIITestTemplate
 {	
-	private String fileNameWithPathSimpleGameTest;
 	
 	
 	/**
 	 * 
 	 */
 	@Test
-	public IUrsuppe simpleGameTest() 
+	public UrsuppeASCII simpleGameTest() 
 	{
 		String[] instructions={"fd","df"};
 		
 		
+		UrsuppeASCII ursuppe;
 		
-//		this.setPriority(10);
-		
-		IUrsuppe ursuppe;
-		
-		ursuppe=new UrsuppeASCII(this.module,EPhase.phaseSplashScreen);
+		ursuppe=new UrsuppeASCII(this.module,EPhase.phaseSplashScreen,EMode.testMode);
 		
 		ursuppe.turnOnTestMode();
 		this.prepareForTesting("SimpleGameTestASCII.tes", instructions);
 		ursuppe.run();
-//		this.waitingGeneral(); 
-//		
-//		game.turnOnCurrentPhaseWaiting();
-//	
 		
 		return ursuppe;
 		
 	}
 	
 	@Given("simpleGameTest")
-	public IUrsuppe phaseShouldBePhaseSplashScreen(IUrsuppe ursuppe)
+	public UrsuppeASCII phaseShouldBePhaseSplashScreen(UrsuppeASCII ursuppe)
 	{
 		
 		assertCurrentEPhase(ursuppe, EPhase.phaseSplashScreen);
-		System.out.println("DA");
-//		game.turnOffCurrentPhaseWaiting();
-//		this.waitingGeneral();
 		
-//		game.turnOffCurrentPhaseWaiting();
-//		this.waitingGeneral();
+		
+		ursuppe.getCurrentASCIIView().resume();
+		
+		System.out.println("DA");
+		this.waitingGeneral();
+		
 		
 		assertCurrentEPhase(ursuppe, EPhase.phaseMainMenu);
 		
-//		game.turnOffCurrentPhaseWaiting();
-//		this.waitingGeneral();
-//		
-//		game.turnOffCurrentPhaseWaiting();
-//		this.waitingGeneral();
-//		
-//		assertCurrentEPhase(game, EPhases.phaseNewGame);
-//		
 		return ursuppe;
 	}
 	

@@ -26,8 +26,9 @@ public class SplashScreenPhaseViewASCII extends PhaseViewASCIITemplate
 	}
 
 	@Override
-	public void start()
+	public void run()
 	{
+		this.runInTestMode();
 		System.out.println("START: SPLASH SCREEN");
 		
 		String output=UserInput.readInput("Please enter 'start'");

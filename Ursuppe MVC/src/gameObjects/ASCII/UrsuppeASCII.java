@@ -3,6 +3,8 @@
  */
 package gameObjects.ASCII;
 
+import annotations.OnlyForTesting;
+import enums.EMode;
 import enums.EPhase;
 import helpers.Setting;
 import helpers.UserInput;
@@ -20,14 +22,14 @@ public class UrsuppeASCII extends UrsuppeTemplate
 	/**
 	 * 
 	 */
-	public UrsuppeASCII(IModule module) 
+	public UrsuppeASCII(IModule module, EMode mode) 
 	{
-		super(module);
+		super(module, mode);
 	}
 	
-	public UrsuppeASCII(IModule module, EPhase startEPhase)
+	public UrsuppeASCII(IModule module, EPhase startEPhase, EMode mode)
 	{
-		super(module, startEPhase);
+		super(module, startEPhase, mode);
 	}
 	
 	@Override
@@ -45,6 +47,18 @@ public class UrsuppeASCII extends UrsuppeTemplate
 		this.run=true;
 		
 		IViewASCII currentASCIIView=(IViewASCII) this.getCurrentView();
+		
+		if(this.mode==EMode.testMode)
+		{
+			currentASCIIView.turnOnTestMode();
+		}
+		
 		currentASCIIView.start();
+	}
+	
+	@OnlyForTesting
+	public IViewASCII getCurrentASCIIView()
+	{
+		return (IViewASCII) this.getCurrentView();
 	}
 }

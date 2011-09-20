@@ -50,6 +50,11 @@ public abstract class GameObjectViewGUITemplate extends Observable implements IV
 //		//do nothing
 //	}
 	
+	@Override
+	public void stop()
+	{
+		
+	}
 	
 
 

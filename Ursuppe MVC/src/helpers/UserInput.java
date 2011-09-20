@@ -99,8 +99,6 @@ public abstract class UserInput extends Thread
 
 	private static String fakeUserInput(String message) 
 	{	
-		System.out.println("fakeUserInput");
-		
 		String output=ReadAndWriteFiles.readOneLineOfTestFile(testFileName);
 		
 		return output;

@@ -8,6 +8,7 @@ import java.util.Observable;
 
 import annotations.OnlyForTesting;
 
+import enums.EMode;
 import enums.EPhase;
 
 
@@ -38,6 +39,7 @@ public abstract class UrsuppeTemplate implements IUrsuppe
 	private IView currentView;
 	
 	protected boolean run=false;
+	protected EMode mode;
 	//////////
 	//MODELS//
 	//////////
@@ -75,9 +77,11 @@ public abstract class UrsuppeTemplate implements IUrsuppe
 	/**
 	 * default constructor
 	 */
-	public UrsuppeTemplate(IModule module) 
+	public UrsuppeTemplate(IModule module, EMode mode) 
 	{
 		this.module=module;
+		
+		this.mode=mode;
 		
 		this.initialize();
 		
@@ -86,9 +90,11 @@ public abstract class UrsuppeTemplate implements IUrsuppe
 //		this.run();
 	}
 	
-	public UrsuppeTemplate(IModule module, EPhase startEPhase) 
+	public UrsuppeTemplate(IModule module, EPhase startEPhase, EMode mode) 
 	{
 		this.module=module;
+		
+		this.mode=mode;
 		
 		this.initialize();
 		this.changePhase(startEPhase);
@@ -130,8 +136,13 @@ public abstract class UrsuppeTemplate implements IUrsuppe
 	@Override
 	public void update(Observable o, Object arg) 
 	{
+		System.out.println("UPDATE IN URSUPPE...");
+		System.out.println("CurrentEPhase: " + currentEPhase);
+		System.out.println("currentModelEPhase: " +this.currentPhaseModel.getCurrentEPhase());
+		
 		if(!this.currentEPhase.equals(this.currentPhaseModel.getCurrentEPhase()))
 		{
+			System.out.println("CHANGE");
 			this.changePhase(this.currentPhaseModel.getCurrentEPhase());
 		}
 	}
@@ -283,6 +294,9 @@ public abstract class UrsuppeTemplate implements IUrsuppe
 		{
 			this.run();
 		}
+		System.out.println("AFTER CHANGE:");
+		System.out.println("CurrentEPhase: " + currentEPhase);
+		System.out.println("currentModelEPhase: " +this.currentPhaseModel.getCurrentEPhase());
 	}
 	
 
@@ -360,6 +374,8 @@ public abstract class UrsuppeTemplate implements IUrsuppe
 
 	private void createPhaseMainMenu()
 	{
+		
+		
 		this.phaseMainMenuScreenModel=new MainMenuPhaseModel();
 		this.currentPhaseModel=this.phaseMainMenuScreenModel;
 		

@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  * @author Lukas
  *
  */
-public abstract class PhaseViewGUITemplate extends Observable implements IViewGUI
+public abstract class PhaseViewGUITemplate extends Thread implements IViewGUI
 {
 	protected Container container;
 	protected JFrame window;
@@ -42,15 +42,4 @@ public abstract class PhaseViewGUITemplate extends Observable implements IViewGU
 	{
 		return this.window;
 	}
-	
-
-//	@Override
-//	public void start()
-//	{
-//		//do nothing
-//	}
-	
-	
-
-
 }

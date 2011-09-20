@@ -3,6 +3,7 @@
  */
 package mains;
 
+import enums.EMode;
 import modules.ModuleASCII;
 import gameObjects.ASCII.UrsuppeASCII;
 
@@ -18,7 +19,7 @@ public class MainASCII
 	 */
 	public static void main(String[] args)
 	{
-		UrsuppeASCII ursuppe=new UrsuppeASCII(new ModuleASCII());
+		UrsuppeASCII ursuppe=new UrsuppeASCII(new ModuleASCII(), EMode.asciiMode);
 		ursuppe.run();
 	}
 

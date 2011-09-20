@@ -4,6 +4,7 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import enums.EMode;
 import enums.EPhase;
 
 import helpers.Setting;
@@ -22,12 +23,12 @@ public class UrsuppeGUI extends UrsuppeTemplate
 	 */
 	public UrsuppeGUI(IModule module) 
 	{
-		super(module);
+		super(module,EMode.guiMode);
 	}
 	
 	public UrsuppeGUI(IModule module, EPhase startEPhase)
 	{
-		super(module, startEPhase);
+		super(module, startEPhase, EMode.guiMode);
 	}
 
 	@Override

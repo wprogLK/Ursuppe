@@ -32,6 +32,27 @@ public abstract class GameObjectViewASCIITemplate implements IViewASCII
 	}
 	
 	
+	@Override
+	public void suspend() 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resume() 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stop() 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 
 }
