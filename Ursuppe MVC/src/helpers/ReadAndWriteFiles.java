@@ -132,6 +132,31 @@ public abstract class ReadAndWriteFiles
 	public static  void writeFile(ArrayList<String> input, String fileNameWithPath)
 	{
 		String data="";
+			
+		File file =new File(fileNameWithPath);
+
+		BufferedWriter writer;
+		try 
+		{
+			writer = new BufferedWriter(new FileWriter(file));
+
+			for (String strLine:input)
+			{
+				writer.write(strLine);
+				writer.newLine();
+			}
+
+			writer.close();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static  void writeFile(String[] input, String fileNameWithPath)
+	{
+		String data="";
 		
 		File file =new File(fileNameWithPath);
 		

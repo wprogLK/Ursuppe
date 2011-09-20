@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
+import annotations.OnlyForTesting;
+
 import enums.EMode;
 /**
  *wait and read the input of the useres
@@ -26,6 +28,7 @@ public abstract class UserInput extends Thread
 	
 	private static boolean newInput=false;
 	private static String input;
+	
 	/**
 	 * set the new input
 	 * used for gui
@@ -96,7 +99,11 @@ public abstract class UserInput extends Thread
 
 	private static String fakeUserInput(String message) 
 	{	
-		return ReadAndWriteFiles.readOneLineOfTestFile(testFileName);
+		System.out.println("fakeUserInput");
+		
+		String output=ReadAndWriteFiles.readOneLineOfTestFile(testFileName);
+		
+		return output;
 	}
 
 	private static String realUserInput(String message) 
@@ -139,5 +146,4 @@ public abstract class UserInput extends Thread
 		}
 	}
 	
-
 }

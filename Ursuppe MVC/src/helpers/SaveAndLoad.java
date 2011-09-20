@@ -1,6 +1,6 @@
 package helpers;
 
-import interfaces.IPlayer;
+import interfaces.models.IPlayerModel;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,14 +37,14 @@ public abstract class SaveAndLoad {
 		errStream=error;
 	}
 	
-	public static IPlayer loadPlayer(String filename)
+	public static IPlayerModel loadPlayer(String filename)
 	{
 		filename=Setting.pathSavePlayers+"/"+filename;
 		
-		return (IPlayer) loadObject(filename);
+		return (IPlayerModel) loadObject(filename);
 	}
 	
-	public static void saveHumanPlayer(IPlayer player, String filename, EToken token)
+	public static void saveHumanPlayer(IPlayerModel player, String filename, EToken token)
 	{
 		//TODO: throw an exception or ask the user if a file already exist
 		

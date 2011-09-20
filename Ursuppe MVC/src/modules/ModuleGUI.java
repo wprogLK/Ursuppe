@@ -1,8 +1,37 @@
 package modules;
 
 import views.GUI.*;
+import views.GUI.phases.AboutPhaseViewGUI;
+import views.GUI.phases.AchievementsPhaseViewGUI;
+import views.GUI.phases.BreakMenuPhaseViewGUI;
+import views.GUI.phases.CheatsPhaseViewGUI;
+import views.GUI.phases.ExitPhaseViewGUI;
+import views.GUI.phases.GameEndPhaseViewGUI;
+import views.GUI.phases.HelpPhaseViewGUI;
+import views.GUI.phases.LoadGamePhaseViewGUI;
+import views.GUI.phases.MainMenuPhaseViewGUI;
+import views.GUI.phases.NewGamePhaseViewGUI;
+import views.GUI.phases.OptionsPhaseViewGUI;
+import views.GUI.phases.Phase1ViewGUI;
+import views.GUI.phases.Phase2ViewGUI;
+import views.GUI.phases.Phase3ViewGUI;
+import views.GUI.phases.Phase4ViewGUI;
+import views.GUI.phases.Phase5ViewGUI;
+import views.GUI.phases.Phase6ViewGUI;
+import views.GUI.phases.Preparation1PhaseViewGUI;
+import views.GUI.phases.Preparation2PhaseViewGUI;
+import views.GUI.phases.Preparation3PhaseViewGUI;
+import views.GUI.phases.SaveGamePhaseViewGUI;
+import views.GUI.phases.SplashScreenPhaseViewGUI;
+import views.GUI.phases.StatisticsPhaseViewGUI;
 import interfaces.IModule;
-import interfaces.IView;
+import interfaces.views.IView;
+import models.AmoebaModel;
+import models.BoardModel;
+import models.CompassSquareModel;
+import models.DieModel;
+import models.PlayerModel;
+import models.SoupSquareModel;
 import models.phases.*;
 
 public class ModuleGUI implements IModule
@@ -144,6 +173,42 @@ public class ModuleGUI implements IModule
 	public IView createStatisticsPhaseView(StatisticsPhaseModel model)
 	{
 		return new StatisticsPhaseViewGUI(model);
+	}
+	
+	/////////////////////
+	//CREATE BOAD STUFF//
+	/////////////////////
+	@Override
+	public IView createAmoebaView(AmoebaModel model)
+	{
+		return new AmoebaViewGUI(model);
+	}
+	@Override
+	public IView createPlayerView(PlayerModel model)
+	{
+		return new PlayerViewGUI(model);
+	}
+	
+	@Override
+	public IView createBoardView(BoardModel model)
+	{
+		return new BoardViewGUI(model);
+	}
+	@Override
+	public IView createSoupSquareView(SoupSquareModel model)
+	{
+		return new SoupSquareViewGUI(model);
+	}
+	@Override
+	public IView createCompassSquareView(CompassSquareModel model)
+	{
+		return new CompassSquareViewGUI(model);
+	}
+	
+	@Override
+	public IView createDieView(DieModel model)
+	{
+		return new DieViewGUI(model);
 	}
 	
 

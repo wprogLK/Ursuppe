@@ -3,15 +3,16 @@
  */
 package models;
 
+import interfaces.models.IGameModel;
+
 import java.util.Observable;
 
-import interfaces.IGame;
 
 /**
  * @author Lukas
  *
  */
-public class GameModel extends Observable implements IGame
+public class GameModel extends Observable implements IGameModel
 {
 
 	/**

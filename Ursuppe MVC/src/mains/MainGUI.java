@@ -19,6 +19,7 @@ public class MainGUI
 	public static void main(String[] args) 
 	{
 		UrsuppeGUI ursuppe=new UrsuppeGUI(new ModuleGUI());
+		ursuppe.run();
 	}
 
 }

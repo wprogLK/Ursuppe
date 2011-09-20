@@ -1,6 +1,8 @@
 
 package tests.templates;
 
+import modules.ModuleGUI;
+
 
 /**
  * @author Lukas Keller
@@ -12,11 +14,7 @@ public class GUITestTemplate extends TestTemplate
 	public GUITestTemplate()
 	{
 		super();
-	}
-	
-	public final void createModule()
-	{
-		//this.module=new ModuleGUI(this.outStream,this.errStream);
+		this.module=new ModuleGUI();
 	}
 }
 

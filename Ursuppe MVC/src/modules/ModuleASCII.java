@@ -1,8 +1,38 @@
 package modules;
 
 import views.ASCII.*;
+import views.ASCII.phases.AboutPhaseViewASCII;
+import views.ASCII.phases.AchievementsPhaseViewASCII;
+import views.ASCII.phases.BreakMenuPhaseViewASCII;
+import views.ASCII.phases.CheatsPhaseViewASCII;
+import views.ASCII.phases.ExitPhaseViewASCII;
+import views.ASCII.phases.GameEndPhaseViewASCII;
+import views.ASCII.phases.HelpPhaseViewASCII;
+import views.ASCII.phases.LoadGamePhaseViewASCII;
+import views.ASCII.phases.MainMenuPhaseViewASCII;
+import views.ASCII.phases.NewGamePhaseViewASCII;
+import views.ASCII.phases.OptionsPhaseViewASCII;
+import views.ASCII.phases.Phase1ViewASCII;
+import views.ASCII.phases.Phase2ViewASCII;
+import views.ASCII.phases.Phase3ViewASCII;
+import views.ASCII.phases.Phase4ViewASCII;
+import views.ASCII.phases.Phase5ViewASCII;
+import views.ASCII.phases.Phase6ViewASCII;
+import views.ASCII.phases.Preparation1PhaseViewASCII;
+import views.ASCII.phases.Preparation2PhaseViewASCII;
+import views.ASCII.phases.Preparation3PhaseViewASCII;
+import views.ASCII.phases.SaveGamePhaseViewASCII;
+import views.ASCII.phases.SplashScreenPhaseViewASCII;
+import views.ASCII.phases.StatisticsPhaseViewASCII;
 import interfaces.IModule;
-import interfaces.IView;
+import interfaces.views.IView;
+import models.AmoebaModel;
+import models.BoardModel;
+import models.CompassSquareModel;
+import models.DieModel;
+import models.GameModel;
+import models.PlayerModel;
+import models.SoupSquareModel;
 import models.phases.*;
 
 public class ModuleASCII implements IModule
@@ -145,6 +175,47 @@ public class ModuleASCII implements IModule
 	{
 		return new StatisticsPhaseViewASCII(model);
 	}
+	
+	/////////////////////
+	//CREATE BOAD STUFF//
+	/////////////////////
+	@Override
+	public IView createAmoebaView(AmoebaModel model)
+	{
+		return new AmoebaViewASCII(model);
+	}
+	@Override
+	public IView createPlayerView(PlayerModel model)
+	{
+		return new PlayerViewASCII(model);
+	}
+	
+	@Override
+	public IView createBoardView(BoardModel model)
+	{
+		return new BoardViewASCII(model);
+	}
+	@Override
+	public IView createSoupSquareView(SoupSquareModel model)
+	{
+		return new SoupSquareViewASCII(model);
+	}
+	@Override
+	public IView createCompassSquareView(CompassSquareModel model)
+	{
+		return new CompassSquareViewASCII(model);
+	}
+	
+	@Override
+	public IView createDieView(DieModel model)
+	{
+		return new DieViewASCII(model);
+	}
+	
+	////////////////////////
+	//CREATE OTHER OBJECTS//
+	////////////////////////
+	
 	
 	
 

@@ -1,9 +1,7 @@
 
 package tests.templates;
 
-import module.ModuleASCII;
-
-
+import modules.ModuleASCII;
 
 /**
  * @author Lukas Keller
@@ -12,15 +10,13 @@ import module.ModuleASCII;
  */
 public class ASCIITestTemplate extends TestTemplate
 {
+	
 	public ASCIITestTemplate()
 	{
 		super();
+		this.module=new ModuleASCII();
 	}
 	
-	public final void createModule()
-	{
-		this.module=new ModuleASCII(this.outStream,this.errStream);
-	}
 }
 
 

@@ -19,6 +19,7 @@ public class MainASCII
 	public static void main(String[] args)
 	{
 		UrsuppeASCII ursuppe=new UrsuppeASCII(new ModuleASCII());
+		ursuppe.run();
 	}
 
 }

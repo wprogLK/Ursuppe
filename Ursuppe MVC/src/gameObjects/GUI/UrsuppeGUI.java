@@ -4,9 +4,12 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import enums.EPhase;
+
+import helpers.Setting;
+import helpers.UserInput;
 import interfaces.IModule;
-import interfaces.IView;
-import interfaces.IViewGUI;
+import interfaces.views.IViewGUI;
 import templates.UrsuppeTemplate;
 
 public class UrsuppeGUI extends UrsuppeTemplate
@@ -21,10 +24,19 @@ public class UrsuppeGUI extends UrsuppeTemplate
 	{
 		super(module);
 	}
+	
+	public UrsuppeGUI(IModule module, EPhase startEPhase)
+	{
+		super(module, startEPhase);
+	}
 
 	@Override
 	protected void initialize() 
 	{
+		UserInput.setOutStream(Setting.guiOut);
+		UserInput.setErrorStream(Setting.guiErr);
+		
+		UserInput.turnOnGUIMode();
 		createWindow();
 	}
 	
@@ -39,8 +51,10 @@ public class UrsuppeGUI extends UrsuppeTemplate
 	}
 
 	@Override
-	protected void run() 
+	public void run() 
 	{
+		this.run=true;
+		
 		this.window.getContentPane().removeAll();
 		
 		System.out.println("DO RUN ");

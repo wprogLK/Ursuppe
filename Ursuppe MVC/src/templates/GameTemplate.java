@@ -3,13 +3,15 @@
  */
 package templates;
 
-import interfaces.IGame;
+import interfaces.models.IGameModel;
+
+
 
 /**
  * @author Lukas
  *
  */
-public abstract class GameTemplate implements IGame 
+public abstract class GameTemplate implements IGameModel 
 {
 
 	/**

@@ -1,9 +1,15 @@
 package interfaces;
 
+import interfaces.views.IView;
+import models.*;
 import models.phases.*;
 
 public interface IModule 
 {
+	/////////////////
+	//CREATE PHASES//
+	/////////////////
+	
 	public IView createAboutPhaseView(AboutPhaseModel model);
 	
 	public IView createAchievementsPhaseView(AchievementsPhaseModel model);
@@ -50,4 +56,26 @@ public interface IModule
 	
 	public IView createStatisticsPhaseView(StatisticsPhaseModel model);
 	
-}
+	/////////////////////
+	//CREATE BOAD STUFF//
+	/////////////////////
+	public IView createAmoebaView(AmoebaModel model);
+	public IView createPlayerView(PlayerModel model);
+	
+	public IView createBoardView(BoardModel model);
+	public IView createSoupSquareView(SoupSquareModel model);
+	public IView createCompassSquareView(CompassSquareModel model);
+	
+	public IView createDieView(DieModel model);
+	
+	////////////////////////
+	//CREATE OTHER OBJECTS//
+	////////////////////////
+	
+//	public IGame createGameView(GameModel model);
+	
+	
+	
+
+	
+}	

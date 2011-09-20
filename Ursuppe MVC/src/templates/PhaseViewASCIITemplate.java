@@ -3,7 +3,7 @@
  */
 package templates;
 
-import interfaces.IViewASCII;
+import interfaces.views.IViewASCII;
 
 import java.io.PrintStream;
 import java.util.Observable;

@@ -3,7 +3,7 @@
  */
 package templates;
 
-import interfaces.IModel;
+import interfaces.models.IPhaseModel;
 
 import java.io.PrintStream;
 import java.util.Observable;
@@ -14,7 +14,7 @@ import enums.EPhase;
  * @author Lukas
  *
  */
-public abstract class PhaseModelTemplate extends Observable implements IModel 
+public abstract class PhaseModelTemplate extends Observable implements IPhaseModel
 {
 	protected EPhase currentEPhase;
 	

@@ -4,15 +4,20 @@ package tests.templates;
 import static org.junit.Assert.assertThat;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 
-import tests.hamcrest.CheckEPhases;
+import org.hamcrest.Matcher;
+
+import annotations.OnlyForTesting;
+
 import tests.hamcrests.CheckEPhase;
 import enums.EPhase;
 
+import helpers.ReadAndWriteFiles;
 import helpers.Setting;
 import helpers.UserInput;
-import interfaces.IGame;
 import interfaces.IModule;
+import interfaces.IUrsuppe;
 
 
 
@@ -22,18 +27,33 @@ import interfaces.IModule;
  * @version 1.0.0
  *
  */
-public abstract class TestTemplate extends Thread
+public abstract class TestTemplate
 {
 	protected final PrintStream errStream= Setting.testErr;
+	protected final PrintStream outStream= Setting.testOut;
+	
+	protected IModule module;
+	
+	private String fileName;
+	protected String fileComplete;
+	
+	private String[] fakedUserInput;
 	
 	public TestTemplate()
 	{
 		super();
+	}
+	
+	protected final void prepareForTesting(final String fileName, final String[] fakedUserInput)
+	{
+		this.fileName=fileName;
+		this.fakedUserInput=fakedUserInput;
+		
+		this.createFakeUserInput();
 		
 		UserInput.turnOnTestMode();
 	}
 	
-	public abstract void createModule();
 	
 	////////////
 	//WAITINGS//
@@ -73,13 +93,27 @@ public abstract class TestTemplate extends Thread
 	}
 	
 	
+	private final void createFakeUserInput()
+	{
+		this.fileComplete=Setting.pathTestFiles+this.fileName;
+		UserInput.setTestingFileName(this.fileComplete);
+
+		ReadAndWriteFiles.writeFile(this.fakedUserInput, this.fileComplete);
+	}
+	
+
+	
 	////////////////////
 	//HAMCREST ASSERTS//
 	////////////////////
-	protected final void assertCurrentEPhase(IGame game, EPhase ePhase)
+	protected final void assertCurrentEPhase(IUrsuppe ursuppe, EPhase ePhase)
 	{
-		assertThat(game.getCurrentEPhase(),CheckEPhase.checkEPhases(ePhase));
+		assertThat(ursuppe.getCurrentEPhase(),CheckEPhase.checkEPhases(ePhase));
 	}
+
+	
+		
+	
 	
 }
 

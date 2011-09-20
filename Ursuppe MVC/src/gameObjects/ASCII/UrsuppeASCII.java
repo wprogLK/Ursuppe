@@ -3,7 +3,11 @@
  */
 package gameObjects.ASCII;
 
+import enums.EPhase;
+import helpers.Setting;
+import helpers.UserInput;
 import interfaces.IModule;
+import interfaces.views.IViewASCII;
 import templates.UrsuppeTemplate;
 
 /**
@@ -20,10 +24,27 @@ public class UrsuppeASCII extends UrsuppeTemplate
 	{
 		super(module);
 	}
+	
+	public UrsuppeASCII(IModule module, EPhase startEPhase)
+	{
+		super(module, startEPhase);
+	}
+	
+	@Override
+	protected void initialize()
+	{
+		UserInput.setOutStream(Setting.asciiOut);
+		UserInput.setErrorStream(Setting.asciiErr);
+		
+		UserInput.turnOnASCIIMode();
+	}
 
 	@Override
-	protected void run() 
+	public void run() 
 	{
-		this.getCurrentView().start();
+		this.run=true;
+		
+		IViewASCII currentASCIIView=(IViewASCII) this.getCurrentView();
+		currentASCIIView.start();
 	}
 }

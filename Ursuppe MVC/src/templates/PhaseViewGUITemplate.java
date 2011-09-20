@@ -4,7 +4,7 @@
 package templates;
 
 import helpers.Setting;
-import interfaces.IViewGUI;
+import interfaces.views.IViewGUI;
 
 import java.awt.Container;
 import java.io.PrintStream;
@@ -44,11 +44,11 @@ public abstract class PhaseViewGUITemplate extends Observable implements IViewGU
 	}
 	
 
-	@Override
-	public void start()
-	{
-		//do nothing
-	}
+//	@Override
+//	public void start()
+//	{
+//		//do nothing
+//	}
 	
 	
 
