@@ -36,7 +36,7 @@ public class SimpleGameTestASCII extends ASCIITestTemplate
 	@Test
 	public UrsuppeASCII simpleGameTest() 
 	{
-		String[] instructions={"fd","df"};
+		String[] instructions={"fd"};
 		
 		
 		UrsuppeASCII ursuppe;

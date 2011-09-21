@@ -53,6 +53,10 @@ public abstract class GameObjectViewASCIITemplate implements IViewASCII
 		
 	}
 	
-
+	@Override
+	public void turnOnTestMode()
+	{
+		
+	}
 
 }
